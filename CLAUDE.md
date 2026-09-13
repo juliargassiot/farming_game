@@ -2,7 +2,7 @@
 
 Cozy farming/romance game for the Steam Deck. Godot 4.7.2 (pinned in `tools/godot.sh`; the Deck runs the same binary from source, no build step). GDScript only, with static typing everywhere: untyped or inferred declarations are errors (see `[debug]` in `project.godot`). Use typed arrays, typed dictionaries, and enums for game data.
 
-The user does not understand or read code, documentation, commits, or comments. The user chooses; Claude generates, proposes, and wires. "Let's push" means commit and push to `main`, resolving any problem (conflicts, failed checks) yourself. "Promote to stable" means fast-forward `stable` to `main` and push.
+The user does not understand or read code, documentation, commits, or comments. The user chooses; Claude generates, proposes, and wires. Every push lands on `main`: commit, merge the working branch into `main` (fast-forward when possible), and push `main`, resolving any problem (conflicts, failed checks) yourself. "Let's push" means exactly that. "Promote to stable" means fast-forward `stable` to `main` and push.
 
 ## Before every commit
 

@@ -15,7 +15,7 @@ brew install git
 
 ## 2. Read-only access token
 
-The repository is private, so the Deck needs a token. On GitHub (logged in as the repository owner): Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token. Name it "Steam Deck", set the longest expiration offered, choose "Only select repositories" → `farming_game`, and under Repository permissions set Contents to Read-only. Copy the token.
+Skip this step if the repository is public. While it is private the Deck needs a token. On GitHub (logged in as the repository owner): Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token. Name it "Steam Deck", set the longest expiration offered, choose "Only select repositories" → `farming_game`, and under Repository permissions set Contents to Read-only. Copy the token.
 
 ## 3. Clone
 
