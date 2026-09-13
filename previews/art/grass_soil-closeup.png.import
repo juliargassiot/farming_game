@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7m7e02acw302"
-path="res://.godot/imported/variant-0.png-61dd4aa681fe10e99114f5ac54c31ac3.ctex"
+uid="uid://cbiygcd8tsi1"
+path="res://.godot/imported/grass_soil-closeup.png-56d854b131c48193bcb1820da399391d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/tiles/grass_soil/autumn/variant-0.png"
-dest_files=["res://.godot/imported/variant-0.png-61dd4aa681fe10e99114f5ac54c31ac3.ctex"]
+source_file="res://previews/art/grass_soil-closeup.png"
+dest_files=["res://.godot/imported/grass_soil-closeup.png-56d854b131c48193bcb1820da399391d.ctex"]
 
 [params]
 

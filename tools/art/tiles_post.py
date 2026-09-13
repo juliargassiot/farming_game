@@ -104,3 +104,37 @@ def cutout(tiles: dict, lower: np.ndarray, upper: np.ndarray, white: bool = Fals
             a[..., :3] = 255
         out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
     return out
+
+
+def _luma(rgb: np.ndarray) -> np.ndarray:
+    return rgb[..., 0] * 0.299 + rgb[..., 1] * 0.587 + rgb[..., 2] * 0.114
+
+
+def season_style(tiles: dict, lower: np.ndarray, upper: np.ndarray, style: dict) -> dict:
+    """Restyle the lower terrain's elements: flower dots, lighter blades, and darker shadow patches."""
+    if not style:
+        return tiles
+    out = {}
+    for key, im in tiles.items():
+        a = np.asarray(im.convert("RGBA")).astype(float)
+        rgb = a[..., :3]
+        is_lower = _classify(rgb, lower, upper)
+        luma, base = _luma(rgb), _luma(lower[None, None, :])[0, 0]
+        dots = is_lower & (rgb[..., 0] > rgb[..., 1] + 15)
+        blades = is_lower & ~dots & (luma > base + 5)
+        shadows = is_lower & ~dots & (luma < base - 10)
+        if style.get("dots"):
+            colours = [hex_colour(c) for c in style["dots"]]
+            yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+            pick = ((xx // 3) * 7 + (yy // 3) * 13) % len(colours)
+            palette = np.stack([np.where(pick == i, 1.0, 0.0) for i in range(len(colours))], axis=-1) @ np.stack(colours)
+            rgb = np.where(dots[..., None], palette, rgb)
+        if style.get("blades"):
+            target = hex_colour(style["blades"])
+            rgb = np.where(blades[..., None], rgb * 0.15 + target * 0.85, rgb)
+        if style.get("shadow_soften"):
+            amount = style["shadow_soften"]
+            rgb = np.where(shadows[..., None], rgb * (1 - amount) + lower * amount, rgb)
+        a[..., :3] = np.clip(rgb, 0, 255)
+        out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
+    return out

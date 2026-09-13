@@ -20,42 +20,40 @@
     "seasons": {
       "spring": {
         "lower": "seamless fresh spring green meadow grass texture, soft painterly shading, a few tiny pink and white blossoms scattered in the grass",
-        "variants": [
-          "a small cluster of tiny pink wildflowers with green leaves",
-          "a few tiny white daisies with green leaves",
-          "a large sprig of fresh green grass blades"
-        ],
-        "lower_colour": "#7dbb4e"
+        "tiles_from": "summer",
+        "lower_colour": "#63a83f",
+        "style": {
+          "dots": [
+            "#e878b0",
+            "#f4f0e8"
+          ]
+        }
       },
       "summer": {
         "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover",
-        "variants": [
-          "a small cluster of yellow wildflowers with green leaves",
-          "a small patch of green clover leaves",
-          "a large sprig of lush green grass blades"
-        ],
-        "lower_colour": "#63a83f"
+        "lower_colour": "#579a38",
+        "style": {}
       },
       "autumn": {
         "lower": "seamless autumn meadow grass texture, muted green with patches of dry brown grass, soft painterly shading",
-        "variants": [
-          "a small clump of dry brown grass blades",
-          "a few weed sprouts with brown seed heads",
-          "a large sprig of dry yellow-brown grass blades"
-        ]
+        "tiles_from": "summer",
+        "lower_colour": "#63a83f",
+        "style": {
+          "blades": "#d4b060",
+          "dots": [
+            "#b48a50"
+          ]
+        }
       },
       "winter": {
         "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
-        "variants": [
-          "a small clump of pale frosty grass blades",
-          "a small grey pebble half covered in snow",
-          "a small bare brown twig"
-        ]
+        "style": {
+          "shadow_soften": 0.6
+        }
       }
     },
     "field_colour": "#c69257",
     "field_flatten": 0.85,
-    "variant_mode": "sprite",
-    "variant_size": 20
+    "variant_fade": 8
   }
 }

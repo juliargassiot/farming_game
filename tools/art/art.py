@@ -316,7 +316,9 @@ def _season_specs(spec: dict, season: str | None) -> dict:
     return {key: dict(spec, **override) for key, override in seasons.items()}
 
 
-def _tile_folder(name: str, season: str) -> Path:
+def _tile_folder(name: str, season: str, spec: dict | None = None) -> Path:
+    """A season may borrow another season's generated tiles (`tiles_from`) and restyle them."""
+    season = (spec or {}).get("tiles_from", season)
     return RAW / "tiles" / name / season if season else RAW / "tiles" / name
 
 
@@ -333,19 +335,21 @@ def _assemble(folder: Path, sspec: dict) -> dict:
     size = sspec.get("tile_size", 16)
     lower, upper = tiles_post.mean_colour(tiles[0]), tiles_post.mean_colour(tiles[15])
     lower_target = tiles_post.hex_colour(sspec["lower_colour"]) if sspec.get("lower_colour") else lower
-    field = tiles_post.recolour(tiles, lower, upper, lower_target, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
-    field[0] = tiles_post.flat_tile(lower_target, size)
-    if sspec.get("variant_mode") == "sprite":
-        variants = raw_variants
+    tiles = tiles_post.recolour(tiles, lower, upper, lower_target, None)
+    tiles = tiles_post.season_style(tiles, lower_target, upper, sspec.get("style", {}))
+    if sspec.get("variants"):
+        variants = raw_variants if sspec.get("variant_mode") == "sprite" else [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in blended]
     else:
-        variants = [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in blended]
-    return {"field": field, "variants": variants, "tilled": tiles_post.cutout(tiles, lower, upper), "masks": tiles_post.cutout(tiles, lower, upper, white=True)}
+        variants = [tiles_post.edge_blend({0: tiles[0]}, lower_target, upper, sspec.get("variant_fade", 0), 1.0)[0]]
+    field = tiles_post.recolour(tiles, lower_target, upper, None, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
+    field[0] = tiles_post.flat_tile(lower_target, size)
+    return {"field": field, "variants": variants, "tilled": tiles_post.cutout(tiles, lower_target, upper), "masks": tiles_post.cutout(tiles, lower_target, upper, white=True)}
 
 
 def _tile_preview(name: str, spec: dict) -> Path:
     panels = []
     for season, sspec in _season_specs(spec, None).items():
-        folder = _tile_folder(name, season)
+        folder = _tile_folder(name, season, sspec)
         if not (folder / "00.png").exists():
             continue
         groups = _assemble(folder, sspec)
@@ -463,7 +467,7 @@ def cmd_tile_import(args) -> None:
     require_approved(record, args.name)
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
-        groups = _assemble(_tile_folder(args.name, season), sspec)
+        groups = _assemble(_tile_folder(args.name, season, sspec), sspec)
         blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 5, 1), (groups["masks"], 9, 1)]
         atlas = Image.new("RGBA", (4 * size, 13 * size), (0, 0, 0, 0))
         terrain = {}
