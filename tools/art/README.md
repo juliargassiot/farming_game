@@ -4,6 +4,8 @@ Two sources, one destination: hand-made or purchased PNGs go straight into `asse
 
 Token: set `PIXELLAB_TOKEN` in the environment or write it to `tools/art/token` (ignored by git). `art.py balance` shows remaining credits.
 
+The account is shared with another game. Every stored character is named `farming-game/<name>` and tagged `farming-game` plus its own name (`art.py tag` re-applies this); the API offers no project or tag field on image, edit, or tileset jobs, so their prompts are the only marker.
+
 ## Characters
 
 Declare the character in `bodies.json` (prompt, canvas size as one number or `[width, height]`, directions, animations with an `action` text or a PixelLab `template` id, frame count, fps), then:
