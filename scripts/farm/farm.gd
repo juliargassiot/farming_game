@@ -11,7 +11,8 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 const VARIANT_ROW: int = 4
-const VARIANT_CHANCE: float = 0.3
+const VARIANT_CHANCE: float = 0.4
+const TILLED_TILE: Vector2i = Vector2i(0, 5)
 const ACTION_HINTS: Dictionary[Plot.Action, String] = {
 	Plot.Action.TILL: "A: Till", Plot.Action.PLANT: "A: Plant", Plot.Action.WATER: "A: Water", Plot.Action.HARVEST: "A: Harvest",
 }
@@ -22,6 +23,7 @@ var map_size: Vector2i = Vector2i.ZERO
 var season: String = ""
 
 @onready var terrain: TileMapLayer = $Terrain
+@onready var tilled_layer: TileMapLayer = $Tilled
 @onready var ground: TileMapLayer = $Ground
 @onready var wet: TileMapLayer = $Wet
 @onready var crop_layer: TileMapLayer = $Crops
@@ -70,12 +72,15 @@ func _refresh_plots() -> void:
 	if wanted != season:
 		season = wanted
 		terrain.tile_set = load(TERRAIN_SETS[season])
-	var soil: Array[Vector2i] = []
+		tilled_layer.tile_set = terrain.tile_set
+		_paint_terrain()
 	for cell: Vector2i in farmable:
 		var plot: Plot = Game.plots.get(cell)
 		var tilled: bool = plot != null and plot.tilled
 		if tilled:
-			soil.append(cell)
+			tilled_layer.set_cell(cell, 0, TILLED_TILE)
+		else:
+			tilled_layer.erase_cell(cell)
 		if tilled and plot.watered:
 			wet.set_cell(cell, 0, Vector2i.ZERO)
 		else:
@@ -84,10 +89,9 @@ func _refresh_plots() -> void:
 			crop_layer.set_cell(cell, 0, Vector2i(plot.stage(), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
-	_paint_terrain(soil)
 
 
-func _paint_terrain(soil: Array[Vector2i]) -> void:
+func _paint_terrain() -> void:
 	"""Dual grid: terrain cell (i, j) sits half a tile up-left of map cell (i, j), so its four corners are the four map cells around that point."""
 	var source: TileSetAtlasSource = terrain.tile_set.get_source(0)
 	var variants: int = 0
@@ -99,7 +103,7 @@ func _paint_terrain(soil: Array[Vector2i]) -> void:
 			var corners: Array[Vector2i] = [Vector2i(i - 1, j - 1), Vector2i(i, j - 1), Vector2i(i - 1, j), Vector2i(i, j)]
 			var index: int = 0
 			for corner: Vector2i in corners:
-				index = index * 2 + (1 if soil.has(corner) else 0)
+				index = index * 2 + (1 if farmable.has(corner) else 0)
 			var cell: Vector2i = Vector2i(i, j)
 			if index == 0 and variants > 0 and hash(cell) % 100 < int(VARIANT_CHANCE * 100):
 				terrain.set_cell(cell, 0, Vector2i(hash(cell * 7) % variants, VARIANT_ROW))

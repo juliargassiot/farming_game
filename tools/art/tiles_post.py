@@ -63,3 +63,27 @@ def demo_field(tiles: dict, variants: list, size: int, seed: int = 3) -> Image.I
             tile = rng.choice(variants) if idx == 0 and variants and rng.random() < 0.35 else tiles[idx]
             img.alpha_composite(tile, (x * size, y * size))
     return img
+
+
+def hex_colour(text: str) -> np.ndarray:
+    return np.array([int(text[i:i + 2], 16) for i in (1, 3, 5)], dtype=float)
+
+
+def recolour(tiles: dict, lower: np.ndarray, upper: np.ndarray, lower_target: np.ndarray | None, upper_target: np.ndarray | None, flatten: float = 0.0) -> dict:
+    """Shift each terrain's pixels so their mean lands on the target colour, optionally flattening the upper terrain first."""
+    out = {}
+    for key, im in tiles.items():
+        a = np.asarray(im.convert("RGBA")).astype(float)
+        rgb = a[..., :3]
+        is_lower = _classify(rgb, lower, upper)[..., None]
+        lower_rgb = rgb + (lower_target - lower) if lower_target is not None else rgb
+        upper_rgb = rgb * (1 - flatten) + upper * flatten
+        if upper_target is not None:
+            upper_rgb = upper_rgb + (upper_target - upper)
+        a[..., :3] = np.clip(np.where(is_lower, lower_rgb, upper_rgb), 0, 255)
+        out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
+    return out
+
+
+def flat_tile(colour: np.ndarray, size: int) -> Image.Image:
+    return Image.new("RGBA", (size, size), tuple(int(v) for v in colour) + (255,))

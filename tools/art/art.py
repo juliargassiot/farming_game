@@ -412,6 +412,7 @@ def _corner_index(corners: dict) -> int:
 
 
 def cmd_tile_import(args) -> None:
+    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 is flat lower colour); row 4: variants; row 5: the tilled tile."""
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
@@ -419,15 +420,24 @@ def cmd_tile_import(args) -> None:
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
         tiles, variants = tiles_post.finish(*_load_tiles(_tile_folder(args.name, season)), sspec)
-        rows = 4 + (len(variants) + 3) // 4
+        lower, upper = tiles_post.mean_colour(tiles[0]), tiles_post.mean_colour(tiles[15])
+        lower_target = tiles_post.hex_colour(sspec["lower_colour"]) if sspec.get("lower_colour") else lower
+        field = tiles_post.recolour(tiles, lower, upper, lower_target, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
+        variants = [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in [tiles[0]] + variants]
+        field[0] = tiles_post.flat_tile(lower_target, size)
+        tilled = tiles_post.recolour({15: tiles[15]}, lower, upper, None, None)[15]
+        rows = 5 + (len(variants) + 3) // 4
         atlas = Image.new("RGBA", (4 * size, rows * size), (0, 0, 0, 0))
         terrain = {}
-        for index, tile in tiles.items():
+        for index, tile in field.items():
             atlas.alpha_composite(tile, ((index % 4) * size, (index // 4) * size))
             terrain[(index % 4, index // 4)] = {key: (index >> (3 - i)) & 1 for i, key in enumerate(("NW", "NE", "SW", "SE"))}
         for i, tile in enumerate(variants):
             atlas.alpha_composite(tile, ((i % 4) * size, (4 + i // 4) * size))
             terrain[(i % 4, 4 + i // 4)] = {key: 0 for key in ("NW", "NE", "SW", "SE")}
+        tilled_row = 4 + (len(variants) + 3) // 4
+        atlas.alpha_composite(tilled, (0, tilled_row * size))
+        terrain[(0, tilled_row)] = {key: 1 for key in ("NW", "NE", "SW", "SE")}
         out_png = ROOT / "assets" / "tiles" / (f"{args.name}_{season}.png" if season else f"{args.name}.png")
         out_png.parent.mkdir(parents=True, exist_ok=True)
         atlas.save(out_png)
