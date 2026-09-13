@@ -1,7 +1,10 @@
 {
   "player": {
     "description": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
-    "size": 128,
+    "size": [
+      72,
+      128
+    ],
     "view": "low top-down",
     "outline": "selective outline",
     "detail": "highly detailed",
@@ -13,8 +16,7 @@
     ],
     "animations": {
       "idle": {
-        "action": "standing still, gentle breathing",
-        "frames": 4,
+        "template": "breathing-idle",
         "fps": 4
       },
       "walk": {

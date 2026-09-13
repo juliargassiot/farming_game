@@ -1,22 +1,22 @@
 {
-  "spriteframes": {
-    "assets/characters/player/player.tres": {
-      "frame": [16, 24],
-      "fps": 6,
-      "animations": {
-        "walk_south": {"sheet": "assets/characters/player/walk_south.png", "frames": [0, 1]},
-        "walk_north": {"sheet": "assets/characters/player/walk_north.png", "frames": [0, 1]},
-        "walk_east": {"sheet": "assets/characters/player/walk_east.png", "frames": [0, 1]},
-        "walk_west": {"sheet": "assets/characters/player/walk_west.png", "frames": [0, 1]},
-        "idle_south": {"sheet": "assets/characters/player/walk_south.png", "frames": [0]},
-        "idle_north": {"sheet": "assets/characters/player/walk_north.png", "frames": [0]},
-        "idle_east": {"sheet": "assets/characters/player/walk_east.png", "frames": [0]},
-        "idle_west": {"sheet": "assets/characters/player/walk_west.png", "frames": [0]}
-      }
-    }
-  },
+  "spriteframes": {},
   "tilesets": {
-    "assets/tiles/ground.tres": {"atlas": "assets/tiles/ground.png", "tile": 16, "columns": 8, "rows": 1, "solid": [3, 4, 6]},
-    "assets/tiles/crops.tres": {"atlas": "assets/tiles/crops.png", "tile": 16, "columns": 5, "rows": 3}
+    "assets/tiles/ground.tres": {
+      "atlas": "assets/tiles/ground.png",
+      "tile": 16,
+      "columns": 8,
+      "rows": 1,
+      "solid": [
+        3,
+        4,
+        6
+      ]
+    },
+    "assets/tiles/crops.tres": {
+      "atlas": "assets/tiles/crops.png",
+      "tile": 16,
+      "columns": 5,
+      "rows": 3
+    }
   }
 }

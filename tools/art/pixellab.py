@@ -39,13 +39,13 @@ class PixelLab:
     def balance(self) -> dict:
         return self.call("GET", "/balance")
 
-    def create_image_pixen(self, description: str, size: int, **extra) -> dict:
-        body = {"description": description, "image_size": {"width": size, "height": size}, "no_background": True}
+    def create_image_pixen(self, description: str, size: tuple[int, int], **extra) -> dict:
+        body = {"description": description, "image_size": {"width": size[0], "height": size[1]}, "no_background": True}
         body.update(extra)
         return self.call("POST", "/create-image-pixen", json=body)
 
-    def create_character_v3(self, description: str, reference: Path, size: int, view: str, seed: int | None, name: str) -> dict:
-        body = {"description": description, "reference_image": b64_image(reference), "image_size": {"width": size, "height": size},
+    def create_character_v3(self, description: str, reference: Path, size: tuple[int, int], view: str, seed: int | None, name: str) -> dict:
+        body = {"description": description, "reference_image": b64_image(reference), "image_size": {"width": size[0], "height": size[1]},
                 "view": view, "name": name, "seed": seed}
         return self.call("POST", "/create-character-v3", json=body)
 

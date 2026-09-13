@@ -1,25 +1,105 @@
 {
   "characters": {
     "player": {
-      "approved": false,
-      "approved_hash": null,
-      "character_id": null,
-      "rotations": null,
-      "animations": {},
-      "imported": null,
+      "approved": true,
+      "approved_hash": "72a8ec75256b926e",
+      "character_id": "5696793e-db03-420f-ab06-8896cab0d9ce",
+      "rotations": {
+        "job": "57b1da14-5496-4b47-986e-6a69b91ce6ba",
+        "usage": null,
+        "created": "2026-09-13T20:31:27+00:00",
+        "directions": [
+          "south",
+          "north",
+          "east",
+          "west"
+        ],
+        "preview": "previews/art/player-rotations.png"
+      },
+      "animations": {
+        "idle": {
+          "jobs": [
+            "1fbd5da4-85b5-4e25-b106-bcdc1b9d2759",
+            "76c7f4d8-7196-4338-99a7-7cc91c5ee18e",
+            "394037c8-49f0-4fd8-b782-b6902f075a42",
+            "5fd51885-2973-45d3-b5c0-0e9168b9fe25",
+            "9b48a9b3-5771-457d-a337-99e728463e98",
+            "e67a16ab-efba-471b-91df-5c5cd320b781",
+            "0623957b-b23e-47c3-b08a-6315c88876e1",
+            "818ff5b6-6a9a-408a-a82e-6c4a97b0de42"
+          ],
+          "created": "2026-09-13T20:40:08+00:00",
+          "fps": 4,
+          "directions": {
+            "south": {
+              "from": 0,
+              "to": 3
+            },
+            "east": {
+              "from": 0,
+              "to": 3
+            },
+            "north": {
+              "from": 0,
+              "to": 3
+            },
+            "west": {
+              "from": 0,
+              "to": 3
+            }
+          },
+          "preview": "previews/art/player-idle.png"
+        },
+        "walk": {
+          "jobs": [
+            "1b34bdf6-bdf2-4a18-b486-a2f9714a54f4",
+            "7426bee9-0570-4a4c-bff8-e4275eae19a4",
+            "6cfe981b-afd3-463f-91f6-325fca40b2c0",
+            "bf3f37ec-8745-4a15-8de8-3921eabaaacf",
+            "110a3e38-5260-4bef-899b-92dc38e5f052",
+            "0d490b18-3465-4198-8f48-4318973b5bef"
+          ],
+          "created": "2026-09-13T20:47:41+00:00",
+          "fps": 8,
+          "directions": {
+            "west": {
+              "from": 0,
+              "to": 7
+            },
+            "south": {
+              "from": 0,
+              "to": 7
+            },
+            "east": {
+              "from": 0,
+              "to": 7
+            },
+            "north": {
+              "from": 0,
+              "to": 7
+            }
+          },
+          "preview": "previews/art/player-walk.png",
+          "note": "south from a custom front-view job; template and plain custom jobs turned sideways"
+        }
+      },
+      "imported": "2026-09-13T20:52:34+00:00",
       "design": {
         "file": "tools/art/raw/player/design.png",
         "preview": "previews/art/player-design.png",
-        "prompt": "a single young farmer with short brown hair, straw hat, blue shirt and green overalls, cozy pixel art, full body, facing the camera, alone, centered, no props, nothing else in frame",
-        "size": 32,
-        "seed": null,
-        "usage": {
-          "type": "generations",
-          "generations": 1.0
-        },
-        "created": "2026-09-13T19:56:03+00:00",
-        "hash": "ff291201021f84b7"
-      }
+        "prompt": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
+        "size": [
+          72,
+          128
+        ],
+        "seed": 33,
+        "source": "/tmp/claude-0/-home-user-farming-game/9c8b201b-2182-5df3-86b6-2d0115181a0b/scratchpad/eyes-transplant.png",
+        "usage": null,
+        "created": "2026-09-13T20:29:40+00:00",
+        "hash": "72a8ec75256b926e"
+      },
+      "approval_note": "refinement 1 with refinement 4's eyes",
+      "approved_at": "2026-09-13T20:29:40+00:00"
     }
   },
   "tilesets": {}

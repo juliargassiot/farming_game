@@ -5,7 +5,7 @@ LABEL_W = 56
 PAD = 2
 
 
-def contact_sheet(rows: list[tuple[str, list[Image.Image]]], scale: int = 4) -> Image.Image:
+def contact_sheet(rows: list[tuple[str, list[Image.Image]]], scale: int = 2) -> Image.Image:
     cell_w = max((f.width for _, frames in rows for f in frames), default=16)
     cell_h = max((f.height for _, frames in rows for f in frames), default=16)
     columns = max((len(frames) for _, frames in rows), default=1)

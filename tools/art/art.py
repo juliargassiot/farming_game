@@ -49,6 +49,11 @@ def save_png(data: bytes, path: Path) -> Image.Image:
     return Image.open(path).convert("RGBA")
 
 
+def frame_size(body: dict) -> tuple[int, int]:
+    size = body["size"]
+    return (size, size) if isinstance(size, int) else (size[0], size[1])
+
+
 def record_for(generated: dict, kind: str, name: str) -> dict:
     return generated[kind].setdefault(name, {"approved": False})
 
@@ -96,17 +101,20 @@ def cmd_design(args) -> None:
     body = load_json(ART / "bodies.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "characters", args.name)
-    client = PixelLab()
-    response = client.create_image_pixen(body["description"], body["size"], view=body.get("view", "low top-down"), direction="south",
-                                         outline=body.get("outline"), detail=body.get("detail"), seed=args.seed)
     raw = RAW / args.name / "design.png"
-    image = save_png(decode_image(response["image"]), raw)
+    if args.source:
+        response = {}
+        image = save_png(Path(args.source).read_bytes(), raw)
+    else:
+        response = PixelLab().create_image_pixen(body["description"], frame_size(body), view=body.get("view", "low top-down"), direction="south",
+                                                 outline=body.get("outline"), detail=body.get("detail"), seed=args.seed)
+        image = save_png(decode_image(response["image"]), raw)
     preview = PREVIEWS / f"{args.name}-design.png"
     preview.parent.mkdir(parents=True, exist_ok=True)
-    sheets.upscaled(image).save(preview)
+    sheets.upscaled(image, 3).save(preview)
     record.update(approved=False, approved_hash=None, character_id=None, rotations=None, animations={}, imported=None,
-                  design={"file": rel(raw), "preview": rel(preview), "prompt": body["description"], "size": body["size"],
-                          "seed": args.seed, "usage": response.get("usage"), "created": now(), "hash": sha(raw)})
+                  design={"file": rel(raw), "preview": rel(preview), "prompt": body["description"], "size": frame_size(body),
+                          "seed": args.seed, "source": args.source, "usage": response.get("usage"), "created": now(), "hash": sha(raw)})
     save_generated(generated)
     print(f"Design written to {rel(preview)}. Stop here and ask for approval.")
 
@@ -129,7 +137,7 @@ def cmd_rotate(args) -> None:
     record = record_for(generated, "characters", args.name)
     require_approved(record, args.name)
     client = PixelLab()
-    response = client.create_character_v3(body["description"], ROOT / record["design"]["file"], body["size"], body.get("view", "low top-down"),
+    response = client.create_character_v3(body["description"], ROOT / record["design"]["file"], frame_size(body), body.get("view", "low top-down"),
                                           args.seed, args.name)
     client.wait([response["background_job_id"]])
     details = client.character(response["character_id"])
@@ -156,27 +164,35 @@ def cmd_animate(args) -> None:
         raise SystemExit(f"{args.name}: run `rotate {args.name}` first")
     client = PixelLab()
     names = [args.animation] if args.animation else list(body["animations"])
+    directions = [args.direction] if args.direction else body["directions"]
     for anim_name in names:
         spec = body["animations"][anim_name]
-        response = client.create_character_animation(record["character_id"], anim_name, body["directions"], spec.get("action"),
+        response = client.create_character_animation(record["character_id"], anim_name, directions, spec.get("action"),
                                                      spec.get("template"), spec.get("frames", 8), args.seed)
         client.wait(response["background_job_ids"])
         details = client.character(record["character_id"])
-        group = next((g for g in details.get("animations", []) if g.get("display_name") == anim_name or g.get("animation_type") == anim_name), None)
+        wanted = {anim_name, spec.get("template")}
+        group = next((g for g in details.get("animations", []) if g.get("display_name") in wanted or g.get("animation_type") in wanted), None)
         if group is None:
             raise SystemExit(f"{args.name}: animation {anim_name} not found on character {record['character_id']}")
-        rows, windows = [], {}
+        previous = record.get("animations", {}).get(anim_name, {})
+        windows = dict(previous.get("directions", {}))
         for entry in group["directions"]:
             direction = entry["direction"]
-            frames = []
+            if direction not in directions:
+                continue
+            folder = RAW / args.name / "animations" / anim_name / direction
+            for old in folder.glob("*.png"):
+                old.unlink()
             for i, url in enumerate(entry["frames"]):
-                frames.append(save_png(client.download(url), RAW / args.name / "animations" / anim_name / direction / f"{i:03d}.png"))
-            rows.append((direction, frames))
-            windows[direction] = {"from": 0, "to": len(frames) - 1}
+                save_png(client.download(url), folder / f"{i:03d}.png")
+            windows[direction] = {"from": 0, "to": len(entry["frames"]) - 1}
+        rows = [(d, [Image.open(f).convert("RGBA") for f in sorted((RAW / args.name / "animations" / anim_name / d).glob("*.png"))])
+                for d in body["directions"] if d in windows]
         preview = PREVIEWS / f"{args.name}-{anim_name}.png"
         sheets.contact_sheet(rows).save(preview)
-        record.setdefault("animations", {})[anim_name] = {"jobs": response["background_job_ids"], "created": now(), "fps": spec.get("fps", 8),
-                                                          "directions": windows, "preview": rel(preview)}
+        record.setdefault("animations", {})[anim_name] = {"jobs": previous.get("jobs", []) + response["background_job_ids"], "created": now(),
+                                                          "fps": spec.get("fps", 8), "directions": windows, "preview": rel(preview)}
         save_generated(generated)
         print(f"{anim_name}: contact sheet at {rel(preview)}; judge it and record windows with `trim`")
 
@@ -200,7 +216,8 @@ def cmd_import(args) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     animations = {}
     rotation_frames = {d: Image.open(RAW / args.name / "rotations" / f"{d}.png").convert("RGBA") for d in body["directions"]}
-    animations.update(_write_sheet(out_dir / "rotations.png", "idle", body["directions"], {d: [rotation_frames[d]] for d in body["directions"]}, 1))
+    size = frame_size(body)
+    animations.update(_write_sheet(out_dir / "rotations.png", "stand", body["directions"], {d: [rotation_frames[d]] for d in body["directions"]}, 1, size))
     for anim_name, anim in record.get("animations", {}).items():
         per_direction = {}
         for direction in body["directions"]:
@@ -208,16 +225,26 @@ def cmd_import(args) -> None:
             folder = RAW / args.name / "animations" / anim_name / direction
             files = sorted(folder.glob("*.png"))[window["from"]:window["to"] + 1]
             per_direction[direction] = [Image.open(f).convert("RGBA") for f in files]
-        animations.update(_write_sheet(out_dir / f"{anim_name}.png", anim_name, body["directions"], per_direction, anim.get("fps", 8)))
+        animations.update(_write_sheet(out_dir / f"{anim_name}.png", anim_name, body["directions"], per_direction, anim.get("fps", 8), size))
     godot_res.write_spriteframes(out_dir / f"{args.name}.tres", animations)
     record["imported"] = now()
     save_generated(generated)
     print(f"Imported {len(animations)} animations into {rel(out_dir)}")
 
 
-def _write_sheet(out: Path, anim_name: str, directions: list[str], frames_by_direction: dict, fps: float) -> dict:
-    cell_w = max(f.width for frames in frames_by_direction.values() for f in frames)
-    cell_h = max(f.height for frames in frames_by_direction.values() for f in frames)
+def _fit(frame: Image.Image, size: tuple[int, int]) -> Image.Image:
+    """Center-crop or pad a frame to the body's frame size; PixelLab pads animation frames onto a larger canvas."""
+    if frame.size == size:
+        return frame
+    out = Image.new("RGBA", size, (0, 0, 0, 0))
+    out.alpha_composite(frame, ((size[0] - frame.width) // 2, (size[1] - frame.height) // 2)) if frame.width <= size[0] and frame.height <= size[1] \
+        else out.alpha_composite(frame.crop(((frame.width - size[0]) // 2, (frame.height - size[1]) // 2, (frame.width + size[0]) // 2, (frame.height + size[1]) // 2)))
+    return out
+
+
+def _write_sheet(out: Path, anim_name: str, directions: list[str], frames_by_direction: dict, fps: float, size: tuple[int, int]) -> dict:
+    frames_by_direction = {d: [_fit(f, size) for f in frames] for d, frames in frames_by_direction.items()}
+    cell_w, cell_h = size
     columns = max(len(frames) for frames in frames_by_direction.values())
     sheet = Image.new("RGBA", (columns * cell_w, len(directions) * cell_h), (0, 0, 0, 0))
     animations = {}
@@ -299,10 +326,13 @@ def main() -> None:
         p.add_argument("name")
         if needs_seed:
             p.add_argument("--seed", type=int)
+        if name == "design":
+            p.add_argument("--source", help="adopt a hand-edited PNG as the design instead of generating one")
         p.set_defaults(func=func)
     p = sub.add_parser("animate")
     p.add_argument("name")
     p.add_argument("animation", nargs="?")
+    p.add_argument("--direction", help="redo one direction and keep the others")
     p.add_argument("--seed", type=int)
     p.set_defaults(func=cmd_animate)
     p = sub.add_parser("approve", help="record the user's yes (or --reject) for a design")

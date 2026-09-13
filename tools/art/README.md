@@ -6,17 +6,17 @@ Token: set `PIXELLAB_TOKEN` in the environment or write it to `tools/art/token` 
 
 ## Characters
 
-Declare the character in `bodies.json` (prompt, canvas size, directions, animations with an `action` text or a PixelLab `template` id, frame count, fps), then:
+Declare the character in `bodies.json` (prompt, canvas size as one number or `[width, height]`, directions, animations with an `action` text or a PixelLab `template` id, frame count, fps), then:
 
-1. `art.py design <name>` — one Pixen generation of the south-facing sprite. Writes `previews/art/<name>-design.png`. Commit and stop.
+1. `art.py design <name>` — one Pixen generation of the south-facing sprite. Writes `previews/art/<name>-design.png`. Commit and stop. Candidate sweeps and pixel edits happen in scratch scripts; `design <name> --source <png>` adopts the winner without a generation.
 2. Approval — the user looks at the preview and says yes or asks for changes. Record a yes with `art.py approve <name>` (a no with `--reject --note "..."`). Nothing below runs without it; a regenerated design clears approval.
 3. `art.py rotate <name>` — turns the approved design into a stored PixelLab character with 8 rotations and downloads the declared directions. Preview: `<name>-rotations.png`.
-4. `art.py animate <name> [animation]` — one job per direction per animation. Preview: `<name>-<animation>.png`, frames numbered.
+4. `art.py animate <name> [animation] [--direction d]` — one job per direction per animation; `--direction` redoes one direction and keeps the rest. Preview: `<name>-<animation>.png`, frames numbered.
 5. Judge and trim — inspect each sheet; record the frames to keep with `art.py trim <name> <animation> <direction|all> <from> <to>`. Tail frames are the usual failure.
-6. `art.py import <name>` — writes `assets/characters/<name>/<animation>.png` (rows are directions) and `assets/characters/<name>/<name>.tres`, a SpriteFrames whose animations are named `<animation>_<direction>` plus `idle_<direction>` from the rotations.
+6. `art.py import <name>` — writes `assets/characters/<name>/<animation>.png` (rows are directions) and `assets/characters/<name>/<name>.tres`, a SpriteFrames whose animations are named `<animation>_<direction>` plus `stand_<direction>` from the rotations.
 7. Wire — an `AnimatedSprite2D` in the character's scene plays animations by name.
 
-Costs at 32×32 (from the API docs, confirm with `balance`): design 1 generation, rotate 1, animations vary per direction. Larger canvases cost more; sizes are set per body in `bodies.json`.
+Costs (confirm with `balance`): design 1 generation, rotate 1, animations vary per direction. Sizes are set per body in `bodies.json`.
 
 ## Tiles
 
