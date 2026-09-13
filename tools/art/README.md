@@ -16,17 +16,14 @@ Declare the character in `bodies.json` (prompt, canvas size as one number or `[w
 6. `art.py import <name>` — writes `assets/characters/<name>/<animation>.png` (rows are directions) and `assets/characters/<name>/<name>.tres`, a SpriteFrames whose animations are named `<animation>_<direction>` plus `stand_<direction>` from the rotations.
 7. Wire — an `AnimatedSprite2D` in the character's scene plays animations by name.
 
-Costs (confirm with `balance`): design 1 generation, rotate 1, animations vary per direction. Sizes are set per body in `bodies.json`.
-
 ## What works
 
 - Prompts end with "alone, centered, no props, no base, nothing else in frame" and, above 64 px, "full body from the top of the hat to the soles of the boots"; a square canvas of 128 or more returns busts, a tall one (72×128) returns figures.
-- Variants that share a seed and view line up pixel for pixel, so a feature (eyes, hat) can be copied between them with PIL when the edit model overdoes it. The edit model enlarges features unless told "same size and shape"; tell it what to keep.
-- The user judges faces from an 8× close-up (`--face`), sprites from a 2× or 3× sheet, and wants a numbered list to answer with.
+- Variants that share a seed and view line up pixel for pixel, so a feature (eyes, hat) can be copied between them with PIL when the edit model overdoes it. The edit model enlarges features unless told "same size and shape".
+- The user judges faces from an 8× close-up and sprites from a 2× or 3× sheet.
 - `breathing-idle` template for idle; a custom "breathing" prompt invents gestures. Check every direction for a frame showing the wrong side and overwrite it with a neighbour.
 - A front-facing walk turns to profile unless the action reads "walking straight toward the camera, front view, face and chest toward the viewer in every frame, never turning sideways". The walk template turns too.
-- Custom-mode frames arrive centered on a padded canvas (176×176 for a 72×128 body); `import` crops them. Redo one bad direction with `animate --direction`.
-- Costs: 1 generation per design, candidate, edit, rotation set, and per animation direction.
+- Costs (confirm with `balance`): 1 generation per design, candidate, edit, rotation set, and per animation direction.
 
 ## Tiles
 

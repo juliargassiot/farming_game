@@ -270,7 +270,7 @@ def cmd_import(args) -> None:
 
 
 def _fit(frame: Image.Image, size: tuple[int, int]) -> Image.Image:
-    """Center-crop or pad a frame to the body's frame size; PixelLab pads animation frames onto a larger canvas."""
+    """PixelLab returns animation frames centered on a larger canvas; crop or pad back to the body's frame size."""
     if frame.size == size:
         return frame
     out = Image.new("RGBA", size, (0, 0, 0, 0))
