@@ -8,6 +8,9 @@ import requests
 
 BASE_URL = "https://api.pixellab.ai/v2"
 TOKEN_FILE = Path(__file__).with_name("token")
+# The PixelLab account is shared with another game; everything this repo makes is named and tagged so the two stay apart.
+PROJECT = "farming-game"
+TAGS = [PROJECT]
 
 
 def load_token() -> str:
@@ -46,8 +49,11 @@ class PixelLab:
 
     def create_character_v3(self, description: str, reference: Path, size: tuple[int, int], view: str, seed: int | None, name: str) -> dict:
         body = {"description": description, "reference_image": b64_image(reference), "image_size": {"width": size[0], "height": size[1]},
-                "view": view, "name": name, "seed": seed}
+                "view": view, "name": f"{PROJECT}/{name}", "seed": seed}
         return self.call("POST", "/create-character-v3", json=body)
+
+    def tag_character(self, character_id: str, tags: list[str] = ()) -> dict:
+        return self.call("PATCH", f"/characters/{character_id}/tags", json={"tags": TAGS + [t for t in tags if t not in TAGS]})
 
     def create_character_animation(self, character_id: str, name: str, directions: list[str], action: str | None,
                                    template: str | None, frames: int, seed: int | None) -> dict:

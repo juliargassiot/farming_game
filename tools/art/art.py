@@ -83,6 +83,13 @@ def cmd_balance(_args) -> None:
     print(json.dumps(PixelLab().balance(), indent=2))
 
 
+def cmd_tag(_args) -> None:
+    client = PixelLab()
+    for name, record in load_json(ART / "generated.json")["characters"].items():
+        if record.get("character_id"):
+            print(name, client.tag_character(record["character_id"], [name])["tags"])
+
+
 def cmd_status(_args) -> None:
     generated = load_json(ART / "generated.json")
     for kind in ("characters", "tilesets"):
@@ -177,6 +184,7 @@ def cmd_rotate(args) -> None:
     response = client.create_character_v3(body["description"], ROOT / record["design"]["file"], frame_size(body), body.get("view", "low top-down"),
                                           args.seed, args.name)
     client.wait([response["background_job_id"]])
+    client.tag_character(response["character_id"], [args.name])
     details = client.character(response["character_id"])
     rows = []
     for direction in body["directions"]:
@@ -357,6 +365,7 @@ def main() -> None:
     sub.add_parser("placeholders", help="convert tools/art/grids to PNGs and write placeholder resources").set_defaults(func=cmd_placeholders)
     sub.add_parser("balance", help="show PixelLab credits").set_defaults(func=cmd_balance)
     sub.add_parser("status", help="list every generated asset and its stage").set_defaults(func=cmd_status)
+    sub.add_parser("tag", help="re-apply the farming-game tags to every stored PixelLab character").set_defaults(func=cmd_tag)
     for name, func, needs_seed in (("design", cmd_design, True), ("rotate", cmd_rotate, True), ("import", cmd_import, False),
                                    ("tile-design", cmd_tile_design, True), ("tile-import", cmd_tile_import, False)):
         p = sub.add_parser(name)
