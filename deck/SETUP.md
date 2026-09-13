@@ -13,3 +13,7 @@ Return to Game Mode. Steam's default controller layout for the shortcuts is a Ga
 ## Laptop
 
 The same line works on a Linux laptop. The launcher assumes the clone lives at `~/games/farm` and Godot at `~/games/godot`; the game can also be started directly with `~/games/farm/deck/play.sh`.
+
+## Buttons do nothing
+
+The bottom of the title screen names the controller the game sees. If it says "No controller detected", Steam is not passing the Deck through as a gamepad: in Game Mode open the game page → Controller settings, confirm Steam Input is enabled for the game and the **Gamepad** template is selected, then relaunch. As a fallback, choose the **Keyboard (WASD) and Mouse** template; the game also accepts arrows or WASD, Enter, Space, E, and Escape. Steam + R1 takes a screenshot to share for diagnosis.
