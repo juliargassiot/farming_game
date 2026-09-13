@@ -54,6 +54,7 @@
     },
     "field_colour": "#c69257",
     "field_flatten": 0.85,
-    "variant_fade": 8
+    "variant_fade": 8,
+    "wet_tint": "#9e6b3d"
   }
 }

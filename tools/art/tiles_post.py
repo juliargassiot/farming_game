@@ -138,3 +138,13 @@ def season_style(tiles: dict, lower: np.ndarray, upper: np.ndarray, style: dict)
         a[..., :3] = np.clip(rgb, 0, 255)
         out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
     return out
+
+
+def tint(tiles: dict, factor: np.ndarray) -> dict:
+    """Multiply every pixel by a colour factor (0-1 per channel); alpha is kept."""
+    out = {}
+    for key, im in tiles.items():
+        a = np.asarray(im.convert("RGBA")).astype(float)
+        a[..., :3] = np.clip(a[..., :3] * factor, 0, 255)
+        out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
+    return out

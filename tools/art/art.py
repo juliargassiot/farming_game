@@ -329,7 +329,7 @@ def _load_tiles(folder: Path) -> tuple[dict, list]:
 
 
 def _assemble(folder: Path, sspec: dict) -> dict:
-    """Finished tile groups for one season: field (lower ↔ untilled), variants, tilled cutouts, and white masks."""
+    """Finished tile groups for one season: field (lower ↔ untilled), variants, tilled cutouts, and the same cutouts tinted wet."""
     raw_tiles, raw_variants = _load_tiles(folder)
     tiles, blended = tiles_post.finish(raw_tiles, raw_variants, sspec)
     size = sspec.get("tile_size", 16)
@@ -343,7 +343,9 @@ def _assemble(folder: Path, sspec: dict) -> dict:
         variants = [tiles_post.edge_blend({0: tiles[0]}, lower_target, upper, sspec.get("variant_fade", 0), 1.0)[0]]
     field = tiles_post.recolour(tiles, lower_target, upper, None, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
     field[0] = tiles_post.flat_tile(lower_target, size)
-    return {"field": field, "variants": variants, "tilled": tiles_post.cutout(tiles, lower_target, upper), "masks": tiles_post.cutout(tiles, lower_target, upper, white=True)}
+    tilled = tiles_post.cutout(tiles, lower_target, upper)
+    wet = tiles_post.tint(tilled, tiles_post.hex_colour(sspec.get("wet_tint", "#ffffff")) / 255)
+    return {"field": field, "variants": variants, "tilled": tilled, "wet": wet}
 
 
 def _tile_preview(name: str, spec: dict) -> Path:
@@ -460,7 +462,7 @@ def _corner_index(corners: dict) -> int:
 
 
 def cmd_tile_import(args) -> None:
-    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 flat lower colour); row 4: variants; rows 5-8: tilled cutouts; rows 9-12: white masks."""
+    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 flat lower colour); row 4: variants; rows 5-8: tilled cutouts; rows 9-12: wet cutouts."""
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
@@ -468,7 +470,7 @@ def cmd_tile_import(args) -> None:
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
         groups = _assemble(_tile_folder(args.name, season, sspec), sspec)
-        blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 5, 1), (groups["masks"], 9, 1)]
+        blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 5, 1), (groups["wet"], 9, 1)]
         atlas = Image.new("RGBA", (4 * size, 13 * size), (0, 0, 0, 0))
         terrain = {}
         for block, first_row, upper_bit in blocks:
