@@ -1,7 +1,7 @@
 {
   "player": {
     "description": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
-    "size": 64,
+    "size": 128,
     "view": "low top-down",
     "outline": "selective outline",
     "detail": "highly detailed",
