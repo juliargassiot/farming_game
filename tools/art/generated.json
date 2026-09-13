@@ -1,1 +1,26 @@
-{"characters": {}, "tilesets": {}}
+{
+  "characters": {
+    "player": {
+      "approved": false,
+      "approved_hash": null,
+      "character_id": null,
+      "rotations": null,
+      "animations": {},
+      "imported": null,
+      "design": {
+        "file": "tools/art/raw/player/design.png",
+        "preview": "previews/art/player-design.png",
+        "prompt": "a single young farmer with short brown hair, straw hat, blue shirt and green overalls, cozy pixel art, full body, facing the camera, alone, centered, no props, nothing else in frame",
+        "size": 32,
+        "seed": null,
+        "usage": {
+          "type": "generations",
+          "generations": 1.0
+        },
+        "created": "2026-09-13T19:56:03+00:00",
+        "hash": "ff291201021f84b7"
+      }
+    }
+  },
+  "tilesets": {}
+}
