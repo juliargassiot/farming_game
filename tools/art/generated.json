@@ -2,12 +2,12 @@
   "characters": {
     "player": {
       "approved": true,
-      "approved_hash": "72a8ec75256b926e",
-      "character_id": "5696793e-db03-420f-ab06-8896cab0d9ce",
+      "approved_hash": "7a0ccdde2d653438",
+      "character_id": "f5f237c9-b363-4133-93ca-50721e21f173",
       "rotations": {
-        "job": "57b1da14-5496-4b47-986e-6a69b91ce6ba",
+        "job": "046ee482-a053-4d6b-abe6-73d514156a28",
         "usage": null,
-        "created": "2026-09-13T20:31:27+00:00",
+        "created": "2026-09-13T21:35:22+00:00",
         "directions": [
           "south",
           "north",
@@ -19,16 +19,12 @@
       "animations": {
         "idle": {
           "jobs": [
-            "1fbd5da4-85b5-4e25-b106-bcdc1b9d2759",
-            "76c7f4d8-7196-4338-99a7-7cc91c5ee18e",
-            "394037c8-49f0-4fd8-b782-b6902f075a42",
-            "5fd51885-2973-45d3-b5c0-0e9168b9fe25",
-            "9b48a9b3-5771-457d-a337-99e728463e98",
-            "e67a16ab-efba-471b-91df-5c5cd320b781",
-            "0623957b-b23e-47c3-b08a-6315c88876e1",
-            "818ff5b6-6a9a-408a-a82e-6c4a97b0de42"
+            "33a83b26-d351-42cf-86b5-bcaf070bb000",
+            "a37a2eba-4c60-40d5-8a7c-957a028c59cb",
+            "aedd5363-de0d-4655-a5a5-c1255fb6c905",
+            "80a8b84d-b8d0-4c4c-a76b-20c42cc5997b"
           ],
-          "created": "2026-09-13T20:40:08+00:00",
+          "created": "2026-09-13T21:37:46+00:00",
           "fps": 4,
           "directions": {
             "south": {
@@ -39,11 +35,11 @@
               "from": 0,
               "to": 3
             },
-            "north": {
+            "west": {
               "from": 0,
               "to": 3
             },
-            "west": {
+            "north": {
               "from": 0,
               "to": 3
             }
@@ -52,16 +48,18 @@
         },
         "walk": {
           "jobs": [
-            "1b34bdf6-bdf2-4a18-b486-a2f9714a54f4",
-            "7426bee9-0570-4a4c-bff8-e4275eae19a4",
-            "6cfe981b-afd3-463f-91f6-325fca40b2c0",
-            "bf3f37ec-8745-4a15-8de8-3921eabaaacf",
-            "110a3e38-5260-4bef-899b-92dc38e5f052",
-            "0d490b18-3465-4198-8f48-4318973b5bef"
+            "fc4368be-ca13-49f5-ba79-ff8f793be022",
+            "3efad1f6-50cc-4c0a-a922-3d2d08c1e2a2",
+            "4236c567-dad9-4fbd-84e2-a0ba2a023ec3",
+            "2e4bd709-6e71-4431-8e6b-8bff5acc9de7"
           ],
-          "created": "2026-09-13T20:47:41+00:00",
+          "created": "2026-09-13T21:50:37+00:00",
           "fps": 8,
           "directions": {
+            "east": {
+              "from": 0,
+              "to": 7
+            },
             "west": {
               "from": 0,
               "to": 7
@@ -70,36 +68,31 @@
               "from": 0,
               "to": 7
             },
-            "east": {
-              "from": 0,
-              "to": 7
-            },
             "north": {
               "from": 0,
               "to": 7
             }
           },
-          "preview": "previews/art/player-walk.png",
-          "note": "south from a custom front-view job; template and plain custom jobs turned sideways"
+          "preview": "previews/art/player-walk.png"
         }
       },
-      "imported": "2026-09-13T20:52:34+00:00",
+      "imported": "2026-09-13T21:50:55+00:00",
       "design": {
         "file": "tools/art/raw/player/design.png",
         "preview": "previews/art/player-design.png",
         "prompt": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
         "size": [
-          72,
-          128
+          54,
+          96
         ],
         "seed": 33,
-        "source": "/tmp/claude-0/-home-user-farming-game/9c8b201b-2182-5df3-86b6-2d0115181a0b/scratchpad/eyes-transplant.png",
+        "source": "/tmp/claude-0/-home-user-farming-game/9c8b201b-2182-5df3-86b6-2d0115181a0b/scratchpad/player-54x96.png",
         "usage": null,
-        "created": "2026-09-13T20:29:40+00:00",
-        "hash": "72a8ec75256b926e"
+        "created": "2026-09-13T21:33:29+00:00",
+        "hash": "7a0ccdde2d653438"
       },
-      "approval_note": "refinement 1 with refinement 4's eyes",
-      "approved_at": "2026-09-13T20:29:40+00:00"
+      "approval_note": "72x128 design re-rendered at 54x96 for 32 px tiles",
+      "approved_at": "2026-09-13T21:33:29+00:00"
     }
   },
   "tilesets": {}

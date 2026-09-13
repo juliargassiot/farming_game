@@ -1,4 +1,5 @@
 @out assets/tiles/ground.png
+@scale 2
 @at 7 0
 @d #b08a58
 @D #9c7848

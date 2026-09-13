@@ -16,6 +16,7 @@ var farmable: Dictionary[Vector2i, bool] = {}
 @onready var ground: TileMapLayer = $Ground
 @onready var crop_layer: TileMapLayer = $Crops
 @onready var player: Player = $Player
+@onready var camera: Camera2D = $Player/Camera
 @onready var status: Label = $HUD/Status
 @onready var hint: Label = $HUD/Hint
 
@@ -36,6 +37,8 @@ func _process(_delta: float) -> void:
 
 func _build_map() -> void:
 	var rows: PackedStringArray = FileAccess.get_file_as_string(MAP_PATH).strip_edges().split("\n")
+	camera.limit_right = rows[0].length() * Player.TILE
+	camera.limit_bottom = rows.size() * Player.TILE
 	for y: int in rows.size():
 		for x: int in rows[y].length():
 			var cell: Vector2i = Vector2i(x, y)

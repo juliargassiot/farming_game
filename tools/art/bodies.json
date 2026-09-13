@@ -2,8 +2,8 @@
   "player": {
     "description": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
     "size": [
-      72,
-      128
+      56,
+      96
     ],
     "view": "low top-down",
     "outline": "selective outline",
@@ -21,6 +21,9 @@
       },
       "walk": {
         "action": "walking",
+        "actions": {
+          "south": "walking straight toward the camera, front view, face and chest toward the viewer in every frame, never turning sideways"
+        },
         "frames": 8,
         "fps": 8
       }

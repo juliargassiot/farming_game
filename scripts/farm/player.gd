@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 signal interact(cell: Vector2i)
 
-const SPEED: float = 80.0
-const TILE: int = 16
+const SPEED: float = 160.0
+const TILE: int = 32
 const DIRECTION_NAMES: Dictionary[Vector2i, String] = {
 	Vector2i(0, 1): "south", Vector2i(0, -1): "north", Vector2i(1, 0): "east", Vector2i(-1, 0): "west",
 }
@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func target_cell() -> Vector2i:
-	var probe: Vector2 = position + Vector2(facing) * 10.0
+	var probe: Vector2 = position + Vector2(facing) * 20.0
 	return Vector2i(floori(probe.x / TILE), floori(probe.y / TILE))
 
 

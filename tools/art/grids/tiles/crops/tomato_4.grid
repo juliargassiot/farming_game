@@ -1,4 +1,5 @@
 @out assets/tiles/crops.png
+@scale 2
 @at 4 2
 @. none
 @l #4f9a3a

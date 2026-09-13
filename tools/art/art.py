@@ -204,20 +204,26 @@ def cmd_animate(args) -> None:
     directions = [args.direction] if args.direction else body["directions"]
     for anim_name in names:
         spec = body["animations"][anim_name]
-        response = client.create_character_animation(record["character_id"], anim_name, directions, spec.get("action"),
-                                                     spec.get("template"), spec.get("frames", 8), args.seed)
-        client.wait(response["background_job_ids"])
+        jobs = []
+        for action in {spec.get("actions", {}).get(d, spec.get("action")) for d in directions} if not args.fetch else ():
+            batch = [d for d in directions if spec.get("actions", {}).get(d, spec.get("action")) == action]
+            response = client.create_character_animation(record["character_id"], anim_name, batch, action, spec.get("template"),
+                                                         spec.get("frames", 8), args.seed)
+            jobs += response["background_job_ids"]
+        client.wait(jobs)
         details = client.character(record["character_id"])
-        wanted = {anim_name, spec.get("template")}
-        group = next((g for g in details.get("animations", []) if g.get("display_name") in wanted or g.get("animation_type") in wanted), None)
-        if group is None:
+        wanted = {anim_name, spec.get("template")} - {None}
+        groups = [g for g in details.get("animations", []) if g.get("display_name") in wanted or g.get("animation_type") in wanted]
+        if not groups:
             raise SystemExit(f"{args.name}: animation {anim_name} not found on character {record['character_id']}")
         previous = record.get("animations", {}).get(anim_name, {})
         windows = dict(previous.get("directions", {}))
-        for entry in group["directions"]:
+        pending = set(directions)
+        for entry in [e for g in groups for e in g["directions"]]:
             direction = entry["direction"]
-            if direction not in directions:
+            if direction not in pending:
                 continue
+            pending.discard(direction)
             folder = RAW / args.name / "animations" / anim_name / direction
             for old in folder.glob("*.png"):
                 old.unlink()
@@ -228,7 +234,7 @@ def cmd_animate(args) -> None:
                 for d in body["directions"] if d in windows]
         preview = PREVIEWS / f"{args.name}-{anim_name}.png"
         sheets.contact_sheet(rows).save(preview)
-        record.setdefault("animations", {})[anim_name] = {"jobs": previous.get("jobs", []) + response["background_job_ids"], "created": now(),
+        record.setdefault("animations", {})[anim_name] = {"jobs": previous.get("jobs", []) + jobs, "created": now(),
                                                           "fps": spec.get("fps", 8), "directions": windows, "preview": rel(preview)}
         save_generated(generated)
         print(f"{anim_name}: contact sheet at {rel(preview)}; judge it and record windows with `trim`")
@@ -383,6 +389,7 @@ def main() -> None:
     p.add_argument("name")
     p.add_argument("animation", nargs="?")
     p.add_argument("--direction", help="redo one direction and keep the others")
+    p.add_argument("--fetch", action="store_true", help="download frames already on the character instead of generating")
     p.add_argument("--seed", type=int)
     p.set_defaults(func=cmd_animate)
     p = sub.add_parser("approve", help="record the user's yes (or --reject) for a design")

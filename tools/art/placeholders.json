@@ -3,7 +3,7 @@
   "tilesets": {
     "assets/tiles/ground.tres": {
       "atlas": "assets/tiles/ground.png",
-      "tile": 16,
+      "tile": 32,
       "columns": 8,
       "rows": 1,
       "solid": [
@@ -14,7 +14,7 @@
     },
     "assets/tiles/crops.tres": {
       "atlas": "assets/tiles/crops.png",
-      "tile": 16,
+      "tile": 32,
       "columns": 5,
       "rows": 3
     }
