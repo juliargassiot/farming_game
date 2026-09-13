@@ -45,9 +45,9 @@
         "tiles_from": "summer",
         "lower_colour": "#63a83f",
         "style": {
-          "blades": "#d4b060",
+          "blades": "#a8884a",
           "dots": [
-            "#b48a50"
+            "#8c6a34"
           ]
         },
         "flower_dots": 0
@@ -55,7 +55,8 @@
       "winter": {
         "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
         "style": {
-          "shadow_soften": 0.6
+          "shadow_soften": 0.6,
+          "highlight_soften": 1.0
         },
         "flower_dots": 0
       }

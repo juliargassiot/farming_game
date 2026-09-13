@@ -17,35 +17,6 @@
         "preview": "previews/art/player-rotations.png"
       },
       "animations": {
-        "idle": {
-          "jobs": [
-            "33a83b26-d351-42cf-86b5-bcaf070bb000",
-            "a37a2eba-4c60-40d5-8a7c-957a028c59cb",
-            "aedd5363-de0d-4655-a5a5-c1255fb6c905",
-            "80a8b84d-b8d0-4c4c-a76b-20c42cc5997b"
-          ],
-          "created": "2026-09-13T21:37:46+00:00",
-          "fps": 4,
-          "directions": {
-            "south": {
-              "from": 0,
-              "to": 3
-            },
-            "east": {
-              "from": 0,
-              "to": 3
-            },
-            "west": {
-              "from": 0,
-              "to": 3
-            },
-            "north": {
-              "from": 0,
-              "to": 3
-            }
-          },
-          "preview": "previews/art/player-idle.png"
-        },
         "walk": {
           "jobs": [
             "fc4368be-ca13-49f5-ba79-ff8f793be022",
@@ -76,7 +47,7 @@
           "preview": "previews/art/player-walk.png"
         }
       },
-      "imported": "2026-09-13T21:50:55+00:00",
+      "imported": "2026-09-13T23:46:43+00:00",
       "design": {
         "file": "tools/art/raw/player/design.png",
         "preview": "previews/art/player-design.png",
@@ -99,7 +70,7 @@
     "grass_soil": {
       "approved": true,
       "approved_hash": "6eace0902fd973e6",
-      "imported": "2026-09-13T23:37:50+00:00",
+      "imported": "2026-09-13T23:46:43+00:00",
       "design": {
         "file": "tools/art/raw/tiles/grass_soil",
         "preview": "previews/art/grass_soil-design.png",

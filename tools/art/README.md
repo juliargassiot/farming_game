@@ -15,7 +15,7 @@ Declare the character in `bodies.json` (prompt, canvas size as one number or `[w
 3. `art.py rotate <name>` — turns the approved design into a stored PixelLab character with 8 rotations and downloads the declared directions. Preview: `<name>-rotations.png`.
 4. `art.py animate <name> [animation] [--direction d]` — one job per direction per animation; `--direction` redoes one direction and keeps the rest. Preview: `<name>-<animation>.png`, frames numbered.
 5. Judge and trim — inspect each sheet; record the frames to keep with `art.py trim <name> <animation> <direction|all> <from> <to>`. Tail frames are the usual failure.
-6. `art.py import <name>` — writes `assets/characters/<name>/<animation>.png` (rows are directions) and `assets/characters/<name>/<name>.tres`, a SpriteFrames whose animations are named `<animation>_<direction>` plus `stand_<direction>` from the rotations.
+6. `art.py import <name>` — writes `assets/characters/<name>/<animation>.png` (rows are directions) and `assets/characters/<name>/<name>.tres`, a SpriteFrames whose animations are named `<animation>_<direction>` plus `stand_<direction>` from the rotations (the resting pose; template idles re-render the body per frame and flicker).
 7. Wire — an `AnimatedSprite2D` in the character's scene plays animations by name.
 
 ## What works

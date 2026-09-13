@@ -132,6 +132,9 @@ def season_style(tiles: dict, lower: np.ndarray, upper: np.ndarray, style: dict)
         if style.get("blades"):
             target = hex_colour(style["blades"])
             rgb = np.where(blades[..., None], rgb * 0.15 + target * 0.85, rgb)
+        if style.get("highlight_soften"):
+            amount = style["highlight_soften"]
+            rgb = np.where(blades[..., None], rgb * (1 - amount) + lower * amount, rgb)
         if style.get("shadow_soften"):
             amount = style["shadow_soften"]
             rgb = np.where(shadows[..., None], rgb * (1 - amount) + lower * amount, rgb)

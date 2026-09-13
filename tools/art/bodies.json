@@ -15,10 +15,6 @@
       "west"
     ],
     "animations": {
-      "idle": {
-        "template": "breathing-idle",
-        "fps": 4
-      },
       "walk": {
         "action": "walking",
         "actions": {
