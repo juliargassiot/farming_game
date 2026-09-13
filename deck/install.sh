@@ -44,8 +44,5 @@ fi
 python3 "$FARM/deck/steam_shortcuts.py" "$FARM" "$STEAM"
 [ "$restart_steam" = 1 ] && command -v steam >/dev/null && (nohup steam >/dev/null 2>&1 &)
 
-cat <<MSG
-
-Done. In Steam, open Farm and Farm (stable) → Controller settings → choose the Gamepad template.
-Then return to Game Mode.
-MSG
+echo
+echo "Done. Farm and Farm (stable) are in the Steam library; return to Game Mode to play."
