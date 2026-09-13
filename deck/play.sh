@@ -14,6 +14,7 @@ update() {
 }
 
 update
+command -v python3 >/dev/null && python3 deck/steam_shortcuts.py --art "$FARM" >/dev/null 2>&1
 while true; do
 	"$GODOT" --path . --fullscreen
 	code=$?
