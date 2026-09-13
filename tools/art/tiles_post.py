@@ -148,3 +148,47 @@ def tint(tiles: dict, factor: np.ndarray) -> dict:
         a[..., :3] = np.clip(a[..., :3] * factor, 0, 255)
         out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
     return out
+
+
+def texture_variants(tile: Image.Image, flat: np.ndarray, count: int, radius: float, seed: int = 5) -> list:
+    """Distinct tiles from one seamless texture: rolled offsets and flips, each faded to flat inside an irregular round mask."""
+    rng = np.random.default_rng(seed)
+    a = np.asarray(tile.convert("RGBA")).astype(float)
+    size = a.shape[0]
+    yy, xx = np.mgrid[0:size, 0:size]
+    cx = cy = (size - 1) / 2
+    out = []
+    for i in range(count):
+        rolled = np.roll(np.roll(a, int(rng.integers(0, size)), axis=0), int(rng.integers(0, size)), axis=1)
+        if i % 2:
+            rolled = rolled[:, ::-1]
+        if i % 4 >= 2:
+            rolled = rolled[::-1, :]
+        angle = np.arctan2(yy - cy, xx - cx)
+        wobble = 1 + 0.18 * np.sin(3 * angle + rng.uniform(0, 6.28)) + 0.12 * np.sin(5 * angle + rng.uniform(0, 6.28))
+        dist = np.hypot(xx - cx, yy - cy) / (radius * wobble)
+        mask = np.clip((dist - 0.55) / 0.45, 0, 1) ** 1.5
+        rolled[..., :3] = rolled[..., :3] * (1 - mask[..., None]) + flat * mask[..., None]
+        out.append(Image.fromarray(rolled.round().astype(np.uint8), "RGBA"))
+    return out
+
+
+def add_dots(tiles: list, colours: list, count: int, radius: float, seed: int = 9) -> list:
+    """Sprinkle small two-pixel flower dots inside the unfaded centre of each tile."""
+    if not count or not colours:
+        return tiles
+    rng = np.random.default_rng(seed)
+    palette = [hex_colour(c) for c in colours]
+    out = []
+    for tile in tiles:
+        a = np.asarray(tile.convert("RGBA")).astype(float)
+        size = a.shape[0]
+        centre = (size - 1) / 2
+        for _ in range(count):
+            angle, dist = rng.uniform(0, 6.28), rng.uniform(0, radius * 0.6)
+            x, y = int(centre + dist * np.cos(angle)), int(centre + dist * np.sin(angle))
+            colour = palette[int(rng.integers(0, len(palette)))]
+            a[y, x, :3] = colour
+            a[y, min(x + 1, size - 1), :3] = colour * 0.85
+        out.append(Image.fromarray(a.round().astype(np.uint8), "RGBA"))
+    return out

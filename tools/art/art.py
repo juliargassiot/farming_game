@@ -340,9 +340,11 @@ def _assemble(folder: Path, sspec: dict) -> dict:
     if sspec.get("variants"):
         variants = raw_variants if sspec.get("variant_mode") == "sprite" else [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in blended]
     else:
-        textured = tiles_post.edge_blend({0: tiles[0]}, lower_target, upper, sspec.get("variant_fade", 0), 1.0)
-        blades = tiles_post.season_style(textured, lower_target, upper, {"dots": ["#%02x%02x%02x" % tuple(int(v) for v in lower_target)]})
-        variants = [textured[0], blades[0]]
+        textured = tiles_post.texture_variants(tiles[0], lower_target, sspec.get("variant_count", 6), sspec.get("variant_radius", 15))
+        plain_dots = {"dots": ["#%02x%02x%02x" % tuple(int(v) for v in lower_target)]}
+        blades = [tiles_post.season_style({0: t}, lower_target, upper, plain_dots)[0] for t in textured]
+        flowered = tiles_post.add_dots(textured, sspec.get("style", {}).get("dots", []), sspec.get("flower_dots", 0), sspec.get("variant_radius", 15))
+        variants = flowered + blades
     field = tiles_post.recolour(tiles, lower_target, upper, None, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
     field[0] = tiles_post.flat_tile(lower_target, size)
     tilled = tiles_post.cutout(tiles, lower_target, upper)
@@ -464,7 +466,7 @@ def _corner_index(corners: dict) -> int:
 
 
 def cmd_tile_import(args) -> None:
-    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 flat lower colour); row 4: variants; rows 5-8: tilled cutouts; rows 9-12: wet cutouts."""
+    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 flat lower colour); rows 4-6: variants (flowered, then blades); rows 7-10: tilled cutouts; rows 11-14: wet cutouts."""
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
@@ -472,8 +474,8 @@ def cmd_tile_import(args) -> None:
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
         groups = _assemble(_tile_folder(args.name, season, sspec), sspec)
-        blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 5, 1), (groups["wet"], 9, 1)]
-        atlas = Image.new("RGBA", (4 * size, 13 * size), (0, 0, 0, 0))
+        blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 7, 1), (groups["wet"], 11, 1)]
+        atlas = Image.new("RGBA", (4 * size, 15 * size), (0, 0, 0, 0))
         terrain = {}
         for block, first_row, upper_bit in blocks:
             for index, tile in block.items():
@@ -483,7 +485,7 @@ def cmd_tile_import(args) -> None:
         out_png = ROOT / "assets" / "tiles" / (f"{args.name}_{season}.png" if season else f"{args.name}.png")
         out_png.parent.mkdir(parents=True, exist_ok=True)
         atlas.save(out_png)
-        godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, 13, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
+        godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, 15, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
                                 tile_terrain=terrain)
         print(f"Wrote {rel(out_png)} and {rel(out_png.with_suffix('.tres'))}")
     record["imported"] = now()

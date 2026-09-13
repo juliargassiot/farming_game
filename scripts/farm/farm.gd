@@ -13,8 +13,9 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 const VARIANT_ROW: int = 4
-const TILLED_ROW: int = 5
-const WET_ROW: int = 9
+const VARIANT_KINDS: int = 6
+const TILLED_ROW: int = 7
+const WET_ROW: int = 11
 
 @export_file("*.txt") var map_path: String = "res://data/maps/farm.txt"
 @export var grass_preset: String = ""
@@ -114,7 +115,13 @@ func _paint_dual(layer: TileMapLayer, marked: Array[Vector2i], first_row: int, v
 	if variants:
 		var assigned: Dictionary[Vector2i, int] = Grass.load_dials(season, grass_preset).assign(open)
 		for cell: Vector2i in open:
-			layer.set_cell(cell, 0, Vector2i.ZERO if assigned[cell] == Grass.PLAIN else Vector2i(assigned[cell], VARIANT_ROW))
+			layer.set_cell(cell, 0, Vector2i.ZERO if assigned[cell] == Grass.PLAIN else _variant_coords(cell, assigned[cell]))
+
+
+func _variant_coords(cell: Vector2i, kind: int) -> Vector2i:
+	var index: int = hash(cell * 3) % VARIANT_KINDS + (VARIANT_KINDS if kind == Grass.BLADES else 0)
+	@warning_ignore("integer_division")
+	return Vector2i(index % 4, VARIANT_ROW + index / 4)
 
 
 func _open_around(cell: Vector2i) -> bool:
@@ -127,7 +134,8 @@ func _open_around(cell: Vector2i) -> bool:
 func _on_entered_cell(cell: Vector2i, direction: Vector2i) -> void:
 	var feet: Vector2 = player.position + Vector2(0, 6)
 	var under: Vector2i = terrain.local_to_map(terrain.to_local(feet))
-	if terrain.get_cell_atlas_coords(under).y != VARIANT_ROW:
+	var row: int = terrain.get_cell_atlas_coords(under).y
+	if row < VARIANT_ROW or row >= TILLED_ROW:
 		return
 	var sway_direction: float = signf(direction.x) if direction.x != 0 else (1.0 if (cell.x + cell.y) % 2 == 0 else -1.0)
 	var sway: GrassSway = GrassSway.spawn(self, terrain.tile_set, Vector2i.ZERO, terrain.get_cell_atlas_coords(under), terrain.to_global(terrain.map_to_local(under)), sway_direction)

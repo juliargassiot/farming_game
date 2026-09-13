@@ -27,12 +27,18 @@
             "#e878b0",
             "#f4f0e8"
           ]
-        }
+        },
+        "flower_dots": 3
       },
       "summer": {
         "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover",
         "lower_colour": "#579a38",
-        "style": {}
+        "style": {
+          "dots": [
+            "#e8c040"
+          ]
+        },
+        "flower_dots": 2
       },
       "autumn": {
         "lower": "seamless autumn meadow grass texture, muted green with patches of dry brown grass, soft painterly shading",
@@ -43,18 +49,21 @@
           "dots": [
             "#b48a50"
           ]
-        }
+        },
+        "flower_dots": 0
       },
       "winter": {
         "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
         "style": {
           "shadow_soften": 0.6
-        }
+        },
+        "flower_dots": 0
       }
     },
     "field_colour": "#c69257",
     "field_flatten": 0.85,
-    "variant_fade": 8,
-    "wet_tint": "#9e6b3d"
+    "wet_tint": "#9e6b3d",
+    "variant_count": 6,
+    "variant_radius": 15
   }
 }
