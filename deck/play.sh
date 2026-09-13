@@ -1,5 +1,5 @@
 #!/bin/bash
-# Steam Deck launcher: update the chosen branch, then run the game until it quits.
+# Steam Deck launcher: update the chosen branch, import its assets, then run the game until it quits.
 # Exit code 42 from the game means "check for updates": pull again and relaunch.
 # When the pull changes this script, it re-executes itself so the new version runs at once.
 FARM="$HOME/games/farm"
@@ -12,6 +12,7 @@ update() {
 	git fetch --quiet origin "$BRANCH" || return 0
 	git checkout --quiet --force "$BRANCH" 2>/dev/null || git checkout --quiet --force -b "$BRANCH" "origin/$BRANCH" || return 0
 	git reset --quiet --hard "origin/$BRANCH"
+	"$GODOT" --headless --path . --import >/dev/null 2>&1 || true
 }
 
 before="$(md5sum "$0")"
