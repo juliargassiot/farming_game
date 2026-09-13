@@ -8,7 +8,7 @@ Token: set `PIXELLAB_TOKEN` in the environment or write it to `tools/art/token` 
 
 Declare the character in `bodies.json` (prompt, canvas size as one number or `[width, height]`, directions, animations with an `action` text or a PixelLab `template` id, frame count, fps), then:
 
-1. `art.py design <name>` — one Pixen generation of the south-facing sprite. Writes `previews/art/<name>-design.png`. Commit and stop. Candidate sweeps and pixel edits happen in scratch scripts; `design <name> --source <png>` adopts the winner without a generation.
+1. `art.py candidates <name> [--seeds a,b] [--views ...] [--prompts file] [--face x0,y0,x1,y1]` — a numbered sheet the user picks from; the seed and view of a pick are what keep its face and pose through later prompt changes. `art.py edit <name> <png> "<instruction>"` changes one thing on one image. `art.py design <name> --source <png>` adopts the winner (or `design <name>` generates one); writes `previews/art/<name>-design.png`. Commit and stop.
 2. Approval — the user looks at the preview and says yes or asks for changes. Record a yes with `art.py approve <name>` (a no with `--reject --note "..."`). Nothing below runs without it; a regenerated design clears approval.
 3. `art.py rotate <name>` — turns the approved design into a stored PixelLab character with 8 rotations and downloads the declared directions. Preview: `<name>-rotations.png`.
 4. `art.py animate <name> [animation] [--direction d]` — one job per direction per animation; `--direction` redoes one direction and keeps the rest. Preview: `<name>-<animation>.png`, frames numbered.
@@ -17,6 +17,16 @@ Declare the character in `bodies.json` (prompt, canvas size as one number or `[w
 7. Wire — an `AnimatedSprite2D` in the character's scene plays animations by name.
 
 Costs (confirm with `balance`): design 1 generation, rotate 1, animations vary per direction. Sizes are set per body in `bodies.json`.
+
+## What works
+
+- Prompts end with "alone, centered, no props, no base, nothing else in frame" and, above 64 px, "full body from the top of the hat to the soles of the boots"; a square canvas of 128 or more returns busts, a tall one (72×128) returns figures.
+- Variants that share a seed and view line up pixel for pixel, so a feature (eyes, hat) can be copied between them with PIL when the edit model overdoes it. The edit model enlarges features unless told "same size and shape"; tell it what to keep.
+- The user judges faces from an 8× close-up (`--face`), sprites from a 2× or 3× sheet, and wants a numbered list to answer with.
+- `breathing-idle` template for idle; a custom "breathing" prompt invents gestures. Check every direction for a frame showing the wrong side and overwrite it with a neighbour.
+- A front-facing walk turns to profile unless the action reads "walking straight toward the camera, front view, face and chest toward the viewer in every frame, never turning sideways". The walk template turns too.
+- Custom-mode frames arrive centered on a padded canvas (176×176 for a 72×128 body); `import` crops them. Redo one bad direction with `animate --direction`.
+- Costs: 1 generation per design, candidate, edit, rotation set, and per animation direction.
 
 ## Tiles
 

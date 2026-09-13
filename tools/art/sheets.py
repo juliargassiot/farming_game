@@ -29,3 +29,11 @@ def contact_sheet(rows: list[tuple[str, list[Image.Image]]], scale: int = 2) -> 
 
 def upscaled(image: Image.Image, scale: int = 6) -> Image.Image:
     return image.resize((image.width * scale, image.height * scale), Image.NEAREST)
+
+
+def face_strip(frames: list[Image.Image], box: tuple[int, int, int, int], scale: int = 8) -> Image.Image:
+    w, h = box[2] - box[0], box[3] - box[1]
+    strip = Image.new("RGBA", (len(frames) * (w * scale + PAD) + PAD, h * scale + 2 * PAD), (60, 70, 50, 255))
+    for i, frame in enumerate(frames):
+        strip.alpha_composite(frame.crop(box).resize((w * scale, h * scale), Image.NEAREST), (PAD + i * (w * scale + PAD), PAD))
+    return strip

@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import godot_res  # noqa: E402
 import grid_to_png  # noqa: E402
 import sheets  # noqa: E402
-from pixellab import PixelLab, decode_image  # noqa: E402
+from pixellab import PixelLab, b64_image, decode_image  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 ART = ROOT / "tools" / "art"
@@ -117,6 +117,43 @@ def cmd_design(args) -> None:
                           "seed": args.seed, "source": args.source, "usage": response.get("usage"), "created": now(), "hash": sha(raw)})
     save_generated(generated)
     print(f"Design written to {rel(preview)}. Stop here and ask for approval.")
+
+
+def cmd_candidates(args) -> None:
+    """Sweep seeds and views (or prompt overrides) into one numbered sheet; winners are adopted with `design --source`."""
+    body = load_json(ART / "bodies.json")[args.name]
+    client = PixelLab()
+    folder = RAW / args.name / "candidates"
+    prompts = [line for line in Path(args.prompts).read_text().splitlines() if line.strip()] if args.prompts else [body["description"]]
+    frames = []
+    for view in args.views.split(","):
+        for seed in [int(x) for x in args.seeds.split(",")]:
+            for i, prompt in enumerate(prompts):
+                response = client.create_image_pixen(prompt, frame_size(body), view=view, direction="south", outline=body.get("outline"),
+                                                     detail=body.get("detail"), seed=seed)
+                path = folder / f"{view.replace(' ', '_')}-{seed}-{i}.png"
+                frames.append(save_png(decode_image(response["image"]), path))
+                print(f"{len(frames)}: {rel(path)}")
+    preview = PREVIEWS / f"{args.name}-candidates.png"
+    preview.parent.mkdir(parents=True, exist_ok=True)
+    sheets.contact_sheet([("", frames)], scale=2).save(preview)
+    if args.face:
+        sheets.face_strip(frames, tuple(int(v) for v in args.face.split(","))).save(PREVIEWS / f"{args.name}-face.png")
+    print(f"Sheet at {rel(preview)}; numbers match the list above")
+
+
+def cmd_edit(args) -> None:
+    """Surgical text edit of one PNG through edit-image-pixen; pose and untouched pixels are preserved."""
+    client = PixelLab()
+    source = Path(args.source)
+    response = client.call("POST", "/edit-image-pixen", json={"image": b64_image(source), "description": args.instruction, "seed": args.seed,
+                                                              "no_background": True})
+    result = client.wait([response["background_job_id"]])[0]
+    out = RAW / args.name / "edits" / f"{source.stem}-{sha(source)}.png"
+    image = save_png(decode_image(result["last_response"]["image"]), out)
+    preview = PREVIEWS / f"{args.name}-edit.png"
+    sheets.contact_sheet([("before", [Image.open(source).convert("RGBA")]), ("after", [image])], scale=3).save(preview)
+    print(f"Edit written to {rel(out)}; compare at {rel(preview)}")
 
 
 def cmd_approve(args) -> None:
@@ -329,6 +366,19 @@ def main() -> None:
         if name == "design":
             p.add_argument("--source", help="adopt a hand-edited PNG as the design instead of generating one")
         p.set_defaults(func=func)
+    p = sub.add_parser("candidates", help="sweep seeds/views/prompts into one numbered sheet")
+    p.add_argument("name")
+    p.add_argument("--seeds", default="22,33")
+    p.add_argument("--views", default="low top-down")
+    p.add_argument("--prompts", help="text file, one prompt per line, overriding the body description")
+    p.add_argument("--face", help="x0,y0,x1,y1 box to show at 8x in <name>-face.png")
+    p.set_defaults(func=cmd_candidates)
+    p = sub.add_parser("edit", help="text edit of one PNG, keeping everything else")
+    p.add_argument("name")
+    p.add_argument("source")
+    p.add_argument("instruction")
+    p.add_argument("--seed", type=int)
+    p.set_defaults(func=cmd_edit)
     p = sub.add_parser("animate")
     p.add_argument("name")
     p.add_argument("animation", nargs="?")
