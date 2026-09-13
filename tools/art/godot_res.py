@@ -43,6 +43,8 @@ def write_tileset(out: Path, atlas: Path, tile: int, columns: int, rows: int, so
     half = tile / 2
     for r in range(rows):
         for c in range(columns):
+            if tile_terrain is not None and (c, r) not in tile_terrain:
+                continue
             key = f"{c}:{r}/0"
             lines.append(f"{key} = 0")
             if (c + r * columns) in solid or (c, r) in solid:

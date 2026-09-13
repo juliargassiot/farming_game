@@ -1,7 +1,6 @@
 extends Node2D
 
 enum Ground { GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD }
-enum Terrain { GRASS, SOIL }
 
 const MAP_PATH: String = "res://data/maps/farm.txt"
 const MAP_CHARS: Dictionary[String, Ground] = {
@@ -19,7 +18,7 @@ const ACTION_HINTS: Dictionary[Plot.Action, String] = {
 
 var bed_cell: Vector2i = Vector2i(-1, -1)
 var farmable: Dictionary[Vector2i, bool] = {}
-var open_cells: Array[Vector2i] = []
+var map_size: Vector2i = Vector2i.ZERO
 var season: String = ""
 
 @onready var terrain: TileMapLayer = $Terrain
@@ -48,8 +47,9 @@ func _process(_delta: float) -> void:
 
 func _build_map() -> void:
 	var rows: PackedStringArray = FileAccess.get_file_as_string(MAP_PATH).strip_edges().split("\n")
-	camera.limit_right = rows[0].length() * Player.TILE
-	camera.limit_bottom = rows.size() * Player.TILE
+	map_size = Vector2i(rows[0].length(), rows.size())
+	camera.limit_right = map_size.x * Player.TILE
+	camera.limit_bottom = map_size.y * Player.TILE
 	for y: int in rows.size():
 		for x: int in rows[y].length():
 			var cell: Vector2i = Vector2i(x, y)
@@ -61,9 +61,7 @@ func _build_map() -> void:
 			if symbol == "s":
 				farmable[cell] = true
 			var kind: Ground = MAP_CHARS[symbol] if MAP_CHARS.has(symbol) else Ground.GRASS
-			if kind == Ground.GRASS or kind == Ground.FIELD:
-				open_cells.append(cell)
-			else:
+			if kind != Ground.GRASS and kind != Ground.FIELD:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
 
 
@@ -86,25 +84,28 @@ func _refresh_plots() -> void:
 			crop_layer.set_cell(cell, 0, Vector2i(plot.stage(), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
-	terrain.set_cells_terrain_connect(open_cells, 0, Terrain.GRASS)
-	terrain.set_cells_terrain_connect(soil, 0, Terrain.SOIL)
-	_scatter_variants(soil)
+	_paint_terrain(soil)
 
 
-func _scatter_variants(soil: Array[Vector2i]) -> void:
+func _paint_terrain(soil: Array[Vector2i]) -> void:
+	"""Dual grid: terrain cell (i, j) sits half a tile up-left of map cell (i, j), so its four corners are the four map cells around that point."""
 	var source: TileSetAtlasSource = terrain.tile_set.get_source(0)
-	var variants: int = source.get_atlas_grid_size().x if source.get_atlas_grid_size().y > VARIANT_ROW else 0
-	for cell: Vector2i in open_cells:
-		var plain: bool = true
-		for dy: int in range(-1, 2):
-			for dx: int in range(-1, 2):
-				if soil.has(cell + Vector2i(dx, dy)):
-					plain = false
-		var roll: int = hash(cell) % 100
-		if plain and variants > 0 and roll < int(VARIANT_CHANCE * 100):
-			var variant: int = (hash(cell * 7) % variants + variants) % variants
-			if source.has_tile(Vector2i(variant, VARIANT_ROW)):
-				terrain.set_cell(cell, 0, Vector2i(variant, VARIANT_ROW))
+	var variants: int = 0
+	while source.has_tile(Vector2i(variants, VARIANT_ROW)):
+		variants += 1
+	terrain.clear()
+	for j: int in map_size.y + 1:
+		for i: int in map_size.x + 1:
+			var corners: Array[Vector2i] = [Vector2i(i - 1, j - 1), Vector2i(i, j - 1), Vector2i(i - 1, j), Vector2i(i, j)]
+			var index: int = 0
+			for corner: Vector2i in corners:
+				index = index * 2 + (1 if soil.has(corner) else 0)
+			var cell: Vector2i = Vector2i(i, j)
+			if index == 0 and variants > 0 and hash(cell) % 100 < int(VARIANT_CHANCE * 100):
+				terrain.set_cell(cell, 0, Vector2i(hash(cell * 7) % variants, VARIANT_ROW))
+			else:
+				@warning_ignore("integer_division")
+				terrain.set_cell(cell, 0, Vector2i(index % 4, index / 4))
 
 
 func _hint_for(cell: Vector2i) -> String:

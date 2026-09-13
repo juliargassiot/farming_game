@@ -16,6 +16,9 @@ func _capture(scene_path: String) -> void:
 		printerr("cannot load ", scene_path)
 		quit(1)
 		return
+	var game: Node = root.get_node_or_null("Game")
+	if game != null and game.call("has_save"):
+		game.call("load_game")
 	root.add_child(packed.instantiate())
 	for i: int in 4:
 		await process_frame

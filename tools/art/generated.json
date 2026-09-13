@@ -97,16 +97,18 @@
   },
   "tilesets": {
     "grass_soil": {
-      "approved": false,
-      "approved_hash": null,
-      "imported": null,
+      "approved": true,
+      "approved_hash": "6eace0902fd973e6",
+      "imported": "2026-09-13T22:28:41+00:00",
       "design": {
         "file": "tools/art/raw/tiles/grass_soil",
         "preview": "previews/art/grass_soil-design.png",
         "created": "2026-09-13T22:25:51+00:00",
         "seed": 66,
         "hash": "6eace0902fd973e6"
-      }
+      },
+      "approval_note": "all four seasons",
+      "approved_at": "2026-09-13T22:27:46+00:00"
     }
   }
 }
