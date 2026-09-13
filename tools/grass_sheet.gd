@@ -10,7 +10,13 @@ func _render() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/grass.json"))
 	var packed: PackedScene = load("res://scenes/farm/farm.tscn")
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://previews/grass"))
-	for preset: String in data["presets"]:
+	var presets: Dictionary = data["presets"]
+	var game: Node = root.get_node_or_null("Game")
+	for preset: String in presets:
+		var dials: Dictionary = presets[preset]
+		if game != null and dials.has("day"):
+			var day: float = dials["day"]
+			game.set("day", int(day))
 		var farm: Node = packed.instantiate()
 		farm.set("map_path", "res://data/maps/grass_strip.txt")
 		farm.set("grass_preset", preset)
