@@ -1,0 +1,14 @@
+{
+  "player": {
+    "description": "young farmer with short brown hair, straw hat, blue shirt and green overalls, cozy pixel art, full body, facing the camera",
+    "size": 32,
+    "view": "low top-down",
+    "outline": "single color black outline",
+    "detail": "medium detail",
+    "directions": ["south", "north", "east", "west"],
+    "animations": {
+      "idle": {"action": "standing still, gentle breathing", "frames": 4, "fps": 4},
+      "walk": {"action": "walking", "frames": 8, "fps": 8}
+    }
+  }
+}

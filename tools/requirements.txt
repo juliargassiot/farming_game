@@ -1,0 +1,3 @@
+pillow>=10
+pygments>=2.17
+requests>=2.31

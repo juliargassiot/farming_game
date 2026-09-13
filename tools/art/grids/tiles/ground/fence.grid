@@ -1,0 +1,21 @@
+@out assets/tiles/ground.png
+@at 4 0
+@g #6abe30
+@f #b07a40
+@F #7a5020
+gggggggggggggggg
+ggFffgggggggggFf
+ggFffgggggggggFf
+ggFffgggggggggFf
+ggFffgggggggggFf
+FFFFFFFFFFFFFFFF
+ffffffffffffffff
+ggFffgggggggggFf
+ggFffgggggggggFf
+ggFffgggggggggFf
+FFFFFFFFFFFFFFFF
+ffffffffffffffff
+ggFffgggggggggFf
+ggFffgggggggggFf
+ggFffgggggggggFf
+gggggggggggggggg

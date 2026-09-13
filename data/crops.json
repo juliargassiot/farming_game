@@ -1,0 +1,5 @@
+{
+  "turnip": {"name": "Turnip", "seasons": ["spring"], "stage_days": [1, 1, 1], "sell_price": 30, "atlas_row": 0},
+  "potato": {"name": "Potato", "seasons": ["spring"], "stage_days": [2, 2, 2], "sell_price": 60, "atlas_row": 1},
+  "tomato": {"name": "Tomato", "seasons": ["summer"], "stage_days": [2, 2, 2, 2], "sell_price": 80, "atlas_row": 2}
+}

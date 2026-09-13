@@ -1,0 +1,11 @@
+{
+  "grass_soil": {
+    "lower": "lush green farm grass",
+    "upper": "tilled brown soil",
+    "lower_name": "grass",
+    "upper_name": "soil",
+    "tile_size": 16,
+    "transition_size": 0.0,
+    "view": "high top-down"
+  }
+}
