@@ -95,5 +95,18 @@
       "approved_at": "2026-09-13T21:33:29+00:00"
     }
   },
-  "tilesets": {}
+  "tilesets": {
+    "grass_soil": {
+      "approved": false,
+      "approved_hash": null,
+      "imported": null,
+      "design": {
+        "file": "tools/art/raw/tiles/grass_soil",
+        "preview": "previews/art/grass_soil-design.png",
+        "created": "2026-09-13T22:25:51+00:00",
+        "seed": 66,
+        "hash": "6eace0902fd973e6"
+      }
+    }
+  }
 }

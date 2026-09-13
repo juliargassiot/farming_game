@@ -29,7 +29,7 @@ Declare the character in `bodies.json` (prompt, canvas size as one number or `[w
 
 ## Tiles
 
-Declare the pair of terrains in `tiles.json`, then `art.py tile-design <name>` (one Wang tileset job, preview `<name>-design.png`), approval as above, and `art.py tile-import <name>` which writes `assets/tiles/<name>.png` (4×4 atlas ordered by corner mask NW NE SW SE, upper terrain = 1) and a `.tres` TileSet with a Match Corners terrain set so maps can be painted in the editor.
+Declare the terrain pair in `tiles.json`: prompts, `tile_size`, `seed`, PixelLab `params` (use `"mode": "pro"`; the standard mode gives flat grass and gridded soil), `edge_blend` (pixels faded toward the flat terrain colour at every tile edge, which is what hides seams) and `soften_upper` (pulls the upper terrain toward its mean so furrows stay faint). `seasons` overrides the lower prompt per season and lists `variants`: prompts painted into the centre of the plain lower tile with a round mask, seen inside a 3×3 tiling so they stay seamless. Then `art.py tile-design <name> [--season s] [--variants-only]` (one generation per tileset and per variant; the preview stacks a sample field per season), approval as above, and `art.py tile-import <name>`, which writes `assets/tiles/<name>_<season>.png` (4×4 Wang atlas ordered by corner mask NW NE SW SE, upper terrain = 1, variants on row 4) and a `.tres` TileSet with a Match Corners terrain set. `scripts/farm/farm.gd` paints the terrains, swaps the season's TileSet, and scatters variants on cells with no soil neighbour.
 
 ## Placeholders
 

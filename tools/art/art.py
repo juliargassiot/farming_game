@@ -8,13 +8,14 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).parent))
 import godot_res  # noqa: E402
 import grid_to_png  # noqa: E402
 import sheets  # noqa: E402
-from pixellab import PixelLab, b64_image, decode_image  # noqa: E402
+import tiles_post  # noqa: E402
+from pixellab import PixelLab, b64_image, b64_png, decode_image  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 ART = ROOT / "tools" / "art"
@@ -308,32 +309,102 @@ def _write_sheet(out: Path, anim_name: str, directions: list[str], frames_by_dir
     return animations
 
 
+def _season_specs(spec: dict, season: str | None) -> dict:
+    seasons = spec.get("seasons", {"": {}})
+    if season:
+        seasons = {season: seasons[season]}
+    return {key: dict(spec, **override) for key, override in seasons.items()}
+
+
+def _tile_folder(name: str, season: str) -> Path:
+    return RAW / "tiles" / name / season if season else RAW / "tiles" / name
+
+
+def _load_tiles(folder: Path) -> tuple[dict, list]:
+    tiles = {int(p.stem): Image.open(p).convert("RGBA") for p in folder.glob("[0-9][0-9].png")}
+    variants = [Image.open(p).convert("RGBA") for p in sorted(folder.glob("variant-*.png"))]
+    return tiles, variants
+
+
+def _tile_preview(name: str, spec: dict) -> Path:
+    panels = []
+    for season, sspec in _season_specs(spec, None).items():
+        folder = _tile_folder(name, season)
+        if not (folder / "00.png").exists():
+            continue
+        tiles, variants = tiles_post.finish(*_load_tiles(folder), sspec)
+        size = sspec.get("tile_size", 16)
+        field = tiles_post.demo_field(tiles, variants, size)
+        strip = [tiles[0]] + variants
+        panel = Image.new("RGBA", (field.width + len(strip) * (size + 4) + 20, field.height + 16), (40, 40, 48, 255))
+        panel.alpha_composite(field, (8, 8))
+        for i, tile in enumerate(strip):
+            panel.alpha_composite(tile, (field.width + 16 + i * (size + 4), 8))
+        ImageDraw.Draw(panel).text((field.width + 16, size + 12), season or name, fill=(230, 230, 230, 255))
+        panels.append(panel)
+    sheet = Image.new("RGBA", (max(p.width for p in panels), sum(p.height + 4 for p in panels)), (40, 40, 48, 255))
+    y = 0
+    for panel in panels:
+        sheet.alpha_composite(panel, (0, y))
+        y += panel.height + 4
+    preview = PREVIEWS / f"{name}-design.png"
+    preview.parent.mkdir(parents=True, exist_ok=True)
+    sheets.upscaled(sheet, 3).save(preview)
+    return preview
+
+
+def _inpaint_variants(client: PixelLab, base: Image.Image, prompts: list[str], seed: int) -> list[Image.Image]:
+    """Paint each prompt into the centre of the plain lower tile, seen inside a 3×3 tiling so it stays seamless."""
+    size = base.width
+    context = Image.new("RGBA", (3 * size, 3 * size))
+    for y in range(3):
+        for x in range(3):
+            context.alpha_composite(base, (x * size, y * size))
+    mask = Image.new("RGB", context.size, "black")
+    ImageDraw.Draw(mask).ellipse([size + 5, size + 7, 2 * size - 6, 2 * size - 8], fill="white")
+    payload = lambda img: {"image": b64_png(img), "size": {"width": img.width, "height": img.height}}  # noqa: E731
+    jobs = [client.call("POST", "/inpaint-v3", json={"description": p, "inpainting_image": payload(context), "mask_image": payload(mask), "seed": seed + i})["background_job_id"]
+            for i, p in enumerate(prompts)]
+    out = []
+    for result in client.wait(jobs):
+        response = result["last_response"]
+        image = Image.open(io.BytesIO(decode_image(response.get("image") or response["images"][0]))).convert("RGBA")
+        out.append(image.crop((size, size, 2 * size, 2 * size)))
+    return out
+
+
 def cmd_tile_design(args) -> None:
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
     client = PixelLab()
-    response = client.create_tileset(spec["lower"], spec["upper"], spec.get("tile_size", 16), spec.get("transition_size", 0.0),
-                                     spec.get("view", "high top-down"), args.seed)
-    client.wait([response["background_job_id"]])
-    tileset = client.tileset(response["tileset_id"])
-    folder = RAW / "tiles" / args.name
-    tiles = []
-    for tile in tileset["tileset"]["tiles"]:
-        index = _corner_index(tile["corners"])
-        image = save_png(decode_image(tile["image"]), folder / f"{index:02d}.png")
-        tiles.append((index, image))
-    (folder / "tileset.json").write_text(json.dumps({"tiles": [dict(t, image=None) for t in tileset["tileset"]["tiles"]], "metadata": tileset["metadata"]}, indent=1))
-    tiles.sort()
-    rows = [(f"row {r}", [img for i, img in tiles if i // 4 == r]) for r in range(4)]
-    preview = PREVIEWS / f"{args.name}-design.png"
-    preview.parent.mkdir(parents=True, exist_ok=True)
-    sheets.contact_sheet(rows, scale=4).save(preview)
-    record.update(approved=False, approved_hash=None, tileset_id=response["tileset_id"], imported=None,
-                  design={"file": rel(folder), "preview": rel(preview), "usage": response.get("usage"), "created": now(), "hash": sha(folder / "00.png"),
-                          "prompt": f"{spec['lower']} / {spec['upper']}", "seed": args.seed})
+    for season, sspec in _season_specs(spec, args.season).items():
+        folder = _tile_folder(args.name, season)
+        seed = args.seed if args.seed is not None else sspec.get("seed")
+        if not args.variants_only:
+            response = client.create_tileset(sspec["lower"], sspec["upper"], sspec.get("tile_size", 16), sspec.get("transition_size", 0.0),
+                                             sspec.get("view", "high top-down"), seed, **sspec.get("params", {}))
+            client.wait([response["background_job_id"]])
+            tileset = client.tileset(response["tileset_id"])
+            for tile in tileset["tileset"]["tiles"]:
+                save_png(decode_image(tile["image"]), folder / f"{_corner_index(tile['corners']):02d}.png")
+            (folder / "tileset.json").write_text(json.dumps({"id": response["tileset_id"], "metadata": tileset["metadata"]}, indent=1))
+        base = Image.open(folder / "00.png").convert("RGBA")
+        for i, image in enumerate(_inpaint_variants(client, base, sspec.get("variants", []), (seed or 0) + 100)):
+            save_png(_png_bytes(image), folder / f"variant-{i}.png")
+        print(f"{args.name}/{season or 'base'}: tiles in {rel(folder)}")
+    preview = _tile_preview(args.name, spec)
+    record.update(approved=False, approved_hash=None, imported=None,
+                  design={"file": rel(RAW / "tiles" / args.name), "preview": rel(preview), "created": now(), "seed": spec.get("seed"),
+                          "hash": sha(_tile_folder(args.name, next(iter(_season_specs(spec, None)))) / "00.png")})
     save_generated(generated)
     print(f"Tileset preview written to {rel(preview)}. Stop here and ask for approval.")
+
+
+def _png_bytes(image: Image.Image) -> bytes:
+    buffer = io.BytesIO()
+    image.save(buffer, "PNG")
+    return buffer.getvalue()
 
 
 def _corner_index(corners: dict) -> int:
@@ -345,24 +416,26 @@ def cmd_tile_import(args) -> None:
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
     require_approved(record, args.name)
-    folder = RAW / "tiles" / args.name
     size = spec.get("tile_size", 16)
-    atlas = Image.new("RGBA", (4 * size, 4 * size), (0, 0, 0, 0))
-    terrain = {}
-    for index in range(16):
-        path = folder / f"{index:02d}.png"
-        if not path.exists():
-            continue
-        atlas.alpha_composite(Image.open(path).convert("RGBA"), ((index % 4) * size, (index // 4) * size))
-        terrain[(index % 4, index // 4)] = {key: (index >> (3 - i)) & 1 for i, key in enumerate(("NW", "NE", "SW", "SE"))}
-    out_png = ROOT / "assets" / "tiles" / f"{args.name}.png"
-    out_png.parent.mkdir(parents=True, exist_ok=True)
-    atlas.save(out_png)
-    godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, 4, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
-                            tile_terrain=terrain)
+    for season, sspec in _season_specs(spec, None).items():
+        tiles, variants = tiles_post.finish(*_load_tiles(_tile_folder(args.name, season)), sspec)
+        rows = 4 + (len(variants) + 3) // 4
+        atlas = Image.new("RGBA", (4 * size, rows * size), (0, 0, 0, 0))
+        terrain = {}
+        for index, tile in tiles.items():
+            atlas.alpha_composite(tile, ((index % 4) * size, (index // 4) * size))
+            terrain[(index % 4, index // 4)] = {key: (index >> (3 - i)) & 1 for i, key in enumerate(("NW", "NE", "SW", "SE"))}
+        for i, tile in enumerate(variants):
+            atlas.alpha_composite(tile, ((i % 4) * size, (4 + i // 4) * size))
+            terrain[(i % 4, 4 + i // 4)] = {key: 0 for key in ("NW", "NE", "SW", "SE")}
+        out_png = ROOT / "assets" / "tiles" / (f"{args.name}_{season}.png" if season else f"{args.name}.png")
+        out_png.parent.mkdir(parents=True, exist_ok=True)
+        atlas.save(out_png)
+        godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, rows, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
+                                tile_terrain=terrain)
+        print(f"Wrote {rel(out_png)} and {rel(out_png.with_suffix('.tres'))}")
     record["imported"] = now()
     save_generated(generated)
-    print(f"Wrote {rel(out_png)} and {rel(out_png.with_suffix('.tres'))}")
 
 
 def main() -> None:
@@ -380,6 +453,9 @@ def main() -> None:
             p.add_argument("--seed", type=int)
         if name == "design":
             p.add_argument("--source", help="adopt a hand-edited PNG as the design instead of generating one")
+        if name == "tile-design":
+            p.add_argument("--season", help="one season from tiles.json instead of all")
+            p.add_argument("--variants-only", action="store_true", help="keep the tiles on disk and only repaint the variants")
         p.set_defaults(func=func)
     p = sub.add_parser("candidates", help="sweep seeds/views/prompts into one numbered sheet")
     p.add_argument("name")

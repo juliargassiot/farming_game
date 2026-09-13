@@ -24,6 +24,13 @@ def b64_image(path: Path) -> dict:
     return {"type": "base64", "base64": base64.b64encode(path.read_bytes()).decode(), "format": "png"}
 
 
+def b64_png(image) -> dict:
+    import io
+    buffer = io.BytesIO()
+    image.save(buffer, "PNG")
+    return {"type": "base64", "base64": base64.b64encode(buffer.getvalue()).decode(), "format": "png"}
+
+
 def decode_image(obj: dict) -> bytes:
     return base64.b64decode(obj["base64"])
 

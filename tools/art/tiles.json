@@ -1,11 +1,55 @@
 {
   "grass_soil": {
-    "lower": "lush green farm grass",
-    "upper": "tilled brown soil",
+    "upper": "seamless tilled brown farm soil texture, faint gentle furrows almost blended into the earth, low contrast, warm earthy tones, soft painterly shading",
     "lower_name": "grass",
     "upper_name": "soil",
-    "tile_size": 16,
+    "tile_size": 32,
     "transition_size": 0.0,
-    "view": "high top-down"
+    "view": "high top-down",
+    "seed": 66,
+    "params": {
+      "mode": "pro",
+      "spread_x": 0.3,
+      "raggedness": 0.6,
+      "outline": "lineless",
+      "shading": "medium shading",
+      "detail": "highly detailed"
+    },
+    "edge_blend": 5,
+    "soften_upper": 0.35,
+    "seasons": {
+      "spring": {
+        "lower": "seamless fresh spring green meadow grass texture, soft painterly shading, a few tiny pink and white blossoms scattered in the grass",
+        "variants": [
+          "a small cluster of tiny pink flower blooms in the grass",
+          "a few tiny white flower blooms in the grass",
+          "a small tuft of fresh green grass blades"
+        ]
+      },
+      "summer": {
+        "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover",
+        "variants": [
+          "a few small yellow flower blooms in the grass",
+          "a patch of small green clover leaves",
+          "a small tuft of lush green grass blades"
+        ]
+      },
+      "autumn": {
+        "lower": "seamless autumn meadow grass texture, muted green with patches of dry brown grass, soft painterly shading",
+        "variants": [
+          "a patch of dry brown grass blades",
+          "a few small weed sprouts with brown seed heads",
+          "a scattering of small fallen brown leaves"
+        ]
+      },
+      "winter": {
+        "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
+        "variants": [
+          "a patch of pale frosty grass poking through the snow",
+          "a few small snow drifts and footprint dents",
+          "a small bare twig lying on the snow"
+        ]
+      }
+    }
   }
 }
