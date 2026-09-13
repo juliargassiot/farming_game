@@ -326,16 +326,34 @@ def _load_tiles(folder: Path) -> tuple[dict, list]:
     return tiles, variants
 
 
+def _assemble(folder: Path, sspec: dict) -> dict:
+    """Finished tile groups for one season: field (lower ↔ untilled), variants, tilled cutouts, and white masks."""
+    raw_tiles, raw_variants = _load_tiles(folder)
+    tiles, blended = tiles_post.finish(raw_tiles, raw_variants, sspec)
+    size = sspec.get("tile_size", 16)
+    lower, upper = tiles_post.mean_colour(tiles[0]), tiles_post.mean_colour(tiles[15])
+    lower_target = tiles_post.hex_colour(sspec["lower_colour"]) if sspec.get("lower_colour") else lower
+    field = tiles_post.recolour(tiles, lower, upper, lower_target, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
+    field[0] = tiles_post.flat_tile(lower_target, size)
+    if sspec.get("variant_mode") == "sprite":
+        variants = raw_variants
+    else:
+        variants = [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in blended]
+    return {"field": field, "variants": variants, "tilled": tiles_post.cutout(tiles, lower, upper), "masks": tiles_post.cutout(tiles, lower, upper, white=True)}
+
+
 def _tile_preview(name: str, spec: dict) -> Path:
     panels = []
     for season, sspec in _season_specs(spec, None).items():
         folder = _tile_folder(name, season)
         if not (folder / "00.png").exists():
             continue
-        tiles, variants = tiles_post.finish(*_load_tiles(folder), sspec)
+        groups = _assemble(folder, sspec)
         size = sspec.get("tile_size", 16)
-        field = tiles_post.demo_field(tiles, variants, size)
-        strip = [tiles[0]] + variants
+        field = tiles_post.demo_field(groups["field"], groups["variants"], size)
+        tilled = tiles_post.demo_field(groups["tilled"], [], size, mark=tiles_post.DEMO_TILLED)
+        field.alpha_composite(tilled)
+        strip = [groups["field"][0]] + groups["variants"]
         panel = Image.new("RGBA", (field.width + len(strip) * (size + 4) + 20, field.height + 16), (40, 40, 48, 255))
         panel.alpha_composite(field, (8, 8))
         for i, tile in enumerate(strip):
@@ -373,6 +391,25 @@ def _inpaint_variants(client: PixelLab, base: Image.Image, prompts: list[str], s
     return out
 
 
+def _sprite_variants(client: PixelLab, colour, tile: int, sprite: int, prompts: list[str], seed: int) -> list[Image.Image]:
+    """One transparent sprite per prompt, dropped onto a flat tile at a seeded offset so scattered variants don't line up."""
+    import random
+    rng = random.Random(seed)
+    out = []
+    for i, prompt in enumerate(prompts):
+        response = client.create_image_pixen(f"{prompt}, seen from above, small, alone, nothing else", (sprite, sprite), view="high top-down",
+                                             outline="lineless", detail="medium detail", seed=seed + i)
+        image = Image.open(io.BytesIO(decode_image(response["image"]))).convert("RGBA")
+        box = image.getbbox() or (0, 0, sprite, sprite)
+        image = image.crop(box)
+        base = tiles_post.flat_tile(colour, tile)
+        x = rng.randint(1, max(1, tile - image.width - 1))
+        y = rng.randint(1, max(1, tile - image.height - 1))
+        base.alpha_composite(image, (x, y))
+        out.append(base)
+    return out
+
+
 def cmd_tile_design(args) -> None:
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
@@ -390,7 +427,14 @@ def cmd_tile_design(args) -> None:
                 save_png(decode_image(tile["image"]), folder / f"{_corner_index(tile['corners']):02d}.png")
             (folder / "tileset.json").write_text(json.dumps({"id": response["tileset_id"], "metadata": tileset["metadata"]}, indent=1))
         base = Image.open(folder / "00.png").convert("RGBA")
-        for i, image in enumerate(_inpaint_variants(client, base, sspec.get("variants", []), (seed or 0) + 100)):
+        if sspec.get("variant_mode") == "sprite":
+            colour = tiles_post.hex_colour(sspec["lower_colour"]) if sspec.get("lower_colour") else tiles_post.mean_colour(base)
+            variants = _sprite_variants(client, colour, base.width, sspec.get("variant_size", 16), sspec.get("variants", []), (seed or 0) + 100)
+        else:
+            variants = _inpaint_variants(client, base, sspec.get("variants", []), (seed or 0) + 100)
+        for old in folder.glob("variant-*.png"):
+            old.unlink()
+        for i, image in enumerate(variants):
             save_png(_png_bytes(image), folder / f"variant-{i}.png")
         print(f"{args.name}/{season or 'base'}: tiles in {rel(folder)}")
     preview = _tile_preview(args.name, spec)
@@ -412,36 +456,26 @@ def _corner_index(corners: dict) -> int:
 
 
 def cmd_tile_import(args) -> None:
-    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 is flat lower colour); row 4: variants; row 5: the tilled tile."""
+    """Atlas rows 0-3: lower ↔ untilled field Wang tiles (index 0 flat lower colour); row 4: variants; rows 5-8: tilled cutouts; rows 9-12: white masks."""
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
     require_approved(record, args.name)
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
-        tiles, variants = tiles_post.finish(*_load_tiles(_tile_folder(args.name, season)), sspec)
-        lower, upper = tiles_post.mean_colour(tiles[0]), tiles_post.mean_colour(tiles[15])
-        lower_target = tiles_post.hex_colour(sspec["lower_colour"]) if sspec.get("lower_colour") else lower
-        field = tiles_post.recolour(tiles, lower, upper, lower_target, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
-        variants = [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in [tiles[0]] + variants]
-        field[0] = tiles_post.flat_tile(lower_target, size)
-        tilled = tiles_post.recolour({15: tiles[15]}, lower, upper, None, None)[15]
-        rows = 5 + (len(variants) + 3) // 4
-        atlas = Image.new("RGBA", (4 * size, rows * size), (0, 0, 0, 0))
+        groups = _assemble(_tile_folder(args.name, season), sspec)
+        blocks = [(groups["field"], 0, 1), (dict(enumerate(groups["variants"])), 4, 0), (groups["tilled"], 5, 1), (groups["masks"], 9, 1)]
+        atlas = Image.new("RGBA", (4 * size, 13 * size), (0, 0, 0, 0))
         terrain = {}
-        for index, tile in field.items():
-            atlas.alpha_composite(tile, ((index % 4) * size, (index // 4) * size))
-            terrain[(index % 4, index // 4)] = {key: (index >> (3 - i)) & 1 for i, key in enumerate(("NW", "NE", "SW", "SE"))}
-        for i, tile in enumerate(variants):
-            atlas.alpha_composite(tile, ((i % 4) * size, (4 + i // 4) * size))
-            terrain[(i % 4, 4 + i // 4)] = {key: 0 for key in ("NW", "NE", "SW", "SE")}
-        tilled_row = 4 + (len(variants) + 3) // 4
-        atlas.alpha_composite(tilled, (0, tilled_row * size))
-        terrain[(0, tilled_row)] = {key: 1 for key in ("NW", "NE", "SW", "SE")}
+        for block, first_row, upper_bit in blocks:
+            for index, tile in block.items():
+                col, row = index % 4, first_row + index // 4
+                atlas.alpha_composite(tile, (col * size, row * size))
+                terrain[(col, row)] = {key: ((index >> (3 - i)) & 1) * upper_bit for i, key in enumerate(("NW", "NE", "SW", "SE"))}
         out_png = ROOT / "assets" / "tiles" / (f"{args.name}_{season}.png" if season else f"{args.name}.png")
         out_png.parent.mkdir(parents=True, exist_ok=True)
         atlas.save(out_png)
-        godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, rows, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
+        godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, 4, 13, terrains=[spec.get("lower_name", "lower"), spec.get("upper_name", "upper")],
                                 tile_terrain=terrain)
         print(f"Wrote {rel(out_png)} and {rel(out_png.with_suffix('.tres'))}")
     record["imported"] = now()

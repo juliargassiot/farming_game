@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/farm/farm.gd" id="1"]
 [ext_resource type="TileSet" path="res://assets/tiles/ground.tres" id="2"]
 [ext_resource type="TileSet" path="res://assets/tiles/crops.tres" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/farm/player.tscn" id="4"]
-[ext_resource type="TileSet" path="res://assets/tiles/overlay.tres" id="6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1"]
 blend_mode = 3
@@ -16,11 +15,12 @@ script = ExtResource("1")
 position = Vector2(-16, -16)
 
 [node name="Tilled" type="TileMapLayer" parent="."]
+position = Vector2(-16, -16)
 
 [node name="Wet" type="TileMapLayer" parent="."]
+position = Vector2(-16, -16)
 modulate = Color(0.62, 0.42, 0.24, 1)
 material = SubResource("CanvasItemMaterial_1")
-tile_set = ExtResource("6")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 tile_set = ExtResource("2")

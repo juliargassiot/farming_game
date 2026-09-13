@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 
 DEMO_CORNERS = ["0000000000", "0011111000", "0111111100", "0111111100", "0011111100", "0000011000", "0000000000"]
+DEMO_TILLED = ["0000000000", "0000000000", "0011110000", "0011110000", "0001110000", "0000000000", "0000000000"]
 
 
 def mean_colour(img: Image.Image) -> np.ndarray:
@@ -51,16 +52,19 @@ def finish(tiles: dict, variants: list, spec: dict) -> tuple[dict, list]:
     return done, done_variants
 
 
-def demo_field(tiles: dict, variants: list, size: int, seed: int = 3) -> Image.Image:
+def demo_field(tiles: dict, variants: list, size: int, seed: int = 3, mark: list | None = None) -> Image.Image:
     import random
     rng = random.Random(seed)
-    rows, cols = len(DEMO_CORNERS) - 1, len(DEMO_CORNERS[0]) - 1
+    mark = mark or DEMO_CORNERS
+    rows, cols = len(mark) - 1, len(mark[0]) - 1
     img = Image.new("RGBA", (cols * size, rows * size))
     for y in range(rows):
         for x in range(cols):
-            corners = [int(DEMO_CORNERS[y + dy][x + dx]) for dy, dx in ((0, 0), (0, 1), (1, 0), (1, 1))]
+            corners = [int(mark[y + dy][x + dx]) for dy, dx in ((0, 0), (0, 1), (1, 0), (1, 1))]
             idx = (corners[0] << 3) | (corners[1] << 2) | (corners[2] << 1) | corners[3]
-            tile = rng.choice(variants) if idx == 0 and variants and rng.random() < 0.35 else tiles[idx]
+            if idx == 0 and mark is not DEMO_CORNERS:
+                continue
+            tile = rng.choice(variants) if idx == 0 and variants and rng.random() < 0.4 else tiles[idx]
             img.alpha_composite(tile, (x * size, y * size))
     return img
 
@@ -87,3 +91,16 @@ def recolour(tiles: dict, lower: np.ndarray, upper: np.ndarray, lower_target: np
 
 def flat_tile(colour: np.ndarray, size: int) -> Image.Image:
     return Image.new("RGBA", (size, size), tuple(int(v) for v in colour) + (255,))
+
+
+def cutout(tiles: dict, lower: np.ndarray, upper: np.ndarray, white: bool = False) -> dict:
+    """Keep only upper-terrain pixels (optionally as flat white) so the tile can overlay another terrain with the Wang edge."""
+    out = {}
+    for key, im in tiles.items():
+        a = np.asarray(im.convert("RGBA")).astype(float)
+        is_upper = ~_classify(a[..., :3], lower, upper)
+        a[..., 3] = np.where(is_upper, 255, 0)
+        if white:
+            a[..., :3] = 255
+        out[key] = Image.fromarray(a.round().astype(np.uint8), "RGBA")
+    return out

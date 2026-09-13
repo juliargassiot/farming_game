@@ -6,16 +6,17 @@ const MAP_PATH: String = "res://data/maps/farm.txt"
 const MAP_CHARS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BED,
 }
+const ACTION_HINTS: Dictionary[Plot.Action, String] = {
+	Plot.Action.TILL: "A: Till", Plot.Action.PLANT: "A: Plant", Plot.Action.WATER: "A: Water", Plot.Action.HARVEST: "A: Harvest",
+}
 const TERRAIN_SETS: Dictionary[String, String] = {
 	"spring": "res://assets/tiles/grass_soil_spring.tres", "summer": "res://assets/tiles/grass_soil_summer.tres",
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 const VARIANT_ROW: int = 4
 const VARIANT_CHANCE: float = 0.4
-const TILLED_TILE: Vector2i = Vector2i(0, 5)
-const ACTION_HINTS: Dictionary[Plot.Action, String] = {
-	Plot.Action.TILL: "A: Till", Plot.Action.PLANT: "A: Plant", Plot.Action.WATER: "A: Water", Plot.Action.HARVEST: "A: Harvest",
-}
+const TILLED_ROW: int = 5
+const WET_ROW: int = 9
 
 var bed_cell: Vector2i = Vector2i(-1, -1)
 var farmable: Dictionary[Vector2i, bool] = {}
@@ -73,43 +74,44 @@ func _refresh_plots() -> void:
 		season = wanted
 		terrain.tile_set = load(TERRAIN_SETS[season])
 		tilled_layer.tile_set = terrain.tile_set
-		_paint_terrain()
+		wet.tile_set = terrain.tile_set
+		var field_cells: Array[Vector2i] = []
+		field_cells.assign(farmable.keys())
+		_paint_dual(terrain, field_cells, 0, true)
+	var tilled: Array[Vector2i] = []
+	var watered: Array[Vector2i] = []
 	for cell: Vector2i in farmable:
 		var plot: Plot = Game.plots.get(cell)
-		var tilled: bool = plot != null and plot.tilled
-		if tilled:
-			tilled_layer.set_cell(cell, 0, TILLED_TILE)
-		else:
-			tilled_layer.erase_cell(cell)
-		if tilled and plot.watered:
-			wet.set_cell(cell, 0, Vector2i.ZERO)
-		else:
-			wet.erase_cell(cell)
-		if tilled and plot.crop != null:
+		if plot != null and plot.tilled:
+			tilled.append(cell)
+			if plot.watered:
+				watered.append(cell)
+		if plot != null and plot.tilled and plot.crop != null:
 			crop_layer.set_cell(cell, 0, Vector2i(plot.stage(), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
+	_paint_dual(tilled_layer, tilled, TILLED_ROW, false)
+	_paint_dual(wet, watered, WET_ROW, false)
 
 
-func _paint_terrain() -> void:
-	"""Dual grid: terrain cell (i, j) sits half a tile up-left of map cell (i, j), so its four corners are the four map cells around that point."""
-	var source: TileSetAtlasSource = terrain.tile_set.get_source(0)
-	var variants: int = 0
-	while source.has_tile(Vector2i(variants, VARIANT_ROW)):
-		variants += 1
-	terrain.clear()
+func _paint_dual(layer: TileMapLayer, marked: Array[Vector2i], first_row: int, variants: bool) -> void:
+	"""Dual grid: layer cell (i, j) sits half a tile up-left of map cell (i, j); its tile is chosen by which of the four map cells around that point are marked."""
+	var source: TileSetAtlasSource = layer.tile_set.get_source(0)
+	var variant_count: int = 0
+	while variants and source.has_tile(Vector2i(variant_count, VARIANT_ROW)):
+		variant_count += 1
+	layer.clear()
 	for j: int in map_size.y + 1:
 		for i: int in map_size.x + 1:
-			var corners: Array[Vector2i] = [Vector2i(i - 1, j - 1), Vector2i(i, j - 1), Vector2i(i - 1, j), Vector2i(i, j)]
 			var index: int = 0
-			for corner: Vector2i in corners:
-				index = index * 2 + (1 if farmable.has(corner) else 0)
+			for corner: Vector2i in [Vector2i(i - 1, j - 1), Vector2i(i, j - 1), Vector2i(i - 1, j), Vector2i(i, j)]:
+				index = index * 2 + (1 if marked.has(corner) else 0)
 			var cell: Vector2i = Vector2i(i, j)
-			if index == 0 and variants > 0 and hash(cell) % 100 < int(VARIANT_CHANCE * 100):
-				terrain.set_cell(cell, 0, Vector2i(hash(cell * 7) % variants, VARIANT_ROW))
-			else:
+			if index == 0 and variant_count > 0 and hash(cell) % 100 < int(VARIANT_CHANCE * 100):
+				layer.set_cell(cell, 0, Vector2i(hash(cell * 7) % variant_count, VARIANT_ROW))
+			elif index > 0 or variants:
 				@warning_ignore("integer_division")
-				terrain.set_cell(cell, 0, Vector2i(index % 4, index / 4))
+				layer.set_cell(cell, 0, Vector2i(index % 4, first_row + index / 4))
 
 
 func _hint_for(cell: Vector2i) -> String:

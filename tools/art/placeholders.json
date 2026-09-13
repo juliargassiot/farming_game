@@ -17,12 +17,6 @@
       "tile": 32,
       "columns": 5,
       "rows": 3
-    },
-    "assets/tiles/overlay.tres": {
-      "atlas": "assets/tiles/overlay.png",
-      "tile": 32,
-      "columns": 1,
-      "rows": 1
     }
   }
 }

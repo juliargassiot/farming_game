@@ -21,39 +21,41 @@
       "spring": {
         "lower": "seamless fresh spring green meadow grass texture, soft painterly shading, a few tiny pink and white blossoms scattered in the grass",
         "variants": [
-          "a small cluster of tiny pink flower blooms in the grass",
-          "a few tiny white flower blooms in the grass",
-          "a small tuft of fresh green grass blades"
+          "a small cluster of tiny pink wildflowers with green leaves",
+          "a few tiny white daisies with green leaves",
+          "a large sprig of fresh green grass blades"
         ],
         "lower_colour": "#7dbb4e"
       },
       "summer": {
         "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover",
         "variants": [
-          "a few small yellow flower blooms in the grass",
-          "a patch of small green clover leaves",
-          "a small tuft of lush green grass blades"
+          "a small cluster of yellow wildflowers with green leaves",
+          "a small patch of green clover leaves",
+          "a large sprig of lush green grass blades"
         ],
         "lower_colour": "#63a83f"
       },
       "autumn": {
         "lower": "seamless autumn meadow grass texture, muted green with patches of dry brown grass, soft painterly shading",
         "variants": [
-          "a patch of dry brown grass blades",
-          "a few small weed sprouts with brown seed heads",
-          "a scattering of small fallen brown leaves"
+          "a small clump of dry brown grass blades",
+          "a few weed sprouts with brown seed heads",
+          "a large sprig of dry yellow-brown grass blades"
         ]
       },
       "winter": {
         "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
         "variants": [
-          "a patch of pale frosty grass poking through the snow",
-          "a few small snow drifts and footprint dents",
-          "a small bare twig lying on the snow"
+          "a small clump of pale frosty grass blades",
+          "a small grey pebble half covered in snow",
+          "a small bare brown twig"
         ]
       }
     },
     "field_colour": "#c69257",
-    "field_flatten": 0.85
+    "field_flatten": 0.85,
+    "variant_mode": "sprite",
+    "variant_size": 20
   }
 }
