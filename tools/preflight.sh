@@ -24,6 +24,10 @@ echo "== tests"
 OUT="$($RUN --script tools/run_tests.gd 2>&1)" || { echo "$OUT" | grep -v -E '^Godot Engine|^$'; echo "tests failed"; exit 1; }
 echo "$OUT" | grep -E '^tests:'
 
+echo "== deck installer"
+python3 deck/steam_shortcuts.py --self-test
+bash -n deck/install.sh deck/setup.sh deck/play.sh
+
 echo "== comment density"
 STAGED="$(git diff --cached --name-only --diff-filter=AM || true)"
 [ -z "$STAGED" ] && STAGED="$(git ls-files)"
