@@ -2,7 +2,6 @@ extends Node2D
 
 enum Ground { GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD }
 
-const MAP_PATH: String = "res://data/maps/farm.txt"
 const MAP_CHARS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BED,
 }
@@ -14,9 +13,11 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 const VARIANT_ROW: int = 4
-const VARIANT_CHANCE: float = 0.4
 const TILLED_ROW: int = 5
 const WET_ROW: int = 9
+
+@export_file("*.txt") var map_path: String = "res://data/maps/farm.txt"
+@export var grass_preset: String = ""
 
 var bed_cell: Vector2i = Vector2i(-1, -1)
 var farmable: Dictionary[Vector2i, bool] = {}
@@ -38,6 +39,7 @@ func _ready() -> void:
 	_build_map()
 	_refresh_plots()
 	player.interact.connect(_on_interact)
+	player.entered_cell.connect(_on_entered_cell)
 
 
 func _process(_delta: float) -> void:
@@ -49,7 +51,7 @@ func _process(_delta: float) -> void:
 
 
 func _build_map() -> void:
-	var rows: PackedStringArray = FileAccess.get_file_as_string(MAP_PATH).strip_edges().split("\n")
+	var rows: PackedStringArray = FileAccess.get_file_as_string(map_path).strip_edges().split("\n")
 	map_size = Vector2i(rows[0].length(), rows.size())
 	camera.limit_right = map_size.x * Player.TILE
 	camera.limit_bottom = map_size.y * Player.TILE
@@ -96,10 +98,7 @@ func _refresh_plots() -> void:
 
 func _paint_dual(layer: TileMapLayer, marked: Array[Vector2i], first_row: int, variants: bool) -> void:
 	"""Dual grid: layer cell (i, j) sits half a tile up-left of map cell (i, j); its tile is chosen by which of the four map cells around that point are marked."""
-	var source: TileSetAtlasSource = layer.tile_set.get_source(0)
-	var variant_count: int = 0
-	while variants and source.has_tile(Vector2i(variant_count, VARIANT_ROW)):
-		variant_count += 1
+	var open: Array[Vector2i] = []
 	layer.clear()
 	for j: int in map_size.y + 1:
 		for i: int in map_size.x + 1:
@@ -107,11 +106,32 @@ func _paint_dual(layer: TileMapLayer, marked: Array[Vector2i], first_row: int, v
 			for corner: Vector2i in [Vector2i(i - 1, j - 1), Vector2i(i, j - 1), Vector2i(i - 1, j), Vector2i(i, j)]:
 				index = index * 2 + (1 if marked.has(corner) else 0)
 			var cell: Vector2i = Vector2i(i, j)
-			if index == 0 and variant_count > 0 and hash(cell) % 100 < int(VARIANT_CHANCE * 100):
-				layer.set_cell(cell, 0, Vector2i(hash(cell * 7) % variant_count, VARIANT_ROW))
+			if index == 0 and variants and _open_around(cell):
+				open.append(cell)
 			elif index > 0 or variants:
 				@warning_ignore("integer_division")
 				layer.set_cell(cell, 0, Vector2i(index % 4, first_row + index / 4))
+	if variants:
+		var assigned: Dictionary[Vector2i, int] = Grass.load_dials(season, grass_preset).assign(open)
+		for cell: Vector2i in open:
+			layer.set_cell(cell, 0, Vector2i.ZERO if assigned[cell] == Grass.PLAIN else Vector2i(assigned[cell], VARIANT_ROW))
+
+
+func _open_around(cell: Vector2i) -> bool:
+	for corner: Vector2i in [Vector2i(cell.x - 1, cell.y - 1), Vector2i(cell.x, cell.y - 1), Vector2i(cell.x - 1, cell.y), cell]:
+		if ground.get_cell_source_id(corner) != -1:
+			return false
+	return true
+
+
+func _on_entered_cell(cell: Vector2i, direction: Vector2i) -> void:
+	var feet: Vector2 = player.position + Vector2(0, 6)
+	var under: Vector2i = terrain.local_to_map(terrain.to_local(feet))
+	if terrain.get_cell_atlas_coords(under).y != VARIANT_ROW:
+		return
+	var sway_direction: float = signf(direction.x) if direction.x != 0 else (1.0 if (cell.x + cell.y) % 2 == 0 else -1.0)
+	var sway: GrassSway = GrassSway.spawn(self, terrain.tile_set, Vector2i.ZERO, terrain.get_cell_atlas_coords(under), terrain.to_global(terrain.map_to_local(under)), sway_direction)
+	move_child(sway, terrain.get_index() + 1)
 
 
 func _hint_for(cell: Vector2i) -> String:

@@ -1,0 +1,19 @@
+{
+  "dials": {
+    "coverage": "fraction of open grass cells that carry texture",
+    "clumpiness": "0 scatters texture cell by cell, 1 gathers it into wide patches",
+    "flowers": "fraction of textured cells that keep their flowers"
+  },
+  "seasons": {
+    "spring": {"coverage": 0.4, "clumpiness": 0.6, "flowers": 0.5},
+    "summer": {"coverage": 0.45, "clumpiness": 0.6, "flowers": 0.4},
+    "autumn": {"coverage": 0.35, "clumpiness": 0.7, "flowers": 0.3},
+    "winter": {"coverage": 0.25, "clumpiness": 0.5, "flowers": 0.0}
+  },
+  "presets": {
+    "A": {"coverage": 0.4, "clumpiness": 0.3, "flowers": 0.5},
+    "B": {"coverage": 0.4, "clumpiness": 0.6, "flowers": 0.5},
+    "C": {"coverage": 0.4, "clumpiness": 0.9, "flowers": 0.5},
+    "D": {"coverage": 0.6, "clumpiness": 0.7, "flowers": 0.25}
+  }
+}

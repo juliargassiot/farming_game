@@ -340,7 +340,9 @@ def _assemble(folder: Path, sspec: dict) -> dict:
     if sspec.get("variants"):
         variants = raw_variants if sspec.get("variant_mode") == "sprite" else [tiles_post.recolour({0: t}, lower, upper, lower_target, None)[0] for t in blended]
     else:
-        variants = [tiles_post.edge_blend({0: tiles[0]}, lower_target, upper, sspec.get("variant_fade", 0), 1.0)[0]]
+        textured = tiles_post.edge_blend({0: tiles[0]}, lower_target, upper, sspec.get("variant_fade", 0), 1.0)
+        blades = tiles_post.season_style(textured, lower_target, upper, {"dots": ["#%02x%02x%02x" % tuple(int(v) for v in lower_target)]})
+        variants = [textured[0], blades[0]]
     field = tiles_post.recolour(tiles, lower_target, upper, None, tiles_post.hex_colour(sspec["field_colour"]), sspec.get("field_flatten", 0.0))
     field[0] = tiles_post.flat_tile(lower_target, size)
     tilled = tiles_post.cutout(tiles, lower_target, upper)

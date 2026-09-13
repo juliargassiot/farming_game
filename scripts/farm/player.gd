@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal interact(cell: Vector2i)
+signal entered_cell(cell: Vector2i, direction: Vector2i)
 
 const SPEED: float = 160.0
 const TILE: int = 32
@@ -10,6 +11,7 @@ const DIRECTION_NAMES: Dictionary[Vector2i, String] = {
 }
 
 var facing: Vector2i = Vector2i(0, 1)
+var cell: Vector2i = Vector2i(-1, -1)
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
@@ -18,6 +20,10 @@ func _physics_process(_delta: float) -> void:
 	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input * SPEED
 	move_and_slide()
+	var now: Vector2i = Vector2i(floori(position.x / TILE), floori(position.y / TILE))
+	if now != cell:
+		cell = now
+		entered_cell.emit(now, facing)
 	if input.length() > 0.1:
 		facing = Vector2i(int(signf(input.x)), 0) if absf(input.x) >= absf(input.y) else Vector2i(0, int(signf(input.y)))
 		sprite.play("walk_" + DIRECTION_NAMES[facing])
