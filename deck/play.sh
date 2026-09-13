@@ -1,6 +1,7 @@
 #!/bin/bash
 # Steam Deck launcher: update the chosen branch, then run the game until it quits.
 # Exit code 42 from the game means "check for updates": pull again and relaunch.
+# When the pull changes this script, it re-executes itself so the new version runs at once.
 FARM="$HOME/games/farm"
 GODOT="$HOME/games/godot"
 BRANCH="${1:-main}"
@@ -13,7 +14,11 @@ update() {
 	git reset --quiet --hard "origin/$BRANCH"
 }
 
+before="$(md5sum "$0")"
 update
+if [ -z "$FARM_RELAUNCHED" ] && [ "$(md5sum "$0")" != "$before" ]; then
+	FARM_RELAUNCHED=1 exec "$0" "$@"
+fi
 command -v python3 >/dev/null && python3 deck/steam_shortcuts.py --art "$FARM" >/dev/null 2>&1
 while true; do
 	"$GODOT" --path . --fullscreen
