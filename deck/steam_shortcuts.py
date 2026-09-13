@@ -175,7 +175,7 @@ def main(argv: list) -> int:
     steam = args[1] if len(args) > 1 else os.path.expanduser("~/.steam/steam")
     configs = user_config_dirs(steam)
     if not configs:
-        print("No Steam user found under %s; add the shortcuts by hand (see deck/SETUP.md)" % steam)
+        print("No Steam user found under %s; add the shortcuts by hand" % steam)
         return 0
     for config in configs:
         if not art_only:

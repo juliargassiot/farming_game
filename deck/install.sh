@@ -1,5 +1,5 @@
 #!/bin/bash
-# One-shot Steam Deck install. From Konsole in Desktop Mode:
+# One-shot Steam Deck or Linux laptop install. From a terminal in Desktop Mode:
 #   curl -fsSL https://raw.githubusercontent.com/juliargassiot/farming_game/main/deck/install.sh | bash
 # Installs git if missing, clones or updates the game, installs Godot, and registers the Steam shortcuts.
 set -e
