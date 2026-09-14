@@ -8,12 +8,12 @@
     "dark_below": -0.4,
     "stamp_step": 3,
     "bleed": 3,
-    "shade_size": 10,
-    "light_wisps_above": 0.45,
     "clump_size": 10,
     "clump_above": 0.4,
-    "clump_density": 0.25,
-    "stray_density": 0.014
+    "clump_density": 0.12,
+    "stray_density": 0.008,
+    "shadow": 0.35,
+    "edge_density": 0.6
   },
   "seasons": {
     "spring": {
@@ -32,15 +32,11 @@
         "#8dac4d",
         "#a5be60"
       ],
-      "flowers": {
-        "colours": [
-          "#f2a6c8",
-          "#f8f4ec",
-          "#f6d35a"
-        ],
-        "density": 0.0018,
-        "off_patch": 0.15
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "summer": {
       "dark": [
@@ -58,13 +54,11 @@
         "#8ca64e",
         "#a5ba5e"
       ],
-      "flowers": {
-        "colours": [
-          "#f0c848"
-        ],
-        "density": 0.0005,
-        "off_patch": 0.1
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "autumn": {
       "dark": [
@@ -82,11 +76,11 @@
         "#a6954e",
         "#baa55e"
       ],
-      "flowers": {
-        "colours": [],
-        "density": 0.0,
-        "off_patch": 0.0
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "winter": {
       "dark": [
@@ -104,11 +98,17 @@
         "#edf1f2",
         "#fcfdfd"
       ],
-      "flowers": {
-        "colours": [],
-        "density": 0.0,
-        "off_patch": 0.0
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     }
+  },
+  "pack": {
+    "min_pixels": 6,
+    "max_size": 14,
+    "shadow_reach": 3,
+    "max_flower_share": 0.4
   }
 }

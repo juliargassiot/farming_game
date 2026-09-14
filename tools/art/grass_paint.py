@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Paints the ground as one continuous image per region and season: patches of three grass tones whose leafy edges bleed
-into each other, drawn from data/grass.json dials. Run `grass_paint.py` to write assets/grass/<region>_<season>.png."""
+"""Paints the ground as one continuous image per region and season: patches of three grass tones whose edges bleed into
+each other through sprigs cut from the grass pack sheets, drawn from data/grass.json dials.
+Run `grass_paint.py` to write assets/grass/<region>_<season>.png."""
 import json
 import sys
 from pathlib import Path
@@ -13,32 +14,75 @@ TILE = 32
 GRASSY = set(".PTt\"s")
 TONES = ("dark", "mid", "light")
 
-TUFTS = (
-    (".111.", "11.11", "1...1"),
-    ("..111..", ".11111.", "11...11", "1.....1"),
-    ("...11", "..111", ".111.", "11..."),
-    (".11.", "1111", ".11."),
-    ("1...1", "11.11", ".111."),
-    (".11.11.", "1111111", ".11111.", "..1.1.."),
-    ("..1111..", ".111111.", "11....11"),
-    ("...1.", "..111", ".111.", "111..", "1...."),
-    ("1....", "11...", ".11..", "..111", "...11"),
-    (".11.", "1..1"),
-    ("..11..", ".1111.", "11..11", "1....1"),
-    (".1.", "111", "1.1"),
-)
+PACK = ROOT / "tools" / "art" / "raw" / "grass_pack"
 
 
-def _stamps() -> list:
-    """Every crescent and leaf lobe and its mirror image."""
+class Tuft:
+    """One sprig cut from a pack sheet: which pixels are dark or light blades, which keep their own flower colour
+    (a sprig that is mostly not green is a coloured grass, so all of it becomes blades), and the shadow it casts."""
+
+    def __init__(self, rgba: np.ndarray, shadow: np.ndarray, origin: tuple[int, int], pack: dict) -> None:
+        solid = rgba[..., 3] >= 128
+        rgb = rgba[..., :3].astype(int)
+        green = (rgb[..., 1] > rgb[..., 0] + 6) & (rgb[..., 1] > rgb[..., 2] + 6)
+        luma = rgb[..., 0] * 0.299 + rgb[..., 1] * 0.587 + rgb[..., 2] * 0.114
+        split = np.median(luma[solid & green]) if (solid & green).any() else 0
+        petals = solid & ~green
+        if petals.sum() > pack["max_flower_share"] * solid.sum():
+            green, petals = solid, np.zeros_like(solid)
+            split = np.median(luma[solid])
+        self.dark = solid & green & (luma <= split)
+        self.light = solid & green & (luma > split)
+        self.flower = petals
+        self.rgb = rgba[..., :3]
+        self.shadow = shadow.astype(float) / 255
+        self.origin = origin
+        self.shape = solid.shape
+
+
+def _components(alpha: np.ndarray) -> list:
+    """Bounding boxes of 8-connected opaque blobs."""
+    h, w = alpha.shape
+    seen = np.zeros_like(alpha)
+    boxes = []
+    for y, x in zip(*np.nonzero(alpha)):
+        if seen[y, x]:
+            continue
+        stack, pts = [(y, x)], []
+        seen[y, x] = True
+        while stack:
+            cy, cx = stack.pop()
+            pts.append((cy, cx))
+            for ny in range(max(0, cy - 1), min(h, cy + 2)):
+                for nx in range(max(0, cx - 1), min(w, cx + 2)):
+                    if alpha[ny, nx] and not seen[ny, nx]:
+                        seen[ny, nx] = True
+                        stack.append((ny, nx))
+        ys, xs = zip(*pts)
+        boxes.append((min(ys), min(xs), max(ys) + 1, max(xs) + 1, len(pts)))
+    return boxes
+
+
+def load_tufts(sheet: str, pack: dict) -> list:
+    """Every sprig on a pack sheet whose size fits the dials, with the shadow pixels that touch it."""
+    rgba = np.asarray(Image.open(PACK / f"{sheet}.png").convert("RGBA"))
+    shadow = np.asarray(Image.open(PACK / f"{sheet.replace('Grass', 'Grass Shadow')}.png").convert("RGBA"))[..., 3]
+    reach = pack["shadow_reach"]
     out = []
-    for rows in TUFTS:
-        stamp = np.array([[c == "1" for c in row] for row in rows], dtype=bool)
-        out += [stamp, stamp[:, ::-1]]
+    for y0, x0, y1, x1, count in _components(rgba[..., 3] >= 128):
+        if count < pack["min_pixels"] or max(y1 - y0, x1 - x0) > pack["max_size"]:
+            continue
+        sy1, sx1 = min(rgba.shape[0], y1 + reach), min(rgba.shape[1], x1 + reach * 3)
+        crop = rgba[y0:sy1, x0:sx1]
+        cast = shadow[y0:sy1, x0:sx1] > 0
+        keep = crop[..., 3] >= 128
+        for _ in range(reach * 3):
+            grown = np.zeros_like(keep)
+            for dy, dx in ((0, 1), (1, 0), (1, 1), (0, -1), (-1, 0), (-1, 1), (1, -1), (-1, -1)):
+                grown[max(0, dy):keep.shape[0] + min(0, dy), max(0, dx):keep.shape[1] + min(0, dx)] |= keep[max(0, -dy):keep.shape[0] + min(0, -dy), max(0, -dx):keep.shape[1] + min(0, -dx)]
+            keep = keep | (grown & cast)
+        out.append(Tuft(crop, np.where(keep & cast, shadow[y0:sy1, x0:sx1], 0), ((y1 - y0) // 2, (x1 - x0) // 2), pack))
     return out
-
-
-STAMPS = _stamps()
 
 
 def value_noise(shape: tuple[int, int], cell: float, rng: np.random.Generator) -> np.ndarray:
@@ -71,60 +115,49 @@ def hex_rgb(text: str) -> np.ndarray:
     return np.array([int(text[i:i + 2], 16) for i in (1, 3, 5)], dtype=np.uint8)
 
 
-def _stamp(img: np.ndarray, cx: np.ndarray, cy: np.ndarray, colour: np.ndarray, shapes: np.ndarray) -> None:
-    """Draws one lobe per position, centred on that pixel."""
+def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, shadow: float) -> None:
+    """Stamps one sprig with its centre at (cy, cx): shadow darkens the ground, then blades take the palette's shades."""
     h, w = img.shape[:2]
-    for k, stamp in enumerate(STAMPS):
-        sel = shapes == k
-        if not sel.any():
-            continue
-        for dy, dx in zip(*np.nonzero(stamp)):
-            py, px = cy[sel] + dy - stamp.shape[0] // 2, cx[sel] + dx - stamp.shape[1] // 2
-            ok = (py >= 0) & (py < h) & (px >= 0) & (px < w)
-            img[py[ok], px[ok]] = colour[sel][ok]
+    y0, x0 = cy - tuft.origin[0], cx - tuft.origin[1]
+    y1, x1 = min(h, y0 + tuft.shape[0]), min(w, x0 + tuft.shape[1])
+    ty, tx = max(0, -y0), max(0, -x0)
+    y0, x0 = max(0, y0), max(0, x0)
+    if y1 <= y0 or x1 <= x0:
+        return
+    region = img[y0:y1, x0:x1]
+    sl = (slice(ty, ty + y1 - y0), slice(tx, tx + x1 - x0))
+    region[...] = (region * (1 - shadow * tuft.shadow[sl][..., None])).astype(np.uint8)
+    region[tuft.dark[sl]] = colours[0]
+    region[tuft.light[sl]] = colours[2]
+    region[tuft.flower[sl]] = tuft.rgb[sl][tuft.flower[sl]]
 
 
-def paint(tone: np.ndarray, palette: dict, dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone, leaf lobes scattered in loose clumps inside each patch (dark ones, lighter where a soft noise
-    says so), and along every patch edge lobes of the neighbouring tone reaching across so the two bleed into each other."""
+def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
+    """Base fill per tone, pack sprigs scattered in loose clumps inside each patch, and along every patch edge sprigs
+    of the neighbouring tone reaching across so the two bleed into each other; sprigs are drawn top to bottom."""
     h, w = tone.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
     img = colours[tone, 1]
-    shade_noise = fbm(tone.shape, dials["shade_size"], rng, 2)
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
-    xs = np.arange(-2, w + 2, step)
-    for row, gy in enumerate(np.arange(-2, h + 2, step)):
-        n = len(xs)
-        cx, cy = xs + (row % 2) * (step // 2) + rng.integers(0, step, n), gy + rng.integers(-1, step + 1, n)
-        ix, iy = np.clip(cx, 0, w - 1), np.clip(cy, 0, h - 1)
-        here = tone[iy, ix]
-        near = here
-        for _ in range(2):
-            sample = tone[np.clip(cy + rng.integers(-reach, reach + 1, n), 0, h - 1), np.clip(cx + rng.integers(-reach, reach + 1, n), 0, w - 1)]
-            near = np.where(near == here, sample, near)
-        noise = shade_noise[iy, ix]
-        bleed = near != here
-        clumped = clump_noise[iy, ix] > dials["clump_above"]
-        draw = bleed | (rng.random(n) < np.where(clumped, dials["clump_density"], dials["stray_density"]))
-        picked = np.where(bleed, near, here)[draw]
-        shade = np.where(bleed, 1, np.where(noise > dials["light_wisps_above"], 2, 0))[draw]
-        _stamp(img, cx[draw], cy[draw], colours[picked, shade], rng.integers(0, len(STAMPS), draw.sum()))
+    gy, gx = np.mgrid[-2:h + 2:step, -2:w + 2:step]
+    gx = gx + (np.arange(gy.shape[0])[:, None] % 2) * (step // 2)
+    cy, cx = (gy + rng.integers(-1, step + 1, gy.shape)).ravel(), (gx + rng.integers(0, step, gx.shape)).ravel()
+    iy, ix = np.clip(cy, 0, h - 1), np.clip(cx, 0, w - 1)
+    here = tone[iy, ix]
+    near = here
+    for _ in range(2):
+        sample = tone[np.clip(cy + rng.integers(-reach, reach + 1, cy.shape), 0, h - 1), np.clip(cx + rng.integers(-reach, reach + 1, cx.shape), 0, w - 1)]
+        near = np.where(near == here, sample, near)
+    bleed = near != here
+    clumped = clump_noise[iy, ix] > dials["clump_above"]
+    chance = np.where(bleed, dials["edge_density"], np.where(clumped, dials["clump_density"], dials["stray_density"]))
+    draw = rng.random(cy.shape) < chance
+    picked = np.where(bleed, near, here)
+    shapes = rng.integers(0, len(tufts), cy.shape)
+    for i in np.nonzero(draw)[0]:
+        _draw(img, tufts[shapes[i]], cy[i], cx[i], colours[picked[i]], dials["shadow"])
     return img
-
-
-def sprinkle(img: np.ndarray, tone: np.ndarray, flowers: dict, rng: np.random.Generator) -> None:
-    """Two-pixel flowers, mostly on the light patches, in the season's colours."""
-    if not flowers.get("colours"):
-        return
-    h, w = tone.shape
-    count = int(h * w * flowers["density"])
-    ys, xs = rng.integers(0, h, count), rng.integers(0, w - 1, count)
-    keep = (tone[ys, xs] == 2) | (rng.random(count) < flowers["off_patch"])
-    for y, x in zip(ys[keep], xs[keep]):
-        colour = hex_rgb(flowers["colours"][rng.integers(0, len(flowers["colours"]))])
-        img[y, x] = colour
-        img[y, x + 1] = (colour * 0.8).astype(np.uint8)
 
 
 def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
@@ -132,8 +165,8 @@ def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
     shape = (len(rows) * TILE, len(rows[0]) * TILE)
     rng = np.random.default_rng(dials["seed"])
     tone = tone_field(shape, dials, rng)
-    img = paint(tone, data["seasons"][season], dials, np.random.default_rng(dials["seed"] + 1))
-    sprinkle(img, tone, data["seasons"][season].get("flowers", {}), np.random.default_rng(dials["seed"] + 2))
+    tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
+    img = paint(tone, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
     return img
 
 
