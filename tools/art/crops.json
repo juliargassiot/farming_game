@@ -198,8 +198,9 @@
     "seed": "three",
     "final": "a blue bell-shaped flower",
     "stage_notes": {
-      "sprout": "reshape the two blue leaves into round sleigh-bell shapes with a small cross-hatch slit line on each, same blue colour",
-      "growing": "replace the bud with two larger round blue bell-shaped buds hanging down from short stems, side by side, clearly bells"
+      "sprout": "derived from ready: short curved stem with two small closed green bells on the left, all green",
+      "growing": "derived from ready: a little smaller with smaller bells",
+      "ready": "three big deep-blue sleigh bells with slit lines hanging on the left of the curved stem"
     },
     "stage_prompts": {
       "ready": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick"

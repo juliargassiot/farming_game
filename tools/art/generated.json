@@ -682,26 +682,29 @@
         "sprout": {
           "file": "tools/art/raw/crops/sirens_bell/sprout.png",
           "prompt": "a blue bell-shaped flower: a tiny seedling with two small leaves, just emerged, hints of deep blue, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 170,
           "created": "2026-09-14T01:01:41+00:00",
-          "hash": "1a378bc26d3042ce",
-          "approved": true
+          "hash": "fc60797094058c47",
+          "approved": true,
+          "edit": "derived from ready: short stem, two green bells"
         },
         "growing": {
           "file": "tools/art/raw/crops/sirens_bell/growing.png",
           "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 170,
           "created": "2026-09-14T02:00:05+00:00",
-          "hash": "4465895115c83d3d",
-          "approved": true
+          "hash": "dff277abe32e00d1",
+          "approved": true,
+          "edit": "derived from ready: smaller plant and bells"
         },
         "ready": {
           "file": "tools/art/raw/crops/sirens_bell/ready.png",
           "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 162,
           "created": "2026-09-14T03:03:57+00:00",
-          "hash": "d56b9e4aa811e9f4",
-          "approved": true
+          "hash": "883b64a0b59a032a",
+          "approved": true,
+          "edit": "bigger sleigh-bell blooms"
         }
       }
     },
