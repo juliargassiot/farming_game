@@ -180,7 +180,9 @@ def cmd_crop_design(args) -> None:
             seeds = specs["_seed_styles"][spec["seed"]].format(colour=spec["colour"])
             prompt = f"{seeds} a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else"
         else:
-            prompt = f"{spec['final']}, {args.stage} growth stage, seen from above, small plant on dark tilled soil, pixel art, nothing else"
+            stage_text = {"sprout": "a tiny seedling with two small leaves, just emerged", "growing": "a young plant, half grown, leafy, no fruit or flower yet",
+                          "ready": "fully grown and ready to harvest"}.get(args.stage, args.stage)
+            prompt = f"{spec['final']}: {stage_text}, hints of {spec['colour']}, on a small mound of dark tilled soil, seen from above, pixel art, nothing else"
         if not (out.exists() and not args.redo):
             response = client.create_image_pixen(prompt, (32, 32), view="high top-down", outline="lineless", detail="medium detail", seed=args.seed)
             save_png(decode_image(response["image"]), out)
@@ -196,6 +198,13 @@ def cmd_crop_design(args) -> None:
 
 def cmd_approve(args) -> None:
     generated = load_json(ART / "generated.json")
+    if args.name == "crops":
+        for name, record in generated.get("crops", {}).items():
+            if args.stage in record.get("stages", {}):
+                record["stages"][args.stage]["approved"] = not args.reject
+        save_generated(generated)
+        print(f"crops/{args.stage}: {'rejected' if args.reject else 'approved'}")
+        return
     kind = "tilesets" if args.name in generated["tilesets"] and args.name not in generated["characters"] else "characters"
     record = generated[kind].get(args.name)
     if not record or "design" not in record:
@@ -572,6 +581,7 @@ def main() -> None:
     p.add_argument("name")
     p.add_argument("--reject", action="store_true")
     p.add_argument("--note")
+    p.add_argument("--stage", help="with name `crops`: the growth stage being approved")
     p.set_defaults(func=cmd_approve)
     p = sub.add_parser("trim", help="record which frames of an animation to keep")
     p.add_argument("name")
