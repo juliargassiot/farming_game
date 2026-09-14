@@ -9,12 +9,10 @@
     "seed": "one",
     "final": "a mandrake root with a leafy top, root shaped like a small person",
     "stage_notes": {
-      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3",
-      "growing": "make the top of the root just below the leaves wide and bulbous like a turnip, keep the roots below; two 3x3 black eyes with red centres on the bulb; taper the bulbous root top smoothly downward into the sprawling roots, and add a few faint horizontal ring lines across the bulb like a turnip or daikon, keep the eyes"
+      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3"
     },
     "anim": {
-      "sprout": "eyes",
-      "growing": "eyes"
+      "sprout": "eyes"
     }
   },
   "carrot": {
