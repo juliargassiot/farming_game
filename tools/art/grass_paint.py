@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Paints the ground as one continuous image per region and season: patches of three grass tones whose edges bleed into
-each other through sprigs cut from the grass pack sheets, and flagstone paths where the map draws them, from data/grass.json.
-Run `grass_paint.py` to write assets/grass/<region>_<season>.png."""
+each other through sprigs cut from the grass pack sheets, flagstone paths where the map draws them, and the mountain
+district from mountain.py, all from data/grass.json.
+Run `grass_paint.py [--map name] [season ...]` to write assets/grass/<region>_<season>.png."""
 import json
 import sys
 from pathlib import Path
@@ -9,11 +10,14 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+import mountain
+import palette
+
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
-GRASSY = set(".PTt\"s=+")
+GRASSY = set(".PTt\"s=+r-^")
 TONES = ("dark", "mid", "light")
-PATH = 3
+GRASS, LEDGE, CLIFF, PATH, TRAIL = range(5)
 
 PACK = ROOT / "tools" / "art" / "raw" / "grass_pack"
 
@@ -112,9 +116,9 @@ def tone_field(shape: tuple[int, int], dials: dict, rng: np.random.Generator) ->
     return tone
 
 
-def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Stone wherever the map draws a path or cobbled square, its corners rounded and its edge wobbled so it reads as laid by hand."""
-    cells = np.array([[c in "=+" for c in row] for row in rows])
+def path_mask(rows: list[str], symbols: str, dials: dict, rng: np.random.Generator) -> np.ndarray:
+    """The given cells as one surface, its corners rounded and its edge wobbled so it reads as laid by hand."""
+    cells = np.array([[c in symbols for c in row] for row in rows])
     mask = np.kron(cells, np.ones((TILE, TILE), dtype=bool)).astype(float)
     radius = dials["path_round"]
     kernel = np.ones(2 * radius + 1) / (2 * radius + 1)
@@ -123,6 +127,29 @@ def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndar
         mask = np.apply_along_axis(lambda m: np.convolve(m, kernel, "same"), 1, mask)
     wobble = fbm(mask.shape, dials["wobble_size"], rng, 2) * dials["path_wobble"]
     return mask + wobble > 0.5
+
+
+def dirt(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, dials: dict, rng: np.random.Generator) -> None:
+    """Trodden earth: the mid shade, a dark rim, and pebbles in the dark and light shades."""
+    inner = mask.copy()
+    inner[1:] &= mask[:-1]
+    inner[:-1] &= mask[1:]
+    inner[:, 1:] &= mask[:, :-1]
+    inner[:, :-1] &= mask[:, 1:]
+    img[mask] = shades[1]
+    img[mask & ~inner] = shades[0]
+    speckle(img, inner, shades, dials["pebble_density"], rng)
+
+
+def speckle(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, density: float, rng: np.random.Generator) -> None:
+    """Pebbles one to three pixels across in the dark and light shades, scattered over the mask."""
+    ys, xs = np.nonzero(mask)
+    pick = rng.random(len(ys)) < density
+    for y, x in zip(ys[pick], xs[pick]):
+        shade = shades[0] if rng.random() < 0.5 else shades[2]
+        pw, ph = rng.integers(1, 4), rng.integers(1, 3)
+        block = mask[y:y + ph, x:x + pw]
+        img[y:y + ph, x:x + pw][block] = shade
 
 
 def flagstones(img: np.ndarray, mask: np.ndarray, stone: dict, dials: dict, rng: np.random.Generator) -> None:
@@ -178,13 +205,20 @@ def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, sh
     region[tuft.flower[sl]] = tuft.rgb[sl][tuft.flower[sl]]
 
 
-def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone (paths get their flagstones), pack sprigs scattered in loose clumps inside each grass patch, and
-    along every edge sprigs of the neighbouring grass reaching across, onto the next patch or the path, so they bleed."""
-    h, w = tone.shape
+def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator, map_name: str) -> np.ndarray:
+    """Base fill per surface (grass in patches of three shades, paths as flagstones, trails as dirt, the mountain map
+    from its own geometry), pack sprigs scattered in loose clumps inside each grass patch, and along every edge sprigs of the
+    neighbouring grass reaching across, onto the next patch, the rock, or the path, so they bleed."""
+    h, w = patch.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
-    img = colours[np.minimum(tone, PATH - 1), 1]
-    flagstones(img, tone == PATH, palette["stone"], dials, rng)
+    img = colours[patch, 1].copy()
+    flagstones(img, surface == PATH, palette["stone"], dials, rng)
+    dirt(img, surface == TRAIL, np.array([hex_rgb(c) for c in palette["dirt"]], dtype=np.uint8), dials, rng)
+    if mountain.load()["map"] == map_name:
+        peaks = mountain.paint(img, patch, mountain.load(), palette, dials, rng)
+        surface = np.where(peaks > 0, peaks, surface)
+    speckle(img, surface == LEDGE, np.array([hex_rgb(c) for c in palette["rock"]], dtype=np.uint8), dials["speckle_density"], rng)
+    tone = surface
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
     gy, gx = np.mgrid[-2:h + 2:step, -2:w + 2:step]
@@ -201,22 +235,24 @@ def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.ran
     chance = np.where(bleed, dials["edge_density"], np.where(clumped, dials["clump_density"], dials["stray_density"]))
     draw = rng.random(cy.shape) < chance
     picked = np.where(bleed, near, here)
-    draw &= picked != PATH
+    draw &= (picked == GRASS) & (here != CLIFF)
     shapes = rng.integers(0, len(tufts), cy.shape)
     for i in np.nonzero(draw)[0]:
-        _draw(img, tufts[shapes[i]], cy[i], cx[i], colours[picked[i]], dials["shadow"])
+        _draw(img, tufts[shapes[i]], cy[i], cx[i], colours[patch[iy[i], ix[i]]], dials["shadow"])
     return img
 
 
-def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
+def paint_world(rows: list[str], data: dict, season: str, map_name: str) -> np.ndarray:
     dials = data["dials"]
     shape = (len(rows) * TILE, len(rows[0]) * TILE)
     rng = np.random.default_rng(dials["seed"])
-    tone = tone_field(shape, dials, rng)
-    tone[path_mask(rows, dials, rng)] = PATH
+    patch = tone_field(shape, dials, rng)
+    surface = np.full(shape, GRASS, dtype=np.int8)
+    surface[path_mask(rows, "=+", dials, rng)] = PATH
+    if mountain.load()["map"] != map_name:
+        surface[path_mask(rows, "-", dials, rng)] = TRAIL
     tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
-    img = paint(tone, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
-    return img
+    return paint(patch, surface, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1), map_name)
 
 
 def grassy_regions(rows: list[str], regions: dict) -> dict:
@@ -229,16 +265,24 @@ def grassy_regions(rows: list[str], regions: dict) -> dict:
 
 
 def main() -> None:
+    """`grass_paint.py [--map name] [season ...]` paints one map (the overworld by default) for the given seasons."""
+    args = sys.argv[1:]
+    map_name = args.pop(args.index("--map") + 1) if "--map" in args else "world"
+    args = [a for a in args if a != "--map"]
     data = json.loads((ROOT / "data" / "grass.json").read_text())
-    rows = (ROOT / "data" / "maps" / "world.txt").read_text().strip().split("\n")
-    regions = grassy_regions(rows, json.loads((ROOT / "data" / "world.json").read_text())["regions"])
+    rows = (ROOT / "data" / "maps" / f"{map_name}.txt").read_text().strip().split("\n")
+    regions = grassy_regions(rows, json.loads((ROOT / "data" / "maps" / f"{map_name}.json").read_text())["regions"])
     out_dir = ROOT / "assets" / "grass"
     out_dir.mkdir(parents=True, exist_ok=True)
-    seasons = sys.argv[1:] or list(data["seasons"])
+    seasons = args or list(data["seasons"])
+    meta = json.loads((ROOT / "data" / "maps" / f"{map_name}.json").read_text())
     for season in seasons:
-        world = paint_world(rows, data, season)
+        world = paint_world(rows, data, season, map_name)
         for name, (x0, y0, x1, y1) in regions.items():
-            Image.fromarray(world[y0 * TILE:y1 * TILE, x0 * TILE:x1 * TILE], "RGB").save(out_dir / f"{name}_{season}.png", optimize=True)
+            image = Image.fromarray(world[y0 * TILE:y1 * TILE, x0 * TILE:x1 * TILE], "RGB")
+            if "palette" in meta:
+                image = palette.recolour(image, palette.load(meta["palette"])).convert("RGB")
+            image.save(out_dir / f"{name}_{season}.png", optimize=True)
         print(f"{season}: {', '.join(regions)}")
 
 

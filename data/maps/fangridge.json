@@ -1,0 +1,38 @@
+{
+  "regions": {
+    "fangridge_peaks": {
+      "name": "Fangridge Peaks",
+      "race": "shifter",
+      "kind": "mountain",
+      "combat_zone": true,
+      "tree": "pine",
+      "dead_tree": "dead",
+      "rect": [
+        0,
+        0,
+        80,
+        60
+      ]
+    }
+  },
+  "buildings": {
+    "12,30": "farmhouse",
+    "60,19": "farmhouse",
+    "26,15": "farmhouse",
+    "75,1": "boulder_large",
+    "27,4": "boulder_large",
+    "75,4": "boulder_large",
+    "74,7": "boulder_large",
+    "47,8": "boulder_large",
+    "15,9": "boulder_large",
+    "58,9": "boulder_large",
+    "74,12": "boulder_large",
+    "64,23": "boulder_large",
+    "75,25": "boulder_large",
+    "63,33": "boulder_large",
+    "57,40": "boulder_large",
+    "20,43": "boulder_large",
+    "33,43": "boulder_large"
+  },
+  "palette": "fangridge"
+}

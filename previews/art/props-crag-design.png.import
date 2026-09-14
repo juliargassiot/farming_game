@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1eeivyleblv"
-path="res://.godot/imported/world-fangridge.png-2418f2f7ee656a52f3715efb5fe68393.ctex"
+uid="uid://gaavswgwr4qs"
+path="res://.godot/imported/props-crag-design.png-9417aa7f196e5ad361953082d29c11ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/world-fangridge.png"
-dest_files=["res://.godot/imported/world-fangridge.png-2418f2f7ee656a52f3715efb5fe68393.ctex"]
+source_file="res://previews/art/props-crag-design.png"
+dest_files=["res://.godot/imported/props-crag-design.png-9417aa7f196e5ad361953082d29c11ed.ctex"]
 
 [params]
 

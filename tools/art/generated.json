@@ -80,6 +80,20 @@
       },
       "approval_note": "summer texture restyled per season; fine-tune once the world is fuller",
       "approved_at": "2026-09-13T23:15:53+00:00"
+    },
+    "grass_dirt": {
+      "approved": true,
+      "approved_hash": "434203b7293182e5",
+      "imported": "2026-09-14T21:13:55+00:00",
+      "design": {
+        "file": "tools/art/raw/tiles/grass_dirt",
+        "preview": "previews/art/grass_dirt-design.png",
+        "created": "2026-09-14T20:47:16+00:00",
+        "seed": 72,
+        "hash": "434203b7293182e5"
+      },
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
     }
   },
   "crops": {
@@ -1187,6 +1201,90 @@
       "approved_hash": "b2ae73b5ebde52b4",
       "approval_note": "",
       "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "cliff_face": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face/design.png",
+        "source": "tools/art/raw/props/cliff_face/candidates/1.png",
+        "hash": "6c2db6cf4257d7ff",
+        "created": "2026-09-14T20:23:26+00:00"
+      },
+      "approved_hash": "6c2db6cf4257d7ff",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "cliff_face_tall": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face_tall/design.png",
+        "source": "tools/art/raw/props/cliff_face_tall/candidates/5.png",
+        "hash": "f9e0956e2a32b07c",
+        "created": "2026-09-14T21:08:15+00:00"
+      },
+      "approved_hash": "f9e0956e2a32b07c",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "cliff_end": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_end/design.png",
+        "source": "tools/art/raw/props/cliff_end/candidates/1.png",
+        "hash": "5c72d1cb1b71949f",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "5c72d1cb1b71949f",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "boulder_small": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_small/design.png",
+        "source": "tools/art/raw/props/boulder_small/candidates/4.png",
+        "hash": "2baa0b74a10817d0",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "2baa0b74a10817d0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "boulder_medium": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_medium/design.png",
+        "source": "tools/art/raw/props/boulder_medium/candidates/4.png",
+        "hash": "51c54bf3f6f9c1d0",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "51c54bf3f6f9c1d0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "boulder_large": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_large/design.png",
+        "source": "tools/art/raw/props/boulder_large/candidates/1.png",
+        "hash": "a3c447c6fe83a050",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "a3c447c6fe83a050",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "crag": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/crag/design.png",
+        "source": "tools/art/raw/props/crag/candidates/4.png",
+        "hash": "b44eafec385c045d",
+        "created": "2026-09-14T21:08:17+00:00"
+      },
+      "approved_hash": "b44eafec385c045d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
     }
   }
 }

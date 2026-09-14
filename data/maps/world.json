@@ -1,7 +1,7 @@
 {
   "town": "Wistmoor",
   "regions": {
-    "fangridge": {"name": "Fangridge Peaks", "race": "shifter", "kind": "mountain", "rect": [0, 0, 46, 26], "combat_zone": true, "tree": "pine", "dead_tree": "dead"},
+    "fangridge": {"name": "Fangridge Trailhead", "race": "shifter", "kind": "prairie", "rect": [0, 0, 46, 26], "combat_zone": false, "tree": "pine", "dead_tree": "dead"},
     "thornwood": {"name": "Thornwood", "race": "ghost", "kind": "forest", "rect": [46, 0, 74, 26], "combat_zone": false, "tree": "dead", "dead_tree": "dead"},
     "duskspire": {"name": "Duskspire Crags", "race": "vampire", "kind": "cave", "rect": [74, 0, 120, 26], "combat_zone": true, "tree": "thorn", "dead_tree": "dead"},
     "hexmeadow": {"name": "Hexmeadow", "race": "witch", "kind": "prairie", "rect": [0, 26, 38, 54], "combat_zone": true, "tree": "willow", "dead_tree": "dead"},

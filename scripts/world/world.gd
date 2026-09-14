@@ -9,7 +9,10 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 
-const PAINTED: Array[WorldMap.Ground] = [WorldMap.Ground.GRASS, WorldMap.Ground.FIELD, WorldMap.Ground.PATH, WorldMap.Ground.COBBLE]
+const PAINTED: Array[WorldMap.Ground] = [WorldMap.Ground.GRASS, WorldMap.Ground.FIELD, WorldMap.Ground.PATH, WorldMap.Ground.COBBLE, WorldMap.Ground.LEDGE, WorldMap.Ground.TRAIL]
+const STONES: Dictionary[WorldMap.Ground, String] = {
+	WorldMap.Ground.BOULDER_SMALL: "boulder_small", WorldMap.Ground.BOULDER_MEDIUM: "boulder_medium", WorldMap.Ground.SPIRE: "crag",
+}
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
 const PROPS_PATH: String = "res://data/props.json"
 const GRASS_DIR: String = "res://assets/grass/"
@@ -87,13 +90,21 @@ func _build_map() -> void:
 			elif prop_regions.has(prop):
 				_place_prop(Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE), prop_regions[prop], true)
 				kind = _ground_under_prop(cell)
-			if not PAINTED.has(kind):
+			if not _painted(cell, kind):
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
 	_place_grass()
 
 
+func _painted(cell: Vector2i, kind: WorldMap.Ground) -> bool:
+	"""Ground the painted image already shows: grass, fields, paths, ledges, and the cliffs of a mountain district."""
+	if PAINTED.has(kind):
+		return true
+	var region: WorldMap.Region = map.region_at(cell)
+	return kind == WorldMap.Ground.ROCK and region != null and region.kind == "mountain"
+
+
 func _place_grass() -> void:
-	"""One painted ground image per region (grass and stone paths), under everything else; the season picks the file."""
+	"""One painted ground image per region (grass, stone paths, mountain rock), under everything else; the season picks the file."""
 	for region: WorldMap.Region in map.regions:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.centered = false
@@ -167,7 +178,9 @@ func _load_props() -> Dictionary[String, Rect2i]:
 
 
 func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
-	"""Trees take the prop the cell's region names."""
+	"""Trees take the prop the cell's region names; stones name their own."""
+	if STONES.has(kind):
+		return STONES[kind]
 	var region: WorldMap.Region = map.region_at(cell)
 	if kind == WorldMap.Ground.TREE:
 		return region.tree if region != null else "oak"
