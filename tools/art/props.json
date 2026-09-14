@@ -52,7 +52,7 @@
     "detail": "medium detail"
   },
   "shop": {
-    "prompt": "a small village shop: a cosy timber-framed cottage, red-brown wooden shingle roof with a chimney, warm plank walls with dark beams, an arched wooden front door at the bottom centre, small windows with shutters, clean crisp pixel art with dark outlines, flat colours, no mud, front view slightly from above, the whole building filling the frame, no ground, no shadow, nothing else",
+    "prompt": "a small spooky but cozy village shop at dusk: dark weathered timber walls with crooked beams, a steep mossy dark shingle roof, a stone chimney, an arched wooden door in the centre with a glowing amber lantern beside it, a wide shop window glowing warm orange, a blank hanging wooden sign above the door, ivy vines on the front wall, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       224,
       192
