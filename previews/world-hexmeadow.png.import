@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qy87ilvjv5vk"
-path="res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"
+uid="uid://dvdabibodkfym"
+path="res://.godot/imported/world-hexmeadow.png-9e7f0d3c701ae5fb9465398aa9c4f54f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/farm.png"
-dest_files=["res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"]
+source_file="res://previews/world-hexmeadow.png"
+dest_files=["res://.godot/imported/world-hexmeadow.png-9e7f0d3c701ae5fb9465398aa9c4f54f.ctex"]
 
 [params]
 

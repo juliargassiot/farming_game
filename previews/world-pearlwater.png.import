@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qy87ilvjv5vk"
-path="res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"
+uid="uid://c3ydj3i4y43qy"
+path="res://.godot/imported/world-pearlwater.png-5b11b20b9f95148a6c84fcce6d7e6ff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/farm.png"
-dest_files=["res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"]
+source_file="res://previews/world-pearlwater.png"
+dest_files=["res://.godot/imported/world-pearlwater.png-5b11b20b9f95148a6c84fcce6d7e6ff8.ctex"]
 
 [params]
 

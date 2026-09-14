@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://scripts/farm/farm.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/world/world.gd" id="1"]
 [ext_resource type="TileSet" path="res://assets/tiles/ground.tres" id="2"]
 [ext_resource type="TileSet" path="res://assets/tiles/crops.tres" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/farm/player.tscn" id="4"]
 
-[node name="Farm" type="Node2D"]
+[node name="World" type="Node2D"]
 script = ExtResource("1")
 
 [node name="Terrain" type="TileMapLayer" parent="."]
@@ -34,6 +34,14 @@ offset_top = 4.0
 offset_right = 400.0
 offset_bottom = 28.0
 text = "Spring 1, Year 1    $0"
+
+[node name="Region" type="Label" parent="HUD"]
+offset_left = 400.0
+offset_top = 4.0
+offset_right = 632.0
+offset_bottom = 28.0
+horizontal_alignment = 2
+text = "Hollowbrook Farm"
 
 [node name="Hint" type="Label" parent="HUD"]
 offset_left = 8.0

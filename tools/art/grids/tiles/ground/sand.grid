@@ -1,0 +1,22 @@
+@out assets/tiles/ground.png
+@scale 2
+@at 8 0
+@s #e6d6a2
+@S #d4c088
+@W #f2e8c4
+SssssssssSssssss
+ssssssssssssssss
+ssssSsssssssssss
+sssssssSssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+SssssssSsssssssS
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+ssssssssssssssss
+WssssssssssssssS
+ssssssWsssssWsss
+Ssssssssssssssss
+sssSssssssssssss

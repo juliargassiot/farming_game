@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qy87ilvjv5vk"
-path="res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"
+uid="uid://djdojgn5de23l"
+path="res://.godot/imported/world-thornwood.png-5947d6aec82c6f7593676a66d66b9eb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/farm.png"
-dest_files=["res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"]
+source_file="res://previews/world-thornwood.png"
+dest_files=["res://.godot/imported/world-thornwood.png-5947d6aec82c6f7593676a66d66b9eb9.ctex"]
 
 [params]
 

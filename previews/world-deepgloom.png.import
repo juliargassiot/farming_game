@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qy87ilvjv5vk"
-path="res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"
+uid="uid://ql2kjorm4lkf"
+path="res://.godot/imported/world-deepgloom.png-fd05208e536fd7ef2603d91bd67bc822.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/farm.png"
-dest_files=["res://.godot/imported/farm.png-6a8e4e11ca5c43867f5d66fe6310557d.ctex"]
+source_file="res://previews/world-deepgloom.png"
+dest_files=["res://.godot/imported/world-deepgloom.png-fd05208e536fd7ef2603d91bd67bc822.ctex"]
 
 [params]
 

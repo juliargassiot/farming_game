@@ -42,20 +42,39 @@ func test_grass_json() -> void:
 		check(preset.has("day"), name + " preset names a day")
 
 
-func test_farm_map() -> void:
-	var rows: PackedStringArray = FileAccess.get_file_as_string("res://data/maps/farm.txt").strip_edges().split("\n")
-	var farm_script: GDScript = load("res://scripts/farm/farm.gd")
-	var known: Dictionary = farm_script.get_script_constant_map()["MAP_CHARS"]
+func test_world_map() -> void:
+	var rows: PackedStringArray = FileAccess.get_file_as_string(WorldMap.MAP_PATH).strip_edges().split("\n")
 	var counts: Dictionary[String, int] = {}
 	check(rows.size() > 0, "map has rows")
 	for row: String in rows:
 		check_eq(row.length(), rows[0].length(), "rows are the same width")
 		for symbol: String in row:
 			counts[symbol] = counts.get(symbol, 0) + 1
-			check(known.has(symbol) or symbol == "P", "unknown map symbol '%s'" % symbol)
+			check(WorldMap.SYMBOLS.has(symbol), "unknown map symbol '%s'" % symbol)
 	check_eq(counts.get("P", 0), 1, "exactly one player start")
 	check_eq(counts.get("B", 0), 1, "exactly one bed")
 	check(counts.get("s", 0) as int > 0, "some field to farm")
+
+
+func test_world_regions() -> void:
+	var map: WorldMap = WorldMap.load_files()
+	var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start)
+	check(map.regions.size() >= 8, "the world names its districts")
+	for region: WorldMap.Region in map.regions:
+		check(region.display_name != "", region.id + " has a name")
+		check(Rect2i(Vector2i.ZERO, map.size).encloses(region.rect), region.id + " lies inside the map")
+		for other: WorldMap.Region in map.regions:
+			check(other == region or not region.rect.intersects(other.rect), "%s overlaps %s" % [region.id, other.id])
+		if region.kind == "sea":
+			continue
+		var found: bool = false
+		for cell: Vector2i in reachable:
+			if region.rect.has_point(cell):
+				found = true
+				break
+		check(found, region.id + " can be reached on foot from the farm")
+	check(map.region_at(map.start) != null and map.region_at(map.start).kind == "farm", "the farmer starts on the farm")
+	check(map.region_at(map.bed) == map.region_at(map.start), "the bed is on the farm")
 
 
 func _json(path: String) -> Dictionary:
