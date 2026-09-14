@@ -693,18 +693,18 @@
           "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 170,
           "created": "2026-09-14T02:00:05+00:00",
-          "hash": "d05b39e6ac2300ee",
+          "hash": "f8f8d71198663c92",
           "approved": true,
-          "edit": "the ready plant scaled to 78% on the same mound"
+          "edit": "ready plant at 78%"
         },
         "ready": {
           "file": "tools/art/raw/crops/sirens_bell/ready.png",
           "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 162,
+          "seed": 201,
           "created": "2026-09-14T03:03:57+00:00",
-          "hash": "f75689f6dd58d4cc",
+          "hash": "fecdd69dbc999c8e",
           "approved": true,
-          "edit": "bigger sleigh-bell blooms"
+          "edit": "royal-blue tint, soil matched"
         }
       }
     },
