@@ -1,19 +1,19 @@
 {
   "dials": {
     "seed": 3,
-    "patch_size": 56,
-    "wobble_size": 9,
-    "edge_wobble": 0.4,
+    "patch_size": 64,
+    "wobble_size": 16,
+    "edge_wobble": 0.2,
     "light_above": 0.25,
     "dark_below": -0.4,
-    "stamp_step": 4,
-    "bleed": 2,
+    "stamp_step": 3,
+    "bleed": 3,
     "shade_size": 10,
     "light_wisps_above": 0.45,
     "clump_size": 10,
     "clump_above": 0.4,
-    "clump_density": 0.45,
-    "stray_density": 0.025
+    "clump_density": 0.25,
+    "stray_density": 0.014
   },
   "seasons": {
     "spring": {
