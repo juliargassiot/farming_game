@@ -7,11 +7,13 @@
     "light_above": 0.25,
     "dark_below": -0.4,
     "stamp_step": 3,
-    "stamp_density": 0.6,
     "bleed": 2,
     "shade_size": 10,
-    "light_shade_above": 0.15,
-    "underside": 0.65
+    "light_wisps_above": 0.45,
+    "clump_size": 8,
+    "clump_above": 0.12,
+    "clump_density": 0.85,
+    "stray_density": 0.06
   },
   "seasons": {
     "spring": {
