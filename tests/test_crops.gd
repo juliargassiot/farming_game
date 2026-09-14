@@ -7,7 +7,7 @@ func test_data_loads() -> void:
 		var crop: CropData = game.crops[crop_id]
 		check(crop.stage_days.size() > 0, crop_id + " has growth stages")
 		check(crop.sell_price > 0, crop_id + " sells for something")
-		check(crop.seasons.size() > 0, crop_id + " has a season")
+		check(crop.seasons.size() > 0 or crop.requires != "", crop_id + " has a season or an unlock")
 
 
 func test_growth_stages() -> void:
@@ -22,5 +22,17 @@ func test_growth_stages() -> void:
 
 
 func test_seed_for_season() -> void:
-	check_eq(game.seed_for("spring").id, "turnip", "spring seed")
-	check(game.seed_for("winter") == null, "no winter seed")
+	check_eq(game.seed_for("spring").id, "mandrake", "spring seed")
+	check(game.seed_for("winter") == null, "no winter seed before the root cellar")
+	game.unlocks.append("root_cellar")
+	check_eq(game.seed_for("winter").id, "potato", "potato bags grow in any season once unlocked")
+	game.unlocks.clear()
+
+
+func test_fantasy_fields() -> void:
+	var sprouts: CropData = game.crops["shifting_sprouts"]
+	check_eq(sprouts.variants.size(), 4, "shifting sprouts have four forms")
+	check_eq(sprouts.harvest_name(2), "Hare Sprout", "variant name")
+	check_eq(sprouts.harvest_name(-1), "Shifting Sprouts", "no variant falls back to the crop name")
+	check_eq(game.crops["potato"].yield_count, 6, "potato bags yield six")
+	check(game.crops["peas"].trellis, "peas climb a trellis")

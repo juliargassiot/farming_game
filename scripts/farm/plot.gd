@@ -7,6 +7,7 @@ var tilled: bool = false
 var watered: bool = false
 var crop: CropData = null
 var days_grown: int = 0
+var variant: int = -1
 
 
 func next_action(seed: CropData) -> Action:
@@ -24,12 +25,17 @@ func apply(action: Action, seed: CropData) -> int:
 		Action.PLANT:
 			crop = seed
 			days_grown = 0
+			variant = randi() % seed.variants.size() if not seed.variants.is_empty() else -1
 		Action.WATER:
 			watered = true
 		Action.HARVEST:
-			var earned: int = crop.sell_price
-			crop = null
-			days_grown = 0
+			var earned: int = crop.sell_price * crop.yield_count
+			if crop.regrow_days > 0:
+				days_grown = crop.total_days() - crop.regrow_days
+			else:
+				crop = null
+				days_grown = 0
+				variant = -1
 			return earned
 	return 0
 
@@ -45,7 +51,7 @@ func stage() -> int:
 
 
 func to_dict() -> Dictionary:
-	return {"tilled": tilled, "watered": watered, "crop": crop.id if crop != null else "", "days": days_grown}
+	return {"tilled": tilled, "watered": watered, "crop": crop.id if crop != null else "", "days": days_grown, "variant": variant}
 
 
 static func from_dict(d: Dictionary, crops: Dictionary[String, CropData]) -> Plot:
@@ -55,4 +61,5 @@ static func from_dict(d: Dictionary, crops: Dictionary[String, CropData]) -> Plo
 	var crop_id: String = d.get("crop", "")
 	plot.crop = crops.get(crop_id)
 	plot.days_grown = d.get("days", 0)
+	plot.variant = d.get("variant", -1)
 	return plot

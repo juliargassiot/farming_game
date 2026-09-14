@@ -7,6 +7,11 @@ var seasons: Array[String] = []
 var stage_days: Array[int] = []
 var sell_price: int = 0
 var atlas_row: int = 0
+var regrow_days: int = 0
+var trellis: bool = false
+var variants: Array[String] = []
+var yield_count: int = 1
+var requires: String = ""
 
 
 static func from_dict(crop_id: String, d: Dictionary) -> CropData:
@@ -17,8 +22,14 @@ static func from_dict(crop_id: String, d: Dictionary) -> CropData:
 		crop.seasons.append(season)
 	for days: float in d.get("stage_days", []):
 		crop.stage_days.append(int(days))
+	for variant: String in d.get("variants", []):
+		crop.variants.append(variant)
 	crop.sell_price = d.get("sell_price", 0)
 	crop.atlas_row = d.get("atlas_row", 0)
+	crop.regrow_days = d.get("regrow_days", 0)
+	crop.trellis = d.get("trellis", false)
+	crop.yield_count = d.get("yield", 1)
+	crop.requires = d.get("requires", "")
 	return crop
 
 
@@ -40,12 +51,16 @@ func total_days() -> int:
 	return total
 
 
+func grows_in(season: String) -> bool:
+	return seasons.is_empty() or seasons.has(season)
+
+
 func stage_for(days_grown: int) -> int:
 	var remaining: int = days_grown
-	for stage: int in stage_days.size():
-		if remaining < stage_days[stage]:
-			return stage
-		remaining -= stage_days[stage]
+	for i: int in stage_days.size():
+		if remaining < stage_days[i]:
+			return i
+		remaining -= stage_days[i]
 	return stage_days.size()
 
 
@@ -53,5 +68,5 @@ func is_mature(days_grown: int) -> bool:
 	return days_grown >= total_days()
 
 
-func grows_in(season: String) -> bool:
-	return seasons.has(season)
+func harvest_name(variant: int) -> String:
+	return variants[variant] if variant >= 0 and variant < variants.size() else display_name

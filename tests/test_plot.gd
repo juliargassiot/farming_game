@@ -1,6 +1,8 @@
 extends TestCase
 
 var turnip: CropData = CropData.from_dict("turnip", {"stage_days": [1, 1, 1], "sell_price": 30, "seasons": ["spring"]})
+var berry: CropData = CropData.from_dict("berry", {"stage_days": [1, 1, 2], "sell_price": 10, "seasons": ["spring"], "regrow_days": 1, "yield": 3,
+	"variants": ["Red", "Blue"]})
 var potato: CropData = CropData.from_dict("potato", {"stage_days": [2, 2, 2], "sell_price": 60, "seasons": ["spring"]})
 
 
@@ -39,3 +41,16 @@ func test_round_trip() -> void:
 	check_eq(copy.crop.id, "potato", "crop survives save")
 	check_eq(copy.days_grown, 4, "growth survives save")
 	check(copy.tilled, "tilled survives save")
+
+
+func test_regrow_yield_and_variant() -> void:
+	var plot: Plot = Plot.new()
+	plot.apply(Plot.Action.TILL, berry)
+	plot.apply(Plot.Action.PLANT, berry)
+	check(plot.variant == 0 or plot.variant == 1, "a hidden variant is chosen at planting")
+	plot.days_grown = 4
+	check_eq(plot.apply(Plot.Action.HARVEST, berry), 30, "harvest pays price times yield")
+	check(plot.crop == berry, "regrowing crop stays planted")
+	check_eq(plot.days_grown, 3, "regrowth resumes one regrow period before maturity")
+	var copy: Plot = Plot.from_dict(plot.to_dict(), {"berry": berry})
+	check_eq(copy.variant, plot.variant, "variant survives save")

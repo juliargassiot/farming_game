@@ -6,6 +6,7 @@ const SAVE_PATH: String = "user://save.json"
 var day: int = 1
 var money: int = 0
 var plots: Dictionary[Vector2i, Plot] = {}
+var unlocks: Array[String] = []
 var crops: Dictionary[String, CropData] = {}
 
 
@@ -21,6 +22,7 @@ func new_game() -> void:
 	day = 1
 	money = 0
 	plots.clear()
+	unlocks.clear()
 
 
 func plot_at(cell: Vector2i) -> Plot:
@@ -31,9 +33,13 @@ func plot_at(cell: Vector2i) -> Plot:
 
 func seed_for(season: String) -> CropData:
 	for crop_id: String in crops:
-		if crops[crop_id].grows_in(season):
+		if crops[crop_id].grows_in(season) and is_unlocked(crops[crop_id].requires):
 			return crops[crop_id]
 	return null
+
+
+func is_unlocked(requirement: String) -> bool:
+	return requirement == "" or unlocks.has(requirement)
 
 
 func advance_day() -> void:
@@ -48,7 +54,7 @@ func save() -> void:
 		saved_plots["%d,%d" % [cell.x, cell.y]] = plots[cell].to_dict()
 	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file != null:
-		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots}))
+		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks}))
 
 
 func load_game() -> bool:
@@ -61,6 +67,9 @@ func load_game() -> bool:
 	day = data.get("day", 1)
 	money = data.get("money", 0)
 	plots.clear()
+	unlocks.clear()
+	for unlock: String in data.get("unlocks", []):
+		unlocks.append(unlock)
 	var saved_plots: Dictionary = data.get("plots", {})
 	for key: String in saved_plots:
 		var parts: PackedStringArray = key.split(",")

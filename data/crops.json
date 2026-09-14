@@ -1,5 +1,16 @@
 {
-  "turnip": {"name": "Turnip", "seasons": ["spring"], "stage_days": [1, 1, 1], "sell_price": 30, "atlas_row": 0},
-  "potato": {"name": "Potato", "seasons": ["spring"], "stage_days": [2, 2, 2], "sell_price": 60, "atlas_row": 1},
+  "mandrake": {"name": "Mandrake", "seasons": ["spring"], "stage_days": [1, 1, 2], "sell_price": 35, "atlas_row": 0},
+  "carrot": {"name": "Carrot", "seasons": ["spring"], "stage_days": [1, 2, 2], "sell_price": 40},
+  "garlic": {"name": "Garlic", "seasons": ["spring"], "stage_days": [2, 2, 1], "sell_price": 45},
+  "onion": {"name": "Onion", "seasons": ["spring"], "stage_days": [2, 2, 2], "sell_price": 55},
+  "strawberry": {"name": "Strawberry", "seasons": ["spring"], "stage_days": [2, 3, 3], "sell_price": 70, "regrow_days": 3},
+  "peas": {"name": "Peas", "seasons": ["spring"], "stage_days": [2, 2, 3], "sell_price": 40, "regrow_days": 2, "trellis": true},
+  "blood_blossom": {"name": "Blood Blossom", "seasons": ["spring"], "stage_days": [3, 3, 3], "sell_price": 120, "regrow_days": 4},
+  "shifting_sprouts": {"name": "Shifting Sprouts", "seasons": ["spring"], "stage_days": [2, 3, 3], "sell_price": 90,
+                       "variants": ["Fox Sprout", "Bear Sprout", "Hare Sprout", "Raven Sprout"]},
+  "wolfsbane": {"name": "Wolfsbane", "seasons": ["spring", "autumn"], "stage_days": [3, 3, 4], "sell_price": 110},
+  "wisp_lettuce": {"name": "Wisp Lettuce", "seasons": ["spring"], "stage_days": [1, 2, 2], "sell_price": 50},
+  "dragon_root": {"name": "Dragon Root", "seasons": ["spring"], "stage_days": [3, 3, 3], "sell_price": 100},
+  "potato": {"name": "Potato Bag", "seasons": [], "requires": "root_cellar", "stage_days": [3, 3, 4], "sell_price": 40, "yield": 6, "atlas_row": 1},
   "tomato": {"name": "Tomato", "seasons": ["summer"], "stage_days": [2, 2, 2, 2], "sell_price": 80, "atlas_row": 2}
 }
