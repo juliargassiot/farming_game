@@ -80,6 +80,30 @@
       },
       "approval_note": "summer texture restyled per season; fine-tune once the world is fuller",
       "approved_at": "2026-09-13T23:15:53+00:00"
+    },
+    "grass_dirt": {
+      "approved": false,
+      "approved_hash": null,
+      "imported": null,
+      "design": {
+        "file": "tools/art/raw/tiles/grass_dirt",
+        "preview": "previews/art/grass_dirt-design.png",
+        "created": "2026-09-14T20:47:16+00:00",
+        "seed": 72,
+        "hash": "434203b7293182e5"
+      }
+    },
+    "grass_rock": {
+      "approved": false,
+      "approved_hash": null,
+      "imported": null,
+      "design": {
+        "file": "tools/art/raw/tiles/grass_rock",
+        "preview": "previews/art/grass_rock-design.png",
+        "created": "2026-09-14T20:56:12+00:00",
+        "seed": 71,
+        "hash": "8941f2010a3929fd"
+      }
     }
   },
   "crops": {
@@ -1187,6 +1211,24 @@
       "approved_hash": "b2ae73b5ebde52b4",
       "approval_note": "",
       "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "cliff_face": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face/design.png",
+        "source": "tools/art/raw/props/cliff_face/candidates/1.png",
+        "hash": "6c2db6cf4257d7ff",
+        "created": "2026-09-14T20:23:26+00:00"
+      }
+    },
+    "cliff_face_b": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face_b/design.png",
+        "source": "tools/art/raw/props/cliff_face/candidates/3.png",
+        "hash": "fdd0e7b94796f41e",
+        "created": "2026-09-14T20:23:27+00:00"
+      }
     }
   }
 }
