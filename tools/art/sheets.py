@@ -51,3 +51,17 @@ def labelled_grid(items: list, columns: int = 5, scale: int = 4) -> Image.Image:
         sheet.alpha_composite(im.resize((im.width * scale, im.height * scale), Image.NEAREST), (x, y))
         draw.text((x, y + im.height * scale + 2), label, fill=(230, 230, 230, 255))
     return sheet
+
+
+def panel_grid(panels: list[tuple[str, Image.Image]], columns: int = 2, scale: int = 2) -> Image.Image:
+    """Labelled panels in a grid, scaled up, for picking between alternatives."""
+    cell_w = max(p.width for _, p in panels) * scale + PAD * 2
+    cell_h = max(p.height for _, p in panels) * scale + 16 + PAD * 2
+    rows = (len(panels) + columns - 1) // columns
+    sheet = Image.new("RGBA", (columns * cell_w, rows * cell_h), (40, 40, 48, 255))
+    draw = ImageDraw.Draw(sheet)
+    for i, (label, panel) in enumerate(panels):
+        x, y = (i % columns) * cell_w + PAD, (i // columns) * cell_h + PAD
+        draw.text((x, y + 2), label, fill=(255, 220, 120, 255))
+        sheet.alpha_composite(upscaled(panel, scale), (x, y + 16))
+    return sheet
