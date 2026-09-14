@@ -10,6 +10,9 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 }
 
 const PAINTED: Array[WorldMap.Ground] = [WorldMap.Ground.GRASS, WorldMap.Ground.FIELD, WorldMap.Ground.PATH, WorldMap.Ground.COBBLE, WorldMap.Ground.LEDGE, WorldMap.Ground.TRAIL]
+const STONES: Dictionary[WorldMap.Ground, String] = {
+	WorldMap.Ground.BOULDER_SMALL: "boulder_small", WorldMap.Ground.BOULDER_MEDIUM: "boulder_medium", WorldMap.Ground.SPIRE: "crag",
+}
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
 const PROPS_PATH: String = "res://data/props.json"
 const GRASS_DIR: String = "res://assets/grass/"
@@ -175,7 +178,9 @@ func _load_props() -> Dictionary[String, Rect2i]:
 
 
 func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
-	"""Trees take the prop the cell's region names."""
+	"""Trees take the prop the cell's region names; stones name their own."""
+	if STONES.has(kind):
+		return STONES[kind]
 	var region: WorldMap.Region = map.region_at(cell)
 	if kind == WorldMap.Ground.TREE:
 		return region.tree if region != null else "oak"

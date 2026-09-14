@@ -37,36 +37,6 @@
     "field_flatten": 0.85,
     "wet_tint": "#9e6b3d"
   },
-  "grass_rock": {
-    "upper": "seamless bare mountain rock ground texture, medium grey stone with warm brown undertones, cracked slabs and scattered small pebbles, soft painterly shading",
-    "lower_name": "grass",
-    "upper_name": "rock",
-    "tile_size": 32,
-    "transition_size": 0.0,
-    "view": "high top-down",
-    "seed": 71,
-    "params": {
-      "mode": "pro",
-      "spread_x": 0.5,
-      "raggedness": 0.8,
-      "outline": "lineless",
-      "shading": "medium shading",
-      "detail": "highly detailed"
-    },
-    "edge_blend": 5,
-    "soften_upper": 0.0,
-    "seasons": {
-      "summer": {
-        "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover"
-      },
-      "winter": {
-        "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading"
-      }
-    },
-    "field_colour": "#6b645d",
-    "field_flatten": 0.0,
-    "wet_tint": "#ffffff"
-  },
   "grass_dirt": {
     "upper": "seamless trodden bare earth footpath texture, packed brown dirt with small pebbles and faint animal paw prints, soft painterly shading",
     "lower_name": "grass",
@@ -88,13 +58,12 @@
     "seasons": {
       "summer": {
         "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover"
-      },
-      "winter": {
-        "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading"
       }
     },
     "field_colour": "#6a5138",
     "field_flatten": 0.0,
-    "wet_tint": "#ffffff"
+    "wet_tint": "#ffffff",
+    "plain": true,
+    "palette": "fangridge"
   }
 }

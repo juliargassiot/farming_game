@@ -164,48 +164,55 @@
   "size": [
    96,
    64
-  ]
+  ],
+  "palette": "fangridge"
  },
  "cliff_face_tall": {
   "prompt": "a tall stretch of rugged mountain cliff face seen from the front and slightly above, many stacked uneven strata of grey-brown stone and tan sandstone bulging and receding, vertical cracks, a worn ledge lip along the top edge, dark shadowed foot, ragged crumbling ends, weathered and organic with rounded eroded edges and irregular bulging shapes, no straight lines or blocks",
   "size": [
    96,
    96
-  ]
+  ],
+  "palette": "fangridge"
  },
  "cliff_end": {
   "prompt": "the crumbling end of a mountain cliff face seen from the front and slightly above, stacked grey-brown strata tapering down into a pile of fallen slabs and rubble on the right side, lighter ledge lip along the top, dark shadowed foot, weathered and organic with rounded eroded edges and irregular bulging shapes, no straight lines or blocks",
   "size": [
    64,
    64
-  ]
+  ],
+  "palette": "fangridge"
  },
  "boulder_small": {
   "prompt": "a small rounded grey granite boulder with brown undertones, a few cracks, lit from the top left with a shadowed underside, sitting on the ground",
   "size": [
    32,
    32
-  ]
+  ],
+  "palette": "fangridge"
  },
  "boulder_medium": {
   "prompt": "a medium rounded grey granite boulder with brown undertones and moss in its cracks, lit from the top left with a shadowed underside, sitting on the ground",
   "size": [
    48,
    48
-  ]
+  ],
+  "palette": "fangridge"
  },
  "boulder_large": {
   "prompt": "a large cluster of rounded grey granite boulders with brown undertones piled together, cracks and a little moss, lit from the top left with shadowed undersides, sitting on the ground",
   "size": [
    96,
    64
-  ]
+  ],
+  "palette": "fangridge"
  },
  "crag": {
   "prompt": "a jagged pointed rock spire of dark grey stone with a cap of white snow on its tip, sharp cracked faces, lit from the top left",
   "size": [
    32,
    64
-  ]
+  ],
+  "palette": "fangridge"
  }
 }

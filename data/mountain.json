@@ -25,10 +25,10 @@
   "apron": 11,
   "snow_from": 3.7,
   "boulders": {
-    "apron": 0.8,
-    "ledge": 0.035,
-    "rubble": 0.8,
-    "crag": 1.6
+    "apron": 0.28,
+    "ledge": 0.03,
+    "rubble": 0.6,
+    "crag": 0.7
   },
   "trail_width": 34,
   "trail_fade": 14,

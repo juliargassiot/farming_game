@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The mountain map from data/mountain.json: a height field terraced into ledges, broken walls below every contour that
+"""The mountain map from data/mountain.json: a height field terraced into ledges, cliff pieces along every contour that
 faces the viewer, a rocky apron of boulders at the foot, crags and snow at the peak, and worn trails through waypoints.
 `main` writes data/maps/<map>.txt and the homes into its .json; `paint` draws the same geometry into the painted ground,
 so what looks walkable is walkable."""
@@ -62,7 +62,105 @@ class Geometry:
         crumble = fbm(self.shape, 5 * TILE, rng, 2) > data["crumble"]
         self.depth, self.rubble = self._walls(tall, crumble)
         self.trail = self._trail(np.random.default_rng(data["seed"] + 5))
-        self.boulders = self._boulders(np.random.default_rng(data["seed"] + 9))
+        self.props = json.loads((ROOT / "data" / "props.json").read_text())
+        self.pieces = self._pieces(np.random.default_rng(data["seed"] + 7))
+        self.stones = self._stones(np.random.default_rng(data["seed"] + 9))
+
+    def _pieces(self, rng: np.random.Generator) -> list:
+        """Cliff pieces as (name, x, y, flip): along every stretch of wall, a face per strip of columns with its lip on
+        the wall's top, a second face stacked below it where the wall is tall, and a crumbling end where a stretch stops."""
+        h, w = self.shape
+        wall = (self.depth > 0) & ~(self.trail > 0.15)
+        out, step = [], 58
+        x = int(rng.integers(0, 24))
+        prev = False
+        while x < w:
+            strip = wall[:, x:x + step]
+            covered = strip.any(axis=0)
+            if covered.mean() > 0.25:
+                tops = np.array([np.argmax(strip[:, i]) for i in range(strip.shape[1]) if covered[i]])
+                bottoms = np.array([h - 1 - np.argmax(strip[::-1, i]) for i in range(strip.shape[1]) if covered[i]])
+                top, tall = int(np.median(tops)), float(np.median(bottoms - tops))
+                left = x + int(np.argmax(covered)) - 8
+                if not prev:
+                    out.append(("cliff_end", left - 22, top - 2, True))
+                if tall > 62:
+                    out.append(("cliff_face", left - int(rng.integers(0, 6)), top + int(tall) - 56, bool(rng.random() < 0.5)))
+                out.append(("cliff_face", left - int(rng.integers(0, 6)), top - 3, bool(rng.random() < 0.5)))
+                prev = True
+            else:
+                if prev:
+                    out.append(("cliff_end", x - 12, int(np.median([np.argmax(wall[:, i]) for i in range(max(0, x - 24), x) if wall[:, i].any()] or [0])) - 2, False))
+                prev = False
+            x += step
+        return out
+
+    def trail_solid(self) -> np.ndarray:
+        return self.trail > 0.45
+
+    def piece_mask(self) -> np.ndarray:
+        """Opaque pixels of every placed cliff piece, so the cells they cover block."""
+        mask = np.zeros(self.shape, dtype=bool)
+        atlas = Image.open(ROOT / "assets" / "tiles" / "props.png").convert("RGBA")
+        for name, x, y, flip in self.pieces:
+            px, py, pw, ph = self.props[name]
+            alpha = np.asarray(atlas.crop((px, py, px + pw, py + ph)))[..., 3] > 0
+            if flip:
+                alpha = alpha[:, ::-1]
+            y0, x0 = max(0, y), max(0, x)
+            y1, x1 = min(self.shape[0], y + ph), min(self.shape[1], x + pw)
+            if y1 > y0 and x1 > x0:
+                mask[y0:y1, x0:x1] |= alpha[y0 - y:y1 - y, x0 - x:x1 - x]
+        return mask
+
+    def _stones(self, rng: np.random.Generator) -> list:
+        """Boulders and crags as (kind, cell x, cell y): dense in rubble, thickening across the apron toward the first
+        wall, a few on every ledge, and a ring of crags around the peak; never on a trail, a wall, a home, or the start."""
+        rates = self.data["boulders"]
+        w, h = self.data["size"]
+        peak = self.terrace == 4
+        near_peak = np.zeros(self.shape, dtype=bool)
+        for d in range(1, 40):
+            near_peak[d:] |= peak[:-d] & ~peak[d:]
+            near_peak[:-d] |= peak[d:] & ~peak[:-d]
+            near_peak[:, d:] |= peak[:, :-d] & ~peak[:, d:]
+            near_peak[:, :-d] |= peak[:, d:] & ~peak[:, :-d]
+        blocked = (self.depth > 0) | self.trail_solid() | self.piece_mask()
+        cells = {}
+        taken = set()
+        sx, sy = self.data["start"]
+        for x in range(sx - 2, sx + 3):
+            for y in range(sy - 2, sy + 3):
+                taken.add((x, y))
+        for home in self.data["homes"]:
+            ax, ay = home["at"]
+            for x in range(ax - 1, ax + HOME_W + 1):
+                for y in range(ay - HOME_H - 4, ay + 2):
+                    taken.add((x, y))
+        for cy in range(h):
+            for cx in range(w):
+                sl = (slice(cy * TILE, (cy + 1) * TILE), slice(cx * TILE, (cx + 1) * TILE))
+                if blocked[sl].any() or self.terrace[sl].max() != self.terrace[sl].min():
+                    continue
+                chance = rates["rubble"] if self.rubble[sl].mean() > 0.2 else 0.0
+                chance += rates["apron"] * self.rockiness[sl].mean() ** 1.2
+                chance += rates["ledge"] * (0.6 + 0.2 * self.terrace[sl].max()) if self.terrace[sl].max() > 0 else 0.0
+                crag = near_peak[sl].mean() > 0.3
+                chance += rates["crag"] if crag else 0.0
+                if rng.random() >= chance:
+                    continue
+                kind = "crag" if crag else "boulder_large" if rng.random() < 0.15 + 0.2 * self.rockiness[sl].mean() else "boulder_medium" if rng.random() < 0.5 else "boulder_small"
+                cells[(cx, cy)] = kind
+        out = []
+        for (cx, cy), kind in cells.items():
+            span = [(cx + dx, cy + dy) for dx in range(3) for dy in range(2)] if kind == "boulder_large" else [(cx, cy)]
+            if any(c in taken or c[0] >= w or c[1] >= h for c in span):
+                continue
+            if kind == "boulder_large" and any(blocked[y * TILE:(y + 1) * TILE, x * TILE:(x + 1) * TILE].any() for x, y in span):
+                continue
+            taken.update(span)
+            out.append((kind, cx, cy))
+        return out
 
     def _walls(self, tall: np.ndarray, crumble: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         """Wall depth per pixel where higher ground lies within the local wall height above it; crumbled stretches
@@ -96,43 +194,6 @@ class Geometry:
             mask = np.apply_along_axis(lambda m: np.convolve(m, kernel, "same"), 0, mask)
             mask = np.apply_along_axis(lambda m: np.convolve(m, kernel, "same"), 1, mask)
         return np.clip(mask + fbm(self.shape, 16, rng, 2) * 0.18 * (mask > 0.05), 0, 1)
-
-    def _boulders(self, rng: np.random.Generator) -> list:
-        """Boulders as (cx, cy, rx, ry, crag): dense in rubble, thickening across the apron toward the first wall, a
-        few on every ledge, and a ring of crags around the peak; never on a trail, a home, or the start."""
-        rates = self.data["boulders"]
-        h, w = self.shape
-        near_peak = np.zeros(self.shape, dtype=bool)
-        peak = self.terrace == 4
-        for d in range(1, 36):
-            near_peak[d:] |= peak[:-d] & ~peak[d:]
-            near_peak[:-d] |= peak[d:] & ~peak[:-d]
-            near_peak[:, d:] |= peak[:, :-d] & ~peak[:, d:]
-            near_peak[:, :-d] |= peak[:, d:] & ~peak[:, :-d]
-        chance = np.where(self.rubble, rates["rubble"], 0.0)
-        chance += rates["apron"] * self.rockiness ** 1.2
-        chance += np.where((self.terrace > 0) & (self.depth == 0), rates["ledge"] * (0.6 + 0.2 * self.terrace), 0.0)
-        chance += np.where(near_peak, rates["crag"], 0.0)
-        chance /= TILE * TILE
-        keep_out = self.trail > 0.08
-        sx, sy = self.data["start"]
-        keep_out[(sy - 2) * TILE:(sy + 3) * TILE, (sx - 2) * TILE:(sx + 3) * TILE] = True
-        for home in self.data["homes"]:
-            ax, ay = home["at"]
-            keep_out[max(0, ay - HOME_H - 4) * TILE:(ay + 2) * TILE, max(0, ax - 1) * TILE:(ax + HOME_W + 1) * TILE] = True
-        out = []
-        for y, x in zip(*np.nonzero(rng.random(self.shape) < chance)):
-            crag, loose = near_peak[y, x], self.rubble[y, x]
-            big = rng.random() < (0.05 if loose else 0.12 + 0.25 * self.rockiness[y, x])
-            rx = rng.integers(8, 14) if crag else rng.integers(22, 40) if big else rng.integers(5, 12) if loose else rng.integers(9, 20)
-            ry = int(rx * rng.uniform(1.8, 2.6)) if crag else int(rx * rng.uniform(0.6, 0.9))
-            y0, y1, x0, x1 = max(0, y - ry - 6), min(h, y + ry + 12), max(0, x - rx - 8), min(w, x + rx + 8)
-            gap = 0.4 if crag else 0.55 if loose else 1.0
-            if keep_out[y0:y1, x0:x1].any() or any(abs(x - bx) < (rx + brx) * gap and abs(y - by) < (ry + bry) * gap for bx, by, brx, bry, _ in out):
-                continue
-            out.append((int(x), int(y), int(rx), int(ry), bool(crag)))
-        return out
-
 
 def spline(points: list, samples: int = 12) -> list:
     """Catmull-Rom curve through the waypoints, in pixels."""
@@ -169,10 +230,7 @@ def layout(geo: Geometry) -> list:
     cut through everything; then homes, trees and the start are stamped on."""
     data = geo.data
     w, h = data["size"]
-    solid = (geo.depth > 0) | geo.rubble
-    for x, y, rx, ry, _ in geo.boulders:
-        yy, xx = np.mgrid[max(0, y - ry):min(geo.shape[0], y + ry + 1), max(0, x - rx):min(geo.shape[1], x + rx + 1)]
-        solid[yy.min():yy.max() + 1, xx.min():xx.max() + 1] |= ((xx - x) / rx) ** 2 + ((yy - y) / ry) ** 2 <= 1
+    solid = (geo.depth > 0) | geo.rubble | geo.piece_mask()
     rows = [["." for _ in range(w)] for _ in range(h)]
     for y in range(h):
         for x in range(w):
@@ -194,6 +252,13 @@ def layout(geo: Geometry) -> list:
             for x in range(ax, ax + HOME_W):
                 rows[y][x] = "X"
         rows[ay][ax + HOME_W // 2] = "d"
+    for kind, x, y in geo.stones:
+        if kind == "boulder_large":
+            for dx in range(3):
+                for dy in range(2):
+                    rows[y + dy][x + dx] = "X"
+        else:
+            rows[y][x] = {"boulder_small": "o", "boulder_medium": "O", "crag": "A"}[kind]
     for key, symbol in (("trees", "T"), ("dead_trees", "t")):
         for x, y in data[key]:
             if rows[y][x] in ".r":
@@ -225,15 +290,7 @@ def paint(img: np.ndarray, patch: np.ndarray, data: dict, palette: dict, dials: 
     surface[(geo.rockiness > 0.35) & (patch < 2)] = 1
     wall = geo.depth > 0
     frac = geo.depth / (data["wall_height"] * (1 + data["wall_vary"]))
-    shade = cliff["face"] * (0.92 - 0.45 * frac)[..., None] + grain * 2
-    strata = ((geo.depth + (fbm(geo.shape, 40, rng, 1) * 4).astype(int)) % 9 == 0) & wall
-    shade[strata] *= 0.8
-    lip = wall & (geo.depth <= 3)
-    shade[lip] = cliff["lip"]
-    shade[wall & (geo.depth == 4)] = cliff["lip"] * 0.7 + cliff["face"] * 0.3
-    cracks = (fbm(geo.shape, 5, rng, 2) > 0.36) & wall & (geo.depth > 4)
-    shade[cracks] = cliff["crack"]
-    view[wall] = shade[wall]
+    view[wall] = (view * (0.85 - 0.3 * frac)[..., None])[wall]
     foot = wall & ~np.roll(wall, -1, axis=0)
     view[foot] = cliff["foot"]
     edge = np.zeros_like(wall)
@@ -247,89 +304,53 @@ def paint(img: np.ndarray, patch: np.ndarray, data: dict, palette: dict, dials: 
     for d in range(1, 9):
         fall[d:] = np.where(foot[:-d] & ~wall[d:] & (fall[d:] == 0), 1 - d / 9, fall[d:])
     view *= (1 - 0.4 * fall)[..., None]
-    _boulders(view, geo, rock, cliff, rng)
-    surface[_boulder_mask(geo)] = 2
+    _place_pieces(view, geo)
     trail = geo.trail
-    dirt_fill = np.where((geo.trail > 0.5)[..., None], dirt[1], dirt[1] * 0.9 + dirt[0] * 0.1)
+    dirt_fill = _dirt_texture(geo.shape)
     rim = trail - np.minimum.reduce([np.roll(trail, s, a) for s in (-2, 2) for a in (0, 1)])
     dirt_fill[rim > 0.12] = dirt[0]
     alpha = np.clip(trail * 1.6 - 0.2, 0, 1)[..., None]
     view[...] = view * (1 - alpha) + dirt_fill * alpha
     inner = trail > 0.55
-    _pebbles(view, inner, dirt, rock, dials, rng)
     steps = inner & wall & (geo.depth % 6 == 0)
     view[steps] = dirt[0]
     _paws(view, data, geo, dirt[0], rng)
     surface[trail > 0.4] = 4
     reach = np.clip((geo.height - data["snow_from"]) / 0.3, 0, 1)
-    dust = np.where(fbm(geo.shape, 22, rng, 2) > 0.3 - 0.55 * reach, 0.8, 0.0) * (reach > 0) * ~(wall & (geo.depth > 4)) * ~_boulder_mask(geo)
-    for x, y, rx, ry, crag in geo.boulders:
-        if crag and reach[y, x] > 0:
-            y0, y1, x0, x1 = max(0, y - ry), y - ry // 4, max(0, x - rx), min(geo.shape[1], x + rx + 1)
-            yy, xx = np.mgrid[y0:y1, x0:x1]
-            dust[y0:y1, x0:x1] = np.where(_shape(xx, yy, x, y, rx, ry, True, 1.2), 0.95, dust[y0:y1, x0:x1])
-    dust = dust[..., None]
+    dust = (np.where(fbm(geo.shape, 22, rng, 2) > 0.3 - 0.55 * reach, 0.8, 0.0) * (reach > 0) * ~(wall & (geo.depth > 4)) * ~geo.piece_mask())[..., None]
     view[...] = view * (1 - dust) + snow * dust
     img[...] = np.clip(view, 0, 255).astype(np.uint8)
     return surface
 
 
-def _shape(xx: np.ndarray, yy: np.ndarray, x: int, y: int, rx: int, ry: int, crag: bool, shrink: float = 0) -> np.ndarray:
-    """A boulder is an ellipse; a crag narrows toward its top into a point."""
-    width = rx * (0.3 + 0.7 * np.clip((yy - y + ry) / (2 * ry), 0, 1)) if crag else rx
-    return ((xx - x) / np.maximum(width - shrink, 1)) ** 2 + ((yy - y) / max(ry - shrink, 1)) ** 2 <= 1
+def _place_pieces(view: np.ndarray, geo: Geometry) -> None:
+    """Stamps the cliff pieces where the geometry placed them, each clipped to its own column's wall top so the lip
+    stays on the contour while the foot spills onto the ground below."""
+    atlas = Image.open(ROOT / "assets" / "tiles" / "props.png").convert("RGBA")
+    wall = geo.depth > 0
+    tops = np.where(wall.any(axis=0), np.argmax(wall, axis=0), 0)
+    for name, x, y, flip in geo.pieces:
+        px, py, pw, ph = geo.props[name]
+        piece = np.asarray(atlas.crop((px, py, px + pw, py + ph))).astype(float)
+        if flip:
+            piece = piece[:, ::-1]
+        y0, x0 = max(0, y), max(0, x)
+        y1, x1 = min(geo.shape[0], y + ph), min(geo.shape[1], x + pw)
+        if y1 <= y0 or x1 <= x0:
+            continue
+        cut = piece[y0 - y:y1 - y, x0 - x:x1 - x]
+        rows = np.arange(y0, y1)[:, None]
+        alpha = (cut[..., 3] / 255) * (rows >= tops[x0:x1][None, :] - 6)
+        target = view[y0:y1, x0:x1]
+        target[...] = target * (1 - alpha[..., None]) + cut[..., :3] * alpha[..., None]
 
 
-def _boulder_mask(geo: Geometry) -> np.ndarray:
-    mask = np.zeros(geo.shape, dtype=bool)
-    for x, y, rx, ry, crag in geo.boulders:
-        y0, y1, x0, x1 = max(0, y - ry), min(geo.shape[0], y + ry + 1), max(0, x - rx), min(geo.shape[1], x + rx + 1)
-        yy, xx = np.mgrid[y0:y1, x0:x1]
-        mask[y0:y1, x0:x1] |= _shape(xx, yy, x, y, rx, ry, crag)
-    return mask
-
-
-def _boulders(view: np.ndarray, geo: Geometry, rock: np.ndarray, cliff: dict, rng: np.random.Generator) -> None:
-    """Each boulder: a cast shadow on the ground, a dark outline, a body lit from the top left, a crack or two;
-    crags are the same shape stretched tall, darker, with a snow cap where the peak's dusting reaches."""
-    h, w = geo.shape
-    for x, y, rx, ry, crag in geo.boulders:
-        y0, y1, x0, x1 = max(0, y - ry - 2), min(h, y + ry + 8), max(0, x - rx - 2), min(w, x + rx + 6)
-        yy, xx = np.mgrid[y0:y1, x0:x1]
-        body = _shape(xx, yy, x, y, rx, ry, crag)
-        cast = _shape(xx, yy, x + 3, y + 5, rx + 1, ry + 1, crag)
-        cell = view[y0:y1, x0:x1]
-        cell[cast & ~body] *= 0.65
-        base = (rock[0] * 0.9 if crag else rock[1]) * rng.uniform(0.85, 1.05)
-        light = np.clip(1 + 0.4 * (-(xx - x) / rx - (yy - y) / ry) / 1.4, 0.55, 1.35)
-        tone = base * light[..., None] + rng.integers(-8, 9, body.shape + (1,))
-        cell[body] = tone[body]
-        rim = body & ~_shape(xx, yy, x, y, rx, ry, crag, 2.5)
-        cell[rim & ((xx - x) / rx + (yy - y) / ry < -0.3)] = cliff["lip"] * 0.9
-        cell[body & ~_shape(xx, yy, x, y, rx, ry, crag, 1.2)] = cliff["foot"]
-        for _ in range(rng.integers(1, 3)):
-            cx = x + rng.integers(-rx // 2, rx // 2 + 1)
-            top = y + rng.integers(-ry // 2, 0)
-            length = rng.integers(ry // 2, ry + 1)
-            for k in range(length):
-                py, px = top + k, cx + (k // 3) * rng.choice([-1, 0, 1])
-                if y0 <= py < y1 and x0 <= px < x1 and body[py - y0, px - x0]:
-                    cell[py - y0, px - x0] = cliff["crack"]
-
-
-def _pebbles(view: np.ndarray, inner: np.ndarray, dirt: np.ndarray, rock: np.ndarray, dials: dict, rng: np.random.Generator) -> None:
-    ys, xs = np.nonzero(inner)
-    for y, x in zip(ys[rng.random(len(ys)) < dials["pebble_density"]], xs[rng.random(len(ys)) < dials["pebble_density"]]):
-        pw, ph = rng.integers(1, 4), rng.integers(1, 3)
-        block = inner[y:y + ph, x:x + pw]
-        view[y:y + ph, x:x + pw][block] = dirt[0] if rng.random() < 0.5 else dirt[2]
-    for y, x in zip(ys[rng.random(len(ys)) < dials["slab_density"]], xs[rng.random(len(ys)) < dials["slab_density"]]):
-        pw, ph = rng.integers(5, 10), rng.integers(3, 6)
-        block = inner[y:y + ph, x:x + pw]
-        ry, rx = np.mgrid[0:ph, 0:pw]
-        stone = (((ry - ph / 2 + 0.5) / (ph / 2)) ** 2 + ((rx - pw / 2 + 0.5) / (pw / 2)) ** 2 <= 1)[:block.shape[0], :block.shape[1]] & block
-        view[y:y + ph, x:x + pw][stone] = rock[1 + rng.integers(0, 2)]
-        view[y:y + ph, x:x + pw][stone & ~np.roll(stone, -1, axis=0)] = rock[0]
+def _dirt_texture(shape: tuple[int, int]) -> np.ndarray:
+    """The dirt tileset's full tile repeated across the map."""
+    atlas = Image.open(ROOT / "assets" / "tiles" / "grass_dirt_summer.png").convert("RGBA")
+    tile = np.asarray(atlas.crop((3 * TILE, 3 * TILE, 4 * TILE, 4 * TILE))).astype(float)[..., :3]
+    reps = (shape[0] // TILE + 1, shape[1] // TILE + 1, 1)
+    return np.tile(tile, reps)[:shape[0], :shape[1]]
 
 
 def _paws(view: np.ndarray, data: dict, geo: Geometry, ink: np.ndarray, rng: np.random.Generator) -> None:
@@ -394,6 +415,10 @@ def main() -> None:
     meta["regions"].setdefault(data["region"], {"name": "Fangridge Peaks", "race": "shifter", "kind": "mountain", "combat_zone": True, "tree": "pine", "dead_tree": "dead"})
     meta["regions"][data["region"]]["rect"] = [0, 0, data["size"][0], data["size"][1]]
     meta["buildings"] = {f"{home['at'][0]},{home['at'][1]}": "farmhouse" for home in data["homes"]}
+    for kind, x, y in Geometry(data).stones:
+        if kind == "boulder_large":
+            meta["buildings"][f"{x},{y + 1}"] = kind
+    meta["palette"] = "fangridge"
     meta_path.write_text(json.dumps(meta, indent=2) + "\n")
     print("wrote", path.relative_to(ROOT), "and", meta_path.relative_to(ROOT))
 

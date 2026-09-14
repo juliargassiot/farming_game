@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgdsrfa35ngk5"
-path="res://.godot/imported/world-fangridge-peak.png-65ee9f23dea0d48d2060d10b19e827c5.ctex"
+uid="uid://bhayafvcb18eo"
+path="res://.godot/imported/world-fangridge-4.png-e13378bb547f73c4edec17c9cb4157db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://previews/world-fangridge-peak.png"
-dest_files=["res://.godot/imported/world-fangridge-peak.png-65ee9f23dea0d48d2060d10b19e827c5.ctex"]
+source_file="res://previews/world-fangridge-4.png"
+dest_files=["res://.godot/imported/world-fangridge-4.png-e13378bb547f73c4edec17c9cb4157db.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bywdp6k8tbxlx"
-path="res://.godot/imported/04.png-e169711ea1d699a73ff44c55abdda91a.ctex"
+uid="uid://1odsycndkddr"
+path="res://.godot/imported/grass_dirt_summer.png-5042bcd6578e9fc799497d8519c51f5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/tiles/grass_rock/summer/04.png"
-dest_files=["res://.godot/imported/04.png-e169711ea1d699a73ff44c55abdda91a.ctex"]
+source_file="res://assets/tiles/grass_dirt_summer.png"
+dest_files=["res://.godot/imported/grass_dirt_summer.png-5042bcd6578e9fc799497d8519c51f5f.ctex"]
 
 [params]
 

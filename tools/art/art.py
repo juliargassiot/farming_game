@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, str(Path(__file__).parent))
 import godot_res  # noqa: E402
 import grid_to_png  # noqa: E402
+import palette  # noqa: E402
 import sheets  # noqa: E402
 import tiles_post  # noqa: E402
 from pixellab import PixelLab, b64_image, b64_png, decode_image  # noqa: E402
@@ -299,6 +300,8 @@ def cmd_prop_import(_args) -> None:
     images = {}
     for name, record in props.items():
         image = Image.open(ROOT / record["design"]["file"]).convert("RGBA")
+        if "palette" in specs.get(name, {}):
+            image = palette.recolour(image, palette.load(specs[name]["palette"]))
         images[name] = image.crop(image.getbbox()) if image.getbbox() else image
     atlas = Image.new("RGBA", (sum(im.width for im in images.values()), max(im.height for im in images.values())), (0, 0, 0, 0))
     regions, x = {}, 0
@@ -568,13 +571,24 @@ def _corner_index(corners: dict) -> int:
 
 
 def cmd_tile_import(args) -> None:
-    """Atlas rows 0-3: untilled field Wang cutouts; rows 4-7: tilled cutouts; rows 8-11: wet cutouts. Index 0 of each block is empty."""
+    """Atlas rows 0-3: untilled field Wang cutouts; rows 4-7: tilled cutouts; rows 8-11: wet cutouts. Index 0 of each block is empty.
+    A `plain` tileset instead lands as its sixteen tiles in corner order, four per row, recoloured to its `palette` if it names one."""
     spec = load_json(ART / "tiles.json")[args.name]
     generated = load_json(ART / "generated.json")
     record = record_for(generated, "tilesets", args.name)
     require_approved(record, args.name)
     size = spec.get("tile_size", 16)
     for season, sspec in _season_specs(spec, None).items():
+        if spec.get("plain"):
+            atlas = Image.new("RGBA", (4 * size, 4 * size), (0, 0, 0, 0))
+            for index, tile in _load_tiles(_tile_folder(args.name, season, sspec)).items():
+                if "palette" in spec:
+                    tile = palette.recolour(tile, palette.load(spec["palette"]))
+                atlas.alpha_composite(tile, ((index % 4) * size, (index // 4) * size))
+            out_png = ROOT / "assets" / "tiles" / f"{args.name}_{season}.png"
+            atlas.save(out_png)
+            print(f"Wrote {rel(out_png)}")
+            continue
         groups = _assemble(_tile_folder(args.name, season, sspec), sspec)
         atlas = Image.new("RGBA", (4 * size, 12 * size), (0, 0, 0, 0))
         terrain = {}

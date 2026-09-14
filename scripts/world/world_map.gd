@@ -3,7 +3,7 @@ extends RefCounted
 ## The overworld as data: a text grid of ground symbols and the named regions laid over it.
 
 enum Ground {
-	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK, ROOF, DOOR, BED_FOOT, BLOCK, LEDGE, TRAIL,
+	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK, ROOF, DOOR, BED_FOOT, BLOCK, LEDGE, TRAIL, BOULDER_SMALL, BOULDER_MEDIUM, SPIRE,
 }
 
 const MAP_PATH: String = "res://data/maps/world.txt"
@@ -11,11 +11,11 @@ const SYMBOLS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BLOCK, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
 	":": Ground.BOG, "t": Ground.DEAD_TREE, "T": Ground.TREE, "\"": Ground.TALLGRASS, "+": Ground.COBBLE, "H": Ground.HOUSE, "D": Ground.DOCK,
-	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK, "r": Ground.LEDGE, "-": Ground.TRAIL,
+	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK, "r": Ground.LEDGE, "-": Ground.TRAIL, "o": Ground.BOULDER_SMALL, "O": Ground.BOULDER_MEDIUM, "A": Ground.SPIRE,
 }
 const SOLID: Array[Ground] = [
 	Ground.WATER, Ground.FENCE, Ground.BED, Ground.SEA, Ground.ROCK, Ground.CRAG, Ground.MARSH, Ground.DEAD_TREE, Ground.TREE, Ground.HOUSE,
-	Ground.ROOF, Ground.BED_FOOT, Ground.BLOCK,
+	Ground.ROOF, Ground.BED_FOOT, Ground.BLOCK, Ground.BOULDER_SMALL, Ground.BOULDER_MEDIUM, Ground.SPIRE,
 ]
 const STEPS: Array[Vector2i] = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.DOWN, Vector2i.UP]
 

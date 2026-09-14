@@ -11,6 +11,7 @@ import numpy as np
 from PIL import Image
 
 import mountain
+import palette
 
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
@@ -248,7 +249,8 @@ def paint_world(rows: list[str], data: dict, season: str, map_name: str) -> np.n
     patch = tone_field(shape, dials, rng)
     surface = np.full(shape, GRASS, dtype=np.int8)
     surface[path_mask(rows, "=+", dials, rng)] = PATH
-    surface[path_mask(rows, "-", dials, rng)] = TRAIL
+    if mountain.load()["map"] != map_name:
+        surface[path_mask(rows, "-", dials, rng)] = TRAIL
     tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
     return paint(patch, surface, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1), map_name)
 
@@ -273,10 +275,14 @@ def main() -> None:
     out_dir = ROOT / "assets" / "grass"
     out_dir.mkdir(parents=True, exist_ok=True)
     seasons = args or list(data["seasons"])
+    meta = json.loads((ROOT / "data" / "maps" / f"{map_name}.json").read_text())
     for season in seasons:
         world = paint_world(rows, data, season, map_name)
         for name, (x0, y0, x1, y1) in regions.items():
-            Image.fromarray(world[y0 * TILE:y1 * TILE, x0 * TILE:x1 * TILE], "RGB").save(out_dir / f"{name}_{season}.png", optimize=True)
+            image = Image.fromarray(world[y0 * TILE:y1 * TILE, x0 * TILE:x1 * TILE], "RGB")
+            if "palette" in meta:
+                image = palette.recolour(image, palette.load(meta["palette"])).convert("RGB")
+            image.save(out_dir / f"{name}_{season}.png", optimize=True)
         print(f"{season}: {', '.join(regions)}")
 
 

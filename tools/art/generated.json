@@ -1,1279 +1,1290 @@
 {
- "characters": {
-  "player": {
-   "approved": true,
-   "approved_hash": "7a0ccdde2d653438",
-   "character_id": "f5f237c9-b363-4133-93ca-50721e21f173",
-   "rotations": {
-    "job": "046ee482-a053-4d6b-abe6-73d514156a28",
-    "usage": null,
-    "created": "2026-09-13T21:35:22+00:00",
-    "directions": [
-     "south",
-     "north",
-     "east",
-     "west"
-    ],
-    "preview": "previews/art/player-rotations.png"
-   },
-   "animations": {
-    "walk": {
-     "jobs": [
-      "fc4368be-ca13-49f5-ba79-ff8f793be022",
-      "3efad1f6-50cc-4c0a-a922-3d2d08c1e2a2",
-      "4236c567-dad9-4fbd-84e2-a0ba2a023ec3",
-      "2e4bd709-6e71-4431-8e6b-8bff5acc9de7"
-     ],
-     "created": "2026-09-13T21:50:37+00:00",
-     "fps": 8,
-     "directions": {
-      "east": {
-       "from": 0,
-       "to": 7
+  "characters": {
+    "player": {
+      "approved": true,
+      "approved_hash": "7a0ccdde2d653438",
+      "character_id": "f5f237c9-b363-4133-93ca-50721e21f173",
+      "rotations": {
+        "job": "046ee482-a053-4d6b-abe6-73d514156a28",
+        "usage": null,
+        "created": "2026-09-13T21:35:22+00:00",
+        "directions": [
+          "south",
+          "north",
+          "east",
+          "west"
+        ],
+        "preview": "previews/art/player-rotations.png"
       },
-      "west": {
-       "from": 0,
-       "to": 7
+      "animations": {
+        "walk": {
+          "jobs": [
+            "fc4368be-ca13-49f5-ba79-ff8f793be022",
+            "3efad1f6-50cc-4c0a-a922-3d2d08c1e2a2",
+            "4236c567-dad9-4fbd-84e2-a0ba2a023ec3",
+            "2e4bd709-6e71-4431-8e6b-8bff5acc9de7"
+          ],
+          "created": "2026-09-13T21:50:37+00:00",
+          "fps": 8,
+          "directions": {
+            "east": {
+              "from": 0,
+              "to": 7
+            },
+            "west": {
+              "from": 0,
+              "to": 7
+            },
+            "south": {
+              "from": 0,
+              "to": 7
+            },
+            "north": {
+              "from": 0,
+              "to": 7
+            }
+          },
+          "preview": "previews/art/player-walk.png"
+        }
       },
-      "south": {
-       "from": 0,
-       "to": 7
+      "imported": "2026-09-13T23:46:43+00:00",
+      "design": {
+        "file": "tools/art/raw/player/design.png",
+        "preview": "previews/art/player-design.png",
+        "prompt": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
+        "size": [
+          54,
+          96
+        ],
+        "seed": 33,
+        "source": "/tmp/claude-0/-home-user-farming-game/9c8b201b-2182-5df3-86b6-2d0115181a0b/scratchpad/player-54x96.png",
+        "usage": null,
+        "created": "2026-09-13T21:33:29+00:00",
+        "hash": "7a0ccdde2d653438"
       },
-      "north": {
-       "from": 0,
-       "to": 7
+      "approval_note": "72x128 design re-rendered at 54x96 for 32 px tiles",
+      "approved_at": "2026-09-13T21:33:29+00:00"
+    }
+  },
+  "tilesets": {
+    "grass_soil": {
+      "approved": true,
+      "approved_hash": "6eace0902fd973e6",
+      "imported": "2026-09-14T14:40:42+00:00",
+      "design": {
+        "file": "tools/art/raw/tiles/grass_soil",
+        "preview": "previews/art/grass_soil-design.png",
+        "created": "2026-09-13T23:02:19+00:00",
+        "seed": 66,
+        "hash": "6eace0902fd973e6"
+      },
+      "approval_note": "summer texture restyled per season; fine-tune once the world is fuller",
+      "approved_at": "2026-09-13T23:15:53+00:00"
+    },
+    "grass_dirt": {
+      "approved": true,
+      "approved_hash": "434203b7293182e5",
+      "imported": "2026-09-14T21:13:55+00:00",
+      "design": {
+        "file": "tools/art/raw/tiles/grass_dirt",
+        "preview": "previews/art/grass_dirt-design.png",
+        "created": "2026-09-14T20:47:16+00:00",
+        "seed": 72,
+        "hash": "434203b7293182e5"
+      },
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    }
+  },
+  "crops": {
+    "mandrake": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/mandrake/seed.png",
+          "prompt": "one big smooth pale yellow-green bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:42:35+00:00",
+          "hash": "6a1b81bdabfcb29f",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/mandrake/sprout.png",
+          "prompt": "a mandrake root with a leafy top, root shaped like a small person: a tiny seedling with two small leaves, just emerged, hints of pale yellow-green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:54:35+00:00",
+          "hash": "9ab078e59c8c90c5",
+          "edit": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/mandrake/growing.png",
+          "prompt": "a mandrake root with a leafy top, root shaped like a small person: a young plant, half grown, leafy, no fruit or flower yet, hints of pale yellow-green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:53:12+00:00",
+          "hash": "5aeae89dfd774aa7",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/mandrake/ready.png",
+          "prompt": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 33,
+          "created": "2026-09-14T03:15:17+00:00",
+          "hash": "c76b950939e94fa2",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/mandrake/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "6e10a35f6bdbf744",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
       }
-     },
-     "preview": "previews/art/player-walk.png"
+    },
+    "carrot": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/carrot/seed.png",
+          "prompt": "two small orange oval seeds pressed flat into the surface of, half sunk and flush with the dirt, seen straight from above a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 63,
+          "created": "2026-09-14T04:07:59+00:00",
+          "hash": "c335cb7ca1430a87",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/carrot/sprout.png",
+          "prompt": "carrots with feathery green tops: a tiny seedling with two small leaves, just emerged, hints of orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:55:16+00:00",
+          "hash": "533394e2c42b9c2d",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/carrot/growing.png",
+          "prompt": "carrots with feathery green tops: a young plant, half grown, leafy, no fruit or flower yet, hints of orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:53:47+00:00",
+          "hash": "a095e8a41bf6de95",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/carrot/ready.png",
+          "prompt": "carrots with feathery green tops: fully grown and ready to harvest, whole plant visible, hints of orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:52:05+00:00",
+          "hash": "85044a8f0024b4b4",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/carrot/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "77b5acfe157c09fb",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "garlic": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/garlic/seed.png",
+          "prompt": "three medium off-white with a light yellow tint bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T04:18:32+00:00",
+          "hash": "18a213406e3959b3",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/garlic/sprout.png",
+          "prompt": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 66,
+          "created": "2026-09-14T04:20:26+00:00",
+          "hash": "9ac77147dac1a623",
+          "approved": true,
+          "edit": "ready plant at 55%, bulb hidden"
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/garlic/growing.png",
+          "prompt": "a garlic plant with tall flat green leaves growing straight up from a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:11:34+00:00",
+          "hash": "5ca90fc1f5f6b1cd",
+          "approved": true,
+          "edit": "ready plant at 80%, bulb mostly buried"
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/garlic/ready.png",
+          "prompt": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:03:32+00:00",
+          "hash": "7e3bb1431f63b304",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/garlic/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "5f9d3ecf820559ae",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "onion": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/onion/seed.png",
+          "prompt": "three medium golden brown bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:45:03+00:00",
+          "hash": "e3dae216d2efe538",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/onion/sprout.png",
+          "prompt": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T04:19:39+00:00",
+          "hash": "7255e865c175afba",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/onion/growing.png",
+          "prompt": "an onion bulb with tubular green leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of golden brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:54:49+00:00",
+          "hash": "d0fe390bb6f50826",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/onion/ready.png",
+          "prompt": "an onion bulb with tubular green leaves: fully grown and ready to harvest, whole plant visible, hints of golden brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:52:55+00:00",
+          "hash": "04d88ee9d52e6860",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/onion/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "d664a171a444afbc",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "strawberry": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/strawberry/seed.png",
+          "prompt": "a scattering of many tiny seeds, red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:28:29+00:00",
+          "hash": "068155a1273467c8",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/strawberry/sprout.png",
+          "prompt": "a strawberry bush with ripe red berries: a tiny seedling with two small leaves, just emerged, hints of red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:56:40+00:00",
+          "hash": "3e035e5366b3409b",
+          "edit": "make it a small bushy sprout with several tiny leaves instead of two",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/strawberry/growing.png",
+          "prompt": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:08:25+00:00",
+          "hash": "0ef246613fdfbcec",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/strawberry/ready.png",
+          "prompt": "a strawberry bush with ripe red berries: fully grown and ready to harvest, whole plant visible, hints of red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:53:24+00:00",
+          "hash": "7a030fb79bf75ef5",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/strawberry/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "dae1348bcf295424",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "peas": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/peas/seed.png",
+          "prompt": "three medium seeds, green, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
+          "seed": 34,
+          "created": "2026-09-14T00:38:09+00:00",
+          "hash": "4bc633b864d5ae24",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/peas/sprout.png",
+          "prompt": "a pea vine with pods: a tiny seedling with two small leaves, just emerged, hints of green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:57:06+00:00",
+          "hash": "f39f6260f4e51c31",
+          "edit": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/peas/growing.png",
+          "prompt": "a pea vine with pods: a young plant, half grown, leafy, no fruit or flower yet, hints of green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:55:38+00:00",
+          "hash": "53c0efd0f67b7d42",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/peas/ready.png",
+          "prompt": "a pea vine climbing a small wooden trellis with curling tendrils and several plump green pea pods hanging, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:03:06+00:00",
+          "hash": "73a3d92dce0bec52",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/peas/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "e1ccffd0662577e7",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "blood_blossom": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/blood_blossom/seed.png",
+          "prompt": "one big smooth deep blood red bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:42:51+00:00",
+          "hash": "94b3355c96b1c504",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/blood_blossom/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep blood red, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:04:26+00:00",
+          "hash": "7000c5cad8486157",
+          "edit": "add a small drip of dark red blood hanging from the tip of the left leaf",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/blood_blossom/growing.png",
+          "prompt": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:09:09+00:00",
+          "hash": "477d19e9127b20a1",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/blood_blossom/ready.png",
+          "prompt": "a squash vine with big blood-red blossoms dripping dark red: fully grown and ready to harvest, whole plant visible, hints of deep blood red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 140,
+          "created": "2026-09-14T02:54:46+00:00",
+          "hash": "4ae07d9aa589aab7",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/blood_blossom/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "8f1d9dedf337b6f8",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "shifting_sprouts": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/shifting_sprouts/seed.png",
+          "prompt": "three medium seeds, plain brown, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:29:54+00:00",
+          "hash": "462aa20c8d325f04",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/shifting_sprouts/sprout.png",
+          "prompt": "a mysterious sprout: a tiny seedling with two small leaves, just emerged, hints of plain brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:57:54+00:00",
+          "hash": "44eb42e67ba990f4",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/shifting_sprouts/growing.png",
+          "prompt": "a mysterious sprout: a young plant, half grown, leafy, no fruit or flower yet, hints of plain brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:56:45+00:00",
+          "hash": "8455044c7c08db21",
+          "approved": true
+        },
+        "ready0": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready0.png",
+          "prompt": "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:20:12+00:00",
+          "hash": "8a24da5b9afbbe9e",
+          "approved": true
+        },
+        "ready1": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready1.png",
+          "prompt": "a Wolf Sprout: a plant shaped like a bushy wolf's tail, grey-brown fur-like fronds curving upward with a pale tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:20:51+00:00",
+          "hash": "064fd5b27ae0f175",
+          "approved": true
+        },
+        "ready2": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready2.png",
+          "prompt": "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:21:23+00:00",
+          "hash": "a1a130585a97c79d",
+          "approved": true
+        },
+        "ready3": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready3.png",
+          "prompt": "a Raven Sprout: a glossy black plant with pointed feather-like leaves: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:21:50+00:00",
+          "hash": "214f75bc81fcb5fe",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/shifting_sprouts/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "0cb404677c04e4bc",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "wolfsbane": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/wolfsbane/seed.png",
+          "prompt": "a scattering of many tiny seeds, deep purple, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:30:20+00:00",
+          "hash": "43c8a086bd2cc93e",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/wolfsbane/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep purple, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:04:50+00:00",
+          "hash": "78e588265c5104ab",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/wolfsbane/growing.png",
+          "prompt": "a tall stalk with dark lobed leaves and a few small closed deep purple buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:12:02+00:00",
+          "hash": "d1db611348f268b1",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/wolfsbane/ready.png",
+          "prompt": "a tall wolfsbane plant with hooded purple flowers: fully grown and ready to harvest, whole plant visible, hints of deep purple, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:57:24+00:00",
+          "hash": "dbf3bb84d403a760",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wolfsbane/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "366486047aafd8a0",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "wisp_lettuce": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/wisp_lettuce/seed.png",
+          "prompt": "a scattering of many tiny seeds, pale glowing blue-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:30:47+00:00",
+          "hash": "6af4e8eea6f50899",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/wisp_lettuce/sprout.png",
+          "prompt": "a pale lettuce head glowing faintly: a tiny seedling with two small leaves, just emerged, hints of pale glowing blue-white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:58:53+00:00",
+          "hash": "2376296655b816a5",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/wisp_lettuce/growing.png",
+          "prompt": "a pale lettuce head glowing faintly: a young plant, half grown, leafy, no fruit or flower yet, hints of pale glowing blue-white, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:57:43+00:00",
+          "hash": "5b234b575d4daeae",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/wisp_lettuce/ready.png",
+          "prompt": "a pale lettuce head glowing faintly: fully grown and ready to harvest, whole plant visible, hints of pale glowing blue-white, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:57:52+00:00",
+          "hash": "38c79d5f0a29f8f1",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wisp_lettuce/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "4f28bf095b4567ed",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "dragon_root": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/dragon_root/seed.png",
+          "prompt": "one big smooth fiery red-orange bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:43:16+00:00",
+          "hash": "04b5941b79cfedde",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/dragon_root/sprout.png",
+          "prompt": "a scaly red root with ember-orange leaves: a tiny seedling with two small leaves, just emerged, hints of fiery red-orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:59:23+00:00",
+          "hash": "1236cc9f41dd8538",
+          "edit": "reshape the two leaves into flame shapes with pointed flickering tips",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/dragon_root/growing.png",
+          "prompt": "a scaly red root with ember-orange leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of fiery red-orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:58:07+00:00",
+          "hash": "e8aa399c50f584b4",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/dragon_root/ready.png",
+          "prompt": "a scaly red root with ember-orange leaves: fully grown and ready to harvest, whole plant visible, hints of fiery red-orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:58:08+00:00",
+          "hash": "c5aad17169cb852a",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/dragon_root/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "1448bd897a5ddd0a",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "tulip": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/tulip/seed.png",
+          "prompt": "one big smooth pink bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:43:40+00:00",
+          "hash": "3bbd2418a4442a0a",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/tulip/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:05:29+00:00",
+          "hash": "b40d5395e120b65b",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/tulip/growing.png",
+          "prompt": "two long upright green leaves and one small tightly closed green bud on a short stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:09:31+00:00",
+          "hash": "94116caa93b4f08b",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/tulip/ready.png",
+          "prompt": "a pink tulip: fully grown and ready to harvest, whole plant visible, hints of pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:58:58+00:00",
+          "hash": "d70d3ecdade30597",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/tulip/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "de46d8fbc768c6ca",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "daffodil": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/daffodil/seed.png",
+          "prompt": "one big smooth yellow bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:44:04+00:00",
+          "hash": "caa639aa054d58ba",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/daffodil/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged yellow, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:06:12+00:00",
+          "hash": "c8f2a0562de98a29",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/daffodil/growing.png",
+          "prompt": "a clump of grassy strap leaves with one small closed pale bud on a stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:10:09+00:00",
+          "hash": "4922c1bf154345cc",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/daffodil/ready.png",
+          "prompt": "a yellow daffodil: fully grown and ready to harvest, whole plant visible, hints of yellow, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:59:25+00:00",
+          "hash": "5bc6558b5a4e2c68",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/daffodil/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "41643a1b3cd0efa9",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "foxglove": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/foxglove/seed.png",
+          "prompt": "a scattering of many tiny seeds, purple-pink, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:32:54+00:00",
+          "hash": "a531baf3b877e789",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/foxglove/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged purple-pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:06:40+00:00",
+          "hash": "1e3919f93a0389ea",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/foxglove/growing.png",
+          "prompt": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:10:43+00:00",
+          "hash": "9b39eb5b07d8c48b",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/foxglove/ready.png",
+          "prompt": "a tall foxglove with purple-pink bell flowers: fully grown and ready to harvest, whole plant visible, hints of purple-pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:59:49+00:00",
+          "hash": "c63a8e55c4a357a1",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxglove/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "54e80cd0b2d02225",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "grave_lily": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/grave_lily/seed.png",
+          "prompt": "three medium seeds, ghostly grey-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:33:09+00:00",
+          "hash": "c8997bedbc54490e",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/grave_lily/sprout.png",
+          "prompt": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 152,
+          "created": "2026-09-14T04:45:12+00:00",
+          "hash": "673fe0805f7b5fa3",
+          "approved": true,
+          "edit": "derived from the growing image: shorter, one leaf, closed bud"
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/grave_lily/growing.png",
+          "prompt": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:11:04+00:00",
+          "hash": "a2d39bffd8bc7f75",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/grave_lily/ready.png",
+          "prompt": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:15:47+00:00",
+          "hash": "3c1760f8b602f975",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/grave_lily/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "c1c6b6b15c71a0d6",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "sirens_bell": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/sirens_bell/seed.png",
+          "prompt": "three medium seeds, deep blue, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:33:46+00:00",
+          "hash": "097b3d69c374e860",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/sirens_bell/sprout.png",
+          "prompt": "a blue bell-shaped flower: a tiny seedling with two small leaves, just emerged, hints of deep blue, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 170,
+          "created": "2026-09-14T01:01:41+00:00",
+          "hash": "fc60797094058c47",
+          "approved": true,
+          "edit": "derived from ready: short stem, two green bells"
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/sirens_bell/growing.png",
+          "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 170,
+          "created": "2026-09-14T02:00:05+00:00",
+          "hash": "f8f8d71198663c92",
+          "approved": true,
+          "edit": "ready plant at 78%"
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/sirens_bell/ready.png",
+          "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 201,
+          "created": "2026-09-14T03:03:57+00:00",
+          "hash": "fecdd69dbc999c8e",
+          "approved": true,
+          "edit": "royal-blue tint, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/sirens_bell/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "a0240bd5a76ccf21",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "brine_bulb": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/brine_bulb/seed.png",
+          "prompt": "one big smooth pale sea green with salt crystals bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:44:34+00:00",
+          "hash": "ae97abd4615cedbb",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/brine_bulb/sprout.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a tiny seedling with two small leaves, just emerged, hints of pale sea green with salt crystals, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:02:13+00:00",
+          "hash": "d2646adc25e8f8c6",
+          "edit": "add a clearly visible light blue water droplet falling from the tip of the left leaf",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/brine_bulb/growing.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of pale sea green with salt crystals, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:00:37+00:00",
+          "hash": "02dc2ea37234dc8f",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/brine_bulb/ready.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: fully grown and ready to harvest, whole plant visible, hints of pale sea green with salt crystals, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:01:34+00:00",
+          "hash": "63103f172992530e",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/brine_bulb/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "4e95b4997b3ce0d3",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "bat_orchid": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/bat_orchid/seed.png",
+          "prompt": "three medium seeds, black with a purple sheen, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:35:04+00:00",
+          "hash": "5b9b2a5a47459268",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/bat_orchid/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:07:08+00:00",
+          "hash": "0b40e59700dac5f2",
+          "edit": "give both leaves ragged scalloped edges like bat wings",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/bat_orchid/growing.png",
+          "prompt": "a black bat-shaped orchid with long whiskers: a young plant, half grown, leafy, no fruit or flower yet, hints of black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 213,
+          "created": "2026-09-14T02:01:13+00:00",
+          "hash": "b4be03375db2f983",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/bat_orchid/ready.png",
+          "prompt": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 211,
+          "created": "2026-09-14T03:16:10+00:00",
+          "hash": "044d5d6a5934bdb2",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/bat_orchid/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "2fdf33f38a2e53ce",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
+    },
+    "foxtail": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/foxtail/seed.png",
+          "prompt": "a scattering of many tiny seeds, orange-red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:35:48+00:00",
+          "hash": "9198d2e47084152c",
+          "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/foxtail/sprout.png",
+          "prompt": "a tall foxtail lily spike: a tiny seedling with two small leaves, just emerged, hints of orange-red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:03:07+00:00",
+          "hash": "740e3af652b084e6",
+          "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/foxtail/growing.png",
+          "prompt": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:12:38+00:00",
+          "hash": "7347bd513941bc11",
+          "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/foxtail/ready.png",
+          "prompt": "a foxtail flower like an Indian paintbrush: an upright spike of bristly red-orange bracts with green stems: fully grown and ready to harvest, whole plant visible, hints of orange-red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:00:10+00:00",
+          "hash": "03fe9fbb77b44372",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxtail/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "ab3f336816214d49",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
+        }
+      }
     }
-   },
-   "imported": "2026-09-13T23:46:43+00:00",
-   "design": {
-    "file": "tools/art/raw/player/design.png",
-    "preview": "previews/art/player-design.png",
-    "prompt": "a single young adult farmer, handsome, realistic adult proportions, tall and slender, short brown hair, straw hat, blue shirt with rolled sleeves and green overalls, detailed painterly pixel art with soft shading, full body, facing the camera, alone, centered, no props, no base, nothing else in frame",
-    "size": [
-     54,
-     96
-    ],
-    "seed": 33,
-    "source": "/tmp/claude-0/-home-user-farming-game/9c8b201b-2182-5df3-86b6-2d0115181a0b/scratchpad/player-54x96.png",
-    "usage": null,
-    "created": "2026-09-13T21:33:29+00:00",
-    "hash": "7a0ccdde2d653438"
-   },
-   "approval_note": "72x128 design re-rendered at 54x96 for 32 px tiles",
-   "approved_at": "2026-09-13T21:33:29+00:00"
+  },
+  "props": {
+    "oak": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/oak/design.png",
+        "source": "tools/art/raw/props/oak/edits/44-460cbab2508122e3.png",
+        "hash": "2b3f5c4f8e563744",
+        "created": "2026-09-14T02:33:39+00:00"
+      },
+      "approved_hash": "2b3f5c4f8e563744",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
+    },
+    "pine": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/pine/design.png",
+        "source": "tools/art/raw/props/pine/edits/33-86d58cecdd3e272e.png",
+        "hash": "11824a4e5788191f",
+        "created": "2026-09-14T02:33:39+00:00"
+      },
+      "approved_hash": "11824a4e5788191f",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
+    },
+    "dead": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/dead/design.png",
+        "source": "tools/art/raw/props/dead/edits/33-b1af1c81a8e68159.png",
+        "hash": "bef36c80d9bd34bf",
+        "created": "2026-09-14T02:33:39+00:00"
+      },
+      "approved_hash": "bef36c80d9bd34bf",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
+    },
+    "thorn": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/thorn/design.png",
+        "source": "tools/art/raw/props/thorn/edits/22-217e13a3932e515b.png",
+        "hash": "030a0cda9b0da4ed",
+        "created": "2026-09-14T02:33:40+00:00"
+      },
+      "approved_hash": "030a0cda9b0da4ed",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
+    },
+    "willow": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/willow/design.png",
+        "source": "tools/art/raw/props/willow/edits/44-065f76190110e1fe.png",
+        "hash": "baa79ced5a0ded5d",
+        "created": "2026-09-14T02:33:40+00:00"
+      },
+      "approved_hash": "baa79ced5a0ded5d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
+    },
+    "coconut": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/coconut/design.png",
+        "source": "tools/art/raw/props/coconut/edits/44-2a5f24c50d1ff8b8.png",
+        "hash": "6b42346471b28516",
+        "created": "2026-09-14T02:33:40+00:00"
+      },
+      "approved_hash": "6b42346471b28516",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
+    },
+    "farmhouse": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/farmhouse/design.png",
+        "source": "tools/art/raw/props/farmhouse/edits/88-5154716c02eb893e.png",
+        "hash": "ba32ac0479f76821",
+        "created": "2026-09-14T04:09:07+00:00"
+      },
+      "approved_hash": "ba32ac0479f76821",
+      "approval_note": "",
+      "approved_at": "2026-09-14T04:09:08+00:00"
+    },
+    "shop": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop/design.png",
+        "source": "tools/art/raw/props/shop/candidates/66.png",
+        "hash": "a4d4fcf59961683d",
+        "created": "2026-09-14T04:22:46+00:00"
+      },
+      "approved_hash": "a4d4fcf59961683d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T04:22:46+00:00"
+    },
+    "shop_townhall": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_townhall/design.png",
+        "source": "tools/art/raw/props/shop_townhall/edits/11-98673054635e2917.png",
+        "hash": "2062f219d0c1ca38",
+        "created": "2026-09-14T14:16:43+00:00"
+      },
+      "approved_hash": "2062f219d0c1ca38",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:45+00:00"
+    },
+    "shop_general": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_general/design.png",
+        "source": "tools/art/raw/props/shop_general/candidates/11.png",
+        "hash": "659775970f2dbfe0",
+        "created": "2026-09-14T14:16:43+00:00"
+      },
+      "approved_hash": "659775970f2dbfe0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:45+00:00"
+    },
+    "shop_magic": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_magic/design.png",
+        "source": "tools/art/raw/props/shop_magic/edits/11-4fc4246b866a06f2.png",
+        "hash": "4a4455f03a3c2ca0",
+        "created": "2026-09-14T14:16:44+00:00"
+      },
+      "approved_hash": "4a4455f03a3c2ca0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
+    },
+    "shop_tavern": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_tavern/design.png",
+        "source": "tools/art/raw/props/shop_tavern/edits/22-handpatched.png",
+        "hash": "f4f0a2c56be24886",
+        "created": "2026-09-14T14:16:44+00:00"
+      },
+      "approved_hash": "f4f0a2c56be24886",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
+    },
+    "shop_fishmonger": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_fishmonger/design.png",
+        "source": "tools/art/raw/props/shop_fishmonger/candidates/22.png",
+        "hash": "8a8a38c6aeac5e4d",
+        "created": "2026-09-14T14:16:44+00:00"
+      },
+      "approved_hash": "8a8a38c6aeac5e4d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
+    },
+    "shop_bakery": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_bakery/design.png",
+        "source": "tools/art/raw/props/shop_bakery/edits/22-460341eca8c98a55.png",
+        "hash": "aef9edce4638fbe9",
+        "created": "2026-09-14T14:34:34+00:00"
+      },
+      "approved_hash": "aef9edce4638fbe9",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
+    },
+    "shop_clinic": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_clinic/design.png",
+        "source": "tools/art/raw/props/shop_clinic/edits/22-b7cd633ae1ec072c.png",
+        "hash": "b0dbaa5e8bfee3cf",
+        "created": "2026-09-14T14:34:34+00:00"
+      },
+      "approved_hash": "b0dbaa5e8bfee3cf",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "shop_smithy": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_smithy/design.png",
+        "source": "tools/art/raw/props/shop_smithy/edits/22-be728b82f8afe7c5.png",
+        "hash": "c2f0e8cacb8c6ce7",
+        "created": "2026-09-14T14:34:34+00:00"
+      },
+      "approved_hash": "c2f0e8cacb8c6ce7",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "shop_tailor": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_tailor/design.png",
+        "source": "tools/art/raw/props/shop_tailor/edits/33-8959d904207fa163-45629368912e1c22.png",
+        "hash": "c88b4a48dda7a6bd",
+        "created": "2026-09-14T14:34:34+00:00"
+      },
+      "approved_hash": "c88b4a48dda7a6bd",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "shop_inn": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_inn/design.png",
+        "source": "tools/art/raw/props/shop_inn/candidates/66.png",
+        "hash": "b44541ebe0e8fd07",
+        "created": "2026-09-14T17:39:07+00:00"
+      },
+      "approved_hash": "b44541ebe0e8fd07",
+      "approval_note": "",
+      "approved_at": "2026-09-14T17:39:07+00:00"
+    },
+    "shop_salon": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/shop_salon/design.png",
+        "source": "tools/art/raw/props/shop_salon/candidates/22.png",
+        "hash": "b2ae73b5ebde52b4",
+        "created": "2026-09-14T16:48:45+00:00"
+      },
+      "approved_hash": "b2ae73b5ebde52b4",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
+    },
+    "cliff_face": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face/design.png",
+        "source": "tools/art/raw/props/cliff_face/candidates/1.png",
+        "hash": "6c2db6cf4257d7ff",
+        "created": "2026-09-14T20:23:26+00:00"
+      },
+      "approved_hash": "6c2db6cf4257d7ff",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "cliff_face_tall": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_face_tall/design.png",
+        "source": "tools/art/raw/props/cliff_face_tall/candidates/5.png",
+        "hash": "f9e0956e2a32b07c",
+        "created": "2026-09-14T21:08:15+00:00"
+      },
+      "approved_hash": "f9e0956e2a32b07c",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "cliff_end": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/cliff_end/design.png",
+        "source": "tools/art/raw/props/cliff_end/candidates/1.png",
+        "hash": "5c72d1cb1b71949f",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "5c72d1cb1b71949f",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:25+00:00"
+    },
+    "boulder_small": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_small/design.png",
+        "source": "tools/art/raw/props/boulder_small/candidates/4.png",
+        "hash": "2baa0b74a10817d0",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "2baa0b74a10817d0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "boulder_medium": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_medium/design.png",
+        "source": "tools/art/raw/props/boulder_medium/candidates/4.png",
+        "hash": "51c54bf3f6f9c1d0",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "51c54bf3f6f9c1d0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "boulder_large": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/boulder_large/design.png",
+        "source": "tools/art/raw/props/boulder_large/candidates/1.png",
+        "hash": "a3c447c6fe83a050",
+        "created": "2026-09-14T21:08:16+00:00"
+      },
+      "approved_hash": "a3c447c6fe83a050",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "crag": {
+      "approved": true,
+      "design": {
+        "file": "tools/art/raw/props/crag/design.png",
+        "source": "tools/art/raw/props/crag/candidates/4.png",
+        "hash": "b44eafec385c045d",
+        "created": "2026-09-14T21:08:17+00:00"
+      },
+      "approved_hash": "b44eafec385c045d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T21:13:26+00:00"
+    }
   }
- },
- "tilesets": {
-  "grass_soil": {
-   "approved": true,
-   "approved_hash": "6eace0902fd973e6",
-   "imported": "2026-09-14T14:40:42+00:00",
-   "design": {
-    "file": "tools/art/raw/tiles/grass_soil",
-    "preview": "previews/art/grass_soil-design.png",
-    "created": "2026-09-13T23:02:19+00:00",
-    "seed": 66,
-    "hash": "6eace0902fd973e6"
-   },
-   "approval_note": "summer texture restyled per season; fine-tune once the world is fuller",
-   "approved_at": "2026-09-13T23:15:53+00:00"
-  },
-  "grass_dirt": {
-   "approved": false,
-   "approved_hash": null,
-   "imported": null,
-   "design": {
-    "file": "tools/art/raw/tiles/grass_dirt",
-    "preview": "previews/art/grass_dirt-design.png",
-    "created": "2026-09-14T20:47:16+00:00",
-    "seed": 72,
-    "hash": "434203b7293182e5"
-   }
-  },
-  "grass_rock": {
-   "approved": false,
-   "approved_hash": null,
-   "imported": null,
-   "design": {
-    "file": "tools/art/raw/tiles/grass_rock",
-    "preview": "previews/art/grass_rock-design.png",
-    "created": "2026-09-14T20:56:12+00:00",
-    "seed": 71,
-    "hash": "8941f2010a3929fd"
-   }
-  }
- },
- "crops": {
-  "mandrake": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/mandrake/seed.png",
-     "prompt": "one big smooth pale yellow-green bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:42:35+00:00",
-     "hash": "6a1b81bdabfcb29f",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/mandrake/sprout.png",
-     "prompt": "a mandrake root with a leafy top, root shaped like a small person: a tiny seedling with two small leaves, just emerged, hints of pale yellow-green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:54:35+00:00",
-     "hash": "9ab078e59c8c90c5",
-     "edit": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/mandrake/growing.png",
-     "prompt": "a mandrake root with a leafy top, root shaped like a small person: a young plant, half grown, leafy, no fruit or flower yet, hints of pale yellow-green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:53:12+00:00",
-     "hash": "5aeae89dfd774aa7",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/mandrake/ready.png",
-     "prompt": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 33,
-     "created": "2026-09-14T03:15:17+00:00",
-     "hash": "c76b950939e94fa2",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/mandrake/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "6e10a35f6bdbf744",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "carrot": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/carrot/seed.png",
-     "prompt": "two small orange oval seeds pressed flat into the surface of, half sunk and flush with the dirt, seen straight from above a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 63,
-     "created": "2026-09-14T04:07:59+00:00",
-     "hash": "c335cb7ca1430a87",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/carrot/sprout.png",
-     "prompt": "carrots with feathery green tops: a tiny seedling with two small leaves, just emerged, hints of orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:55:16+00:00",
-     "hash": "533394e2c42b9c2d",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/carrot/growing.png",
-     "prompt": "carrots with feathery green tops: a young plant, half grown, leafy, no fruit or flower yet, hints of orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:53:47+00:00",
-     "hash": "a095e8a41bf6de95",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/carrot/ready.png",
-     "prompt": "carrots with feathery green tops: fully grown and ready to harvest, whole plant visible, hints of orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:52:05+00:00",
-     "hash": "85044a8f0024b4b4",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/carrot/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "77b5acfe157c09fb",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "garlic": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/garlic/seed.png",
-     "prompt": "three medium off-white with a light yellow tint bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T04:18:32+00:00",
-     "hash": "18a213406e3959b3",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/garlic/sprout.png",
-     "prompt": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 66,
-     "created": "2026-09-14T04:20:26+00:00",
-     "hash": "9ac77147dac1a623",
-     "approved": true,
-     "edit": "ready plant at 55%, bulb hidden"
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/garlic/growing.png",
-     "prompt": "a garlic plant with tall flat green leaves growing straight up from a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:11:34+00:00",
-     "hash": "5ca90fc1f5f6b1cd",
-     "approved": true,
-     "edit": "ready plant at 80%, bulb mostly buried"
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/garlic/ready.png",
-     "prompt": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:03:32+00:00",
-     "hash": "7e3bb1431f63b304",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/garlic/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "5f9d3ecf820559ae",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "onion": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/onion/seed.png",
-     "prompt": "three medium golden brown bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:45:03+00:00",
-     "hash": "e3dae216d2efe538",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/onion/sprout.png",
-     "prompt": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T04:19:39+00:00",
-     "hash": "7255e865c175afba",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/onion/growing.png",
-     "prompt": "an onion bulb with tubular green leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of golden brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:54:49+00:00",
-     "hash": "d0fe390bb6f50826",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/onion/ready.png",
-     "prompt": "an onion bulb with tubular green leaves: fully grown and ready to harvest, whole plant visible, hints of golden brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:52:55+00:00",
-     "hash": "04d88ee9d52e6860",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/onion/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "d664a171a444afbc",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "strawberry": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/strawberry/seed.png",
-     "prompt": "a scattering of many tiny seeds, red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:28:29+00:00",
-     "hash": "068155a1273467c8",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/strawberry/sprout.png",
-     "prompt": "a strawberry bush with ripe red berries: a tiny seedling with two small leaves, just emerged, hints of red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:56:40+00:00",
-     "hash": "3e035e5366b3409b",
-     "edit": "make it a small bushy sprout with several tiny leaves instead of two",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/strawberry/growing.png",
-     "prompt": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:08:25+00:00",
-     "hash": "0ef246613fdfbcec",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/strawberry/ready.png",
-     "prompt": "a strawberry bush with ripe red berries: fully grown and ready to harvest, whole plant visible, hints of red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:53:24+00:00",
-     "hash": "7a030fb79bf75ef5",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/strawberry/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "dae1348bcf295424",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "peas": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/peas/seed.png",
-     "prompt": "three medium seeds, green, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
-     "seed": 34,
-     "created": "2026-09-14T00:38:09+00:00",
-     "hash": "4bc633b864d5ae24",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/peas/sprout.png",
-     "prompt": "a pea vine with pods: a tiny seedling with two small leaves, just emerged, hints of green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:57:06+00:00",
-     "hash": "f39f6260f4e51c31",
-     "edit": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/peas/growing.png",
-     "prompt": "a pea vine with pods: a young plant, half grown, leafy, no fruit or flower yet, hints of green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:55:38+00:00",
-     "hash": "53c0efd0f67b7d42",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/peas/ready.png",
-     "prompt": "a pea vine climbing a small wooden trellis with curling tendrils and several plump green pea pods hanging, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:03:06+00:00",
-     "hash": "73a3d92dce0bec52",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/peas/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "e1ccffd0662577e7",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "blood_blossom": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/blood_blossom/seed.png",
-     "prompt": "one big smooth deep blood red bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:42:51+00:00",
-     "hash": "94b3355c96b1c504",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/blood_blossom/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep blood red, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:04:26+00:00",
-     "hash": "7000c5cad8486157",
-     "edit": "add a small drip of dark red blood hanging from the tip of the left leaf",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/blood_blossom/growing.png",
-     "prompt": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:09:09+00:00",
-     "hash": "477d19e9127b20a1",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/blood_blossom/ready.png",
-     "prompt": "a squash vine with big blood-red blossoms dripping dark red: fully grown and ready to harvest, whole plant visible, hints of deep blood red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 140,
-     "created": "2026-09-14T02:54:46+00:00",
-     "hash": "4ae07d9aa589aab7",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/blood_blossom/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "8f1d9dedf337b6f8",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "shifting_sprouts": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/shifting_sprouts/seed.png",
-     "prompt": "three medium seeds, plain brown, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:29:54+00:00",
-     "hash": "462aa20c8d325f04",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/shifting_sprouts/sprout.png",
-     "prompt": "a mysterious sprout: a tiny seedling with two small leaves, just emerged, hints of plain brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:57:54+00:00",
-     "hash": "44eb42e67ba990f4",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/shifting_sprouts/growing.png",
-     "prompt": "a mysterious sprout: a young plant, half grown, leafy, no fruit or flower yet, hints of plain brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:56:45+00:00",
-     "hash": "8455044c7c08db21",
-     "approved": true
-    },
-    "ready0": {
-     "file": "tools/art/raw/crops/shifting_sprouts/ready0.png",
-     "prompt": "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:20:12+00:00",
-     "hash": "8a24da5b9afbbe9e",
-     "approved": true
-    },
-    "ready1": {
-     "file": "tools/art/raw/crops/shifting_sprouts/ready1.png",
-     "prompt": "a Wolf Sprout: a plant shaped like a bushy wolf's tail, grey-brown fur-like fronds curving upward with a pale tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:20:51+00:00",
-     "hash": "064fd5b27ae0f175",
-     "approved": true
-    },
-    "ready2": {
-     "file": "tools/art/raw/crops/shifting_sprouts/ready2.png",
-     "prompt": "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:21:23+00:00",
-     "hash": "a1a130585a97c79d",
-     "approved": true
-    },
-    "ready3": {
-     "file": "tools/art/raw/crops/shifting_sprouts/ready3.png",
-     "prompt": "a Raven Sprout: a glossy black plant with pointed feather-like leaves: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:21:50+00:00",
-     "hash": "214f75bc81fcb5fe",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/shifting_sprouts/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "0cb404677c04e4bc",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "wolfsbane": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/wolfsbane/seed.png",
-     "prompt": "a scattering of many tiny seeds, deep purple, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:30:20+00:00",
-     "hash": "43c8a086bd2cc93e",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/wolfsbane/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep purple, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:04:50+00:00",
-     "hash": "78e588265c5104ab",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/wolfsbane/growing.png",
-     "prompt": "a tall stalk with dark lobed leaves and a few small closed deep purple buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:12:02+00:00",
-     "hash": "d1db611348f268b1",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/wolfsbane/ready.png",
-     "prompt": "a tall wolfsbane plant with hooded purple flowers: fully grown and ready to harvest, whole plant visible, hints of deep purple, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:57:24+00:00",
-     "hash": "dbf3bb84d403a760",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/wolfsbane/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "366486047aafd8a0",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "wisp_lettuce": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/wisp_lettuce/seed.png",
-     "prompt": "a scattering of many tiny seeds, pale glowing blue-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:30:47+00:00",
-     "hash": "6af4e8eea6f50899",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/wisp_lettuce/sprout.png",
-     "prompt": "a pale lettuce head glowing faintly: a tiny seedling with two small leaves, just emerged, hints of pale glowing blue-white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:58:53+00:00",
-     "hash": "2376296655b816a5",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/wisp_lettuce/growing.png",
-     "prompt": "a pale lettuce head glowing faintly: a young plant, half grown, leafy, no fruit or flower yet, hints of pale glowing blue-white, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:57:43+00:00",
-     "hash": "5b234b575d4daeae",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/wisp_lettuce/ready.png",
-     "prompt": "a pale lettuce head glowing faintly: fully grown and ready to harvest, whole plant visible, hints of pale glowing blue-white, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:57:52+00:00",
-     "hash": "38c79d5f0a29f8f1",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/wisp_lettuce/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "4f28bf095b4567ed",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "dragon_root": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/dragon_root/seed.png",
-     "prompt": "one big smooth fiery red-orange bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:43:16+00:00",
-     "hash": "04b5941b79cfedde",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/dragon_root/sprout.png",
-     "prompt": "a scaly red root with ember-orange leaves: a tiny seedling with two small leaves, just emerged, hints of fiery red-orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:59:23+00:00",
-     "hash": "1236cc9f41dd8538",
-     "edit": "reshape the two leaves into flame shapes with pointed flickering tips",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/dragon_root/growing.png",
-     "prompt": "a scaly red root with ember-orange leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of fiery red-orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:58:07+00:00",
-     "hash": "e8aa399c50f584b4",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/dragon_root/ready.png",
-     "prompt": "a scaly red root with ember-orange leaves: fully grown and ready to harvest, whole plant visible, hints of fiery red-orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:58:08+00:00",
-     "hash": "c5aad17169cb852a",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/dragon_root/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "1448bd897a5ddd0a",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "tulip": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/tulip/seed.png",
-     "prompt": "one big smooth pink bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:43:40+00:00",
-     "hash": "3bbd2418a4442a0a",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/tulip/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:05:29+00:00",
-     "hash": "b40d5395e120b65b",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/tulip/growing.png",
-     "prompt": "two long upright green leaves and one small tightly closed green bud on a short stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:09:31+00:00",
-     "hash": "94116caa93b4f08b",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/tulip/ready.png",
-     "prompt": "a pink tulip: fully grown and ready to harvest, whole plant visible, hints of pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:58:58+00:00",
-     "hash": "d70d3ecdade30597",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/tulip/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "de46d8fbc768c6ca",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "daffodil": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/daffodil/seed.png",
-     "prompt": "one big smooth yellow bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:44:04+00:00",
-     "hash": "caa639aa054d58ba",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/daffodil/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged yellow, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:06:12+00:00",
-     "hash": "c8f2a0562de98a29",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/daffodil/growing.png",
-     "prompt": "a clump of grassy strap leaves with one small closed pale bud on a stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:10:09+00:00",
-     "hash": "4922c1bf154345cc",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/daffodil/ready.png",
-     "prompt": "a yellow daffodil: fully grown and ready to harvest, whole plant visible, hints of yellow, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:59:25+00:00",
-     "hash": "5bc6558b5a4e2c68",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/daffodil/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "41643a1b3cd0efa9",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "foxglove": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/foxglove/seed.png",
-     "prompt": "a scattering of many tiny seeds, purple-pink, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:32:54+00:00",
-     "hash": "a531baf3b877e789",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/foxglove/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged purple-pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:06:40+00:00",
-     "hash": "1e3919f93a0389ea",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/foxglove/growing.png",
-     "prompt": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:10:43+00:00",
-     "hash": "9b39eb5b07d8c48b",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/foxglove/ready.png",
-     "prompt": "a tall foxglove with purple-pink bell flowers: fully grown and ready to harvest, whole plant visible, hints of purple-pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:59:49+00:00",
-     "hash": "c63a8e55c4a357a1",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/foxglove/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "54e80cd0b2d02225",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "grave_lily": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/grave_lily/seed.png",
-     "prompt": "three medium seeds, ghostly grey-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:33:09+00:00",
-     "hash": "c8997bedbc54490e",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/grave_lily/sprout.png",
-     "prompt": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 152,
-     "created": "2026-09-14T04:45:12+00:00",
-     "hash": "673fe0805f7b5fa3",
-     "approved": true,
-     "edit": "derived from the growing image: shorter, one leaf, closed bud"
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/grave_lily/growing.png",
-     "prompt": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:11:04+00:00",
-     "hash": "a2d39bffd8bc7f75",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/grave_lily/ready.png",
-     "prompt": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:15:47+00:00",
-     "hash": "3c1760f8b602f975",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/grave_lily/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "c1c6b6b15c71a0d6",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "sirens_bell": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/sirens_bell/seed.png",
-     "prompt": "three medium seeds, deep blue, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:33:46+00:00",
-     "hash": "097b3d69c374e860",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/sirens_bell/sprout.png",
-     "prompt": "a blue bell-shaped flower: a tiny seedling with two small leaves, just emerged, hints of deep blue, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 170,
-     "created": "2026-09-14T01:01:41+00:00",
-     "hash": "fc60797094058c47",
-     "approved": true,
-     "edit": "derived from ready: short stem, two green bells"
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/sirens_bell/growing.png",
-     "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 170,
-     "created": "2026-09-14T02:00:05+00:00",
-     "hash": "f8f8d71198663c92",
-     "approved": true,
-     "edit": "ready plant at 78%"
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/sirens_bell/ready.png",
-     "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 201,
-     "created": "2026-09-14T03:03:57+00:00",
-     "hash": "fecdd69dbc999c8e",
-     "approved": true,
-     "edit": "royal-blue tint, soil matched"
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/sirens_bell/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "a0240bd5a76ccf21",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "brine_bulb": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/brine_bulb/seed.png",
-     "prompt": "one big smooth pale sea green with salt crystals bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
-     "seed": 47,
-     "created": "2026-09-14T00:44:34+00:00",
-     "hash": "ae97abd4615cedbb",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/brine_bulb/sprout.png",
-     "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a tiny seedling with two small leaves, just emerged, hints of pale sea green with salt crystals, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:02:13+00:00",
-     "hash": "d2646adc25e8f8c6",
-     "edit": "add a clearly visible light blue water droplet falling from the tip of the left leaf",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/brine_bulb/growing.png",
-     "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of pale sea green with salt crystals, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:00:37+00:00",
-     "hash": "02dc2ea37234dc8f",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/brine_bulb/ready.png",
-     "prompt": "a pale salt-crusted bulb with seaweed-like leaves: fully grown and ready to harvest, whole plant visible, hints of pale sea green with salt crystals, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:01:34+00:00",
-     "hash": "63103f172992530e",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/brine_bulb/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "4e95b4997b3ce0d3",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "bat_orchid": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/bat_orchid/seed.png",
-     "prompt": "three medium seeds, black with a purple sheen, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:35:04+00:00",
-     "hash": "5b9b2a5a47459268",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/bat_orchid/sprout.png",
-     "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 52,
-     "created": "2026-09-14T01:07:08+00:00",
-     "hash": "0b40e59700dac5f2",
-     "edit": "give both leaves ragged scalloped edges like bat wings",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/bat_orchid/growing.png",
-     "prompt": "a black bat-shaped orchid with long whiskers: a young plant, half grown, leafy, no fruit or flower yet, hints of black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 213,
-     "created": "2026-09-14T02:01:13+00:00",
-     "hash": "b4be03375db2f983",
-     "approved": true,
-     "edit": "purples tinted to the sprout's, soil matched"
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/bat_orchid/ready.png",
-     "prompt": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 211,
-     "created": "2026-09-14T03:16:10+00:00",
-     "hash": "044d5d6a5934bdb2",
-     "approved": true,
-     "edit": "purples tinted to the sprout's, soil matched"
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/bat_orchid/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "2fdf33f38a2e53ce",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  },
-  "foxtail": {
-   "approved": false,
-   "stages": {
-    "seed": {
-     "file": "tools/art/raw/crops/foxtail/seed.png",
-     "prompt": "a scattering of many tiny seeds, orange-red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T00:35:48+00:00",
-     "hash": "9198d2e47084152c",
-     "approved": true
-    },
-    "sprout": {
-     "file": "tools/art/raw/crops/foxtail/sprout.png",
-     "prompt": "a tall foxtail lily spike: a tiny seedling with two small leaves, just emerged, hints of orange-red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T01:03:07+00:00",
-     "hash": "740e3af652b084e6",
-     "approved": true
-    },
-    "growing": {
-     "file": "tools/art/raw/crops/foxtail/growing.png",
-     "prompt": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T02:12:38+00:00",
-     "hash": "7347bd513941bc11",
-     "approved": true
-    },
-    "ready": {
-     "file": "tools/art/raw/crops/foxtail/ready.png",
-     "prompt": "a foxtail flower like an Indian paintbrush: an upright spike of bristly red-orange bracts with green stems: fully grown and ready to harvest, whole plant visible, hints of orange-red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-     "seed": 21,
-     "created": "2026-09-14T03:00:10+00:00",
-     "hash": "03fe9fbb77b44372",
-     "approved": true
-    },
-    "bag": {
-     "file": "tools/art/raw/crops/foxtail/bag.png",
-     "created": "2026-09-14T15:39:49+00:00",
-     "hash": "ab3f336816214d49",
-     "edit": "shared sack with one seed in the seed-stage colour",
-     "approved": true
-    }
-   }
-  }
- },
- "props": {
-  "oak": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/oak/design.png",
-    "source": "tools/art/raw/props/oak/edits/44-460cbab2508122e3.png",
-    "hash": "2b3f5c4f8e563744",
-    "created": "2026-09-14T02:33:39+00:00"
-   },
-   "approved_hash": "2b3f5c4f8e563744",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:29+00:00"
-  },
-  "pine": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/pine/design.png",
-    "source": "tools/art/raw/props/pine/edits/33-86d58cecdd3e272e.png",
-    "hash": "11824a4e5788191f",
-    "created": "2026-09-14T02:33:39+00:00"
-   },
-   "approved_hash": "11824a4e5788191f",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:29+00:00"
-  },
-  "dead": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/dead/design.png",
-    "source": "tools/art/raw/props/dead/edits/33-b1af1c81a8e68159.png",
-    "hash": "bef36c80d9bd34bf",
-    "created": "2026-09-14T02:33:39+00:00"
-   },
-   "approved_hash": "bef36c80d9bd34bf",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:29+00:00"
-  },
-  "thorn": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/thorn/design.png",
-    "source": "tools/art/raw/props/thorn/edits/22-217e13a3932e515b.png",
-    "hash": "030a0cda9b0da4ed",
-    "created": "2026-09-14T02:33:40+00:00"
-   },
-   "approved_hash": "030a0cda9b0da4ed",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:30+00:00"
-  },
-  "willow": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/willow/design.png",
-    "source": "tools/art/raw/props/willow/edits/44-065f76190110e1fe.png",
-    "hash": "baa79ced5a0ded5d",
-    "created": "2026-09-14T02:33:40+00:00"
-   },
-   "approved_hash": "baa79ced5a0ded5d",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:30+00:00"
-  },
-  "coconut": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/coconut/design.png",
-    "source": "tools/art/raw/props/coconut/edits/44-2a5f24c50d1ff8b8.png",
-    "hash": "6b42346471b28516",
-    "created": "2026-09-14T02:33:40+00:00"
-   },
-   "approved_hash": "6b42346471b28516",
-   "approval_note": "",
-   "approved_at": "2026-09-14T02:37:30+00:00"
-  },
-  "farmhouse": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/farmhouse/design.png",
-    "source": "tools/art/raw/props/farmhouse/edits/88-5154716c02eb893e.png",
-    "hash": "ba32ac0479f76821",
-    "created": "2026-09-14T04:09:07+00:00"
-   },
-   "approved_hash": "ba32ac0479f76821",
-   "approval_note": "",
-   "approved_at": "2026-09-14T04:09:08+00:00"
-  },
-  "shop": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop/design.png",
-    "source": "tools/art/raw/props/shop/candidates/66.png",
-    "hash": "a4d4fcf59961683d",
-    "created": "2026-09-14T04:22:46+00:00"
-   },
-   "approved_hash": "a4d4fcf59961683d",
-   "approval_note": "",
-   "approved_at": "2026-09-14T04:22:46+00:00"
-  },
-  "shop_townhall": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_townhall/design.png",
-    "source": "tools/art/raw/props/shop_townhall/edits/11-98673054635e2917.png",
-    "hash": "2062f219d0c1ca38",
-    "created": "2026-09-14T14:16:43+00:00"
-   },
-   "approved_hash": "2062f219d0c1ca38",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:45+00:00"
-  },
-  "shop_general": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_general/design.png",
-    "source": "tools/art/raw/props/shop_general/candidates/11.png",
-    "hash": "659775970f2dbfe0",
-    "created": "2026-09-14T14:16:43+00:00"
-   },
-   "approved_hash": "659775970f2dbfe0",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:45+00:00"
-  },
-  "shop_magic": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_magic/design.png",
-    "source": "tools/art/raw/props/shop_magic/edits/11-4fc4246b866a06f2.png",
-    "hash": "4a4455f03a3c2ca0",
-    "created": "2026-09-14T14:16:44+00:00"
-   },
-   "approved_hash": "4a4455f03a3c2ca0",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:46+00:00"
-  },
-  "shop_tavern": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_tavern/design.png",
-    "source": "tools/art/raw/props/shop_tavern/edits/22-handpatched.png",
-    "hash": "f4f0a2c56be24886",
-    "created": "2026-09-14T14:16:44+00:00"
-   },
-   "approved_hash": "f4f0a2c56be24886",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:46+00:00"
-  },
-  "shop_fishmonger": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_fishmonger/design.png",
-    "source": "tools/art/raw/props/shop_fishmonger/candidates/22.png",
-    "hash": "8a8a38c6aeac5e4d",
-    "created": "2026-09-14T14:16:44+00:00"
-   },
-   "approved_hash": "8a8a38c6aeac5e4d",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:46+00:00"
-  },
-  "shop_bakery": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_bakery/design.png",
-    "source": "tools/art/raw/props/shop_bakery/edits/22-460341eca8c98a55.png",
-    "hash": "aef9edce4638fbe9",
-    "created": "2026-09-14T14:34:34+00:00"
-   },
-   "approved_hash": "aef9edce4638fbe9",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:46+00:00"
-  },
-  "shop_clinic": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_clinic/design.png",
-    "source": "tools/art/raw/props/shop_clinic/edits/22-b7cd633ae1ec072c.png",
-    "hash": "b0dbaa5e8bfee3cf",
-    "created": "2026-09-14T14:34:34+00:00"
-   },
-   "approved_hash": "b0dbaa5e8bfee3cf",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:47+00:00"
-  },
-  "shop_smithy": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_smithy/design.png",
-    "source": "tools/art/raw/props/shop_smithy/edits/22-be728b82f8afe7c5.png",
-    "hash": "c2f0e8cacb8c6ce7",
-    "created": "2026-09-14T14:34:34+00:00"
-   },
-   "approved_hash": "c2f0e8cacb8c6ce7",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:47+00:00"
-  },
-  "shop_tailor": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_tailor/design.png",
-    "source": "tools/art/raw/props/shop_tailor/edits/33-8959d904207fa163-45629368912e1c22.png",
-    "hash": "c88b4a48dda7a6bd",
-    "created": "2026-09-14T14:34:34+00:00"
-   },
-   "approved_hash": "c88b4a48dda7a6bd",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:47+00:00"
-  },
-  "shop_inn": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_inn/design.png",
-    "source": "tools/art/raw/props/shop_inn/candidates/66.png",
-    "hash": "b44541ebe0e8fd07",
-    "created": "2026-09-14T17:39:07+00:00"
-   },
-   "approved_hash": "b44541ebe0e8fd07",
-   "approval_note": "",
-   "approved_at": "2026-09-14T17:39:07+00:00"
-  },
-  "shop_salon": {
-   "approved": true,
-   "design": {
-    "file": "tools/art/raw/props/shop_salon/design.png",
-    "source": "tools/art/raw/props/shop_salon/candidates/22.png",
-    "hash": "b2ae73b5ebde52b4",
-    "created": "2026-09-14T16:48:45+00:00"
-   },
-   "approved_hash": "b2ae73b5ebde52b4",
-   "approval_note": "",
-   "approved_at": "2026-09-14T16:48:47+00:00"
-  },
-  "cliff_face": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/cliff_face/design.png",
-    "source": "tools/art/raw/props/cliff_face/candidates/1.png",
-    "hash": "6c2db6cf4257d7ff",
-    "created": "2026-09-14T20:23:26+00:00"
-   }
-  },
-  "cliff_face_tall": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/cliff_face_tall/design.png",
-    "source": "tools/art/raw/props/cliff_face_tall/candidates/5.png",
-    "hash": "f9e0956e2a32b07c",
-    "created": "2026-09-14T21:08:15+00:00"
-   }
-  },
-  "cliff_end": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/cliff_end/design.png",
-    "source": "tools/art/raw/props/cliff_end/candidates/1.png",
-    "hash": "5c72d1cb1b71949f",
-    "created": "2026-09-14T21:08:16+00:00"
-   }
-  },
-  "boulder_small": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/boulder_small/design.png",
-    "source": "tools/art/raw/props/boulder_small/candidates/4.png",
-    "hash": "2baa0b74a10817d0",
-    "created": "2026-09-14T21:08:16+00:00"
-   }
-  },
-  "boulder_medium": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/boulder_medium/design.png",
-    "source": "tools/art/raw/props/boulder_medium/candidates/4.png",
-    "hash": "51c54bf3f6f9c1d0",
-    "created": "2026-09-14T21:08:16+00:00"
-   }
-  },
-  "boulder_large": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/boulder_large/design.png",
-    "source": "tools/art/raw/props/boulder_large/candidates/1.png",
-    "hash": "a3c447c6fe83a050",
-    "created": "2026-09-14T21:08:16+00:00"
-   }
-  },
-  "crag": {
-   "approved": false,
-   "design": {
-    "file": "tools/art/raw/props/crag/design.png",
-    "source": "tools/art/raw/props/crag/candidates/4.png",
-    "hash": "b44eafec385c045d",
-    "created": "2026-09-14T21:08:17+00:00"
-   }
-  }
- }
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdsgm2kgexgb2"
-path="res://.godot/imported/03.png-33d74a07b2c184bdd96af6fbaf77d26d.ctex"
+uid="uid://ckf1omj3dy81h"
+path="res://.godot/imported/world-fangridge-1.png-3b794c860182dabc358c54980285028b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/tiles/grass_rock/summer/03.png"
-dest_files=["res://.godot/imported/03.png-33d74a07b2c184bdd96af6fbaf77d26d.ctex"]
+source_file="res://previews/world-fangridge-1.png"
+dest_files=["res://.godot/imported/world-fangridge-1.png-3b794c860182dabc358c54980285028b.ctex"]
 
 [params]
 
