@@ -9,10 +9,12 @@
     "seed": "one",
     "final": "a mandrake root with a leafy top, root shaped like a small person",
     "stage_notes": {
-      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3"
+      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3",
+      "growing": "make the top of the root just below the leaves wide and bulbous like a turnip, keep the roots below; two 3x3 black eyes with red centres on the bulb"
     },
     "anim": {
-      "sprout": "eyes"
+      "sprout": "eyes",
+      "growing": "eyes"
     }
   },
   "carrot": {
@@ -26,12 +28,18 @@
     "final": "a garlic bulb with tall flat green leaves",
     "stage_prompts": {
       "growing": "a garlic plant with tall flat green leaves growing straight up from a small round mound"
+    },
+    "stage_notes": {
+      "growing": "leaves shifted toward off-white"
     }
   },
   "onion": {
     "colour": "golden brown",
     "seed": "three",
-    "final": "an onion bulb with tubular green leaves"
+    "final": "an onion bulb with tubular green leaves",
+    "stage_notes": {
+      "growing": "bulb shifted from orange to yellow"
+    }
   },
   "strawberry": {
     "colour": "red",
@@ -49,7 +57,8 @@
     "seed": "three",
     "final": "a pea vine with pods",
     "stage_notes": {
-      "sprout": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like"
+      "sprout": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like",
+      "growing": "add a small wooden trellis behind the plant and make the vine climb up it with curling tendrils, no pea pods"
     }
   },
   "blood_blossom": {
@@ -89,7 +98,8 @@
     "seed": "one",
     "final": "a scaly red root with ember-orange leaves",
     "stage_notes": {
-      "sprout": "reshape the two leaves into flame shapes with pointed flickering tips"
+      "sprout": "reshape the two leaves into flame shapes with pointed flickering tips",
+      "growing": "reshape every leaf into a pointed flame shape with flickering tips"
     },
     "anim": {
       "sprout": "flame"
@@ -100,7 +110,8 @@
     "seed": "one",
     "final": "a pale salt-crusted bulb with seaweed-like leaves",
     "stage_notes": {
-      "sprout": "replace the water drop with a teardrop-shaped light blue bulb sitting between the two leaves at the top of the centre stalk, with a small white glisten highlight; no drip"
+      "sprout": "replace the water drop with a teardrop-shaped light blue bulb sitting between the two leaves at the top of the centre stalk, with a small white glisten highlight; no drip",
+      "growing": "add a teardrop-shaped pale blue bulb nestled in the centre of the leaves, glossy like a pearl with a white glisten highlight"
     }
   },
   "tulip": {
@@ -125,6 +136,9 @@
     "final": "a tall foxglove with purple-pink bell flowers",
     "stage_prompts": {
       "growing": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds"
+    },
+    "stage_notes": {
+      "growing": "keep the two green leaves at the base; above them, replace the single bud with three closed pink bulbs stacked in a pyramid, one on top of two"
     }
   },
   "grave_lily": {
@@ -132,7 +146,8 @@
     "seed": "three",
     "final": "a grey-white lily with drooping petals",
     "stage_notes": {
-      "sprout": "two small black eyes and a larger black open mouth on the drooping bud"
+      "sprout": "two small black eyes and a larger black open mouth on the drooping bud",
+      "growing": "raise the grey-blue closed bud up on a taller stem above the leaves, like a flower about to open, keep the faint face on the bud"
     },
     "stage_prompts": {
       "growing": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud"
@@ -143,7 +158,8 @@
     "seed": "three",
     "final": "a blue bell-shaped flower",
     "stage_notes": {
-      "sprout": "reshape the two blue leaves into round sleigh-bell shapes with a small cross-hatch slit line on each, same blue colour"
+      "sprout": "reshape the two blue leaves into round sleigh-bell shapes with a small cross-hatch slit line on each, same blue colour",
+      "growing": "replace the bud with two larger round blue bell-shaped buds hanging down from short stems, side by side, clearly bells"
     }
   },
   "bat_orchid": {
