@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Paints the ground as one continuous image per region and season: patches of three grass tones whose edges bleed into
-each other through sprigs cut from the grass pack sheets, drawn from data/grass.json dials.
+each other through sprigs cut from the grass pack sheets, and flagstone paths where the map draws them, from data/grass.json.
 Run `grass_paint.py` to write assets/grass/<region>_<season>.png."""
 import json
 import sys
@@ -11,8 +11,8 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
-GRASSY = set(".PTt\"s=")
-TONES = ("dark", "mid", "light", "gravel")
+GRASSY = set(".PTt\"s=+")
+TONES = ("dark", "mid", "light")
 PATH = 3
 
 PACK = ROOT / "tools" / "art" / "raw" / "grass_pack"
@@ -113,8 +113,8 @@ def tone_field(shape: tuple[int, int], dials: dict, rng: np.random.Generator) ->
 
 
 def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Gravel wherever the map draws a path, its corners rounded and its edge wobbled so it reads as trodden ground."""
-    cells = np.array([[c == "=" for c in row] for row in rows])
+    """Stone wherever the map draws a path or cobbled square, its corners rounded and its edge wobbled so it reads as laid by hand."""
+    cells = np.array([[c in "=+" for c in row] for row in rows])
     mask = np.kron(cells, np.ones((TILE, TILE), dtype=bool)).astype(float)
     radius = dials["path_round"]
     kernel = np.ones(2 * radius + 1) / (2 * radius + 1)
@@ -125,22 +125,36 @@ def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndar
     return mask + wobble > 0.5
 
 
-def pebbles(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, dials: dict, rng: np.random.Generator) -> None:
-    """Small stones in the gravel's dark and light shades, one to three pixels across, and a dark rim where gravel meets grass."""
+def flagstones(img: np.ndarray, mask: np.ndarray, stone: dict, dials: dict, rng: np.random.Generator) -> None:
+    """Rows of rectangular stones in a running bond wherever the mask is set: each course offset by half a stone and
+    every stone its own shade, a lit top edge, a shaded bottom edge, a grain of noise, and mortar in every gap and
+    around the outer rim. The courses run on world coordinates, so regions cut from the same painting line up."""
     h, w = mask.shape
+    mortar, shades = hex_rgb(stone["mortar"]), np.array([hex_rgb(c) for c in stone["shades"]], dtype=int)
+    stone_w, stone_h = dials["stone_size"]
+    course = np.arange(h) // stone_h
+    offset = (course % 2) * (stone_w // 2)
+    column = (np.arange(w)[None, :] + offset[:, None]) // stone_w
+    pick = np.zeros((h // stone_h + 2, w // stone_w + 2), dtype=int)
+    pick[...] = rng.integers(0, len(shades), pick.shape)
+    fill = shades[pick[course[:, None], column]]
+    fill = np.clip(fill + rng.integers(-dials["stone_grain"], dials["stone_grain"] + 1, (h, w, 1)), 0, 255)
+    top = np.arange(h) % stone_h == 1
+    bottom = np.arange(h) % stone_h == stone_h - 1
+    left = (np.arange(w)[None, :] + offset[:, None]) % stone_w == 1
+    right = (np.arange(w)[None, :] + offset[:, None]) % stone_w == stone_w - 1
+    lit, shaded = dials["stone_light"], dials["stone_shade"]
+    fill = np.where((top[:, None] | left)[..., None], np.clip(fill + lit, 0, 255), fill)
+    fill = np.where((bottom[:, None] | right)[..., None], np.clip(fill - shaded, 0, 255), fill)
+    gap = (np.arange(h) % stone_h == 0)[:, None] | ((np.arange(w)[None, :] + offset[:, None]) % stone_w == 0)
+    fill[gap] = mortar
     inner = mask.copy()
     inner[1:] &= mask[:-1]
     inner[:-1] &= mask[1:]
     inner[:, 1:] &= mask[:, :-1]
     inner[:, :-1] &= mask[:, 1:]
-    img[mask & ~inner] = shades[0]
-    ys, xs = np.nonzero(inner)
-    pick = rng.random(len(ys)) < dials["pebble_density"]
-    for y, x in zip(ys[pick], xs[pick]):
-        shade = shades[0] if rng.random() < 0.5 else shades[2]
-        pw, ph = rng.integers(1, 4), rng.integers(1, 3)
-        block = inner[y:y + ph, x:x + pw]
-        img[y:y + ph, x:x + pw][block] = shade
+    img[mask] = mortar
+    img[inner] = fill[inner].astype(np.uint8)
 
 
 def hex_rgb(text: str) -> np.ndarray:
@@ -165,12 +179,12 @@ def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, sh
 
 
 def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone (gravel gets its pebbles), pack sprigs scattered in loose clumps inside each grass patch, and
+    """Base fill per tone (paths get their flagstones), pack sprigs scattered in loose clumps inside each grass patch, and
     along every edge sprigs of the neighbouring grass reaching across, onto the next patch or the path, so they bleed."""
     h, w = tone.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
-    img = colours[tone, 1]
-    pebbles(img, tone == PATH, colours[PATH], dials, rng)
+    img = colours[np.minimum(tone, PATH - 1), 1]
+    flagstones(img, tone == PATH, palette["stone"], dials, rng)
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
     gy, gx = np.mgrid[-2:h + 2:step, -2:w + 2:step]

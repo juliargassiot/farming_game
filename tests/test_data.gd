@@ -39,6 +39,12 @@ func test_grass_json() -> void:
 			check_eq(shades.size(), 3, "%s %s has three shades" % [season, tone])
 			for shade: Variant in shades:
 				check(Color.html_is_valid(str(shade)), "%s %s shade %s is a colour" % [season, tone, str(shade)])
+		var stone: Dictionary = palette.get("stone", {})
+		check(Color.html_is_valid(str(stone.get("mortar", ""))), season + " stone mortar is a colour")
+		var stones: Array = stone.get("shades", [])
+		check(stones.size() >= 3, season + " has three or more stone shades")
+		for shade: Variant in stones:
+			check(Color.html_is_valid(str(shade)), "%s stone shade %s is a colour" % [season, str(shade)])
 
 
 func test_world_map() -> void:
