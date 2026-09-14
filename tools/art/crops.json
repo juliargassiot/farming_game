@@ -185,11 +185,12 @@
     "final": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves",
     "stage_notes": {
       "sprout": "two small black eyes and a larger black open mouth on the drooping bud",
-      "growing": "raise the grey-blue closed bud up on a taller stem above the leaves, like a flower about to open, keep the faint face on the bud; remove the lower grey-blue bulb near the soil entirely; make the top bud a closed lily shape with pointed petals instead of a round ball, keep the faint face"
+      "growing": "the former sprout image, promoted"
     },
     "stage_prompts": {
-      "growing": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud",
-      "ready": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick"
+      "growing": "two small black eyes and a larger black open mouth on the drooping bud",
+      "ready": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick",
+      "sprout": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small"
     }
   },
   "sirens_bell": {

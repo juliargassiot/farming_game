@@ -643,11 +643,10 @@
         },
         "sprout": {
           "file": "tools/art/raw/crops/grave_lily/sprout.png",
-          "prompt": "a grey-white lily with drooping petals: a tiny seedling with two small leaves, just emerged, hints of ghostly grey-white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T01:01:09+00:00",
-          "hash": "a2d39bffd8bc7f75",
-          "edit": "two faint eye shadows painted on the bud",
+          "prompt": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 81,
+          "created": "2026-09-14T04:45:12+00:00",
+          "hash": "38def3c35a19fe08",
           "approved": true
         },
         "growing": {
@@ -655,7 +654,7 @@
           "prompt": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:11:04+00:00",
-          "hash": "9dd45e46eb5063f6",
+          "hash": "a2d39bffd8bc7f75",
           "approved": true
         },
         "ready": {
