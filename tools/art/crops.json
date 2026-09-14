@@ -16,6 +16,19 @@
     },
     "stage_prompts": {
       "ready": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, standing on two thick twisted root legs of different lengths with one thin stray root strand, a leafy green top, fully grown, ready to pull, on a small round mound of dark tilled soil"
+    },
+    "match": {
+      "reference": "sprout",
+      "stages": {
+        "seed": {
+          "soil": "shift"
+        },
+        "ready": {
+          "soil": "shift",
+          "leaf": "luma",
+          "body": "luma"
+        }
+      }
     }
   },
   "carrot": {
