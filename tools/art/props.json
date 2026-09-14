@@ -158,5 +158,14 @@
     ],
     "outline": "single color black outline",
     "detail": "medium detail"
+  },
+  "fountain": {
+    "prompt": "a large round stone plaza fountain at dusk, wide circular basin of carved grey stone rim filled with clear blue water, in the centre a raised stone pedestal with a detailed sculpted statue group: a tall elegant vampire in a high-collared cloak and a witch in a pointed hat and robes standing side by side, a wolf standing in front of them, and below them at the water level a mermaid statue reclining on the pedestal base holding a vase from which a stream of water pours forward into the basin, plus two more streams of water arcing from the base out to the left and right rim, ripples and splashes where they land, moss and ivy on the rim, detailed statue faces and clothing, muted purple-brown twilight palette with cool blue water, clean crisp pixel art with dark outlines, front view slightly from above, the whole fountain filling the frame, no ground, no shadow, nothing else",
+    "size": [
+      256,
+      256
+    ],
+    "outline": "single color black outline",
+    "detail": "highly detailed"
   }
 }
