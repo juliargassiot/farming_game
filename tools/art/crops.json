@@ -9,7 +9,7 @@
     "seed": "one",
     "final": "a mandrake root with a leafy top, root shaped like a small person",
     "stage_notes": {
-      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes"
+      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3"
     },
     "anim": {
       "sprout": "eyes"
@@ -127,7 +127,7 @@
     "seed": "three",
     "final": "a black bat-shaped orchid with long whiskers",
     "stage_notes": {
-      "sprout": "give both leaves ragged scalloped edges like bat wings"
+      "sprout": "give both leaves ragged scalloped edges like bat wings; deep notches along the wing edges"
     },
     "anim": {
       "sprout": "twitch"

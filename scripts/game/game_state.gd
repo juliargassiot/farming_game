@@ -7,6 +7,7 @@ var day: int = 1
 var money: int = 0
 var plots: Dictionary[Vector2i, Plot] = {}
 var unlocks: Array[String] = []
+var seed_cursor: int = 0
 var crops: Dictionary[String, CropData] = {}
 
 
@@ -32,10 +33,21 @@ func plot_at(cell: Vector2i) -> Plot:
 
 
 func seed_for(season: String) -> CropData:
+	var options: Array[CropData] = seeds_for(season)
+	return options[seed_cursor % options.size()] if not options.is_empty() else null
+
+
+func seeds_for(season: String) -> Array[CropData]:
+	var options: Array[CropData] = []
 	for crop_id: String in crops:
 		if crops[crop_id].grows_in(season) and is_unlocked(crops[crop_id].requires):
-			return crops[crop_id]
-	return null
+			options.append(crops[crop_id])
+	return options
+
+
+func next_seed() -> void:
+	"""Until the seed choice screen exists, each planting moves on to the next seed of the season."""
+	seed_cursor += 1
 
 
 func is_unlocked(requirement: String) -> bool:

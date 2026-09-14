@@ -48,7 +48,11 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_grow") and map.farmable.has(player.target_cell()):
 		Game.plot_at(player.target_cell()).grow_one_stage()
 		_refresh_plots()
-	if Input.is_action_just_pressed("cancel"):
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cancel"):
+		get_viewport().set_input_as_handled()
 		Game.save()
 		get_tree().change_scene_to_file("res://scenes/title/title.tscn")
 
@@ -56,6 +60,7 @@ func _process(_delta: float) -> void:
 func _build_map() -> void:
 	camera.limit_right = map.size.x * Player.TILE
 	camera.limit_bottom = map.size.y * Player.TILE
+	player.bounds = Rect2(Vector2(Player.TILE / 2.0, Player.TILE / 2.0), Vector2(map.size) * Player.TILE - Vector2.ONE * Player.TILE)
 	if map.start.x >= 0:
 		player.place_at_cell(map.start)
 	for y: int in map.size.y:
@@ -156,5 +161,8 @@ func _on_interact(cell: Vector2i) -> void:
 	elif map.farmable.has(cell):
 		var plot: Plot = Game.plot_at(cell)
 		var seed: CropData = Game.seed_for(Calendar.season_key(Game.day))
-		Game.money += plot.apply(plot.next_action(seed), seed)
+		var action: Plot.Action = plot.next_action(seed)
+		Game.money += plot.apply(action, seed)
+		if action == Plot.Action.PLANT:
+			Game.next_seed()
 	_refresh_plots()

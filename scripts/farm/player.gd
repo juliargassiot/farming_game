@@ -12,6 +12,7 @@ const DIRECTION_NAMES: Dictionary[Vector2i, String] = {
 
 var facing: Vector2i = Vector2i(0, 1)
 var cell: Vector2i = Vector2i(-1, -1)
+var bounds: Rect2 = Rect2()
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
@@ -20,6 +21,8 @@ func _physics_process(_delta: float) -> void:
 	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input * SPEED
 	move_and_slide()
+	if bounds.size != Vector2.ZERO:
+		position = position.clamp(bounds.position, bounds.end)
 	var now: Vector2i = Vector2i(floori(position.x / TILE), floori(position.y / TILE))
 	if now != cell:
 		cell = now

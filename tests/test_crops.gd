@@ -52,3 +52,11 @@ func test_atlas_layout() -> void:
 	check_eq(crop.atlas_column(0), 0, "seed column")
 	check_eq(crop.atlas_column(1), 3, "sprout column")
 	check_eq(crop.atlas_column(3), 3, "missing later stages fall back to the last one")
+
+
+func test_seed_rotation() -> void:
+	var first: CropData = game.seed_for("spring")
+	game.next_seed()
+	check(game.seed_for("spring") != first, "planting moves to the next spring seed")
+	game.seed_cursor = 0
+	check_eq(game.seeds_for("spring").size(), 19, "nineteen spring seeds rotate")
