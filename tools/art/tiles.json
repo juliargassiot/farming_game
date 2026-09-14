@@ -20,92 +20,21 @@
     "seasons": {
       "spring": {
         "lower": "seamless fresh spring green meadow grass texture, soft painterly shading, a few tiny pink and white blossoms scattered in the grass",
-        "tiles_from": "summer",
-        "lower_colour": "#63a83f",
-        "style": {
-          "dots": [
-            "#e878b0",
-            "#f4f0e8"
-          ]
-        },
-        "flower_dots": 3
+        "tiles_from": "summer"
       },
       "summer": {
-        "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover",
-        "lower_colour": "#579a38",
-        "style": {
-          "dots": [
-            "#e8c040"
-          ]
-        },
-        "flower_dots": 2
+        "lower": "seamless lush deep green summer grass texture, soft painterly shading, a few tiny yellow blooms and clover"
       },
       "autumn": {
         "lower": "seamless autumn meadow grass texture, muted green with patches of dry brown grass, soft painterly shading",
-        "tiles_from": "summer",
-        "lower_colour": "#63a83f",
-        "style": {
-          "blades": "#a8884a",
-          "dots": [
-            "#8c6a34"
-          ]
-        },
-        "flower_dots": 0
+        "tiles_from": "summer"
       },
       "winter": {
-        "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading",
-        "style": {
-          "shadow_soften": 0.6,
-          "highlight_soften": 1.0
-        },
-        "flower_dots": 0
+        "lower": "seamless snow covered ground texture with small patches of pale frosty grass showing through, soft painterly shading"
       }
     },
     "field_colour": "#c69257",
     "field_flatten": 0.85,
-    "wet_tint": "#9e6b3d",
-    "variant_count": 6,
-    "variant_radius": 15,
-    "candidates": [
-      {
-        "label": "tufted, outlined",
-        "lower": "seamless deep green meadow grass texture, dense clumps of grass blades with lighter yellow-green tips over darker shadowed grass between the tufts, muted forest tones, painterly, soft dark outlines around each tuft",
-        "seed": 66,
-        "params": {
-          "outline": "selective outline"
-        }
-      },
-      {
-        "label": "tufted, lineless",
-        "lower": "seamless deep green meadow grass texture, dense clumps of grass blades with lighter yellow-green tips over darker shadowed grass between the tufts, muted forest tones, painterly, soft dark outlines around each tuft",
-        "seed": 7,
-        "params": {
-          "shading": "detailed shading"
-        }
-      },
-      {
-        "label": "mossy",
-        "lower": "seamless lush dark green grass ground, soft rounded mossy clumps, cool shadowed hollows between them, muted moody palette, painterly, highly detailed",
-        "seed": 21
-      },
-      {
-        "label": "rustic olive",
-        "lower": "seamless rustic farm grass texture, olive green with scattered dry straw-yellow blades and small dark clumps, warm muted palette, painterly shading",
-        "seed": 33
-      },
-      {
-        "label": "overgrown",
-        "lower": "seamless overgrown meadow grass, tall blades leaning one way, deep green shadows and pale green highlights, a few tiny white flowers, painterly, subtle outlines",
-        "seed": 44,
-        "params": {
-          "outline": "selective outline"
-        }
-      },
-      {
-        "label": "cozy farm",
-        "lower": "seamless grass texture in a cozy farming game style, rich green with soft patches of lighter and darker blade clusters, gentle dark speckles, medium shading, detailed",
-        "seed": 55
-      }
-    ]
+    "wet_tint": "#9e6b3d"
   }
 }

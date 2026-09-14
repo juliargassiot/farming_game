@@ -10,6 +10,8 @@ script = ExtResource("1")
 
 [node name="Map" type="Node2D" parent="."]
 
+[node name="Grass" type="Node2D" parent="Map"]
+
 [node name="Terrain" type="TileMapLayer" parent="Map"]
 position = Vector2(-16, -16)
 
