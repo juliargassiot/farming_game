@@ -9,7 +9,7 @@ enum Ground {
 const MAP_PATH: String = "res://data/maps/world.txt"
 const REGIONS_PATH: String = "res://data/world.json"
 const SYMBOLS: Dictionary[String, Ground] = {
-	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BED, "P": Ground.GRASS,
+	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BLOCK, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
 	":": Ground.BOG, "t": Ground.DEAD_TREE, "T": Ground.TREE, "\"": Ground.TALLGRASS, "+": Ground.COBBLE, "H": Ground.HOUSE, "D": Ground.DOCK,
 	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK, "F": Ground.BLOCK, "S": Ground.BLOCK,

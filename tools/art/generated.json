@@ -896,13 +896,13 @@
       "approved": true,
       "design": {
         "file": "tools/art/raw/props/farmhouse/design.png",
-        "source": "tools/art/raw/props/farmhouse/edits/22-crop-c33688b835e14f6f.png",
-        "hash": "898addcf9a7624d0",
-        "created": "2026-09-14T03:17:19+00:00"
+        "source": "tools/art/raw/props/farmhouse/candidates/66.png",
+        "hash": "fa146c8af8714f7b",
+        "created": "2026-09-14T04:00:19+00:00"
       },
-      "approved_hash": "898addcf9a7624d0",
+      "approved_hash": "fa146c8af8714f7b",
       "approval_note": "",
-      "approved_at": "2026-09-14T03:21:46+00:00"
+      "approved_at": "2026-09-14T04:00:19+00:00"
     },
     "shop": {
       "approved": true,
