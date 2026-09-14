@@ -1,6 +1,6 @@
 class_name SeedMenu
 extends PanelContainer
-## Placeholder seed picker: this season's seeds with their sprout as icon. The rucksack replaces it later.
+## Placeholder seed picker: this season's seeds with their seed bag as icon. The rucksack replaces it later.
 
 signal closed
 
@@ -15,7 +15,8 @@ func open(season: String) -> void:
 	for crop: CropData in options:
 		var icon: AtlasTexture = AtlasTexture.new()
 		icon.atlas = CROP_ATLAS
-		icon.region = Rect2(crop.atlas_column(1) * 32, crop.atlas_row * 32, 32, 32)
+		var column: int = crop.bag_column if crop.bag_column >= 0 else crop.atlas_column(1)
+		icon.region = Rect2(column * 32, crop.atlas_row * 32, 32, 32)
 		list.add_item(crop.display_name, icon)
 		list.set_item_metadata(list.item_count - 1, crop.id)
 		if crop.id == Game.selected_seed:

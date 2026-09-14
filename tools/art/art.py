@@ -311,7 +311,7 @@ def cmd_prop_import(_args) -> None:
     print(f"Wrote assets/tiles/props.png with {', '.join(regions)}; regions in data/props.json")
 
 
-STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked"]
+STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked", "bag"]
 
 
 def cmd_approve(args) -> None:
