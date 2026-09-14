@@ -81,5 +81,247 @@
       "approval_note": "summer texture restyled per season; fine-tune once the world is fuller",
       "approved_at": "2026-09-13T23:15:53+00:00"
     }
+  },
+  "crops": {
+    "mandrake": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/mandrake/seed.png",
+          "prompt": "one big smooth pale yellow-green bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:42:35+00:00",
+          "hash": "551e5a8e90d960e5"
+        }
+      }
+    },
+    "carrot": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/carrot/seed.png",
+          "prompt": "a scattering of many tiny seeds, orange, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:27:01+00:00",
+          "hash": "c1bffd72e98c7b4e"
+        }
+      }
+    },
+    "garlic": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/garlic/seed.png",
+          "prompt": "three medium seeds, white, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
+          "seed": 34,
+          "created": "2026-09-14T00:41:48+00:00",
+          "hash": "600117a951bb2a9c"
+        }
+      }
+    },
+    "onion": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/onion/seed.png",
+          "prompt": "three medium golden brown bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:45:03+00:00",
+          "hash": "3b17a7f1c25c721e"
+        }
+      }
+    },
+    "strawberry": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/strawberry/seed.png",
+          "prompt": "a scattering of many tiny seeds, red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:28:29+00:00",
+          "hash": "e900539903399ff5"
+        }
+      }
+    },
+    "peas": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/peas/seed.png",
+          "prompt": "three medium seeds, green, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
+          "seed": 34,
+          "created": "2026-09-14T00:38:09+00:00",
+          "hash": "42057ff5c6723dbd"
+        }
+      }
+    },
+    "blood_blossom": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/blood_blossom/seed.png",
+          "prompt": "one big smooth deep blood red bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:42:51+00:00",
+          "hash": "94b3355c96b1c504"
+        }
+      }
+    },
+    "shifting_sprouts": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/shifting_sprouts/seed.png",
+          "prompt": "three medium seeds, plain brown, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:29:54+00:00",
+          "hash": "462aa20c8d325f04"
+        }
+      }
+    },
+    "wolfsbane": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/wolfsbane/seed.png",
+          "prompt": "a scattering of many tiny seeds, deep purple, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:30:20+00:00",
+          "hash": "271f5489a228151d"
+        }
+      }
+    },
+    "wisp_lettuce": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/wisp_lettuce/seed.png",
+          "prompt": "a scattering of many tiny seeds, pale glowing blue-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:30:47+00:00",
+          "hash": "81669e9591ef90b7"
+        }
+      }
+    },
+    "dragon_root": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/dragon_root/seed.png",
+          "prompt": "one big smooth fiery red-orange bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:43:16+00:00",
+          "hash": "212591f3637232a2"
+        }
+      }
+    },
+    "tulip": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/tulip/seed.png",
+          "prompt": "one big smooth pink bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:43:40+00:00",
+          "hash": "2b4f527b739dff2b"
+        }
+      }
+    },
+    "daffodil": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/daffodil/seed.png",
+          "prompt": "one big smooth yellow bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:44:04+00:00",
+          "hash": "0b7146749f54a697"
+        }
+      }
+    },
+    "foxglove": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/foxglove/seed.png",
+          "prompt": "a scattering of many tiny seeds, purple-pink, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:32:54+00:00",
+          "hash": "010791317118760f"
+        }
+      }
+    },
+    "grave_lily": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/grave_lily/seed.png",
+          "prompt": "three medium seeds, ghostly grey-white, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:33:09+00:00",
+          "hash": "92c0be96a6e1274d"
+        }
+      }
+    },
+    "sirens_bell": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/sirens_bell/seed.png",
+          "prompt": "three medium seeds, deep blue, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:33:46+00:00",
+          "hash": "d8ff9b928632994a"
+        }
+      }
+    },
+    "brine_bulb": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/brine_bulb/seed.png",
+          "prompt": "one big smooth pale sea green with salt crystals bean-shaped seed half buried in a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T00:44:34+00:00",
+          "hash": "2f4d49c343c3ad5e"
+        }
+      }
+    },
+    "bat_orchid": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/bat_orchid/seed.png",
+          "prompt": "three medium seeds, black with a purple sheen, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:35:04+00:00",
+          "hash": "7a9655482dabc2d6"
+        }
+      }
+    },
+    "foxtail_lily": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/foxtail_lily/seed.png",
+          "prompt": "a scattering of many tiny seeds, orange-red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:35:48+00:00",
+          "hash": "9198d2e47084152c"
+        }
+      }
+    },
+    "potato": {
+      "approved": false,
+      "stages": {
+        "seed": {
+          "file": "tools/art/raw/crops/potato/seed.png",
+          "prompt": "three medium seeds, brown, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
+          "seed": 34,
+          "created": "2026-09-14T00:40:51+00:00",
+          "hash": "4df94c926b4dd3f7"
+        }
+      }
+    }
   }
 }

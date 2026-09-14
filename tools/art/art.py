@@ -164,6 +164,36 @@ def cmd_edit(args) -> None:
     print(f"Edit written to {rel(out)}; compare at {rel(preview)}")
 
 
+def cmd_crop_design(args) -> None:
+    """One 32×32 image per crop for a growth stage, from tools/art/crops.json; all crops of a season land on one sheet."""
+    specs = load_json(ART / "crops.json")
+    crops = load_json(ROOT / "data" / "crops.json")
+    generated = load_json(ART / "generated.json")
+    client = PixelLab()
+    names = [n for n in crops if n in specs and (args.season is None or crops[n].get("seasons") == [] or args.season in crops[n].get("seasons", []))]
+    if args.name:
+        names = [args.name]
+    frames = []
+    for name in names:
+        spec, out = specs[name], RAW / "crops" / name / f"{args.stage}.png"
+        if args.stage == "seed":
+            seeds = specs["_seed_styles"][spec["seed"]].format(colour=spec["colour"])
+            prompt = f"{seeds} a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else"
+        else:
+            prompt = f"{spec['final']}, {args.stage} growth stage, seen from above, small plant on dark tilled soil, pixel art, nothing else"
+        if not (out.exists() and not args.redo):
+            response = client.create_image_pixen(prompt, (32, 32), view="high top-down", outline="lineless", detail="medium detail", seed=args.seed)
+            save_png(decode_image(response["image"]), out)
+            record = generated.setdefault("crops", {}).setdefault(name, {"approved": False})
+            record.setdefault("stages", {})[args.stage] = {"file": rel(out), "prompt": prompt, "seed": args.seed, "created": now(), "hash": sha(out)}
+        frames.append((name, [Image.open(out).convert("RGBA")]))
+        print(f"{name}: {rel(out)}")
+    preview = PREVIEWS / f"crops-{args.stage}.png"
+    sheets.labelled_grid([(name, ims[0]) for name, ims in frames]).save(preview)
+    save_generated(generated)
+    print(f"Sheet at {rel(preview)}. Stop here and ask for approval.")
+
+
 def cmd_approve(args) -> None:
     generated = load_json(ART / "generated.json")
     kind = "tilesets" if args.name in generated["tilesets"] and args.name not in generated["characters"] else "characters"
@@ -518,6 +548,13 @@ def main() -> None:
     p.add_argument("--prompts", help="text file, one prompt per line, overriding the body description")
     p.add_argument("--face", help="x0,y0,x1,y1 box to show at 8x in <name>-face.png")
     p.set_defaults(func=cmd_candidates)
+    p = sub.add_parser("crop-design", help="generate one growth stage for every crop of a season")
+    p.add_argument("stage", help="seed, sprout, growing, ready, ...")
+    p.add_argument("--season")
+    p.add_argument("--name", help="one crop only")
+    p.add_argument("--seed", type=int)
+    p.add_argument("--redo", action="store_true", help="regenerate even when the stage exists")
+    p.set_defaults(func=cmd_crop_design)
     p = sub.add_parser("edit", help="text edit of one PNG, keeping everything else")
     p.add_argument("name")
     p.add_argument("source")

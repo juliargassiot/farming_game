@@ -37,3 +37,17 @@ def face_strip(frames: list[Image.Image], box: tuple[int, int, int, int], scale:
     for i, frame in enumerate(frames):
         strip.alpha_composite(frame.crop(box).resize((w * scale, h * scale), Image.NEAREST), (PAD + i * (w * scale + PAD), PAD))
     return strip
+
+
+def labelled_grid(items: list, columns: int = 5, scale: int = 4) -> Image.Image:
+    """Named tiles in rows of `columns`, each scaled up with its label underneath."""
+    cell_w = max(im.width for _, im in items) * scale + 2 * PAD
+    cell_h = max(im.height for _, im in items) * scale + 14 + 2 * PAD
+    rows = (len(items) + columns - 1) // columns
+    sheet = Image.new("RGBA", (columns * cell_w, rows * cell_h), (40, 40, 48, 255))
+    draw = ImageDraw.Draw(sheet)
+    for i, (label, im) in enumerate(items):
+        x, y = (i % columns) * cell_w + PAD, (i // columns) * cell_h + PAD
+        sheet.alpha_composite(im.resize((im.width * scale, im.height * scale), Image.NEAREST), (x, y))
+        draw.text((x, y + im.height * scale + 2), label, fill=(230, 230, 230, 255))
+    return sheet

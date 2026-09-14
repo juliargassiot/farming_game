@@ -1,0 +1,112 @@
+{
+  "_seed_styles": {
+    "many": "a scattering of many tiny {colour} seeds sprinkled on top of",
+    "three": "three medium {colour} bean-shaped seeds resting on top of",
+    "one": "one big smooth {colour} bean-shaped seed half buried in"
+  },
+  "mandrake": {
+    "colour": "pale yellow-green",
+    "seed": "one",
+    "final": "a mandrake root with a leafy top, root shaped like a small person"
+  },
+  "carrot": {
+    "colour": "orange",
+    "seed": "many",
+    "final": "carrots with feathery green tops"
+  },
+  "garlic": {
+    "colour": "white",
+    "seed": "three",
+    "final": "a garlic bulb with tall flat green leaves"
+  },
+  "onion": {
+    "colour": "golden brown",
+    "seed": "three",
+    "final": "an onion bulb with tubular green leaves"
+  },
+  "strawberry": {
+    "colour": "red",
+    "seed": "many",
+    "final": "a strawberry bush with ripe red berries"
+  },
+  "peas": {
+    "colour": "green",
+    "seed": "three",
+    "final": "a pea vine with pods"
+  },
+  "blood_blossom": {
+    "colour": "deep blood red",
+    "seed": "one",
+    "final": "a squash vine with big blood-red blossoms dripping dark red"
+  },
+  "shifting_sprouts": {
+    "colour": "plain brown",
+    "seed": "three",
+    "final": "a mysterious sprout"
+  },
+  "wolfsbane": {
+    "colour": "deep purple",
+    "seed": "many",
+    "final": "a tall wolfsbane plant with hooded purple flowers"
+  },
+  "wisp_lettuce": {
+    "colour": "pale glowing blue-white",
+    "seed": "many",
+    "final": "a pale lettuce head glowing faintly"
+  },
+  "dragon_root": {
+    "colour": "fiery red-orange",
+    "seed": "one",
+    "final": "a scaly red root with ember-orange leaves"
+  },
+  "brine_bulb": {
+    "colour": "pale sea green with salt crystals",
+    "seed": "one",
+    "final": "a pale salt-crusted bulb with seaweed-like leaves"
+  },
+  "tulip": {
+    "colour": "pink",
+    "seed": "one",
+    "final": "a pink tulip"
+  },
+  "daffodil": {
+    "colour": "yellow",
+    "seed": "one",
+    "final": "a yellow daffodil"
+  },
+  "foxglove": {
+    "colour": "purple-pink",
+    "seed": "many",
+    "final": "a tall foxglove with purple-pink bell flowers"
+  },
+  "grave_lily": {
+    "colour": "ghostly grey-white",
+    "seed": "three",
+    "final": "a grey-white lily with drooping petals"
+  },
+  "sirens_bell": {
+    "colour": "deep blue",
+    "seed": "three",
+    "final": "a blue bell-shaped flower"
+  },
+  "bat_orchid": {
+    "colour": "black with a purple sheen",
+    "seed": "three",
+    "final": "a black bat-shaped orchid with long whiskers"
+  },
+  "foxtail_lily": {
+    "colour": "orange-red",
+    "seed": "many",
+    "final": "a tall foxtail lily spike"
+  },
+  "moonpetal": {
+    "colour": "silver-white",
+    "seed": "one",
+    "final": "a silver-white night flower"
+  },
+  "potato": {
+    "colour": "brown",
+    "seed": "three",
+    "final": "a leafy potato plant"
+  }
+}
