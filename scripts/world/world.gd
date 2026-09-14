@@ -67,11 +67,26 @@ func _build_map() -> void:
 		for x: int in map.size.x:
 			var cell: Vector2i = Vector2i(x, y)
 			var kind: WorldMap.Ground = map.ground_at(cell)
-			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
-				ground.set_cell(cell, 0, Vector2i(kind, 0))
 			var prop: String = _prop_for(cell, kind)
 			if prop_regions.has(prop):
 				_place_prop(cell, prop_regions[prop])
+				kind = _ground_under_prop(cell)
+			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
+				ground.set_cell(cell, 0, Vector2i(kind, 0))
+
+
+func _ground_under_prop(cell: Vector2i) -> WorldMap.Ground:
+	"""A tree stands on whatever walkable ground its neighbours have most of."""
+	var counts: Dictionary[WorldMap.Ground, int] = {}
+	for step: Vector2i in WorldMap.STEPS:
+		var kind: WorldMap.Ground = map.ground_at(cell + step)
+		if map.is_walkable(cell + step) and not prop_regions.has(_prop_for(cell + step, kind)):
+			counts[kind] = counts.get(kind, 0) + 1
+	var best: WorldMap.Ground = WorldMap.Ground.GRASS
+	for kind: WorldMap.Ground in counts:
+		if counts[kind] > counts.get(best, 0):
+			best = kind
+	return best
 
 
 func _load_props() -> Dictionary[String, Rect2i]:
@@ -89,12 +104,12 @@ func _load_props() -> Dictionary[String, Rect2i]:
 
 
 func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
-	"""Trees take the prop the cell's region names, or the plain one until that art is imported."""
+	"""Trees take the prop the cell's region names."""
 	var region: WorldMap.Region = map.region_at(cell)
 	if kind == WorldMap.Ground.TREE:
-		return region.tree if region != null and prop_regions.has(region.tree) else "tree"
+		return region.tree if region != null else "oak"
 	if kind == WorldMap.Ground.DEAD_TREE:
-		return region.dead_tree if region != null and prop_regions.has(region.dead_tree) else "dead_tree"
+		return region.dead_tree if region != null else "dead"
 	return ""
 
 
@@ -108,6 +123,14 @@ func _place_prop(cell: Vector2i, region: Rect2i) -> void:
 	sprite.centered = false
 	sprite.offset = Vector2(-region.size.x / 2.0, -region.size.y)
 	sprite.position = Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE)
+	var body: StaticBody2D = StaticBody2D.new()
+	var shape: CollisionShape2D = CollisionShape2D.new()
+	var box: RectangleShape2D = RectangleShape2D.new()
+	box.size = Vector2(Player.TILE, Player.TILE / 2.0)
+	shape.shape = box
+	shape.position = Vector2(0, -Player.TILE / 4.0)
+	body.add_child(shape)
+	sprite.add_child(body)
 	scenery.add_child(sprite)
 
 

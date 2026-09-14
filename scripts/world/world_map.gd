@@ -28,8 +28,8 @@ class Region:
 	var kind: String = ""
 	var rect: Rect2i = Rect2i()
 	var combat_zone: bool = false
-	var tree: String = "tree"
-	var dead_tree: String = "dead_tree"
+	var tree: String = "oak"
+	var dead_tree: String = "dead"
 
 	static func from_dict(region_id: String, data: Dictionary) -> Region:
 		var region: Region = Region.new()
