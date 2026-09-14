@@ -11,20 +11,27 @@ def _classes(a: np.ndarray, soil_from_row: int = 20) -> dict:
     low = np.arange(a.shape[0])[:, None] >= soil_from_row
     leaf = alpha & (g > r + 12) & (g > b + 12)
     soil = alpha & ~leaf & low & (luma < 110) & (r >= g) & (r < 170)
-    body = alpha & ~leaf & ~soil
+    marks = alpha & ((luma < 40) | ((r > 150) & (g < 80) & (b < 80)))
+    body = alpha & ~leaf & ~soil & ~marks
     return {"soil": soil, "leaf": leaf, "body": body}
 
 
-def match(target: Image.Image, reference: Image.Image, classes: dict) -> Image.Image:
-    """classes: {name: "shift" | "luma"}. shift moves the class mean onto the reference's; luma only scales brightness to match."""
+def match(target: Image.Image, reference: Image.Image, classes: dict, soil_from_row: int = 20) -> Image.Image:
+    """classes: {name: "palette" | "shift" | "luma"}. palette takes the reference's own colours by brightness rank, shift moves the class mean onto
+    the reference's, luma only scales brightness to match."""
     t = np.asarray(target.convert("RGBA")).astype(float)
     r = np.asarray(reference.convert("RGBA")).astype(float)
-    tc, rc = _classes(t), _classes(r)
+    tc, rc = _classes(t, soil_from_row), _classes(r)
     for name, mode in classes.items():
         if not (tc[name].any() and rc[name].any()):
             continue
         mean_t, mean_r = t[tc[name]][:, :3].mean(axis=0), r[rc[name]][:, :3].mean(axis=0)
-        if mode == "shift":
+        if mode == "palette":
+            src, ref = t[tc[name]][:, :3], r[rc[name]][:, :3]
+            ref_sorted = ref[np.argsort(ref.mean(axis=1))]
+            ranks = np.argsort(np.argsort(src.mean(axis=1))) / max(1, len(src) - 1)
+            t[tc[name], :3] = ref_sorted[(ranks * (len(ref_sorted) - 1)).round().astype(int)]
+        elif mode == "shift":
             t[tc[name], :3] = np.clip(t[tc[name], :3] + (mean_r - mean_t), 0, 255)
         else:
             t[tc[name], :3] = np.clip(t[tc[name], :3] * (mean_r.mean() / max(1.0, mean_t.mean())), 0, 255)
