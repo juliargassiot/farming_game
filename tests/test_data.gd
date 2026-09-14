@@ -47,6 +47,26 @@ func test_grass_json() -> void:
 			check(Color.html_is_valid(str(shade)), "%s stone shade %s is a colour" % [season, str(shade)])
 
 
+func test_mountain_json() -> void:
+	var data: Dictionary = _json("res://data/mountain.json")
+	var world: Dictionary = _json("res://data/world.json")
+	var regions: Dictionary = world.get("regions", {})
+	check(regions.has(data.get("region", "")), "the mountain names a district")
+	check(data.get("wall_height", 0) as int > 0 and data.get("trail_width", 0) as int > 0, "wall height and trail width are set")
+	var trails: Array = data.get("trails", [])
+	check(trails.size() >= 1, "the mountain has a trail")
+	for trail: Variant in trails:
+		check((trail as Array).size() >= 2, "every trail has two or more waypoints")
+	var map: WorldMap = WorldMap.load_files()
+	for home: Variant in data.get("homes", []):
+		var pair: Array = home
+		var ax: float = pair[0]
+		var ay: float = pair[1]
+		var anchor: Vector2i = Vector2i(int(ax), int(ay))
+		check(map.buildings.has(anchor), "home at %s is placed in world.json" % anchor)
+		check(map.is_walkable(anchor + Vector2i(4, 1)), "home at %s has a walkable doorstep" % anchor)
+
+
 func test_world_map() -> void:
 	var rows: PackedStringArray = FileAccess.get_file_as_string(WorldMap.MAP_PATH).strip_edges().split("\n")
 	var counts: Dictionary[String, int] = {}

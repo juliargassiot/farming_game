@@ -24,7 +24,8 @@
     "stone_light": 12,
     "stone_shade": 14,
     "pebble_density": 0.1,
-    "speckle_density": 0.02
+    "speckle_density": 0.02,
+    "slab_density": 0.004
   },
   "seasons": {
     "spring": {

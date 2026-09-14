@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Paints the ground as one continuous image per region and season: patches of three grass tones whose edges bleed into
-each other through sprigs cut from the grass pack sheets, and flagstone paths where the map draws them, from data/grass.json.
+each other through sprigs cut from the grass pack sheets, flagstone paths where the map draws them, and the mountain
+district from mountain.py, all from data/grass.json.
 Run `grass_paint.py` to write assets/grass/<region>_<season>.png."""
 import json
 import sys
@@ -8,6 +9,8 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
+
+import mountain
 
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
@@ -112,28 +115,8 @@ def tone_field(shape: tuple[int, int], dials: dict, rng: np.random.Generator) ->
     return tone
 
 
-def cell_mask(rows: list[str], symbols: str) -> np.ndarray:
-    return np.kron(np.array([[c in symbols for c in row] for row in rows]), np.ones((TILE, TILE), dtype=bool))
-
-
-def ledge_cells(rows: list[str]) -> np.ndarray:
-    """Ledges, plus whatever stands within a few cells of ledge or cliff (homes, trees, tarns, ramps), so rock rather
-    than grass shows under and around them."""
-    rock = np.array([[c in "r^" for c in row] for row in rows])
-    fillable = np.array([[c in "XdTt~-" for c in row] for row in rows])
-    ledge = np.array([[c == "r" for c in row] for row in rows])
-    for _ in range(4):
-        near = np.zeros_like(rock)
-        near[1:] |= rock[:-1] | ledge[:-1]
-        near[:-1] |= rock[1:] | ledge[1:]
-        near[:, 1:] |= rock[:, :-1] | ledge[:, :-1]
-        near[:, :-1] |= rock[:, 1:] | ledge[:, 1:]
-        ledge |= near & fillable
-    return np.kron(ledge, np.ones((TILE, TILE), dtype=bool))
-
-
 def path_mask(rows: list[str], symbols: str, dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """The given cells as one surface, its corners rounded and its edge wobbled so it reads as laid or trodden by hand."""
+    """The given cells as one surface, its corners rounded and its edge wobbled so it reads as laid by hand."""
     cells = np.array([[c in symbols for c in row] for row in rows])
     mask = np.kron(cells, np.ones((TILE, TILE), dtype=bool)).astype(float)
     radius = dials["path_round"]
@@ -145,18 +128,6 @@ def path_mask(rows: list[str], symbols: str, dials: dict, rng: np.random.Generat
     return mask + wobble > 0.5
 
 
-def dirt(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, dials: dict, rng: np.random.Generator) -> None:
-    """Trodden earth: the mid shade with small stones in the dark and light shades and a dark rim along the edge."""
-    inner = mask.copy()
-    inner[1:] &= mask[:-1]
-    inner[:-1] &= mask[1:]
-    inner[:, 1:] &= mask[:, :-1]
-    inner[:, :-1] &= mask[:, 1:]
-    img[mask] = shades[1]
-    img[mask & ~inner] = shades[0]
-    speckle(img, inner, shades, dials["pebble_density"], rng)
-
-
 def speckle(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, density: float, rng: np.random.Generator) -> None:
     """Pebbles one to three pixels across in the dark and light shades, scattered over the mask."""
     ys, xs = np.nonzero(mask)
@@ -166,42 +137,6 @@ def speckle(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, density: floa
         pw, ph = rng.integers(1, 4), rng.integers(1, 3)
         block = mask[y:y + ph, x:x + pw]
         img[y:y + ph, x:x + pw][block] = shade
-
-
-def cliffs(img: np.ndarray, rows: list[str], patch: np.ndarray, rock: np.ndarray, cliff: dict, rng: np.random.Generator) -> None:
-    """Rock seen from above and a little in front: the bottom two cells of every column of cliff are its face, a lit lip
-    along the top, cracks running down, a dark foot, and a shadow cast onto whatever lies below; the rest is rough top."""
-    h, w = len(rows), len(rows[0])
-    top, face, lip, foot, crack = (hex_rgb(cliff[k]).astype(int) for k in ("top", "face", "lip", "foot", "crack"))
-    solid = np.array([[c == "^" for c in row] for row in rows])
-    below = np.vstack([solid[1:], np.ones((1, w), dtype=bool)])
-    below2 = np.vstack([below[1:], np.ones((1, w), dtype=bool)])
-    grain = rng.integers(-7, 8, (h * TILE, w * TILE, 1))
-    for y, x in zip(*np.nonzero(solid)):
-        cell = img[y * TILE:(y + 1) * TILE, x * TILE:(x + 1) * TILE]
-        lower, upper = not below[y, x], below[y, x] and not below2[y, x]
-        if not (lower or upper):
-            tones = rock[patch[y * TILE:(y + 1) * TILE, x * TILE:(x + 1) * TILE]].astype(int)
-            cell[...] = np.clip((tones + top) // 2 + grain[y * TILE:(y + 1) * TILE, x * TILE:(x + 1) * TILE], 0, 255)
-            continue
-        shade = face if upper else face * 0.82
-        cell[...] = np.clip(shade + grain[y * TILE:(y + 1) * TILE, x * TILE:(x + 1) * TILE] * 1.5, 0, 255)
-        if upper or (lower and (y == 0 or not solid[y - 1, x])):
-            cell[0:2] = lip
-            cell[2:4] = np.clip(lip * 0.7 + shade * 0.3, 0, 255)
-        for cx in rng.choice(TILE, rng.integers(1, 4), replace=False):
-            length = rng.integers(TILE // 3, TILE)
-            start = 4 if upper else 0
-            cell[start:start + length, cx] = crack
-        if lower:
-            cell[-4:] = foot
-            cell[-6:-4] = np.clip(shade * 0.6, 0, 255)
-            drop = img[(y + 1) * TILE:(y + 1) * TILE + 8, x * TILE:(x + 1) * TILE]
-            drop[...] = (drop * np.linspace(0.62, 0.95, drop.shape[0])[:, None, None]).astype(np.uint8)
-        if x == 0 or not solid[y, x - 1]:
-            cell[:, 0:2] = np.clip(cell[:, 0:2] * 0.7, 0, 255)
-        if x == w - 1 or not solid[y, x + 1]:
-            cell[:, -2:] = np.clip(cell[:, -2:] * 0.7, 0, 255)
 
 
 def flagstones(img: np.ndarray, mask: np.ndarray, stone: dict, dials: dict, rng: np.random.Generator) -> None:
@@ -257,19 +192,18 @@ def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, sh
     region[tuft.flower[sl]] = tuft.rgb[sl][tuft.flower[sl]]
 
 
-def paint(patch: np.ndarray, surface: np.ndarray, rows: list[str], palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per surface (grass and rock ledges in patches of three shades, paths as flagstones, trails as dirt,
-    cliffs as faces), pack sprigs scattered in loose clumps inside each grass patch, and along every edge sprigs of the
+def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
+    """Base fill per surface (grass in patches of three shades, paths as flagstones, the mountain from its own
+    geometry), pack sprigs scattered in loose clumps inside each grass patch, and along every edge sprigs of the
     neighbouring grass reaching across, onto the next patch, the rock, or the path, so they bleed."""
     h, w = patch.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
-    rock = np.array([hex_rgb(c) for c in palette["rock"]], dtype=np.uint8)
-    img = np.where((surface == LEDGE)[..., None], rock[patch], colours[patch, 1])
-    speckle(img, surface == LEDGE, rock, dials["speckle_density"], rng)
+    img = colours[patch, 1].copy()
     flagstones(img, surface == PATH, palette["stone"], dials, rng)
-    dirt(img, surface == TRAIL, np.array([hex_rgb(c) for c in palette["dirt"]], dtype=np.uint8), dials, rng)
-    cliffs(img, rows, patch, rock, palette["cliff"], rng)
-    speckle(img, surface == CLIFF, rock, dials["speckle_density"], rng)
+    data, rect = mountain.load()
+    peaks = mountain.paint(img, patch, data, rect, palette, dials, rng)
+    surface = np.where(peaks > 0, peaks, surface)
+    speckle(img, surface == LEDGE, np.array([hex_rgb(c) for c in palette["rock"]], dtype=np.uint8), dials["speckle_density"], rng)
     tone = surface
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
@@ -300,13 +234,9 @@ def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
     rng = np.random.default_rng(dials["seed"])
     patch = tone_field(shape, dials, rng)
     surface = np.full(shape, GRASS, dtype=np.int8)
-    surface[ledge_cells(rows)] = LEDGE
-    surface[(surface == LEDGE) & (patch == 2)] = GRASS
-    surface[cell_mask(rows, "^")] = CLIFF
     surface[path_mask(rows, "=+", dials, rng)] = PATH
-    surface[path_mask(rows, "-", dials, rng)] = TRAIL
     tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
-    return paint(patch, surface, rows, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
+    return paint(patch, surface, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
 
 
 def grassy_regions(rows: list[str], regions: dict) -> dict:
