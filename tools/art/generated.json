@@ -102,6 +102,13 @@
           "hash": "9ab078e59c8c90c5",
           "edit": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/mandrake/growing.png",
+          "prompt": "a mandrake root with a leafy top, root shaped like a small person: a young plant, half grown, leafy, no fruit or flower yet, hints of pale yellow-green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:53:12+00:00",
+          "hash": "5aeae89dfd774aa7"
         }
       }
     },
@@ -123,6 +130,13 @@
           "created": "2026-09-14T00:55:16+00:00",
           "hash": "533394e2c42b9c2d",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/carrot/growing.png",
+          "prompt": "carrots with feathery green tops: a young plant, half grown, leafy, no fruit or flower yet, hints of orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:53:47+00:00",
+          "hash": "a095e8a41bf6de95"
         }
       }
     },
@@ -144,6 +158,13 @@
           "created": "2026-09-14T00:55:40+00:00",
           "hash": "b1daaf0ab0fe6075",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/garlic/growing.png",
+          "prompt": "a garlic plant with tall flat green leaves growing straight up from a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:11:34+00:00",
+          "hash": "ab4fbed895a2d4e7"
         }
       }
     },
@@ -165,6 +186,13 @@
           "created": "2026-09-14T00:56:11+00:00",
           "hash": "5a5ac21f6d5fa61c",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/onion/growing.png",
+          "prompt": "an onion bulb with tubular green leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of golden brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:54:49+00:00",
+          "hash": "ff95bac7530671d2"
         }
       }
     },
@@ -187,6 +215,13 @@
           "hash": "4469b314230bfb66",
           "edit": "make it a small bushy sprout with several tiny leaves instead of two",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/strawberry/growing.png",
+          "prompt": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:08:25+00:00",
+          "hash": "b0984799b477bd5e"
         }
       }
     },
@@ -209,6 +244,13 @@
           "hash": "b82894d70c07ed44",
           "edit": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/peas/growing.png",
+          "prompt": "a pea vine with pods: a young plant, half grown, leafy, no fruit or flower yet, hints of green, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:55:38+00:00",
+          "hash": "8c2c9a68507b5f3d"
         }
       }
     },
@@ -231,6 +273,13 @@
           "hash": "7000c5cad8486157",
           "edit": "add a small drip of dark red blood hanging from the tip of the left leaf",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/blood_blossom/growing.png",
+          "prompt": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:09:09+00:00",
+          "hash": "7454a0b27ae08e97"
         }
       }
     },
@@ -252,6 +301,13 @@
           "created": "2026-09-14T00:57:54+00:00",
           "hash": "44eb42e67ba990f4",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/shifting_sprouts/growing.png",
+          "prompt": "a mysterious sprout: a young plant, half grown, leafy, no fruit or flower yet, hints of plain brown, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:56:45+00:00",
+          "hash": "8455044c7c08db21"
         }
       }
     },
@@ -273,6 +329,13 @@
           "created": "2026-09-14T01:04:50+00:00",
           "hash": "b04e4f898d00b9ce",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/wolfsbane/growing.png",
+          "prompt": "a tall stalk with dark lobed leaves and a few small closed deep purple buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:12:02+00:00",
+          "hash": "39b05a8ec740f08f"
         }
       }
     },
@@ -294,6 +357,13 @@
           "created": "2026-09-14T00:58:53+00:00",
           "hash": "368c84a940df0726",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/wisp_lettuce/growing.png",
+          "prompt": "a pale lettuce head glowing faintly: a young plant, half grown, leafy, no fruit or flower yet, hints of pale glowing blue-white, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:57:43+00:00",
+          "hash": "bdd17ea62f6c24de"
         }
       }
     },
@@ -316,6 +386,13 @@
           "hash": "424f8c79dee59e40",
           "edit": "reshape the two leaves into flame shapes with pointed flickering tips",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/dragon_root/growing.png",
+          "prompt": "a scaly red root with ember-orange leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of fiery red-orange, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:58:07+00:00",
+          "hash": "5e448a79a5594885"
         }
       }
     },
@@ -337,6 +414,13 @@
           "created": "2026-09-14T01:05:29+00:00",
           "hash": "c49365b1f2bdc1e3",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/tulip/growing.png",
+          "prompt": "two long upright green leaves and one small tightly closed green bud on a short stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:09:31+00:00",
+          "hash": "e6d6802deca78e48"
         }
       }
     },
@@ -358,6 +442,13 @@
           "created": "2026-09-14T01:06:12+00:00",
           "hash": "a61c1db3cf6749e0",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/daffodil/growing.png",
+          "prompt": "a clump of grassy strap leaves with one small closed pale bud on a stem, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:10:09+00:00",
+          "hash": "e91b6b2f351cd7d8"
         }
       }
     },
@@ -379,6 +470,13 @@
           "created": "2026-09-14T01:06:40+00:00",
           "hash": "8751184751a60961",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/foxglove/growing.png",
+          "prompt": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:10:43+00:00",
+          "hash": "ac71b18e060c12e3"
         }
       }
     },
@@ -401,6 +499,13 @@
           "hash": "a2d39bffd8bc7f75",
           "edit": "two faint eye shadows painted on the bud",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/grave_lily/growing.png",
+          "prompt": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:11:04+00:00",
+          "hash": "ba81573f242de20a"
         }
       }
     },
@@ -422,6 +527,13 @@
           "created": "2026-09-14T01:01:41+00:00",
           "hash": "1a378bc26d3042ce",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/sirens_bell/growing.png",
+          "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:00:05+00:00",
+          "hash": "332e6ec525df2c5c"
         }
       }
     },
@@ -444,6 +556,13 @@
           "hash": "0a7d4fac14527489",
           "edit": "add a clearly visible light blue water droplet falling from the tip of the left leaf",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/brine_bulb/growing.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a young plant, half grown, leafy, no fruit or flower yet, hints of pale sea green with salt crystals, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:00:37+00:00",
+          "hash": "bf1d90d0f225ad5a"
         }
       }
     },
@@ -466,6 +585,13 @@
           "hash": "0be5826817313156",
           "edit": "give both leaves ragged scalloped edges like bat wings",
           "approved": true
+        },
+        "growing": {
+          "file": "tools/art/raw/crops/bat_orchid/growing.png",
+          "prompt": "a black bat-shaped orchid with long whiskers: a young plant, half grown, leafy, no fruit or flower yet, hints of black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:01:13+00:00",
+          "hash": "2b068395ef14dc4c"
         }
       }
     },
@@ -487,27 +613,13 @@
           "created": "2026-09-14T01:03:07+00:00",
           "hash": "740e3af652b084e6",
           "approved": true
-        }
-      }
-    },
-    "potato": {
-      "approved": false,
-      "stages": {
-        "seed": {
-          "file": "tools/art/raw/crops/potato/seed.png",
-          "prompt": "three medium seeds, brown, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
-          "seed": 34,
-          "created": "2026-09-14T00:40:51+00:00",
-          "hash": "4df94c926b4dd3f7",
-          "approved": true
         },
-        "sprout": {
-          "file": "tools/art/raw/crops/potato/sprout.png",
-          "prompt": "a leafy potato plant: a tiny seedling with two small leaves, just emerged, hints of brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+        "growing": {
+          "file": "tools/art/raw/crops/foxtail_lily/growing.png",
+          "prompt": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T01:03:40+00:00",
-          "hash": "1d3535f770fa69e3",
-          "approved": true
+          "created": "2026-09-14T02:12:38+00:00",
+          "hash": "7347bd513941bc11"
         }
       }
     }

@@ -23,7 +23,10 @@
   "garlic": {
     "colour": "white",
     "seed": "three",
-    "final": "a garlic bulb with tall flat green leaves"
+    "final": "a garlic bulb with tall flat green leaves",
+    "stage_prompts": {
+      "growing": "a garlic plant with tall flat green leaves growing straight up from a small round mound"
+    }
   },
   "onion": {
     "colour": "golden brown",
@@ -36,6 +39,9 @@
     "final": "a strawberry bush with ripe red berries",
     "stage_notes": {
       "sprout": "make it a small bushy sprout with several tiny leaves instead of two"
+    },
+    "stage_prompts": {
+      "growing": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries"
     }
   },
   "peas": {
@@ -55,6 +61,9 @@
     },
     "anim": {
       "sprout": "drip"
+    },
+    "stage_prompts": {
+      "growing": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf"
     }
   },
   "shifting_sprouts": {
@@ -65,7 +74,10 @@
   "wolfsbane": {
     "colour": "deep purple",
     "seed": "many",
-    "final": "a tall wolfsbane plant with hooded purple flowers"
+    "final": "a tall wolfsbane plant with hooded purple flowers",
+    "stage_prompts": {
+      "growing": "a tall stalk with dark lobed leaves and a few small closed deep purple buds"
+    }
   },
   "wisp_lettuce": {
     "colour": "pale glowing blue-white",
@@ -94,17 +106,26 @@
   "tulip": {
     "colour": "pink",
     "seed": "one",
-    "final": "a pink tulip"
+    "final": "a pink tulip",
+    "stage_prompts": {
+      "growing": "two long upright green leaves and one small tightly closed green bud on a short stem"
+    }
   },
   "daffodil": {
     "colour": "yellow",
     "seed": "one",
-    "final": "a yellow daffodil"
+    "final": "a yellow daffodil",
+    "stage_prompts": {
+      "growing": "a clump of grassy strap leaves with one small closed pale bud on a stem"
+    }
   },
   "foxglove": {
     "colour": "purple-pink",
     "seed": "many",
-    "final": "a tall foxglove with purple-pink bell flowers"
+    "final": "a tall foxglove with purple-pink bell flowers",
+    "stage_prompts": {
+      "growing": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds"
+    }
   },
   "grave_lily": {
     "colour": "ghostly grey-white",
@@ -112,6 +133,9 @@
     "final": "a grey-white lily with drooping petals",
     "stage_notes": {
       "sprout": "two small black eyes and a larger black open mouth on the drooping bud"
+    },
+    "stage_prompts": {
+      "growing": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud"
     }
   },
   "sirens_bell": {
@@ -136,16 +160,14 @@
   "foxtail_lily": {
     "colour": "orange-red",
     "seed": "many",
-    "final": "a tall foxtail lily spike"
+    "final": "a tall foxtail lily spike",
+    "stage_prompts": {
+      "growing": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre"
+    }
   },
   "moonpetal": {
     "colour": "silver-white",
     "seed": "one",
     "final": "a silver-white night flower"
-  },
-  "potato": {
-    "colour": "brown",
-    "seed": "three",
-    "final": "a leafy potato plant"
   }
 }

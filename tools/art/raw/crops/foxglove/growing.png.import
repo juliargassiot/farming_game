@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2i85y7h3tqqy"
-path="res://.godot/imported/sprout.png-265c3492294ddb6f6d5f40aaa0cbd72a.ctex"
+uid="uid://3xhpcnblrhy4"
+path="res://.godot/imported/growing.png-a127f8088dd83be8d52d81329da63a43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/crops/potato/sprout.png"
-dest_files=["res://.godot/imported/sprout.png-265c3492294ddb6f6d5f40aaa0cbd72a.ctex"]
+source_file="res://tools/art/raw/crops/foxglove/growing.png"
+dest_files=["res://.godot/imported/growing.png-a127f8088dd83be8d52d81329da63a43.ctex"]
 
 [params]
 
