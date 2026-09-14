@@ -89,7 +89,7 @@ func _build_map() -> void:
 
 
 func _place_grass() -> void:
-	"""One painted ground image per region (grass and gravel paths), under everything else; the season picks the file."""
+	"""One painted ground image per region (grass and stone paths), under everything else; the season picks the file."""
 	for region: WorldMap.Region in map.regions:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.centered = false

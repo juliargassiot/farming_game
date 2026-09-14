@@ -16,7 +16,13 @@
     "edge_density": 0.6,
     "path_round": 5,
     "path_wobble": 0.12,
-    "pebble_density": 0.1
+    "stone_size": [
+      10,
+      5
+    ],
+    "stone_grain": 5,
+    "stone_light": 12,
+    "stone_shade": 14
   },
   "seasons": {
     "spring": {
@@ -40,11 +46,17 @@
         "Grass2",
         "Grass7"
       ],
-      "gravel": [
-        "#6b665c",
-        "#8a8377",
-        "#a59e90"
-      ]
+      "stone": {
+        "mortar": "#3a3436",
+        "shades": [
+          "#7a5c48",
+          "#8d6a50",
+          "#6a5a52",
+          "#55463f",
+          "#74665b",
+          "#9a7658"
+        ]
+      }
     },
     "summer": {
       "dark": [
@@ -67,11 +79,17 @@
         "Grass2",
         "Grass7"
       ],
-      "gravel": [
-        "#6b665c",
-        "#8a8377",
-        "#a59e90"
-      ]
+      "stone": {
+        "mortar": "#3a3436",
+        "shades": [
+          "#7a5c48",
+          "#8d6a50",
+          "#6a5a52",
+          "#55463f",
+          "#74665b",
+          "#9a7658"
+        ]
+      }
     },
     "autumn": {
       "dark": [
@@ -94,11 +112,17 @@
         "Grass2",
         "Grass7"
       ],
-      "gravel": [
-        "#6e6656",
-        "#8c8270",
-        "#a89c88"
-      ]
+      "stone": {
+        "mortar": "#383231",
+        "shades": [
+          "#7c5a44",
+          "#906a4c",
+          "#6d5b4f",
+          "#57463d",
+          "#77675a",
+          "#9c744f"
+        ]
+      }
     },
     "winter": {
       "dark": [
@@ -121,11 +145,17 @@
         "Grass2",
         "Grass7"
       ],
-      "gravel": [
-        "#9a9ca0",
-        "#c3c6c8",
-        "#e2e5e6"
-      ]
+      "stone": {
+        "mortar": "#55575e",
+        "shades": [
+          "#9c948c",
+          "#b0a599",
+          "#8a8684",
+          "#7a7270",
+          "#989a9c",
+          "#a89d94"
+        ]
+      }
     }
   },
   "pack": {
