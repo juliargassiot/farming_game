@@ -135,5 +135,8 @@ func _on_interact(cell: Vector2i) -> void:
 	elif map.farmable.has(cell):
 		var plot: Plot = Game.plot_at(cell)
 		var seed: CropData = Game.seed_for(Calendar.season_key(Game.day))
-		Game.money += plot.apply(plot.next_action(seed), seed)
+		var action: Plot.Action = plot.next_action(seed)
+		Game.money += plot.apply(action, seed)
+		if action == Plot.Action.PLANT:
+			Game.next_seed()
 	_refresh_plots()
