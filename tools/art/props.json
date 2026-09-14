@@ -59,5 +59,101 @@
     ],
     "outline": "single color black outline",
     "detail": "medium detail"
+  },
+  "shop_general": {
+    "prompt": "shop base edited: paint a simple apple pictogram on the hanging sign, stack two wooden crates and a barrel of red apples beside the door",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_bakery": {
+    "prompt": "shop base edited: paint a loaf of bread pictogram on the hanging sign, add a steaming pie on the window sill, pale pink shutters",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_tavern": {
+    "prompt": "shop base edited: paint a foaming beer mug pictogram on the hanging sign, stack two barrels by the wall, add a second lantern on the other side of the door",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_clinic": {
+    "prompt": "shop base edited: paint a heart with a bandage pictogram on the hanging sign, whitewash the walls pale cream, green door, a potted plant by the step",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_smithy": {
+    "prompt": "shop base edited: paint a hammer and anvil pictogram on the hanging sign, walls of dark grey stone, an anvil beside the door, the window glowing hot forge red",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_apothecary": {
+    "prompt": "shop base edited: paint a bubbling potion bottle pictogram on the hanging sign, a purple door, bundles of dried herbs hanging by the window",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_tailor": {
+    "prompt": "shop base edited: paint a needle and thread spool pictogram on the hanging sign, deep blue door and shutters, a dress form in the window",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_fishmonger": {
+    "prompt": "shop base edited: paint a fish pictogram on the hanging sign, teal door, a fishing net draped on the wall and a bucket of fish by the door",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_inn": {
+    "prompt": "shop base edited: paint a bed pictogram on the hanging sign, a welcome mat at the step, a row of small glowing lanterns along the roof edge",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_townhall": {
+    "prompt": "shop base edited: paint a shield crest pictogram on the hanging sign, a small round clock above the door, a little flag on the roof ridge, tidy trimmed ivy",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_magic": {
+    "prompt": "shop base edited: paint a crescent moon and star pictogram on the hanging sign, the window glowing violet instead of orange, a star-shaped lantern, sparkles around the door",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
+  },
+  "shop_salon": {
+    "prompt": "shop base edited: paint a scissors and comb pictogram on the hanging sign, a pink door, a striped barber pole beside the door, a mirror visible in the window",
+    "size": [
+      224,
+      192
+    ],
+    "edit_of": "shop"
   }
 }
