@@ -370,28 +370,28 @@
           "file": "tools/art/raw/crops/shifting_sprouts/ready0.png",
           "prompt": "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T02:55:12+00:00",
-          "hash": "5a165ee2499e930b"
+          "created": "2026-09-14T03:20:12+00:00",
+          "hash": "8a24da5b9afbbe9e"
         },
         "ready1": {
           "file": "tools/art/raw/crops/shifting_sprouts/ready1.png",
-          "prompt": "a Bear Sprout: a stout dark brown plant with round furry leaves like bear ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "prompt": "a Wolf Sprout: a plant shaped like a bushy wolf's tail, grey-brown fur-like fronds curving upward with a pale tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T02:55:31+00:00",
-          "hash": "d39458dbbb931573"
+          "created": "2026-09-14T03:20:51+00:00",
+          "hash": "064fd5b27ae0f175"
         },
         "ready2": {
           "file": "tools/art/raw/crops/shifting_sprouts/ready2.png",
           "prompt": "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T02:56:03+00:00",
+          "created": "2026-09-14T03:21:23+00:00",
           "hash": "a1a130585a97c79d"
         },
         "ready3": {
           "file": "tools/art/raw/crops/shifting_sprouts/ready3.png",
           "prompt": "a Raven Sprout: a glossy black plant with pointed feather-like leaves: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T02:56:39+00:00",
+          "created": "2026-09-14T03:21:50+00:00",
           "hash": "214f75bc81fcb5fe"
         }
       }
