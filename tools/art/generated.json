@@ -163,18 +163,18 @@
       "stages": {
         "seed": {
           "file": "tools/art/raw/crops/garlic/seed.png",
-          "prompt": "three medium seeds, white, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
-          "seed": 34,
-          "created": "2026-09-14T00:41:48+00:00",
-          "hash": "600117a951bb2a9c",
+          "prompt": "three medium off-white with a light yellow tint bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T04:18:32+00:00",
+          "hash": "db66622d81745470",
           "approved": true
         },
         "sprout": {
           "file": "tools/art/raw/crops/garlic/sprout.png",
-          "prompt": "a garlic bulb with tall flat green leaves: a tiny seedling with two small leaves, just emerged, hints of white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T00:55:40+00:00",
-          "hash": "b1daaf0ab0fe6075",
+          "prompt": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 66,
+          "created": "2026-09-14T04:20:26+00:00",
+          "hash": "43c5c30b400e8f57",
           "approved": true
         },
         "growing": {
@@ -208,10 +208,10 @@
         },
         "sprout": {
           "file": "tools/art/raw/crops/onion/sprout.png",
-          "prompt": "an onion bulb with tubular green leaves: a tiny seedling with two small leaves, just emerged, hints of golden brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T00:56:11+00:00",
-          "hash": "5a5ac21f6d5fa61c",
+          "prompt": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T04:19:39+00:00",
+          "hash": "6b0f8c253311f495",
           "approved": true
         },
         "growing": {
