@@ -4,12 +4,19 @@
     "assets/tiles/ground.tres": {
       "atlas": "assets/tiles/ground.png",
       "tile": 32,
-      "columns": 8,
+      "columns": 22,
       "rows": 1,
       "solid": [
         3,
         4,
-        6
+        6,
+        9,
+        10,
+        11,
+        14,
+        16,
+        17,
+        20
       ]
     },
     "assets/tiles/crops.tres": {

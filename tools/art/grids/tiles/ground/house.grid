@@ -1,0 +1,22 @@
+@out assets/tiles/ground.png
+@scale 2
+@at 20 0
+@o #6a3f2a
+@w #caa27a
+@b #8a5a3a
+oooooooooooooooo
+owwwwwwwwwwwwwwo
+owbwwwwwwwwwwbwo
+owwwwwwwwwwwwwwo
+owwwwwwwwwwwwwwo
+obbbbbbbbbbbbbbo
+owwwwwwwwwwwwwwo
+owwwwwwwwwwwwwwo
+owwwwbwwwwbwwwwo
+owwwwwwwwwwwwwwo
+obbbbbbbbbbbbbbo
+owwwwwwwwwwwwwwo
+owwwwwwwwwwwwwwo
+owbwwwwwwwwwwbwo
+owwwwwwwwwwwwwwo
+oooooooooooooooo

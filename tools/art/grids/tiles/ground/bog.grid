@@ -1,0 +1,22 @@
+@out assets/tiles/ground.png
+@scale 2
+@at 15 0
+@b #6b6448
+@d #5a5540
+@g #77754a
+dbbbbbbgbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbbbbgbbb
+bbgbbbbbbbbbbbdb
+bdbbbbgbbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbb
+bbbbbbbbbdbbbbbb
+dbbbbbbbgbbbbbbb
+bbbbbddbbbbbbbbb
+bbbbbbdbbbbbbbbb
+dbbbbbbbbbbbbbbb
+bbbbbbbbbbbdbbbb

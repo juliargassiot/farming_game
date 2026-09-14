@@ -1,6 +1,6 @@
 extends Control
 
-const FARM_SCENE: String = "res://scenes/farm/farm.tscn"
+const WORLD_SCENE: String = "res://scenes/world/world.tscn"
 const UPDATE_EXIT_CODE: int = 42
 
 @onready var continue_button: Button = $Center/Box/Continue
@@ -63,9 +63,9 @@ func _refresh_controller_label() -> void:
 
 func _on_continue() -> void:
 	Game.load_game()
-	get_tree().change_scene_to_file(FARM_SCENE)
+	get_tree().change_scene_to_file(WORLD_SCENE)
 
 
 func _on_new_game() -> void:
 	Game.new_game()
-	get_tree().change_scene_to_file(FARM_SCENE)
+	get_tree().change_scene_to_file(WORLD_SCENE)
