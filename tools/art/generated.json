@@ -918,6 +918,114 @@
       "approved_hash": "a4d4fcf59961683d",
       "approval_note": "",
       "approved_at": "2026-09-14T04:22:46+00:00"
+    },
+    "shop_townhall": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_townhall/design.png",
+        "source": "tools/art/raw/props/shop_townhall/edits/11-98673054635e2917.png",
+        "hash": "2062f219d0c1ca38",
+        "created": "2026-09-14T14:16:43+00:00"
+      }
+    },
+    "shop_general": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_general/design.png",
+        "source": "tools/art/raw/props/shop_general/candidates/11.png",
+        "hash": "659775970f2dbfe0",
+        "created": "2026-09-14T14:16:43+00:00"
+      }
+    },
+    "shop_magic": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_magic/design.png",
+        "source": "tools/art/raw/props/shop_magic/edits/11-4fc4246b866a06f2.png",
+        "hash": "4a4455f03a3c2ca0",
+        "created": "2026-09-14T14:16:44+00:00"
+      }
+    },
+    "shop_tavern": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_tavern/design.png",
+        "source": "tools/art/raw/props/shop_tavern/edits/22-handpatched.png",
+        "hash": "f4f0a2c56be24886",
+        "created": "2026-09-14T14:16:44+00:00"
+      }
+    },
+    "shop_fishmonger": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_fishmonger/design.png",
+        "source": "tools/art/raw/props/shop_fishmonger/candidates/22.png",
+        "hash": "8a8a38c6aeac5e4d",
+        "created": "2026-09-14T14:16:44+00:00"
+      }
+    },
+    "shop_bakery": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_bakery/design.png",
+        "source": "tools/art/raw/props/shop_bakery/edits/design-a4d4fcf59961683d.png",
+        "hash": "5a096c2d1d0bcfd3",
+        "created": "2026-09-14T14:16:45+00:00"
+      }
+    },
+    "shop_clinic": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_clinic/design.png",
+        "source": "tools/art/raw/props/shop_clinic/edits/design-a4d4fcf59961683d.png",
+        "hash": "246f3f398928b88b",
+        "created": "2026-09-14T14:16:45+00:00"
+      }
+    },
+    "shop_smithy": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_smithy/design.png",
+        "source": "tools/art/raw/props/shop_smithy/edits/design-a4d4fcf59961683d.png",
+        "hash": "afeebd879cb5d095",
+        "created": "2026-09-14T14:16:45+00:00"
+      }
+    },
+    "shop_apothecary": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_apothecary/design.png",
+        "source": "tools/art/raw/props/shop_apothecary/edits/design-a4d4fcf59961683d.png",
+        "hash": "d323e14839da3967",
+        "created": "2026-09-14T14:16:46+00:00"
+      }
+    },
+    "shop_tailor": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_tailor/design.png",
+        "source": "tools/art/raw/props/shop_tailor/edits/design-a4d4fcf59961683d.png",
+        "hash": "f08f58cbfb0c514b",
+        "created": "2026-09-14T14:16:46+00:00"
+      }
+    },
+    "shop_inn": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_inn/design.png",
+        "source": "tools/art/raw/props/shop_inn/edits/design-a4d4fcf59961683d.png",
+        "hash": "a8298bbe3d612ce4",
+        "created": "2026-09-14T14:16:46+00:00"
+      }
+    },
+    "shop_salon": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/shop_salon/design.png",
+        "source": "tools/art/raw/props/shop_salon/edits/design-a4d4fcf59961683d.png",
+        "hash": "1a126766227e5189",
+        "created": "2026-09-14T14:16:46+00:00"
+      }
     }
   }
 }
