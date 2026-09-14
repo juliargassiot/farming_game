@@ -13,7 +13,10 @@
     "clump_density": 0.12,
     "stray_density": 0.008,
     "shadow": 0.35,
-    "edge_density": 0.6
+    "edge_density": 0.6,
+    "path_round": 5,
+    "path_wobble": 0.12,
+    "pebble_density": 0.1
   },
   "seasons": {
     "spring": {
@@ -36,6 +39,11 @@
         "Grass1",
         "Grass2",
         "Grass7"
+      ],
+      "gravel": [
+        "#6b665c",
+        "#8a8377",
+        "#a59e90"
       ]
     },
     "summer": {
@@ -58,6 +66,11 @@
         "Grass1",
         "Grass2",
         "Grass7"
+      ],
+      "gravel": [
+        "#6b665c",
+        "#8a8377",
+        "#a59e90"
       ]
     },
     "autumn": {
@@ -80,6 +93,11 @@
         "Grass1",
         "Grass2",
         "Grass7"
+      ],
+      "gravel": [
+        "#6e6656",
+        "#8c8270",
+        "#a89c88"
       ]
     },
     "winter": {
@@ -102,6 +120,11 @@
         "Grass1",
         "Grass2",
         "Grass7"
+      ],
+      "gravel": [
+        "#9a9ca0",
+        "#c3c6c8",
+        "#e2e5e6"
       ]
     }
   },

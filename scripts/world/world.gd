@@ -86,13 +86,13 @@ func _build_map() -> void:
 			elif prop_regions.has(prop):
 				_place_prop(Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE), prop_regions[prop], true)
 				kind = _ground_under_prop(cell)
-			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
+			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD and kind != WorldMap.Ground.PATH:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
 	_place_grass()
 
 
 func _place_grass() -> void:
-	"""One painted ground image per region, under everything else; the season picks which file it shows."""
+	"""One painted ground image per region (grass and gravel paths), under everything else; the season picks the file."""
 	for region: WorldMap.Region in map.regions:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.centered = false

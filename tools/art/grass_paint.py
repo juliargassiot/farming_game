@@ -11,8 +11,9 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
-GRASSY = set(".PTt\"s")
-TONES = ("dark", "mid", "light")
+GRASSY = set(".PTt\"s=")
+TONES = ("dark", "mid", "light", "gravel")
+PATH = 3
 
 PACK = ROOT / "tools" / "art" / "raw" / "grass_pack"
 
@@ -111,6 +112,37 @@ def tone_field(shape: tuple[int, int], dials: dict, rng: np.random.Generator) ->
     return tone
 
 
+def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndarray:
+    """Gravel wherever the map draws a path, its corners rounded and its edge wobbled so it reads as trodden ground."""
+    cells = np.array([[c == "=" for c in row] for row in rows])
+    mask = np.kron(cells, np.ones((TILE, TILE), dtype=bool)).astype(float)
+    radius = dials["path_round"]
+    kernel = np.ones(2 * radius + 1) / (2 * radius + 1)
+    for _ in range(2):
+        mask = np.apply_along_axis(lambda m: np.convolve(m, kernel, "same"), 0, mask)
+        mask = np.apply_along_axis(lambda m: np.convolve(m, kernel, "same"), 1, mask)
+    wobble = fbm(mask.shape, dials["wobble_size"], rng, 2) * dials["path_wobble"]
+    return mask + wobble > 0.5
+
+
+def pebbles(img: np.ndarray, mask: np.ndarray, shades: np.ndarray, dials: dict, rng: np.random.Generator) -> None:
+    """Small stones in the gravel's dark and light shades, one to three pixels across, and a dark rim where gravel meets grass."""
+    h, w = mask.shape
+    inner = mask.copy()
+    inner[1:] &= mask[:-1]
+    inner[:-1] &= mask[1:]
+    inner[:, 1:] &= mask[:, :-1]
+    inner[:, :-1] &= mask[:, 1:]
+    img[mask & ~inner] = shades[0]
+    ys, xs = np.nonzero(inner)
+    pick = rng.random(len(ys)) < dials["pebble_density"]
+    for y, x in zip(ys[pick], xs[pick]):
+        shade = shades[0] if rng.random() < 0.5 else shades[2]
+        pw, ph = rng.integers(1, 4), rng.integers(1, 3)
+        block = inner[y:y + ph, x:x + pw]
+        img[y:y + ph, x:x + pw][block] = shade
+
+
 def hex_rgb(text: str) -> np.ndarray:
     return np.array([int(text[i:i + 2], 16) for i in (1, 3, 5)], dtype=np.uint8)
 
@@ -133,11 +165,12 @@ def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, sh
 
 
 def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone, pack sprigs scattered in loose clumps inside each patch, and along every patch edge sprigs
-    of the neighbouring tone reaching across so the two bleed into each other; sprigs are drawn top to bottom."""
+    """Base fill per tone (gravel gets its pebbles), pack sprigs scattered in loose clumps inside each grass patch, and
+    along every edge sprigs of the neighbouring grass reaching across, onto the next patch or the path, so they bleed."""
     h, w = tone.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
     img = colours[tone, 1]
+    pebbles(img, tone == PATH, colours[PATH], dials, rng)
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
     gy, gx = np.mgrid[-2:h + 2:step, -2:w + 2:step]
@@ -154,6 +187,7 @@ def paint(tone: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.ran
     chance = np.where(bleed, dials["edge_density"], np.where(clumped, dials["clump_density"], dials["stray_density"]))
     draw = rng.random(cy.shape) < chance
     picked = np.where(bleed, near, here)
+    draw &= picked != PATH
     shapes = rng.integers(0, len(tufts), cy.shape)
     for i in np.nonzero(draw)[0]:
         _draw(img, tufts[shapes[i]], cy[i], cx[i], colours[picked[i]], dials["shadow"])
@@ -165,6 +199,7 @@ def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
     shape = (len(rows) * TILE, len(rows[0]) * TILE)
     rng = np.random.default_rng(dials["seed"])
     tone = tone_field(shape, dials, rng)
+    tone[path_mask(rows, dials, rng)] = PATH
     tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
     img = paint(tone, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
     return img
