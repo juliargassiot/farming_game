@@ -14,8 +14,8 @@ func _init() -> void:
 	crops = CropData.load_all()
 
 
-func has_save() -> bool:
-	return FileAccess.file_exists(SAVE_PATH)
+func has_save(path: String = SAVE_PATH) -> bool:
+	return FileAccess.file_exists(path)
 
 
 func new_game() -> void:
@@ -48,19 +48,19 @@ func advance_day() -> void:
 		plots[cell].advance_day()
 
 
-func save() -> void:
+func save(path: String = SAVE_PATH) -> void:
 	var saved_plots: Dictionary = {}
 	for cell: Vector2i in plots:
 		saved_plots["%d,%d" % [cell.x, cell.y]] = plots[cell].to_dict()
-	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if file != null:
 		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks}))
 
 
-func load_game() -> bool:
-	if not has_save():
+func load_game(path: String = SAVE_PATH) -> bool:
+	if not has_save(path):
 		return false
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
 	if not parsed is Dictionary:
 		return false
 	var data: Dictionary = parsed

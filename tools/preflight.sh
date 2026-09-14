@@ -21,8 +21,7 @@ OUT="$($RUN --script tools/load_scenes.gd 2>&1)" || { echo "$OUT" | grep -v -E '
 echo "$OUT" | grep -E '^scenes loaded'
 
 echo "== tests"
-OUT="$($RUN --script tools/run_tests.gd 2>&1)" || { echo "$OUT" | grep -v -E '^Godot Engine|^$'; echo "tests failed"; exit 1; }
-echo "$OUT" | grep -E '^tests:'
+tools/test.sh
 
 echo "== deck installer"
 python3 deck/steam_shortcuts.py --self-test

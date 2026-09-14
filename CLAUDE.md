@@ -6,7 +6,7 @@ The user does not understand or read code, documentation, commits, or comments. 
 
 ## Before every commit
 
-- Run `tools/preflight.sh` and never push if it fails. It imports assets, type-checks changed scripts, runs `tests/`, and checks comment density.
+- Run `tools/preflight.sh` and never push if it fails. It imports assets, type-checks changed scripts, runs `tests/` (see `tests/README.md` for what needs a test and how to write one), and checks comment density.
 - After any visual change, run `tools/screenshot.sh scenes/<system>/<scene>.tscn`, open the PNG it writes under `previews/`, and confirm the result before committing. Committed previews are how the user reviews visuals.
 
 ## Layout
