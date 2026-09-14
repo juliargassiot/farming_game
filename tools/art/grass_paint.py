@@ -13,25 +13,30 @@ TILE = 32
 GRASSY = set(".PTt\"s")
 TONES = ("dark", "mid", "light")
 
+TUFTS = (
+    ("1", "1", "1", "3"),
+    ("..1", "..1", ".1.", ".1.", ".3."),
+    ("1...1", ".1.1.", ".1.1.", "..1..", "..3.."),
+    ("1..1..1", ".1.1.1.", "..111..", "...1...", "..333.."),
+    ("1.1.1", ".1.1.", ".111.", "..3.."),
+    ("...1...", "...1...", ".1.1.1.", "..111..", "..333.."),
+    ("...1", "..1.", "1.1.", ".11.", ".3.."),
+    ("1.....1", ".1.1.1.", "..1.1..", "..111..", "...3..."),
+    (".1.", "1.1", ".1.", ".3."),
+    ("1....", ".1..1", ".1.1.", "..11.", "..3.."),
+)
 
-def _tufts(count: int = 12, seed: int = 11) -> list:
-    """Upright blades one pixel wide, two to five tall, two to four per tuft standing close together; 2 marks a tip."""
-    rng = np.random.default_rng(seed)
+
+def _stamps() -> list:
+    """Every tuft and its mirror image: 1 is a blade, 3 the darker base the blades fan out from."""
     out = []
-    for _ in range(count):
-        blades = rng.integers(2, 5)
-        columns = np.cumsum(rng.integers(1, 3, blades)) - 1
-        stamp = np.zeros((6, columns[-1] + 1), dtype=np.int8)
-        for column in columns:
-            height = rng.integers(2, 6)
-            base = 5 - rng.integers(0, 2)
-            stamp[base - height + 1:base + 1, column] = 1
-            stamp[base - height + 1, column] = 2
-        out.append(stamp)
+    for rows in TUFTS:
+        stamp = np.array([[int(c) if c != "." else 0 for c in row] for row in rows], dtype=np.int8)
+        out += [stamp, stamp[:, ::-1]]
     return out
 
 
-STAMPS = _tufts()
+STAMPS = _stamps()
 
 
 def value_noise(shape: tuple[int, int], cell: float, rng: np.random.Generator) -> np.ndarray:
@@ -64,22 +69,22 @@ def hex_rgb(text: str) -> np.ndarray:
     return np.array([int(text[i:i + 2], 16) for i in (1, 3, 5)], dtype=np.uint8)
 
 
-def _stamp(img: np.ndarray, cx: np.ndarray, cy: np.ndarray, blade: np.ndarray, tip: np.ndarray, shapes: np.ndarray) -> None:
-    """Draws one tuft per position, its blades in `blade` and their topmost pixel in `tip`."""
+def _stamp(img: np.ndarray, cx: np.ndarray, cy: np.ndarray, blade: np.ndarray, base: np.ndarray, shapes: np.ndarray) -> None:
+    """Draws one tuft per position, its bottom centre at that pixel: blades in `blade`, the base in `base`."""
     h, w = img.shape[:2]
     for k, stamp in enumerate(STAMPS):
         sel = shapes == k
         if not sel.any():
             continue
         for dy, dx in zip(*np.nonzero(stamp)):
-            py, px = cy[sel] + dy - 5, cx[sel] + dx - stamp.shape[1] // 2
+            py, px = cy[sel] + dy - stamp.shape[0] + 1, cx[sel] + dx - stamp.shape[1] // 2
             ok = (py >= 0) & (py < h) & (px >= 0) & (px < w)
-            img[py[ok], px[ok]] = (tip if stamp[dy, dx] == 2 else blade)[sel][ok]
+            img[py[ok], px[ok]] = (base if stamp[dy, dx] == 3 else blade)[sel][ok]
 
 
 def paint(tone: np.ndarray, palette: dict, dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone, upright tufts gathered into clumps inside each patch (dark wisps, lighter ones where a soft noise
-    says so), and along every patch edge tufts of the neighbouring tone reaching across so the two bleed into each other."""
+    """Base fill per tone, fanned tufts scattered in loose clumps inside each patch (dark wisps, lighter ones where a soft
+    noise says so), and along every patch edge tufts of the neighbouring tone reaching across so the two bleed into each other."""
     h, w = tone.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
     img = colours[tone, 1]
@@ -99,7 +104,7 @@ def paint(tone: np.ndarray, palette: dict, dials: dict, rng: np.random.Generator
         draw = bleed | (rng.random(n) < np.where(clumped, dials["clump_density"], dials["stray_density"]))
         picked = np.where(bleed, near, here)[draw]
         shade = np.where(bleed, 1, np.where(noise > dials["light_wisps_above"], 2, 0))[draw]
-        _stamp(img, cx[draw], cy[draw], colours[picked, shade], colours[picked, np.minimum(shade + 1, 2)], rng.integers(0, len(STAMPS), draw.sum()))
+        _stamp(img, cx[draw], cy[draw], colours[picked, shade], colours[picked, 0], rng.integers(0, len(STAMPS), draw.sum()))
     return img
 
 
