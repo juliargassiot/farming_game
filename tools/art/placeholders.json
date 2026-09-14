@@ -4,7 +4,7 @@
     "assets/tiles/ground.tres": {
       "atlas": "assets/tiles/ground.png",
       "tile": 32,
-      "columns": 25,
+      "columns": 26,
       "rows": 1,
       "solid": [
         3,
@@ -18,7 +18,8 @@
         17,
         20,
         22,
-        24
+        24,
+        25
       ]
     }
   }

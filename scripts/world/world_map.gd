@@ -3,7 +3,7 @@ extends RefCounted
 ## The overworld as data: a text grid of ground symbols and the named regions laid over it.
 
 enum Ground {
-	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK, ROOF, DOOR, BED_FOOT,
+	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK, ROOF, DOOR, BED_FOOT, BLOCK,
 }
 
 const MAP_PATH: String = "res://data/maps/world.txt"
@@ -12,11 +12,12 @@ const SYMBOLS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BED, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
 	":": Ground.BOG, "t": Ground.DEAD_TREE, "T": Ground.TREE, "\"": Ground.TALLGRASS, "+": Ground.COBBLE, "H": Ground.HOUSE, "D": Ground.DOCK,
-	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT,
+	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK, "F": Ground.BLOCK, "S": Ground.BLOCK,
 }
+const BUILDINGS: Dictionary[String, String] = {"F": "farmhouse", "S": "shop"}
 const SOLID: Array[Ground] = [
 	Ground.WATER, Ground.FENCE, Ground.BED, Ground.SEA, Ground.ROCK, Ground.CRAG, Ground.MARSH, Ground.DEAD_TREE, Ground.TREE, Ground.HOUSE,
-	Ground.ROOF, Ground.BED_FOOT,
+	Ground.ROOF, Ground.BED_FOOT, Ground.BLOCK,
 ]
 const STEPS: Array[Vector2i] = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.DOWN, Vector2i.UP]
 
@@ -54,6 +55,7 @@ var size: Vector2i = Vector2i.ZERO
 var start: Vector2i = Vector2i(-1, -1)
 var beds: Dictionary[Vector2i, bool] = {}
 var farmable: Dictionary[Vector2i, bool] = {}
+var buildings: Dictionary[Vector2i, String] = {}
 var regions: Array[Region] = []
 
 
@@ -77,6 +79,8 @@ static func from_text(text: String, region_data: Dictionary = {}) -> WorldMap:
 				map.beds[Vector2i(x, y)] = true
 			elif symbol == "s":
 				map.farmable[Vector2i(x, y)] = true
+			elif BUILDINGS.has(symbol):
+				map.buildings[Vector2i(x, y)] = BUILDINGS[symbol]
 	for region_id: String in region_data:
 		var entry: Dictionary = region_data[region_id]
 		map.regions.append(Region.from_dict(region_id, entry))

@@ -52,8 +52,8 @@ func test_world_map() -> void:
 			counts[symbol] = counts.get(symbol, 0) + 1
 			check(WorldMap.SYMBOLS.has(symbol), "unknown map symbol '%s'" % symbol)
 	check_eq(counts.get("P", 0), 1, "exactly one player start")
-	check_eq(counts.get("B", 0), 1, "exactly one bed head")
-	check_eq(counts.get("b", 0), 1, "exactly one bed foot")
+	check_eq(counts.get("B", 0), 1, "exactly one bed, the farmhouse door for now")
+	check_eq(counts.get("F", 0), 1, "exactly one farmhouse")
 	check(counts.get("s", 0) as int > 0, "some field to farm")
 
 
@@ -85,6 +85,8 @@ func test_world_regions() -> void:
 
 func test_props_json() -> void:
 	var props: Dictionary = _json("res://data/props.json")
+	for symbol: String in WorldMap.BUILDINGS:
+		check(props.has(WorldMap.BUILDINGS[symbol]), WorldMap.BUILDINGS[symbol] + " is imported")
 	check(props.has("oak") and props.has("dead"), "props.json has the oak and the dead tree")
 	for name: String in props:
 		var box: Array = props[name]
