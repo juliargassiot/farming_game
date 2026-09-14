@@ -12,10 +12,26 @@ ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
 GRASSY = set(".PTt\"s")
 TONES = ("dark", "mid", "light")
-STAMPS = [np.array([[int(c) for c in row] for row in shape], dtype=np.int8) for shape in (
-    ("01110", "11111", "12221", "00000"), ("00110", "01111", "12221", "00200"), ("01100", "11110", "12210", "00000"),
-    ("01110", "11111", "02221", "00000"), ("01010", "11111", "02220", "00000"), ("00110", "01110", "02200", "00000"),
-)]
+
+
+def _tufts(count: int = 12, seed: int = 11) -> list:
+    """Upright blades one pixel wide, two to five tall, two to four per tuft standing close together; 2 marks a tip."""
+    rng = np.random.default_rng(seed)
+    out = []
+    for _ in range(count):
+        blades = rng.integers(2, 5)
+        columns = np.cumsum(rng.integers(1, 3, blades)) - 1
+        stamp = np.zeros((6, columns[-1] + 1), dtype=np.int8)
+        for column in columns:
+            height = rng.integers(2, 6)
+            base = 5 - rng.integers(0, 2)
+            stamp[base - height + 1:base + 1, column] = 1
+            stamp[base - height + 1, column] = 2
+        out.append(stamp)
+    return out
+
+
+STAMPS = _tufts()
 
 
 def value_noise(shape: tuple[int, int], cell: float, rng: np.random.Generator) -> np.ndarray:
@@ -48,26 +64,27 @@ def hex_rgb(text: str) -> np.ndarray:
     return np.array([int(text[i:i + 2], 16) for i in (1, 3, 5)], dtype=np.uint8)
 
 
-def _stamp(img: np.ndarray, cx: np.ndarray, cy: np.ndarray, top: np.ndarray, under: np.ndarray, shapes: np.ndarray) -> None:
-    """Draws one leaf cluster per position: its upper pixels in `top`, its underside in `under`."""
+def _stamp(img: np.ndarray, cx: np.ndarray, cy: np.ndarray, blade: np.ndarray, tip: np.ndarray, shapes: np.ndarray) -> None:
+    """Draws one tuft per position, its blades in `blade` and their topmost pixel in `tip`."""
     h, w = img.shape[:2]
     for k, stamp in enumerate(STAMPS):
         sel = shapes == k
         if not sel.any():
             continue
         for dy, dx in zip(*np.nonzero(stamp)):
-            py, px = cy[sel] + dy - 1, cx[sel] + dx - 2
+            py, px = cy[sel] + dy - 5, cx[sel] + dx - stamp.shape[1] // 2
             ok = (py >= 0) & (py < h) & (px >= 0) & (px < w)
-            img[py[ok], px[ok]] = (under if stamp[dy, dx] == 2 else top)[sel][ok]
+            img[py[ok], px[ok]] = (tip if stamp[dy, dx] == 2 else blade)[sel][ok]
 
 
 def paint(tone: np.ndarray, palette: dict, dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Base fill per tone, leaf clusters scattered inside each patch shaded by a soft noise, and along every patch edge
-    clusters of the neighbouring tone reaching across so the two bleed into each other."""
+    """Base fill per tone, upright tufts gathered into clumps inside each patch (dark wisps, lighter ones where a soft noise
+    says so), and along every patch edge tufts of the neighbouring tone reaching across so the two bleed into each other."""
     h, w = tone.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
     img = colours[tone, 1]
     shade_noise = fbm(tone.shape, dials["shade_size"], rng, 2)
+    clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
     xs = np.arange(-2, w + 2, step)
     for row, gy in enumerate(np.arange(-2, h + 2, step)):
@@ -78,11 +95,11 @@ def paint(tone: np.ndarray, palette: dict, dials: dict, rng: np.random.Generator
         near = tone[np.clip(cy + rng.integers(-reach, reach + 1, n), 0, h - 1), np.clip(cx + rng.integers(-reach, reach + 1, n), 0, w - 1)]
         noise = shade_noise[iy, ix]
         bleed = near != here
-        draw = bleed | (rng.random(n) < dials["stamp_density"])
+        clumped = clump_noise[iy, ix] > dials["clump_above"]
+        draw = bleed | (rng.random(n) < np.where(clumped, dials["clump_density"], dials["stray_density"]))
         picked = np.where(bleed, near, here)[draw]
-        top = np.where(bleed, 1, np.where(noise > dials["light_shade_above"], 2, 1))[draw]
-        under = np.where(rng.random(draw.sum()) < dials["underside"], 0, top)
-        _stamp(img, cx[draw], cy[draw], colours[picked, top], colours[picked, under], rng.integers(0, len(STAMPS), draw.sum()))
+        shade = np.where(bleed, 1, np.where(noise > dials["light_wisps_above"], 2, 0))[draw]
+        _stamp(img, cx[draw], cy[draw], colours[picked, shade], colours[picked, np.minimum(shade + 1, 2)], rng.integers(0, len(STAMPS), draw.sum()))
     return img
 
 
