@@ -21,13 +21,17 @@
       "reference": "sprout",
       "stages": {
         "seed": {
-          "soil": "shift"
+          "soil": "palette"
         },
         "ready": {
-          "soil": "shift",
+          "soil": "palette",
           "leaf": "luma",
-          "body": "luma"
+          "body": "palette"
         }
+      },
+      "soil_from_row": {
+        "seed": 0,
+        "ready": 20
       }
     }
   },
