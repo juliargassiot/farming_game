@@ -70,12 +70,13 @@
     "detail": "medium detail"
   },
   "shop_bakery": {
-    "prompt": "shop base edited: paint a loaf of bread pictogram on the hanging sign, add a steaming pie on the window sill, pale pink shutters",
+    "prompt": "a whimsical bakery building shaped like a giant golden croissant at dusk: the whole building is one big crescent croissant with flaky golden-brown layered segments as the walls and roof, a little arched door and round glowing windows set into the croissant, a hanging loaf sign, a small chimney puffing steam, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
+      256,
       192
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_tavern": {
     "prompt": "a big rambling two-storey tavern at dusk: wide timber frontage, a row of glowing upper windows under a long mossy roof, a big arched double door in the centre with lanterns, a hanging beer mug sign, stacked barrels along the front, a wide chimney with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
@@ -87,20 +88,22 @@
     "detail": "medium detail"
   },
   "shop_clinic": {
-    "prompt": "shop base edited: paint a heart with a bandage pictogram on the hanging sign, whitewash the walls pale cream, green door, a potted plant by the step",
+    "prompt": "a whimsical clinic building shaped like a big heart at dusk: the whole building is a rounded heart shape with pale cream plaster walls edged in dark timber, a red slate roof following the two lobes of the heart, an arched green door at the point, glowing windows in each lobe, a bandaged heart sign, a potted plant, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       224,
-      192
+      224
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_smithy": {
-    "prompt": "shop base edited: paint a hammer and anvil pictogram on the hanging sign, walls of dark grey stone, an anvil beside the door, the window glowing hot forge red",
+    "prompt": "a whimsical blacksmith building shaped like a giant iron anvil at dusk: the whole building is a huge dark iron anvil with a flat top, a horn on one side, thick base, the door and glowing forge-red windows set into the anvil body, a stone chimney with smoke, a hammer and anvil sign, tools hanging outside, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
-      192
+      256,
+      208
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_apothecary": {
     "prompt": "shop base edited: paint a bubbling potion bottle pictogram on the hanging sign, a purple door, bundles of dried herbs hanging by the window",
@@ -111,12 +114,13 @@
     "edit_of": "shop"
   },
   "shop_tailor": {
-    "prompt": "shop base edited: paint a needle and thread spool pictogram on the hanging sign, deep blue door and shutters, a dress form in the window",
+    "prompt": "a whimsical tailor building shaped like a headless dress form mannequin at dusk: the whole building is a tall dressmaker's dummy torso with a padded fabric body in deep blue with pinned patches and a measuring tape draped around it, standing on a wooden tripod stand with the door in the stand, glowing round windows in the torso, a needle and spool sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
-      192
+      192,
+      256
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_fishmonger": {
     "prompt": "a mermaid's fish shop built into a sea cave at dusk: a rocky cave mouth in a mossy grey cliff standing in shallow lagoon water, glowing teal light from inside, a driftwood counter and a hanging fish sign at the entrance, shells, coral and a fishing net on the rocks, a wooden dock plank in front, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no shadow, nothing else",
