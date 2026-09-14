@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7whjedj0o77x"
-path="res://.godot/imported/33.png-5240386403e208476245e76f5c8e6c43.ctex"
+uid="uid://suxsphc5j50q"
+path="res://.godot/imported/props-shop-candidates.png-ea974eccccac4b0583b5306caa901caa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/wall/candidates/33.png"
-dest_files=["res://.godot/imported/33.png-5240386403e208476245e76f5c8e6c43.ctex"]
+source_file="res://previews/art/props-shop-candidates.png"
+dest_files=["res://.godot/imported/props-shop-candidates.png-ea974eccccac4b0583b5306caa901caa.ctex"]
 
 [params]
 

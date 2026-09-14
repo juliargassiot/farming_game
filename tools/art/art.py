@@ -257,8 +257,8 @@ def cmd_prop_candidates(args) -> None:
     for seed in [int(x) for x in args.seeds.split(",")]:
         path = folder / f"{seed}.png"
         if not path.exists() or args.redo:
-            response = client.create_image_pixen(f"{spec['prompt']}, {specs['_style']}", tuple(spec["size"]), view="low top-down", outline="lineless",
-                                                 detail="highly detailed", seed=seed)
+            response = client.create_image_pixen(f"{spec['prompt']}, {specs['_style']}", tuple(spec["size"]), view="low top-down",
+                                                 outline=spec.get("outline", "lineless"), detail=spec.get("detail", "highly detailed"), seed=seed)
             save_png(decode_image(response["image"]), path)
         frames.append(Image.open(path).convert("RGBA"))
         print(f"{len(frames)}: {rel(path)}")

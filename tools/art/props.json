@@ -42,28 +42,22 @@
       96
     ]
   },
-  "wall": {
-    "prompt": "a seamless tile of a cottage wall, warm timber planks with dark beams, flat front view, edge to edge, no window, no door",
+  "farmhouse": {
+    "prompt": "a farmhouse: a cosy timber-framed cottage, red-brown wooden shingle roof with a chimney, warm plank walls with dark beams, an arched wooden front door at the bottom centre, small windows with shutters, clean crisp pixel art with dark outlines, flat colours, no mud, front view slightly from above, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      32,
-      32
+      320,
+      256
     ],
-    "tile": 20
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
-  "roof": {
-    "prompt": "a seamless tile of a cottage roof, overlapping red-brown wooden shingles, flat view, edge to edge",
+  "shop": {
+    "prompt": "a small village shop: a cosy timber-framed cottage, red-brown wooden shingle roof with a chimney, warm plank walls with dark beams, an arched wooden front door at the bottom centre, small windows with shutters, clean crisp pixel art with dark outlines, flat colours, no mud, front view slightly from above, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      32,
-      32
+      224,
+      192
     ],
-    "tile": 22
-  },
-  "door": {
-    "prompt": "the top half of a tall arched wooden cottage door set in a timber plank wall, dark oak planks with iron hinges, flat front view, filling the frame edge to edge",
-    "size": [
-      32,
-      32
-    ],
-    "tile": 23
+    "outline": "single color black outline",
+    "detail": "medium detail"
   }
 }
