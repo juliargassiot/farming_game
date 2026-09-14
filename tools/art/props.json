@@ -105,14 +105,6 @@
     "outline": "single color black outline",
     "detail": "medium detail"
   },
-  "shop_apothecary": {
-    "prompt": "shop base edited: paint a bubbling potion bottle pictogram on the hanging sign, a purple door, bundles of dried herbs hanging by the window",
-    "size": [
-      224,
-      192
-    ],
-    "edit_of": "shop"
-  },
   "shop_tailor": {
     "prompt": "a whimsical tailor building shaped like a headless dress form mannequin at dusk: the whole building is a tall dressmaker's dummy torso with a padded fabric body in deep blue with pinned patches and a measuring tape draped around it, standing on a wooden tripod stand with the door in the stand, glowing round windows in the torso, a needle and spool sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
@@ -132,12 +124,13 @@
     "detail": "medium detail"
   },
   "shop_inn": {
-    "prompt": "shop base edited: paint a bed pictogram on the hanging sign, a welcome mat at the step, a row of small glowing lanterns along the roof edge",
+    "prompt": "a very large grand village inn at dusk, bigger than a town hall: the building is shaped like an upside-down U seen from the front, a long tall main block across the back with two wings coming forward on the left and right, leaving an open cobbled courtyard between the wings at the front centre, three storeys of glowing windows, a big arched entrance at the back of the courtyard, lanterns, a hanging bed sign, chimneys with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
-      192
+      256,
+      256
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_townhall": {
     "prompt": "a grand two-storey village town hall at dusk: two full rows of glowing windows, a central gable with a round clock, a small bell tower on the roof ridge with a flag, wide stone steps up to double arched doors, lanterns either side, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
@@ -158,11 +151,12 @@
     "detail": "medium detail"
   },
   "shop_salon": {
-    "prompt": "shop base edited: paint a scissors and comb pictogram on the hanging sign, a pink door, a striped barber pole beside the door, a mirror visible in the window",
+    "prompt": "a village hair salon at dusk: a squat building with a flat square roofline and no pointed gable, a striped awning over a wide glowing window showing a mirror inside, a pink door, and perched on top of the flat roof a huge pair of scissors, a big comb and a round hand mirror as the sign, a barber pole beside the door, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       224,
-      192
+      224
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   }
 }

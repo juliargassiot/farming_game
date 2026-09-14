@@ -70,7 +70,7 @@
     "grass_soil": {
       "approved": true,
       "approved_hash": "6eace0902fd973e6",
-      "imported": "2026-09-13T23:46:43+00:00",
+      "imported": "2026-09-14T14:40:42+00:00",
       "design": {
         "file": "tools/art/raw/tiles/grass_soil",
         "preview": "previews/art/grass_soil-design.png",
@@ -993,15 +993,6 @@
         "source": "tools/art/raw/props/shop_smithy/edits/22-be728b82f8afe7c5.png",
         "hash": "c2f0e8cacb8c6ce7",
         "created": "2026-09-14T14:34:34+00:00"
-      }
-    },
-    "shop_apothecary": {
-      "approved": false,
-      "design": {
-        "file": "tools/art/raw/props/shop_apothecary/design.png",
-        "source": "tools/art/raw/props/shop_apothecary/edits/design-a4d4fcf59961683d.png",
-        "hash": "d323e14839da3967",
-        "created": "2026-09-14T14:16:46+00:00"
       }
     },
     "shop_tailor": {
