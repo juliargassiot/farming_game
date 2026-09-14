@@ -61,12 +61,13 @@
     "detail": "medium detail"
   },
   "shop_general": {
-    "prompt": "shop base edited: paint a simple apple pictogram on the hanging sign, stack two wooden crates and a barrel of red apples beside the door",
+    "prompt": "a wide low general store at dusk: a long single-storey shopfront twice as wide as it is tall, a broad striped awning over a row of three glowing shop windows, a central door, crates, sacks and a barrel of apples along the front, a hanging apple sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
-      192
+      256,
+      160
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_bakery": {
     "prompt": "shop base edited: paint a loaf of bread pictogram on the hanging sign, add a steaming pie on the window sill, pale pink shutters",
@@ -77,12 +78,13 @@
     "edit_of": "shop"
   },
   "shop_tavern": {
-    "prompt": "shop base edited: paint a foaming beer mug pictogram on the hanging sign, stack two barrels by the wall, add a second lantern on the other side of the door",
+    "prompt": "a big rambling two-storey tavern at dusk: wide timber frontage, a row of glowing upper windows under a long mossy roof, a big arched double door in the centre with lanterns, a hanging beer mug sign, stacked barrels along the front, a wide chimney with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      224,
-      192
+      256,
+      256
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_clinic": {
     "prompt": "shop base edited: paint a heart with a bandage pictogram on the hanging sign, whitewash the walls pale cream, green door, a potted plant by the step",
@@ -117,12 +119,13 @@
     "edit_of": "shop"
   },
   "shop_fishmonger": {
-    "prompt": "shop base edited: paint a fish pictogram on the hanging sign, teal door, a fishing net draped on the wall and a bucket of fish by the door",
+    "prompt": "a mermaid's fish shop built into a sea cave at dusk: a rocky cave mouth in a mossy grey cliff standing in shallow lagoon water, glowing teal light from inside, a driftwood counter and a hanging fish sign at the entrance, shells, coral and a fishing net on the rocks, a wooden dock plank in front, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no shadow, nothing else",
     "size": [
-      224,
+      256,
       192
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_inn": {
     "prompt": "shop base edited: paint a bed pictogram on the hanging sign, a welcome mat at the step, a row of small glowing lanterns along the roof edge",
@@ -133,20 +136,22 @@
     "edit_of": "shop"
   },
   "shop_townhall": {
-    "prompt": "shop base edited: paint a shield crest pictogram on the hanging sign, a small round clock above the door, a little flag on the roof ridge, tidy trimmed ivy",
+    "prompt": "a grand two-storey village town hall at dusk: two full rows of glowing windows, a central gable with a round clock, a small bell tower on the roof ridge with a flag, wide stone steps up to double arched doors, lanterns either side, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       224,
-      192
+      256
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_magic": {
-    "prompt": "shop base edited: paint a crescent moon and star pictogram on the hanging sign, the window glowing violet instead of orange, a star-shaped lantern, sparkles around the door",
+    "prompt": "a whimsical magic shop shaped like a crescent moon at dusk: the whole building curves like a crescent moon with a pointed top horn, purple-blue slate roof tiles, round porthole windows glowing violet, a star-shaped lantern, sparkles, a crooked little door at the base, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       224,
-      192
+      256
     ],
-    "edit_of": "shop"
+    "outline": "single color black outline",
+    "detail": "medium detail"
   },
   "shop_salon": {
     "prompt": "shop base edited: paint a scissors and comb pictogram on the hanging sign, a pink door, a striped barber pole beside the door, a mirror visible in the window",
