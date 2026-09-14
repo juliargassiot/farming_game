@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnxboqko6irhl"
-path="res://.godot/imported/design.png-3eca910afd927a4a4e65e5a821dd63cb.ctex"
+uid="uid://cr4asbe2u3bis"
+path="res://.godot/imported/props-cliff_end-design.png-82e16b33a12c175af740a8514eb09f2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/cliff_face_b/design.png"
-dest_files=["res://.godot/imported/design.png-3eca910afd927a4a4e65e5a821dd63cb.ctex"]
+source_file="res://previews/art/props-cliff_end-design.png"
+dest_files=["res://.godot/imported/props-cliff_end-design.png-82e16b33a12c175af740a8514eb09f2e.ctex"]
 
 [params]
 
