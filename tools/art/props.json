@@ -1,162 +1,211 @@
 {
-  "_style": "pixel art game sprite, low top-down view, lineless, alone, centered, no ground, no shadow, no base, nothing else in frame",
-  "oak": {
-    "prompt": "a broad leafy oak tree, round dense green canopy, thick brown trunk with roots, full tree from the top of the canopy to the base of the trunk",
-    "size": [
-      64,
-      96
-    ]
-  },
-  "pine": {
-    "prompt": "a tall conifer pine tree, layered dark green boughs narrowing to a point, straight brown trunk visible at the bottom, full tree from the tip to the base",
-    "size": [
-      64,
-      96
-    ]
-  },
-  "thorn": {
-    "prompt": "a gnarled haunted thorn tree, twisted black branches, sparse dark purple leaves, crooked trunk, eerie, full tree from the top branches to the base",
-    "size": [
-      64,
-      96
-    ]
-  },
-  "dead": {
-    "prompt": "a dead bare swamp tree, grey-brown bark, no leaves, a few crooked branches, hanging wisps of moss, full tree from the top to the base",
-    "size": [
-      32,
-      64
-    ]
-  },
-  "coconut": {
-    "prompt": "a tropical coconut palm tree, slender curved brown trunk with ring marks, a crown of long green fronds, a cluster of brown coconuts under the fronds, full tree from the fronds to the base",
-    "size": [
-      64,
-      96
-    ]
-  },
-  "willow": {
-    "prompt": "a weeping willow tree with purple-tinted bark, long drooping pale green branches hanging like curtains, a mystical witchy feel, full tree from the crown to the base",
-    "size": [
-      64,
-      96
-    ]
-  },
-  "farmhouse": {
-    "prompt": "a spooky but cozy farmhouse at dusk: dark weathered timber walls with heavy crooked beams, a steep crooked gabled roof of mossy dark shingles with a small dormer window, a leaning stone chimney with a wisp of smoke, an arched wooden door with a glowing amber lantern hanging beside it, windows glowing warm orange from inside, window boxes with autumn flowers, thick ivy vines climbing across the front wall and spreading over the roof, moss on the shingles, a crooked little porch step, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, perfectly symmetrical facade, no side wall visible, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop": {
-    "prompt": "a small spooky but cozy village shop at dusk: dark weathered timber walls with crooked beams, a steep mossy dark shingle roof, a stone chimney, an arched wooden door in the centre with a glowing amber lantern beside it, a wide shop window glowing warm orange, a blank hanging wooden sign above the door, ivy vines on the front wall, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      224,
-      192
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_general": {
-    "prompt": "a wide low general store at dusk: a long single-storey shopfront twice as wide as it is tall, a broad striped awning over a row of three glowing shop windows, a central door, crates, sacks and a barrel of apples along the front, a hanging apple sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      160
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_bakery": {
-    "prompt": "a whimsical bakery building shaped like a giant golden croissant at dusk: the whole building is one big crescent croissant with flaky golden-brown layered segments as the walls and roof, a little arched door and round glowing windows set into the croissant, a hanging loaf sign, a small chimney puffing steam, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      192
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_tavern": {
-    "prompt": "a big rambling two-storey tavern at dusk: wide timber frontage, a row of glowing upper windows under a long mossy roof, a big arched double door in the centre with lanterns, a hanging beer mug sign, stacked barrels along the front, a wide chimney with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_clinic": {
-    "prompt": "a whimsical clinic building shaped like a big heart at dusk: the whole building is a rounded heart shape with pale cream plaster walls edged in dark timber, a red slate roof following the two lobes of the heart, an arched green door at the point, glowing windows in each lobe, a bandaged heart sign, a potted plant, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      224,
-      224
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_smithy": {
-    "prompt": "a whimsical blacksmith building shaped like a giant iron anvil at dusk: the whole building is a huge dark iron anvil with a flat top, a horn on one side, thick base, the door and glowing forge-red windows set into the anvil body, a stone chimney with smoke, a hammer and anvil sign, tools hanging outside, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      208
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_tailor": {
-    "prompt": "a whimsical tailor building shaped like a headless dress form mannequin at dusk: the whole building is a tall dressmaker's dummy torso with a padded fabric body in deep blue with pinned patches and a measuring tape draped around it, standing on a wooden tripod stand with the door in the stand, glowing round windows in the torso, a needle and spool sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      192,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_fishmonger": {
-    "prompt": "a mermaid's fish shop built into a sea cave at dusk: a rocky cave mouth in a mossy grey cliff standing in shallow lagoon water, glowing teal light from inside, a driftwood counter and a hanging fish sign at the entrance, shells, coral and a fishing net on the rocks, a wooden dock plank in front, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no shadow, nothing else",
-    "size": [
-      256,
-      192
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_inn": {
-    "prompt": "a very large grand village inn at dusk, one single continuous building shaped like an upside-down U: a long straight range across the back and a wing coming forward at each end, the roof runs unbroken from the left wing across the back range to the right wing with the same ridge height everywhere and no separate blocks, like two mirrored L shapes joined in the middle, an open cobbled courtyard between the wings at the front centre with the big arched entrance at its back wall, three storeys of glowing windows, lanterns, a hanging bed sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      256,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_townhall": {
-    "prompt": "a grand two-storey village town hall at dusk: two full rows of glowing windows, a central gable with a round clock, a small bell tower on the roof ridge with a flag, wide stone steps up to double arched doors, lanterns either side, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      224,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_magic": {
-    "prompt": "a whimsical magic shop shaped like a crescent moon at dusk: the whole building curves like a crescent moon with a pointed top horn, purple-blue slate roof tiles, round porthole windows glowing violet, a star-shaped lantern, sparkles, a crooked little door at the base, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      224,
-      256
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  },
-  "shop_salon": {
-    "prompt": "a village hair salon at dusk: a squat building with a flat square roofline and no pointed gable, a striped awning over a wide glowing window showing a mirror inside, a pink door, and perched on top of the flat roof a huge pair of scissors, a big comb and a round hand mirror as the sign, a barber pole beside the door, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
-    "size": [
-      224,
-      224
-    ],
-    "outline": "single color black outline",
-    "detail": "medium detail"
-  }
+ "_style": "pixel art game sprite, low top-down view, lineless, alone, centered, no ground, no shadow, no base, nothing else in frame",
+ "oak": {
+  "prompt": "a broad leafy oak tree, round dense green canopy, thick brown trunk with roots, full tree from the top of the canopy to the base of the trunk",
+  "size": [
+   64,
+   96
+  ]
+ },
+ "pine": {
+  "prompt": "a tall conifer pine tree, layered dark green boughs narrowing to a point, straight brown trunk visible at the bottom, full tree from the tip to the base",
+  "size": [
+   64,
+   96
+  ]
+ },
+ "thorn": {
+  "prompt": "a gnarled haunted thorn tree, twisted black branches, sparse dark purple leaves, crooked trunk, eerie, full tree from the top branches to the base",
+  "size": [
+   64,
+   96
+  ]
+ },
+ "dead": {
+  "prompt": "a dead bare swamp tree, grey-brown bark, no leaves, a few crooked branches, hanging wisps of moss, full tree from the top to the base",
+  "size": [
+   32,
+   64
+  ]
+ },
+ "coconut": {
+  "prompt": "a tropical coconut palm tree, slender curved brown trunk with ring marks, a crown of long green fronds, a cluster of brown coconuts under the fronds, full tree from the fronds to the base",
+  "size": [
+   64,
+   96
+  ]
+ },
+ "willow": {
+  "prompt": "a weeping willow tree with purple-tinted bark, long drooping pale green branches hanging like curtains, a mystical witchy feel, full tree from the crown to the base",
+  "size": [
+   64,
+   96
+  ]
+ },
+ "farmhouse": {
+  "prompt": "a spooky but cozy farmhouse at dusk: dark weathered timber walls with heavy crooked beams, a steep crooked gabled roof of mossy dark shingles with a small dormer window, a leaning stone chimney with a wisp of smoke, an arched wooden door with a glowing amber lantern hanging beside it, windows glowing warm orange from inside, window boxes with autumn flowers, thick ivy vines climbing across the front wall and spreading over the roof, moss on the shingles, a crooked little porch step, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, perfectly symmetrical facade, no side wall visible, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop": {
+  "prompt": "a small spooky but cozy village shop at dusk: dark weathered timber walls with crooked beams, a steep mossy dark shingle roof, a stone chimney, an arched wooden door in the centre with a glowing amber lantern beside it, a wide shop window glowing warm orange, a blank hanging wooden sign above the door, ivy vines on the front wall, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   224,
+   192
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_general": {
+  "prompt": "a wide low general store at dusk: a long single-storey shopfront twice as wide as it is tall, a broad striped awning over a row of three glowing shop windows, a central door, crates, sacks and a barrel of apples along the front, a hanging apple sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   160
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_bakery": {
+  "prompt": "a whimsical bakery building shaped like a giant golden croissant at dusk: the whole building is one big crescent croissant with flaky golden-brown layered segments as the walls and roof, a little arched door and round glowing windows set into the croissant, a hanging loaf sign, a small chimney puffing steam, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   192
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_tavern": {
+  "prompt": "a big rambling two-storey tavern at dusk: wide timber frontage, a row of glowing upper windows under a long mossy roof, a big arched double door in the centre with lanterns, a hanging beer mug sign, stacked barrels along the front, a wide chimney with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_clinic": {
+  "prompt": "a whimsical clinic building shaped like a big heart at dusk: the whole building is a rounded heart shape with pale cream plaster walls edged in dark timber, a red slate roof following the two lobes of the heart, an arched green door at the point, glowing windows in each lobe, a bandaged heart sign, a potted plant, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   224,
+   224
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_smithy": {
+  "prompt": "a whimsical blacksmith building shaped like a giant iron anvil at dusk: the whole building is a huge dark iron anvil with a flat top, a horn on one side, thick base, the door and glowing forge-red windows set into the anvil body, a stone chimney with smoke, a hammer and anvil sign, tools hanging outside, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   208
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_tailor": {
+  "prompt": "a whimsical tailor building shaped like a headless dress form mannequin at dusk: the whole building is a tall dressmaker's dummy torso with a padded fabric body in deep blue with pinned patches and a measuring tape draped around it, standing on a wooden tripod stand with the door in the stand, glowing round windows in the torso, a needle and spool sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   192,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_fishmonger": {
+  "prompt": "a mermaid's fish shop built into a sea cave at dusk: a rocky cave mouth in a mossy grey cliff standing in shallow lagoon water, glowing teal light from inside, a driftwood counter and a hanging fish sign at the entrance, shells, coral and a fishing net on the rocks, a wooden dock plank in front, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no shadow, nothing else",
+  "size": [
+   256,
+   192
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_inn": {
+  "prompt": "a very large grand village inn at dusk, one single continuous building shaped like an upside-down U: a long straight range across the back and a wing coming forward at each end, the roof runs unbroken from the left wing across the back range to the right wing with the same ridge height everywhere and no separate blocks, like two mirrored L shapes joined in the middle, an open cobbled courtyard between the wings at the front centre with the big arched entrance at its back wall, three storeys of glowing windows, lanterns, a hanging bed sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   256,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_townhall": {
+  "prompt": "a grand two-storey village town hall at dusk: two full rows of glowing windows, a central gable with a round clock, a small bell tower on the roof ridge with a flag, wide stone steps up to double arched doors, lanterns either side, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   224,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_magic": {
+  "prompt": "a whimsical magic shop shaped like a crescent moon at dusk: the whole building curves like a crescent moon with a pointed top horn, purple-blue slate roof tiles, round porthole windows glowing violet, a star-shaped lantern, sparkles, a crooked little door at the base, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, no side wall visible, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   224,
+   256
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "shop_salon": {
+  "prompt": "a village hair salon at dusk: a squat building with a flat square roofline and no pointed gable, a striped awning over a wide glowing window showing a mirror inside, a pink door, and perched on top of the flat roof a huge pair of scissors, a big comb and a round hand mirror as the sign, a barber pole beside the door, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+  "size": [
+   224,
+   224
+  ],
+  "outline": "single color black outline",
+  "detail": "medium detail"
+ },
+ "cliff_face": {
+  "prompt": "a segment of rugged mountain cliff face seen from the front and slightly above, stacked horizontal strata of tan and warm brown stone with vertical basalt-column cracks, a lighter worn ledge lip along the top edge, dark shadowed foot, irregular broken rocky ends, medium grey rock with brown undertones",
+  "size": [
+   96,
+   64
+  ]
+ },
+ "cliff_face_tall": {
+  "prompt": "a tall segment of rugged mountain cliff face seen from the front and slightly above, many stacked strata of grey-brown stone and tan sandstone slabs with vertical cracks, a lighter worn ledge lip along the top edge, dark shadowed foot, irregular broken rocky ends",
+  "size": [
+   96,
+   96
+  ]
+ },
+ "cliff_end": {
+  "prompt": "the crumbling end of a mountain cliff face seen from the front and slightly above, stacked grey-brown strata tapering down into a pile of fallen slabs and rubble on the right side, lighter ledge lip along the top, dark shadowed foot",
+  "size": [
+   64,
+   64
+  ]
+ },
+ "boulder_small": {
+  "prompt": "a small rounded grey granite boulder with brown undertones, a few cracks, lit from the top left with a shadowed underside, sitting on the ground",
+  "size": [
+   32,
+   32
+  ]
+ },
+ "boulder_medium": {
+  "prompt": "a medium rounded grey granite boulder with brown undertones and moss in its cracks, lit from the top left with a shadowed underside, sitting on the ground",
+  "size": [
+   48,
+   48
+  ]
+ },
+ "boulder_large": {
+  "prompt": "a large cluster of rounded grey granite boulders with brown undertones piled together, cracks and a little moss, lit from the top left with shadowed undersides, sitting on the ground",
+  "size": [
+   96,
+   64
+  ]
+ },
+ "crag": {
+  "prompt": "a jagged pointed rock spire of dark grey stone with a cap of white snow on its tip, sharp cracked faces, lit from the top left",
+  "size": [
+   32,
+   64
+  ]
+ }
 }
