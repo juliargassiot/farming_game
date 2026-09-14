@@ -56,7 +56,7 @@ def frame_size(body: dict) -> tuple[int, int]:
 
 
 def record_for(generated: dict, kind: str, name: str) -> dict:
-    return generated[kind].setdefault(name, {"approved": False})
+    return generated.setdefault(kind, {}).setdefault(name, {"approved": False})
 
 
 def require_approved(record: dict, name: str) -> None:
