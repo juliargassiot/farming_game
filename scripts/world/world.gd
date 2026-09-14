@@ -9,19 +9,25 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 	"autumn": "res://assets/tiles/grass_soil_autumn.tres", "winter": "res://assets/tiles/grass_soil_winter.tres",
 }
 
+const PROPS: Texture2D = preload("res://assets/tiles/props.png")
+const PROP_REGIONS: Dictionary[WorldMap.Ground, Rect2i] = {
+	WorldMap.Ground.TREE: Rect2i(0, 0, 64, 96), WorldMap.Ground.DEAD_TREE: Rect2i(64, 0, 32, 64),
+}
+
 @export_file("*.txt") var map_path: String = WorldMap.MAP_PATH
 @export var grass_preset: String = ""
 
 var map: WorldMap
 var season: String = ""
 
-@onready var terrain: TileMapLayer = $Terrain
-@onready var tilled_layer: TileMapLayer = $Tilled
-@onready var ground: TileMapLayer = $Ground
-@onready var wet: TileMapLayer = $Wet
-@onready var crop_layer: TileMapLayer = $Crops
-@onready var player: Player = $Player
-@onready var camera: Camera2D = $Player/Camera
+@onready var terrain: TileMapLayer = $Map/Terrain
+@onready var tilled_layer: TileMapLayer = $Map/Tilled
+@onready var ground: TileMapLayer = $Map/Ground
+@onready var wet: TileMapLayer = $Map/Wet
+@onready var crop_layer: TileMapLayer = $Map/Crops
+@onready var scenery: Node2D = $Scenery
+@onready var player: Player = $Scenery/Player
+@onready var camera: Camera2D = $Scenery/Player/Camera
 @onready var status: Label = $HUD/Status
 @onready var region_label: Label = $HUD/Region
 @onready var hint: Label = $HUD/Hint
@@ -58,6 +64,21 @@ func _build_map() -> void:
 			var kind: WorldMap.Ground = map.ground_at(cell)
 			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
+			if PROP_REGIONS.has(kind):
+				_place_prop(cell, PROP_REGIONS[kind])
+
+
+func _place_prop(cell: Vector2i, region: Rect2i) -> void:
+	"""A sprite standing on its cell, sorted with the farmer by the y of its base."""
+	var texture: AtlasTexture = AtlasTexture.new()
+	texture.atlas = PROPS
+	texture.region = region
+	var sprite: Sprite2D = Sprite2D.new()
+	sprite.texture = texture
+	sprite.centered = false
+	sprite.offset = Vector2(-region.size.x / 2.0, -region.size.y)
+	sprite.position = Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE)
+	scenery.add_child(sprite)
 
 
 func _refresh_plots() -> void:
@@ -110,8 +131,8 @@ func _on_entered_cell(cell: Vector2i, direction: Vector2i) -> void:
 	if not TerrainPainter.is_textured(terrain.get_cell_atlas_coords(under)):
 		return
 	var sway_direction: float = signf(direction.x) if direction.x != 0 else (1.0 if (cell.x + cell.y) % 2 == 0 else -1.0)
-	var sway: GrassSway = GrassSway.spawn(self, terrain.tile_set, Vector2i.ZERO, terrain.get_cell_atlas_coords(under), terrain.to_global(terrain.map_to_local(under)), sway_direction)
-	move_child(sway, terrain.get_index() + 1)
+	var sway: GrassSway = GrassSway.spawn($Map, terrain.tile_set, Vector2i.ZERO, terrain.get_cell_atlas_coords(under), terrain.to_global(terrain.map_to_local(under)), sway_direction)
+	$Map.move_child(sway, terrain.get_index() + 1)
 
 
 func _show_region(cell: Vector2i) -> void:
@@ -120,7 +141,7 @@ func _show_region(cell: Vector2i) -> void:
 
 
 func _hint_for(cell: Vector2i) -> String:
-	if cell == map.bed:
+	if map.beds.has(cell):
 		return "A: Sleep"
 	if not map.farmable.has(cell):
 		return "B: Save and quit to title"
@@ -129,7 +150,7 @@ func _hint_for(cell: Vector2i) -> String:
 
 
 func _on_interact(cell: Vector2i) -> void:
-	if cell == map.bed:
+	if map.beds.has(cell):
 		Game.advance_day()
 		Game.save()
 	elif map.farmable.has(cell):

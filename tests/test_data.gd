@@ -52,7 +52,8 @@ func test_world_map() -> void:
 			counts[symbol] = counts.get(symbol, 0) + 1
 			check(WorldMap.SYMBOLS.has(symbol), "unknown map symbol '%s'" % symbol)
 	check_eq(counts.get("P", 0), 1, "exactly one player start")
-	check_eq(counts.get("B", 0), 1, "exactly one bed")
+	check_eq(counts.get("B", 0), 1, "exactly one bed head")
+	check_eq(counts.get("b", 0), 1, "exactly one bed foot")
 	check(counts.get("s", 0) as int > 0, "some field to farm")
 
 
@@ -74,7 +75,12 @@ func test_world_regions() -> void:
 				break
 		check(found, region.id + " can be reached on foot from the farm")
 	check(map.region_at(map.start) != null and map.region_at(map.start).kind == "farm", "the farmer starts on the farm")
-	check(map.region_at(map.bed) == map.region_at(map.start), "the bed is on the farm")
+	for bed: Vector2i in map.beds:
+		check(map.region_at(bed) == map.region_at(map.start), "the bed is on the farm")
+		var beside: bool = false
+		for step: Vector2i in WorldMap.STEPS:
+			beside = beside or reachable.has(bed + step)
+		check(beside, "the farmer can stand beside the bed")
 
 
 func _json(path: String) -> Dictionary:
