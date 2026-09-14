@@ -9,8 +9,7 @@
       1,
       2
     ],
-    "sell_price": 35,
-    "atlas_row": 0
+    "sell_price": 35
   },
   "carrot": {
     "name": "Carrot",
@@ -287,8 +286,7 @@
       4
     ],
     "sell_price": 40,
-    "yield": 6,
-    "atlas_row": 1
+    "yield": 6
   },
   "tomato": {
     "name": "Tomato",
@@ -301,7 +299,6 @@
       2,
       2
     ],
-    "sell_price": 80,
-    "atlas_row": 2
+    "sell_price": 80
   }
 }

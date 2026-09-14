@@ -90,7 +90,7 @@ func _refresh_plots() -> void:
 			if plot.watered:
 				watered.append(cell)
 		if plot != null and plot.tilled and plot.crop != null:
-			crop_layer.set_cell(cell, 0, Vector2i(plot.stage(), plot.crop.atlas_row))
+			crop_layer.set_cell(cell, 0, Vector2i(plot.crop.atlas_column(plot.stage()), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
 	_paint_dual(tilled_layer, tilled, TILLED_ROW, false)

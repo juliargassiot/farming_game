@@ -9,7 +9,10 @@
     "seed": "one",
     "final": "a mandrake root with a leafy top, root shaped like a small person",
     "stage_notes": {
-      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves"
+      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes"
+    },
+    "anim": {
+      "sprout": "eyes"
     }
   },
   "carrot": {
@@ -49,6 +52,9 @@
     "final": "a squash vine with big blood-red blossoms dripping dark red",
     "stage_notes": {
       "sprout": "add a small drip of dark red blood hanging from the tip of the left leaf"
+    },
+    "anim": {
+      "sprout": "drip"
     }
   },
   "shifting_sprouts": {
@@ -72,6 +78,9 @@
     "final": "a scaly red root with ember-orange leaves",
     "stage_notes": {
       "sprout": "reshape the two leaves into flame shapes with pointed flickering tips"
+    },
+    "anim": {
+      "sprout": "flame"
     }
   },
   "brine_bulb": {
@@ -79,7 +88,7 @@
     "seed": "one",
     "final": "a pale salt-crusted bulb with seaweed-like leaves",
     "stage_notes": {
-      "sprout": "add a clearly visible light blue water droplet falling from the tip of the left leaf"
+      "sprout": "replace the water drop with a teardrop-shaped light blue bulb sitting between the two leaves at the top of the centre stalk, with a small white glisten highlight; no drip"
     }
   },
   "tulip": {
@@ -102,13 +111,16 @@
     "seed": "three",
     "final": "a grey-white lily with drooping petals",
     "stage_notes": {
-      "sprout": "two faint darker eye shadows on the drooping bud, a hint of a ghostly face"
+      "sprout": "two small black eyes and a larger black open mouth on the drooping bud"
     }
   },
   "sirens_bell": {
     "colour": "deep blue",
     "seed": "three",
-    "final": "a blue bell-shaped flower"
+    "final": "a blue bell-shaped flower",
+    "stage_notes": {
+      "sprout": "reshape the two blue leaves into round sleigh-bell shapes with a small cross-hatch slit line on each, same blue colour"
+    }
   },
   "bat_orchid": {
     "colour": "black with a purple sheen",
@@ -116,6 +128,9 @@
     "final": "a black bat-shaped orchid with long whiskers",
     "stage_notes": {
       "sprout": "give both leaves ragged scalloped edges like bat wings"
+    },
+    "anim": {
+      "sprout": "twitch"
     }
   },
   "foxtail_lily": {

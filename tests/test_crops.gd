@@ -43,3 +43,12 @@ func test_flowers_and_favourites() -> void:
 	check_eq(game.crops["moonpetal"].kind, "flower", "moonpetal is a flower")
 	check_eq(game.crops["blood_blossom"].kind, "crop", "blood blossom is a crop")
 	check_eq(game.crops["sirens_bell"].favoured_by, "mermaid", "siren's bell is the mermaid flower")
+
+
+func test_atlas_layout() -> void:
+	var crop: CropData = CropData.from_dict("x", {"stage_days": [1, 1, 1], "sell_price": 5, "seasons": ["spring"]})
+	crop.apply_layout({"row": 4, "stages": {"seed": 0, "sprout": 3}})
+	check_eq(crop.atlas_row, 4, "row from layout")
+	check_eq(crop.atlas_column(0), 0, "seed column")
+	check_eq(crop.atlas_column(1), 3, "sprout column")
+	check_eq(crop.atlas_column(3), 3, "missing later stages fall back to the last one")

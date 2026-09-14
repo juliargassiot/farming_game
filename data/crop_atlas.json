@@ -1,0 +1,142 @@
+{
+ "mandrake": {
+  "row": 0,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "carrot": {
+  "row": 1,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "garlic": {
+  "row": 2,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "onion": {
+  "row": 3,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "strawberry": {
+  "row": 4,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "peas": {
+  "row": 5,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "blood_blossom": {
+  "row": 6,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "shifting_sprouts": {
+  "row": 7,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "wolfsbane": {
+  "row": 8,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "wisp_lettuce": {
+  "row": 9,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "dragon_root": {
+  "row": 10,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "tulip": {
+  "row": 11,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "daffodil": {
+  "row": 12,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "foxglove": {
+  "row": 13,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "grave_lily": {
+  "row": 14,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "sirens_bell": {
+  "row": 15,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "brine_bulb": {
+  "row": 16,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "bat_orchid": {
+  "row": 17,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "foxtail_lily": {
+  "row": 18,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ },
+ "potato": {
+  "row": 19,
+  "stages": {
+   "seed": 0,
+   "sprout": 1
+  }
+ }
+}
