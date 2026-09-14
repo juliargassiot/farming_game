@@ -98,6 +98,26 @@ func test_props_json() -> void:
 			check(props.has(prop) or declared.has(prop), "%s prop '%s' is neither imported nor declared" % [region.id, prop])
 
 
+func test_trees_json() -> void:
+	var trees: Dictionary = _json("res://data/trees.json")
+	var declared: Dictionary = _json("res://tools/art/props.json")
+	var woods: Dictionary[String, String] = {}
+	for kind: String in trees:
+		if kind.begins_with("_"):
+			continue
+		var tree: Dictionary = trees[kind]
+		check(declared.has(kind), kind + " has prop art declared")
+		var chop: bool = tree.get("chop", false)
+		check(chop == tree.has("wood") and chop != tree.has("shake"), kind + " either chops for wood or shakes for fruit")
+		if chop:
+			var wood: Dictionary = tree["wood"]
+			var wood_id: String = wood.get("id", "")
+			check(not woods.has(wood_id), "%s shares wood '%s' with %s" % [kind, wood_id, woods.get(wood_id, "")])
+			woods[wood_id] = kind
+	for region: WorldMap.Region in WorldMap.load_files().regions:
+		check(trees.has(region.tree), "%s tree '%s' is not in trees.json" % [region.id, region.tree])
+
+
 func _json(path: String) -> Dictionary:
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
 	return parsed if parsed is Dictionary else {}

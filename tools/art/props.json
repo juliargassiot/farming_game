@@ -1,7 +1,45 @@
 {
   "_style": "pixel art game sprite, low top-down view, lineless, alone, centered, no ground, no shadow, no base, nothing else in frame",
-  "oak": {"prompt": "a broad leafy oak tree, round dense green canopy, thick brown trunk with roots, full tree from the top of the canopy to the base of the trunk", "size": [64, 96]},
-  "pine": {"prompt": "a tall conifer pine tree, layered dark green boughs narrowing to a point, straight brown trunk visible at the bottom, full tree from the tip to the base", "size": [64, 96]},
-  "thorn": {"prompt": "a gnarled haunted thorn tree, twisted black branches, sparse dark purple leaves, crooked trunk, eerie, full tree from the top branches to the base", "size": [64, 96]},
-  "dead": {"prompt": "a dead bare swamp tree, grey-brown bark, no leaves, a few crooked branches, hanging wisps of moss, full tree from the top to the base", "size": [32, 64]}
+  "oak": {
+    "prompt": "a broad leafy oak tree, round dense green canopy, thick brown trunk with roots, full tree from the top of the canopy to the base of the trunk",
+    "size": [
+      64,
+      96
+    ]
+  },
+  "pine": {
+    "prompt": "a tall conifer pine tree, layered dark green boughs narrowing to a point, straight brown trunk visible at the bottom, full tree from the tip to the base",
+    "size": [
+      64,
+      96
+    ]
+  },
+  "thorn": {
+    "prompt": "a gnarled haunted thorn tree, twisted black branches, sparse dark purple leaves, crooked trunk, eerie, full tree from the top branches to the base",
+    "size": [
+      64,
+      96
+    ]
+  },
+  "dead": {
+    "prompt": "a dead bare swamp tree, grey-brown bark, no leaves, a few crooked branches, hanging wisps of moss, full tree from the top to the base",
+    "size": [
+      32,
+      64
+    ]
+  },
+  "coconut": {
+    "prompt": "a tropical coconut palm tree, slender curved brown trunk with ring marks, a crown of long green fronds, a cluster of brown coconuts under the fronds, full tree from the fronds to the base",
+    "size": [
+      64,
+      96
+    ]
+  },
+  "willow": {
+    "prompt": "a weeping willow tree with purple-tinted bark, long drooping pale green branches hanging like curtains, a mystical witchy feel, full tree from the crown to the base",
+    "size": [
+      64,
+      96
+    ]
+  }
 }

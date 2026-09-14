@@ -1,0 +1,61 @@
+{
+ "oak": {
+  "name": "Oak",
+  "chop": true,
+  "wood": {
+   "id": "wood",
+   "name": "Wood",
+   "colour": "basic brown"
+  }
+ },
+ "pine": {
+  "name": "Pine",
+  "chop": true,
+  "wood": {
+   "id": "wild_wood",
+   "name": "Wild Wood",
+   "colour": "dark brown"
+  }
+ },
+ "dead": {
+  "name": "Dead Tree",
+  "chop": true,
+  "wood": {
+   "id": "grey_wood",
+   "name": "Grey Wood",
+   "colour": "greyish brown"
+  }
+ },
+ "thorn": {
+  "name": "Thorn Tree",
+  "chop": true,
+  "wood": {
+   "id": "spiky_wood",
+   "name": "Spiky Wood",
+   "colour": "basic brown, spiky"
+  }
+ },
+ "willow": {
+  "name": "Willow",
+  "chop": true,
+  "wood": {
+   "id": "witch_wood",
+   "name": "Witch Wood",
+   "colour": "purply brown"
+  }
+ },
+ "coconut": {
+  "name": "Coconut Palm",
+  "chop": false,
+  "shake": {
+   "id": "coconut",
+   "name": "Coconut"
+  }
+ },
+ "_driftwood": {
+  "id": "driftwood",
+  "name": "Driftwood",
+  "colour": "sun-bleached grey",
+  "source": "washes up on the mermaid coast; forgeable, never chopped"
+ }
+}
