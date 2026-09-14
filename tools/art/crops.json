@@ -26,7 +26,7 @@
         "ready": {
           "soil": "palette",
           "leaf": "luma",
-          "body": "palette"
+          "body": "tint"
         }
       },
       "soil_from_row": {
