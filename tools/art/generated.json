@@ -126,10 +126,10 @@
       "stages": {
         "seed": {
           "file": "tools/art/raw/crops/carrot/seed.png",
-          "prompt": "a scattering of many tiny seeds, orange, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T00:27:01+00:00",
-          "hash": "c1bffd72e98c7b4e",
+          "prompt": "two medium orange pointed oval seeds side by side resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T04:05:14+00:00",
+          "hash": "673ab729028e2874",
           "approved": true
         },
         "sprout": {

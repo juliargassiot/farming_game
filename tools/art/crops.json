@@ -2,7 +2,8 @@
   "_seed_styles": {
     "many": "a scattering of many tiny {colour} seeds sprinkled on top of",
     "three": "three medium {colour} bean-shaped seeds resting on top of",
-    "one": "one big smooth {colour} bean-shaped seed half buried in"
+    "one": "one big smooth {colour} bean-shaped seed half buried in",
+    "two": "two medium {colour} pointed oval seeds side by side resting on top of"
   },
   "mandrake": {
     "colour": "pale yellow-green",
@@ -37,7 +38,7 @@
   },
   "carrot": {
     "colour": "orange",
-    "seed": "many",
+    "seed": "two",
     "final": "carrots with feathery green tops"
   },
   "garlic": {
