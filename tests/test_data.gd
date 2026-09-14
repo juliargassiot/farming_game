@@ -83,6 +83,21 @@ func test_world_regions() -> void:
 		check(beside, "the farmer can stand beside the bed")
 
 
+func test_props_json() -> void:
+	var props: Dictionary = _json("res://data/props.json")
+	check(props.has("tree") and props.has("dead_tree"), "props.json has the plain tree and dead tree")
+	for name: String in props:
+		var box: Array = props[name]
+		var width: int = box[2] if box.size() == 4 else 0
+		var height: int = box[3] if box.size() == 4 else 0
+		check(width > 0 and height > 0, name + " is an x, y, width, height box")
+	var declared: Dictionary = _json("res://tools/art/props.json")
+	var map: WorldMap = WorldMap.load_files()
+	for region: WorldMap.Region in map.regions:
+		for prop: String in [region.tree, region.dead_tree]:
+			check(props.has(prop) or declared.has(prop), "%s prop '%s' is neither imported nor declared" % [region.id, prop])
+
+
 func _json(path: String) -> Dictionary:
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
 	return parsed if parsed is Dictionary else {}

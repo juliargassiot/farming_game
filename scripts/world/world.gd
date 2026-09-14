@@ -10,15 +10,14 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 }
 
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
-const PROP_REGIONS: Dictionary[WorldMap.Ground, Rect2i] = {
-	WorldMap.Ground.TREE: Rect2i(0, 0, 64, 96), WorldMap.Ground.DEAD_TREE: Rect2i(64, 0, 32, 64),
-}
+const PROPS_PATH: String = "res://data/props.json"
 
 @export_file("*.txt") var map_path: String = WorldMap.MAP_PATH
 @export var grass_preset: String = ""
 
 var map: WorldMap
 var season: String = ""
+var prop_regions: Dictionary[String, Rect2i] = {}
 
 @onready var terrain: TileMapLayer = $Map/Terrain
 @onready var tilled_layer: TileMapLayer = $Map/Tilled
@@ -35,6 +34,7 @@ var season: String = ""
 
 func _ready() -> void:
 	map = WorldMap.load_files(map_path)
+	prop_regions = _load_props()
 	_build_map()
 	_refresh_plots()
 	player.interact.connect(_on_interact)
@@ -69,8 +69,33 @@ func _build_map() -> void:
 			var kind: WorldMap.Ground = map.ground_at(cell)
 			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
-			if PROP_REGIONS.has(kind):
-				_place_prop(cell, PROP_REGIONS[kind])
+			var prop: String = _prop_for(cell, kind)
+			if prop_regions.has(prop):
+				_place_prop(cell, prop_regions[prop])
+
+
+func _load_props() -> Dictionary[String, Rect2i]:
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(PROPS_PATH))
+	var data: Dictionary = parsed if parsed is Dictionary else {}
+	var out: Dictionary[String, Rect2i] = {}
+	for name: String in data:
+		var box: Array = data[name]
+		var left: int = box[0]
+		var top: int = box[1]
+		var width: int = box[2]
+		var height: int = box[3]
+		out[name] = Rect2i(left, top, width, height)
+	return out
+
+
+func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
+	"""Trees take the prop the cell's region names, or the plain one until that art is imported."""
+	var region: WorldMap.Region = map.region_at(cell)
+	if kind == WorldMap.Ground.TREE:
+		return region.tree if region != null and prop_regions.has(region.tree) else "tree"
+	if kind == WorldMap.Ground.DEAD_TREE:
+		return region.dead_tree if region != null and prop_regions.has(region.dead_tree) else "dead_tree"
+	return ""
 
 
 func _place_prop(cell: Vector2i, region: Rect2i) -> void:
