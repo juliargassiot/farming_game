@@ -644,10 +644,11 @@
         "sprout": {
           "file": "tools/art/raw/crops/grave_lily/sprout.png",
           "prompt": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 81,
+          "seed": 152,
           "created": "2026-09-14T04:45:12+00:00",
-          "hash": "38def3c35a19fe08",
-          "approved": true
+          "hash": "673fe0805f7b5fa3",
+          "approved": true,
+          "edit": "derived from the growing image: shorter, one leaf, closed bud"
         },
         "growing": {
           "file": "tools/art/raw/crops/grave_lily/growing.png",
