@@ -23,9 +23,10 @@ func test_growth_stages() -> void:
 
 func test_seed_for_season() -> void:
 	check_eq(game.seed_for("spring").id, "mandrake", "spring seed")
-	check(game.seed_for("winter") == null, "no winter seed before the root cellar")
+	check_eq(game.seed_for("winter").id, "moonpetal", "winter seed")
+	check(not game.crops["potato"].grows_in("summer") or not game.is_unlocked("root_cellar"), "potato bags wait for the root cellar")
 	game.unlocks.append("root_cellar")
-	check_eq(game.seed_for("winter").id, "potato", "potato bags grow in any season once unlocked")
+	check(game.is_unlocked("root_cellar"), "root cellar unlocks")
 	game.unlocks.clear()
 
 

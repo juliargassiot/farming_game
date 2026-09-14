@@ -191,7 +191,7 @@
   "moonpetal": {
     "name": "Moonpetal",
     "seasons": [
-      "spring"
+      "winter"
     ],
     "stage_days": [
       2,
@@ -229,6 +229,53 @@
     "sell_price": 75,
     "kind": "flower",
     "favoured_by": "mermaid"
+  },
+  "brine_bulb": {
+    "name": "Brine Bulb",
+    "seasons": [
+      "spring"
+    ],
+    "stage_days": [
+      2,
+      2,
+      3
+    ],
+    "sell_price": 85,
+    "favoured_by": "mermaid"
+  },
+  "bat_orchid": {
+    "name": "Bat Orchid",
+    "seasons": [
+      "spring"
+    ],
+    "stage_days": [
+      3,
+      3,
+      3
+    ],
+    "sell_price": 95,
+    "kind": "flower",
+    "favoured_by": "vampire"
+  },
+  "foxtail_lily": {
+    "name": "Foxtail Lily",
+    "seasons": [
+      "spring"
+    ],
+    "stage_days": [
+      2,
+      3,
+      3
+    ],
+    "sell_price": 70,
+    "kind": "flower",
+    "favoured_by": "shifter",
+    "variants": [
+      "Fox Lily",
+      "Bear Lily",
+      "Hare Lily",
+      "Raven Lily"
+    ]
   },
   "potato": {
     "name": "Potato Bag",
