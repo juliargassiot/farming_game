@@ -151,7 +151,7 @@ func _refresh_plots() -> void:
 			if plot.watered:
 				watered[cell] = true
 		if plot != null and plot.tilled and plot.crop != null:
-			crop_layer.set_cell(cell, 0, Vector2i(plot.crop.atlas_column(plot.stage()), plot.crop.atlas_row))
+			crop_layer.set_cell(cell, 0, Vector2i(plot.crop.atlas_column(plot.stage(), plot.variant), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
 	var bounds: Rect2i = map.farm_bounds()

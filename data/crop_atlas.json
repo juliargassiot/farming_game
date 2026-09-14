@@ -3,140 +3,152 @@
   "row": 0,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 5
   }
  },
  "carrot": {
   "row": 1,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "garlic": {
   "row": 2,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "onion": {
   "row": 3,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "strawberry": {
   "row": 4,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "peas": {
   "row": 5,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "blood_blossom": {
   "row": 6,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 7
   }
  },
  "shifting_sprouts": {
   "row": 7,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "wolfsbane": {
   "row": 8,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "wisp_lettuce": {
   "row": 9,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "dragon_root": {
   "row": 10,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 5
   }
  },
  "tulip": {
   "row": 11,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "daffodil": {
   "row": 12,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "foxglove": {
   "row": 13,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "grave_lily": {
   "row": 14,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "sirens_bell": {
   "row": 15,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "brine_bulb": {
   "row": 16,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  },
  "bat_orchid": {
   "row": 17,
   "stages": {
    "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 7
   }
  },
  "foxtail_lily": {
   "row": 18,
   "stages": {
    "seed": 0,
-   "sprout": 1
-  }
- },
- "potato": {
-  "row": 19,
-  "stages": {
-   "seed": 0,
-   "sprout": 1
+   "sprout": 1,
+   "growing": 2
   }
  }
 }

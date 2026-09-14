@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo0qmgwagiuuv"
-path="res://.godot/imported/sprout.png-05aa53251cd8489242cab41c70d09af4.ctex"
+path="res://.godot/imported/sprout.png-2d2ea4f7f1181319578704a6a2365451.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/crops/foxtail_lily/sprout.png"
-dest_files=["res://.godot/imported/sprout.png-05aa53251cd8489242cab41c70d09af4.ctex"]
+source_file="res://tools/art/raw/crops/foxtail/sprout.png"
+dest_files=["res://.godot/imported/sprout.png-2d2ea4f7f1181319578704a6a2365451.ctex"]
 
 [params]
 

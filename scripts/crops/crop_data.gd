@@ -8,6 +8,7 @@ var stage_days: Array[int] = []
 var sell_price: int = 0
 var atlas_row: int = 0
 var stage_columns: Array[int] = []
+var variant_columns: Array[int] = []
 var regrow_days: int = 0
 var trellis: bool = false
 var variants: Array[String] = []
@@ -63,12 +64,18 @@ func apply_layout(layout: Dictionary) -> void:
 		if starts.has(stage_name):
 			var column: float = starts[stage_name]
 			stage_columns.append(int(column))
+	variant_columns.clear()
+	for column: float in layout.get("ready_variants", []):
+		variant_columns.append(int(column))
 
 
-func atlas_column(stage_index: int) -> int:
+func atlas_column(stage_index: int, variant: int = -1) -> int:
 	if stage_columns.is_empty():
 		return stage_index
-	var art_stage: int = mini(stage_index, 3) if stage_index < stage_days.size() else 3
+	var mature: bool = stage_index >= stage_days.size()
+	if mature and variant >= 0 and variant < variant_columns.size():
+		return variant_columns[variant]
+	var art_stage: int = 3 if mature else mini(stage_index, 3)
 	return stage_columns[mini(art_stage, stage_columns.size() - 1)]
 
 

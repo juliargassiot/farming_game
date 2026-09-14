@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhqu175lqfj63"
-path="res://.godot/imported/seed.png-5875b477ef85fdd1731a20bf0d58e72d.ctex"
+uid="uid://j5uh76rnqbim"
+path="res://.godot/imported/growing.png-79c4d21c5524d888d0232eeae2fde904.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/crops/foxtail_lily/seed.png"
-dest_files=["res://.godot/imported/seed.png-5875b477ef85fdd1731a20bf0d58e72d.ctex"]
+source_file="res://tools/art/raw/crops/foxtail/growing.png"
+dest_files=["res://.godot/imported/growing.png-79c4d21c5524d888d0232eeae2fde904.ctex"]
 
 [params]
 
