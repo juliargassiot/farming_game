@@ -7,7 +7,7 @@ var day: int = 1
 var money: int = 0
 var plots: Dictionary[Vector2i, Plot] = {}
 var unlocks: Array[String] = []
-var seed_cursor: int = 0
+var selected_seed: String = ""
 var crops: Dictionary[String, CropData] = {}
 
 
@@ -24,6 +24,7 @@ func new_game() -> void:
 	money = 0
 	plots.clear()
 	unlocks.clear()
+	selected_seed = ""
 
 
 func plot_at(cell: Vector2i) -> Plot:
@@ -33,8 +34,12 @@ func plot_at(cell: Vector2i) -> Plot:
 
 
 func seed_for(season: String) -> CropData:
+	"""The chosen seed if it grows now, else the first that does."""
 	var options: Array[CropData] = seeds_for(season)
-	return options[seed_cursor % options.size()] if not options.is_empty() else null
+	for crop: CropData in options:
+		if crop.id == selected_seed:
+			return crop
+	return options[0] if not options.is_empty() else null
 
 
 func seeds_for(season: String) -> Array[CropData]:
@@ -43,11 +48,6 @@ func seeds_for(season: String) -> Array[CropData]:
 		if crops[crop_id].grows_in(season) and is_unlocked(crops[crop_id].requires):
 			options.append(crops[crop_id])
 	return options
-
-
-func next_seed() -> void:
-	"""Until the seed choice screen exists, each planting moves on to the next seed of the season."""
-	seed_cursor += 1
 
 
 func is_unlocked(requirement: String) -> bool:
@@ -66,7 +66,7 @@ func save(path: String = SAVE_PATH) -> void:
 		saved_plots["%d,%d" % [cell.x, cell.y]] = plots[cell].to_dict()
 	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if file != null:
-		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks}))
+		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks, "seed": selected_seed}))
 
 
 func load_game(path: String = SAVE_PATH) -> bool:
@@ -78,6 +78,7 @@ func load_game(path: String = SAVE_PATH) -> bool:
 	var data: Dictionary = parsed
 	day = data.get("day", 1)
 	money = data.get("money", 0)
+	selected_seed = data.get("seed", "")
 	plots.clear()
 	unlocks.clear()
 	for unlock: String in data.get("unlocks", []):

@@ -1,112 +1,114 @@
 {
   "dials": {
     "seed": 3,
-    "patch_size": 56,
-    "wobble_size": 9,
-    "edge_wobble": 0.4,
+    "patch_size": 64,
+    "wobble_size": 16,
+    "edge_wobble": 0.2,
     "light_above": 0.25,
     "dark_below": -0.4,
     "stamp_step": 3,
-    "stamp_density": 0.6,
-    "bleed": 2,
-    "shade_size": 10,
-    "light_shade_above": 0.15,
-    "underside": 0.65
+    "bleed": 3,
+    "clump_size": 10,
+    "clump_above": 0.4,
+    "clump_density": 0.12,
+    "stray_density": 0.008,
+    "shadow": 0.35,
+    "edge_density": 0.6
   },
   "seasons": {
     "spring": {
       "dark": [
-        "#2f7a44",
-        "#3f8f50",
-        "#52a35c"
+        "#3a522e",
+        "#476336",
+        "#54743e"
       ],
       "mid": [
-        "#3f8f50",
-        "#62b462",
-        "#86cc72"
+        "#4b6a39",
+        "#5f8344",
+        "#759d4d"
       ],
       "light": [
-        "#93bc4e",
-        "#bcd85e",
-        "#d8ea74"
+        "#739146",
+        "#8dac4d",
+        "#a5be60"
       ],
-      "flowers": {
-        "colours": [
-          "#f2a6c8",
-          "#f8f4ec",
-          "#f6d35a"
-        ],
-        "density": 0.0018,
-        "off_patch": 0.15
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "summer": {
       "dark": [
-        "#2f6e3e",
-        "#3f8a4a",
-        "#52a058"
+        "#3a4d2d",
+        "#475e36",
+        "#556f3e"
       ],
       "mid": [
-        "#3f8a4a",
-        "#5aa85c",
-        "#7cc46e"
+        "#4c6539",
+        "#617e44",
+        "#78974e"
       ],
       "light": [
-        "#8fb44a",
-        "#b5d058",
-        "#d4e66e"
+        "#728b46",
+        "#8ca64e",
+        "#a5ba5e"
       ],
-      "flowers": {
-        "colours": [
-          "#f0c848"
-        ],
-        "density": 0.0005,
-        "off_patch": 0.1
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "autumn": {
       "dark": [
-        "#4e6a30",
-        "#66843c",
-        "#7c984a"
+        "#424c2f",
+        "#515c37",
+        "#616d40"
       ],
       "mid": [
-        "#66843c",
-        "#96a650",
-        "#b0bc62"
+        "#5b643a",
+        "#777c46",
+        "#939550"
       ],
       "light": [
-        "#9a9440",
-        "#c8b858",
-        "#dfd06e"
+        "#8a8147",
+        "#a6954e",
+        "#baa55e"
       ],
-      "flowers": {
-        "colours": [],
-        "density": 0.0,
-        "off_patch": 0.0
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     },
     "winter": {
       "dark": [
-        "#7a9478",
-        "#9db29a",
-        "#b8c8b4"
+        "#697660",
+        "#7e8c73",
+        "#939f89"
       ],
       "mid": [
-        "#b8c6cc",
-        "#dfe6ea",
-        "#f2f5f7"
+        "#c1c9cd",
+        "#d7dde0",
+        "#e8eced"
       ],
       "light": [
-        "#d5dde2",
-        "#f2f5f7",
-        "#ffffff"
+        "#d7dde0",
+        "#edf1f2",
+        "#fcfdfd"
       ],
-      "flowers": {
-        "colours": [],
-        "density": 0.0,
-        "off_patch": 0.0
-      }
+      "sheets": [
+        "Grass1",
+        "Grass2",
+        "Grass7"
+      ]
     }
+  },
+  "pack": {
+    "min_pixels": 6,
+    "max_size": 14,
+    "shadow_reach": 3,
+    "max_flower_share": 0.4
   }
 }

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world.gd" id="1"]
 [ext_resource type="TileSet" path="res://assets/tiles/ground.tres" id="2"]
 [ext_resource type="TileSet" path="res://assets/tiles/crops.tres" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/farm/player.tscn" id="4"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/seed_menu.tscn" id="5"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1")
@@ -56,3 +58,5 @@ offset_top = 372.0
 offset_right = 400.0
 offset_bottom = 396.0
 text = "A: Till"
+
+[node name="SeedMenu" parent="HUD" instance=ExtResource("5")]

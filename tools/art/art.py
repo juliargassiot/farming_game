@@ -184,7 +184,10 @@ def cmd_crop_design(args) -> None:
             jobs.append((name, args.stage, spec))
     for name, stage, spec in jobs:
         out = RAW / "crops" / name / f"{stage}.png"
-        if args.stage == "seed":
+        if args.stage == "bag":
+            prompt = (f"a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, {spec['colour']} cloth, "
+                      f"with {spec.get('emblem', 'a tiny symbol')} drawn simply on the front, seen from the front, pixel art, nothing else")
+        elif args.stage == "seed":
             seeds = specs["_seed_styles"][spec["seed"]].format(colour=spec["colour"])
             prompt = f"{seeds} a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else"
         else:
@@ -308,7 +311,7 @@ def cmd_prop_import(_args) -> None:
     print(f"Wrote assets/tiles/props.png with {', '.join(regions)}; regions in data/props.json")
 
 
-STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked"]
+STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked", "bag"]
 
 
 def cmd_approve(args) -> None:

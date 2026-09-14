@@ -118,6 +118,13 @@
           "created": "2026-09-14T03:15:17+00:00",
           "hash": "c76b950939e94fa2",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/mandrake/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "6e10a35f6bdbf744",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -154,6 +161,13 @@
           "seed": 21,
           "created": "2026-09-14T02:52:05+00:00",
           "hash": "85044a8f0024b4b4",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/carrot/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "77b5acfe157c09fb",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -194,6 +208,13 @@
           "created": "2026-09-14T03:03:32+00:00",
           "hash": "7e3bb1431f63b304",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/garlic/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "5f9d3ecf820559ae",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -230,6 +251,13 @@
           "seed": 21,
           "created": "2026-09-14T02:52:55+00:00",
           "hash": "04d88ee9d52e6860",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/onion/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "d664a171a444afbc",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -269,6 +297,13 @@
           "created": "2026-09-14T02:53:24+00:00",
           "hash": "7a030fb79bf75ef5",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/strawberry/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "dae1348bcf295424",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -307,6 +342,13 @@
           "created": "2026-09-14T03:03:06+00:00",
           "hash": "73a3d92dce0bec52",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/peas/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "e1ccffd0662577e7",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -344,6 +386,13 @@
           "seed": 140,
           "created": "2026-09-14T02:54:46+00:00",
           "hash": "4ae07d9aa589aab7",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/blood_blossom/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "8f1d9dedf337b6f8",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -406,6 +455,13 @@
           "created": "2026-09-14T03:21:50+00:00",
           "hash": "214f75bc81fcb5fe",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/shifting_sprouts/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "0cb404677c04e4bc",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -443,6 +499,13 @@
           "created": "2026-09-14T02:57:24+00:00",
           "hash": "dbf3bb84d403a760",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wolfsbane/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "366486047aafd8a0",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -479,6 +542,13 @@
           "seed": 21,
           "created": "2026-09-14T02:57:52+00:00",
           "hash": "38c79d5f0a29f8f1",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wisp_lettuce/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "4f28bf095b4567ed",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -518,6 +588,13 @@
           "created": "2026-09-14T02:58:08+00:00",
           "hash": "c5aad17169cb852a",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/dragon_root/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "1448bd897a5ddd0a",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -554,6 +631,13 @@
           "seed": 21,
           "created": "2026-09-14T02:58:58+00:00",
           "hash": "d70d3ecdade30597",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/tulip/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "de46d8fbc768c6ca",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -592,6 +676,13 @@
           "created": "2026-09-14T02:59:25+00:00",
           "hash": "5bc6558b5a4e2c68",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/daffodil/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "41643a1b3cd0efa9",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -628,6 +719,13 @@
           "seed": 21,
           "created": "2026-09-14T02:59:49+00:00",
           "hash": "c63a8e55c4a357a1",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxglove/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "54e80cd0b2d02225",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -666,6 +764,13 @@
           "seed": 21,
           "created": "2026-09-14T03:15:47+00:00",
           "hash": "3c1760f8b602f975",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/grave_lily/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "c1c6b6b15c71a0d6",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -707,6 +812,13 @@
           "hash": "fecdd69dbc999c8e",
           "approved": true,
           "edit": "royal-blue tint, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/sirens_bell/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "a0240bd5a76ccf21",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -744,6 +856,13 @@
           "seed": 21,
           "created": "2026-09-14T03:01:34+00:00",
           "hash": "63103f172992530e",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/brine_bulb/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "4e95b4997b3ce0d3",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }
@@ -785,6 +904,13 @@
           "hash": "044d5d6a5934bdb2",
           "approved": true,
           "edit": "purples tinted to the sprout's, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/bat_orchid/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "2fdf33f38a2e53ce",
+          "edit": "shared sack with one seed in the seed-stage colour",
+          "approved": true
         }
       }
     },
@@ -821,6 +947,13 @@
           "seed": 21,
           "created": "2026-09-14T03:00:10+00:00",
           "hash": "03fe9fbb77b44372",
+          "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxtail/bag.png",
+          "created": "2026-09-14T15:39:49+00:00",
+          "hash": "ab3f336816214d49",
+          "edit": "shared sack with one seed in the seed-stage colour",
           "approved": true
         }
       }

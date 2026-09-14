@@ -9,6 +9,7 @@ var sell_price: int = 0
 var atlas_row: int = 0
 var stage_columns: Array[int] = []
 var variant_columns: Array[int] = []
+var bag_column: int = -1
 var regrow_days: int = 0
 var trellis: bool = false
 var variants: Array[String] = []
@@ -67,6 +68,8 @@ func apply_layout(layout: Dictionary) -> void:
 	variant_columns.clear()
 	for column: float in layout.get("ready_variants", []):
 		variant_columns.append(int(column))
+	var bag: float = starts.get("bag", -1)
+	bag_column = int(bag)
 
 
 func atlas_column(stage_index: int, variant: int = -1) -> int:

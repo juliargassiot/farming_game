@@ -26,6 +26,8 @@ func _capture(scene_path: String, name: String, at: String) -> void:
 	if at != "" and player != null:
 		var parts: PackedStringArray = at.split(",")
 		player.call("place_at_cell", Vector2i(int(parts[0]), int(parts[1])))
+	if scene.has_method("open"):
+		scene.call("open", "spring")
 	for i: int in 4:
 		await process_frame
 	var out: String = "res://previews/" + name + ".png"

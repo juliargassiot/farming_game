@@ -2,7 +2,7 @@ extends TestCase
 ## Guards the JSON and text files under data/ against entries the game would misread.
 
 const SEASONS: Array[String] = ["spring", "summer", "autumn", "winter"]
-const GRASS_DIALS: Array[String] = ["seed", "patch_size", "light_above", "dark_below", "stamp_step", "stamp_density", "bleed"]
+const GRASS_DIALS: Array[String] = ["seed", "patch_size", "light_above", "dark_below", "stamp_step", "clump_density", "bleed"]
 
 
 func test_crops_json() -> void:

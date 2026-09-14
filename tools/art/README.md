@@ -29,7 +29,7 @@ Declare the character in `bodies.json` (prompt, canvas size as one number or `[w
 
 ## Grass
 
-The ground under everything is painted, not tiled: `grass_paint.py [season ...]` reads `data/grass.json` (dials, and a palette per season of three tones, each as dark, base, light shades, plus flowers), the map, and the region rectangles, paints the whole world once as patches of the three tones whose leaf-cluster edges bleed into each other, and crops one PNG per grassy region into `assets/grass/<region>_<season>.png`. Regions cut from the same painting meet without a seam. `scripts/world/world.gd` shows the season's image per region under the terrain layers. Change the look by editing dials or colours and re-running; the previews under `previews/world*.png` are how the user judges it.
+The ground under everything is painted, not tiled: `grass_paint.py [season ...]` reads `data/grass.json` (dials, and per season a palette of three tones as dark, base, light shades plus the pack sheets to cut sprigs from), the map, and the region rectangles, paints the whole world once as rounded patches of the three tones, scatters sprigs over them, and crops one PNG per grassy region into `assets/grass/<region>_<season>.png`. The sprigs come from the purchased grass pack in `raw/grass_pack/` (`GrassN.png` sheets with matching `Grass ShadowN.png`): every sprig is cut out with the shadow that touches it, its blades split into dark and light by brightness and recoloured to the patch's shades. Along every patch edge, sprigs of the neighbouring tone reach across so the two bleed into each other. Regions cut from the same painting meet without a seam. `scripts/world/world.gd` shows the season's image per region under the terrain layers. Change the look by editing dials, colours, or sheets and re-running; the previews under `previews/world*.png` are how the user judges it.
 
 ## Tiles
 
@@ -37,7 +37,7 @@ Soil is a Wang tileset drawn over the painted grass. Declare the terrain pair in
 
 ## Crops
 
-`crops.json` gives each crop its seed style, final-form colour and description, per-stage `stage_notes` (edits the user asked for, applied with `edit`), and `anim` (a `crop_anim.py` builder per stage: `eyes`, `drip`, `flame`, `twitch`). `art.py crop-design <stage> --season s` generates one 32×32 image per crop (`--name` for one, `--redo` to replace) and a labelled sheet; `approve crops --stage <stage>` records the yes. `crop-import` writes `assets/tiles/crops.png` with a row per crop and an animated tile per stage, plus `data/crop_atlas.json`, which `CropData` reads to find each stage's column.
+`crops.json` gives each crop its seed style, final-form colour and description, per-stage `stage_notes` (edits the user asked for, applied with `edit`), and `anim` (a `crop_anim.py` builder per stage: `eyes`, `drip`, `flame`, `twitch`). `art.py crop-design <stage> --season s` generates one 32×32 image per crop (`--name` for one, `--redo` to replace) and a labelled sheet; `approve crops --stage <stage>` records the yes. `crop-import` writes `assets/tiles/crops.png` with a row per crop and an animated tile per stage, plus `data/crop_atlas.json`, which `CropData` reads to find each stage's column. Seed bags are not generated: `bags.py` stamps one seed in each crop's seed-stage colour onto the shared sack in `raw/items/seed_bag.png` and rebuilds `previews/art/crops-bag.png`.
 
 ## Placeholders
 

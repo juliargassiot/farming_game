@@ -33,6 +33,7 @@ var grass_sprites: Dictionary[String, Sprite2D] = {}
 @onready var status: Label = $HUD/Status
 @onready var region_label: Label = $HUD/Region
 @onready var hint: Label = $HUD/Hint
+@onready var seed_menu: SeedMenu = $HUD/SeedMenu
 
 
 func _ready() -> void:
@@ -42,6 +43,7 @@ func _ready() -> void:
 	_refresh_plots()
 	player.interact.connect(_on_interact)
 	player.entered_cell.connect(_on_entered_cell)
+	seed_menu.closed.connect(func() -> void: player.set_physics_process(true))
 	_show_region(player.cell)
 
 
@@ -54,6 +56,11 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("seed_menu") and not seed_menu.visible:
+		get_viewport().set_input_as_handled()
+		player.set_physics_process(false)
+		seed_menu.open(Calendar.season_key(Game.day))
+		return
 	if event.is_action_pressed("cancel"):
 		get_viewport().set_input_as_handled()
 		Game.save()
@@ -251,6 +258,4 @@ func _on_interact(cell: Vector2i) -> void:
 		var seed: CropData = Game.seed_for(Calendar.season_key(Game.day))
 		var action: Plot.Action = plot.next_action(seed)
 		Game.money += plot.apply(action, seed)
-		if action == Plot.Action.PLANT:
-			Game.next_seed()
 	_refresh_plots()
