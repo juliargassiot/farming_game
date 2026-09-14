@@ -187,6 +187,20 @@
     "kind": "flower",
     "favoured_by": "witch"
   },
+  "foxtail": {
+    "name": "Foxtail",
+    "seasons": [
+      "spring"
+    ],
+    "stage_days": [
+      2,
+      3,
+      3
+    ],
+    "sell_price": 70,
+    "kind": "flower",
+    "favoured_by": "shifter"
+  },
   "moonpetal": {
     "name": "Moonpetal",
     "seasons": [
@@ -255,26 +269,6 @@
     "sell_price": 95,
     "kind": "flower",
     "favoured_by": "vampire"
-  },
-  "foxtail_lily": {
-    "name": "Foxtail Lily",
-    "seasons": [
-      "spring"
-    ],
-    "stage_days": [
-      2,
-      3,
-      3
-    ],
-    "sell_price": 70,
-    "kind": "flower",
-    "favoured_by": "shifter",
-    "variants": [
-      "Fox Lily",
-      "Bear Lily",
-      "Hare Lily",
-      "Raven Lily"
-    ]
   },
   "potato": {
     "name": "Potato Bag",

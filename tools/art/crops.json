@@ -76,7 +76,13 @@
   "shifting_sprouts": {
     "colour": "plain brown",
     "seed": "three",
-    "final": "a mysterious sprout"
+    "final": "a mysterious sprout",
+    "variant_finals": [
+      "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip",
+      "a Bear Sprout: a stout dark brown plant with round furry leaves like bear ears",
+      "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears",
+      "a Raven Sprout: a glossy black plant with pointed feather-like leaves"
+    ]
   },
   "wolfsbane": {
     "colour": "deep purple",
@@ -171,17 +177,17 @@
       "sprout": "twitch"
     }
   },
-  "foxtail_lily": {
-    "colour": "orange-red",
-    "seed": "many",
-    "final": "a tall foxtail lily spike",
-    "stage_prompts": {
-      "growing": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre"
-    }
-  },
   "moonpetal": {
     "colour": "silver-white",
     "seed": "one",
     "final": "a silver-white night flower"
+  },
+  "foxtail": {
+    "colour": "orange-red",
+    "seed": "many",
+    "final": "a foxtail flower like an Indian paintbrush: an upright spike of bristly red-orange bracts with green stems",
+    "stage_prompts": {
+      "growing": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre"
+    }
   }
 }

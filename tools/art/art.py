@@ -175,14 +175,23 @@ def cmd_crop_design(args) -> None:
     if args.name:
         names = [args.name]
     frames = []
+    jobs = []
     for name in names:
-        spec, out = specs[name], RAW / "crops" / name / f"{args.stage}.png"
+        spec = specs[name]
+        if args.stage == "ready" and spec.get("variant_finals"):
+            jobs += [(name, f"ready{i}", dict(spec, final=final)) for i, final in enumerate(spec["variant_finals"])]
+        else:
+            jobs.append((name, args.stage, spec))
+    for name, stage, spec in jobs:
+        out = RAW / "crops" / name / f"{stage}.png"
         if args.stage == "seed":
             seeds = specs["_seed_styles"][spec["seed"]].format(colour=spec["colour"])
             prompt = f"{seeds} a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else"
         else:
             stage_text = {"sprout": "a tiny seedling with two small leaves, just emerged", "growing": "a young plant, half grown, leafy with at most one tightly closed bud, no open flowers, no fruit",
                           "ready": "fully grown and ready to harvest"}.get(args.stage, args.stage)
+            if args.stage == "ready":
+                stage_text = "fully grown and ready to harvest, whole plant visible"
             subject = f"{stage_text}, leaves tinged {spec['colour']}" if args.stage == "sprout" else f"{spec['final']}: {stage_text}, hints of {spec['colour']}"
             subject = spec.get("stage_prompts", {}).get(args.stage, subject)
             prompt = f"{subject}, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else"
@@ -190,9 +199,9 @@ def cmd_crop_design(args) -> None:
             response = client.create_image_pixen(prompt, (32, 32), view="high top-down", outline="lineless", detail="medium detail", seed=args.seed)
             save_png(decode_image(response["image"]), out)
             record = generated.setdefault("crops", {}).setdefault(name, {"approved": False})
-            record.setdefault("stages", {})[args.stage] = {"file": rel(out), "prompt": prompt, "seed": args.seed, "created": now(), "hash": sha(out)}
-        frames.append((name, [Image.open(out).convert("RGBA")]))
-        print(f"{name}: {rel(out)}")
+            record.setdefault("stages", {})[stage] = {"file": rel(out), "prompt": prompt, "seed": args.seed, "created": now(), "hash": sha(out)}
+        frames.append((name if stage == args.stage else f"{name} {stage}", [Image.open(out).convert("RGBA")]))
+        print(f"{name}/{stage}: {rel(out)}")
     preview = PREVIEWS / f"crops-{args.stage}.png"
     sheets.labelled_grid([(name, ims[0]) for name, ims in frames]).save(preview)
     save_generated(generated)
@@ -207,6 +216,7 @@ def cmd_crop_import(args) -> None:
     rows, layout, animations = [], {}, {}
     for name, record in generated.get("crops", {}).items():
         stages = [st for st in STAGE_ORDER if st in record.get("stages", {})]
+        stages += sorted(st for st in record.get("stages", {}) if st.startswith("ready") and st != "ready")
         if any(not record["stages"][st].get("approved") for st in stages):
             raise SystemExit(f"{name}: stage {[st for st in stages if not record['stages'][st].get('approved')][0]} is not approved")
         frames_by_stage = []
@@ -226,7 +236,10 @@ def cmd_crop_import(args) -> None:
             for image, _ in frames:
                 atlas.alpha_composite(image, (col * size, r * size))
                 col += 1
-        layout[name] = {"row": r, "stages": dict(zip(stages, starts))}
+        layout[name] = {"row": r, "stages": {st: col for st, col in zip(stages, starts) if not (st.startswith("ready") and st != "ready")},
+                        "ready_variants": [col for st, col in zip(stages, starts) if st.startswith("ready") and st != "ready"]}
+        if layout[name]["ready_variants"] and "ready" not in layout[name]["stages"]:
+            layout[name]["stages"]["ready"] = layout[name]["ready_variants"][0]
     out_png = ROOT / "assets" / "tiles" / "crops.png"
     atlas.save(out_png)
     godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, width, len(rows), animations=animations)
@@ -292,8 +305,9 @@ def cmd_approve(args) -> None:
     generated = load_json(ART / "generated.json")
     if args.name == "crops":
         for name, record in generated.get("crops", {}).items():
-            if args.stage in record.get("stages", {}):
-                record["stages"][args.stage]["approved"] = not args.reject
+            for stage in record.get("stages", {}):
+                if stage == args.stage or (args.stage == "ready" and stage.startswith("ready")):
+                    record["stages"][stage]["approved"] = not args.reject
         save_generated(generated)
         print(f"crops/{args.stage}: {'rejected' if args.reject else 'approved'}")
         return

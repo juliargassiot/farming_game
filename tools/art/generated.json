@@ -613,11 +613,11 @@
         }
       }
     },
-    "foxtail_lily": {
+    "foxtail": {
       "approved": false,
       "stages": {
         "seed": {
-          "file": "tools/art/raw/crops/foxtail_lily/seed.png",
+          "file": "tools/art/raw/crops/foxtail/seed.png",
           "prompt": "a scattering of many tiny seeds, orange-red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T00:35:48+00:00",
@@ -625,7 +625,7 @@
           "approved": true
         },
         "sprout": {
-          "file": "tools/art/raw/crops/foxtail_lily/sprout.png",
+          "file": "tools/art/raw/crops/foxtail/sprout.png",
           "prompt": "a tall foxtail lily spike: a tiny seedling with two small leaves, just emerged, hints of orange-red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T01:03:07+00:00",
@@ -633,7 +633,7 @@
           "approved": true
         },
         "growing": {
-          "file": "tools/art/raw/crops/foxtail_lily/growing.png",
+          "file": "tools/art/raw/crops/foxtail/growing.png",
           "prompt": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:12:38+00:00",

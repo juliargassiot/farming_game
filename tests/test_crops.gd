@@ -52,6 +52,9 @@ func test_atlas_layout() -> void:
 	check_eq(crop.atlas_column(0), 0, "seed column")
 	check_eq(crop.atlas_column(1), 3, "sprout column")
 	check_eq(crop.atlas_column(3), 3, "missing later stages fall back to the last one")
+	crop.apply_layout({"row": 4, "stages": {"seed": 0, "sprout": 1, "growing": 2, "ready": 5}, "ready_variants": [5, 6, 7, 8]})
+	check_eq(crop.atlas_column(3, 2), 7, "mature crops show their variant's column")
+	check_eq(crop.atlas_column(1, 2), 1, "variants only apply once mature")
 
 
 func test_seed_rotation() -> void:
