@@ -199,8 +199,8 @@
     "final": "a blue bell-shaped flower",
     "stage_notes": {
       "sprout": "derived from ready: short curved stem with two small closed green bells on the left, all green",
-      "growing": "derived from ready: a little smaller with smaller bells",
-      "ready": "three big deep-blue sleigh bells with slit lines hanging on the left of the curved stem"
+      "growing": "derived from ready, smaller; same royal blue and X marks",
+      "ready": "three big royal-blue sleigh bells on the left of the curved stem, each with a hand-drawn angled X and bottom hole"
     },
     "stage_prompts": {
       "ready": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick"

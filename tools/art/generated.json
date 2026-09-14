@@ -676,7 +676,7 @@
           "prompt": "three medium seeds, deep blue, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T00:33:46+00:00",
-          "hash": "d8ff9b928632994a",
+          "hash": "097b3d69c374e860",
           "approved": true
         },
         "sprout": {
@@ -693,16 +693,16 @@
           "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 170,
           "created": "2026-09-14T02:00:05+00:00",
-          "hash": "dff277abe32e00d1",
+          "hash": "d05b39e6ac2300ee",
           "approved": true,
-          "edit": "derived from ready: smaller plant and bells"
+          "edit": "the ready plant scaled to 78% on the same mound"
         },
         "ready": {
           "file": "tools/art/raw/crops/sirens_bell/ready.png",
           "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 162,
           "created": "2026-09-14T03:03:57+00:00",
-          "hash": "883b64a0b59a032a",
+          "hash": "f75689f6dd58d4cc",
           "approved": true,
           "edit": "bigger sleigh-bell blooms"
         }
