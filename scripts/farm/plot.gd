@@ -50,6 +50,17 @@ func stage() -> int:
 	return crop.stage_for(days_grown)
 
 
+func grow_one_stage() -> void:
+	"""Testing aid: jump to the first day of the next growth stage."""
+	if crop == null or crop.is_mature(days_grown):
+		return
+	var target: int = stage() + 1
+	var first_day: int = 0
+	for i: int in mini(target, crop.stage_days.size()):
+		first_day += crop.stage_days[i]
+	days_grown = first_day
+
+
 func to_dict() -> Dictionary:
 	return {"tilled": tilled, "watered": watered, "crop": crop.id if crop != null else "", "days": days_grown, "variant": variant}
 
