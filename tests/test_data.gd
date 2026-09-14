@@ -2,7 +2,7 @@ extends TestCase
 ## Guards the JSON and text files under data/ against entries the game would misread.
 
 const SEASONS: Array[String] = ["spring", "summer", "autumn", "winter"]
-const GRASS_DIALS: Array[String] = ["coverage", "clumpiness", "flowers"]
+const GRASS_DIALS: Array[String] = ["seed", "patch_size", "light_above", "dark_below", "stamp_step", "stamp_density", "bleed"]
 
 
 func test_crops_json() -> void:
@@ -27,19 +27,18 @@ func test_crops_json() -> void:
 
 func test_grass_json() -> void:
 	var data: Dictionary = _json("res://data/grass.json")
+	var dials: Dictionary = data.get("dials", {})
+	for dial: String in GRASS_DIALS:
+		check(dials.has(dial), dial + " dial is set")
 	var seasons: Dictionary = data.get("seasons", {})
 	for season: String in SEASONS:
-		check(seasons.has(season), season + " has grass dials")
-	var presets: Dictionary = data.get("presets", {})
-	for group: Dictionary in [seasons, presets]:
-		for name: String in group:
-			var dials: Dictionary = group[name]
-			for dial: String in GRASS_DIALS:
-				var value: float = dials.get(dial, -1.0)
-				check(value >= 0.0 and value <= 1.0, "%s.%s is a fraction" % [name, dial])
-	for name: String in presets:
-		var preset: Dictionary = presets[name]
-		check(preset.has("day"), name + " preset names a day")
+		check(seasons.has(season), season + " has a palette")
+		var palette: Dictionary = seasons.get(season, {})
+		for tone: String in ["dark", "mid", "light"]:
+			var shades: Array = palette.get(tone, [])
+			check_eq(shades.size(), 3, "%s %s has three shades" % [season, tone])
+			for shade: Variant in shades:
+				check(Color.html_is_valid(str(shade)), "%s %s shade %s is a colour" % [season, tone, str(shade)])
 
 
 func test_world_map() -> void:
