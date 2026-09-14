@@ -52,7 +52,8 @@ def finish(tiles: dict, variants: list, spec: dict) -> tuple[dict, list]:
     return done, done_variants
 
 
-def demo_field(tiles: dict, variants: list, size: int, seed: int = 3, mark: list | None = None) -> Image.Image:
+def demo_field(tiles: dict, variants: list, size: int, seed: int = 3, mark: list | None = None, skip_flat: bool = False) -> Image.Image:
+    """Tiles laid by a corner-mask grid; `skip_flat` leaves index-0 cells empty so the result can overlay another field."""
     import random
     rng = random.Random(seed)
     mark = mark or DEMO_CORNERS
@@ -62,7 +63,7 @@ def demo_field(tiles: dict, variants: list, size: int, seed: int = 3, mark: list
         for x in range(cols):
             corners = [int(mark[y + dy][x + dx]) for dy, dx in ((0, 0), (0, 1), (1, 0), (1, 1))]
             idx = (corners[0] << 3) | (corners[1] << 2) | (corners[2] << 1) | corners[3]
-            if idx == 0 and mark is not DEMO_CORNERS:
+            if idx == 0 and skip_flat:
                 continue
             tile = rng.choice(variants) if idx == 0 and variants and rng.random() < 0.4 else tiles[idx]
             img.alpha_composite(tile, (x * size, y * size))
