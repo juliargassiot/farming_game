@@ -273,6 +273,13 @@ def cmd_prop_import(_args) -> None:
     props = {name: record for name, record in generated.get("props", {}).items() if record.get("approved")}
     if not props:
         raise SystemExit("no approved props")
+    specs = load_json(ART / "props.json")
+    ground = Image.open(ROOT / "assets" / "tiles" / "ground.png").convert("RGBA")
+    for name in [n for n in props if "tile" in specs.get(n, {})]:
+        column = specs[name]["tile"]
+        ground.paste(Image.open(ROOT / props.pop(name)["design"]["file"]).convert("RGBA"), (column * 32, 0))
+        print(f"{name} -> ground.png column {column}")
+    ground.save(ROOT / "assets" / "tiles" / "ground.png")
     images = {name: Image.open(ROOT / record["design"]["file"]).convert("RGBA") for name, record in props.items()}
     atlas = Image.new("RGBA", (sum(im.width for im in images.values()), max(im.height for im in images.values())), (0, 0, 0, 0))
     regions, x = {}, 0
