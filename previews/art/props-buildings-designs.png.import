@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tneaf2s5hvew"
-path="res://.godot/imported/33.png-54cb2e1e6bbbf1e5e97c690b01fa5333.ctex"
+uid="uid://dj1uvmjdskbti"
+path="res://.godot/imported/props-buildings-designs.png-ae81e53c2fe4e5ade49d2ce13f5fe4e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/door/candidates/33.png"
-dest_files=["res://.godot/imported/33.png-54cb2e1e6bbbf1e5e97c690b01fa5333.ctex"]
+source_file="res://previews/art/props-buildings-designs.png"
+dest_files=["res://.godot/imported/props-buildings-designs.png-ae81e53c2fe4e5ade49d2ce13f5fe4e4.ctex"]
 
 [params]
 

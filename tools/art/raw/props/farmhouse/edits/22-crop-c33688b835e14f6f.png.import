@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m2g24mkoj47v"
-path="res://.godot/imported/22.png-2287662a0c2ad3500a7327f5f764bab3.ctex"
+uid="uid://c04xoi1pj2eup"
+path="res://.godot/imported/22-crop-c33688b835e14f6f.png-c4c2934811b520cf62378868ed21aaaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/wall/candidates/22.png"
-dest_files=["res://.godot/imported/22.png-2287662a0c2ad3500a7327f5f764bab3.ctex"]
+source_file="res://tools/art/raw/props/farmhouse/edits/22-crop-c33688b835e14f6f.png"
+dest_files=["res://.godot/imported/22-crop-c33688b835e14f6f.png-c4c2934811b520cf62378868ed21aaaa.ctex"]
 
 [params]
 
