@@ -85,7 +85,7 @@ func test_world_regions() -> void:
 
 func test_props_json() -> void:
 	var props: Dictionary = _json("res://data/props.json")
-	check(props.has("tree") and props.has("dead_tree"), "props.json has the plain tree and dead tree")
+	check(props.has("oak") and props.has("dead"), "props.json has the oak and the dead tree")
 	for name: String in props:
 		var box: Array = props[name]
 		var width: int = box[2] if box.size() == 4 else 0

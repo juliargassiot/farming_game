@@ -645,58 +645,76 @@
   },
   "props": {
     "oak": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/oak/design.png",
         "source": "tools/art/raw/props/oak/edits/44-460cbab2508122e3.png",
         "hash": "2b3f5c4f8e563744",
         "created": "2026-09-14T02:33:39+00:00"
-      }
+      },
+      "approved_hash": "2b3f5c4f8e563744",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
     },
     "pine": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/pine/design.png",
         "source": "tools/art/raw/props/pine/edits/33-86d58cecdd3e272e.png",
         "hash": "11824a4e5788191f",
         "created": "2026-09-14T02:33:39+00:00"
-      }
+      },
+      "approved_hash": "11824a4e5788191f",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
     },
     "dead": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/dead/design.png",
         "source": "tools/art/raw/props/dead/edits/33-b1af1c81a8e68159.png",
         "hash": "bef36c80d9bd34bf",
         "created": "2026-09-14T02:33:39+00:00"
-      }
+      },
+      "approved_hash": "bef36c80d9bd34bf",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:29+00:00"
     },
     "thorn": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/thorn/design.png",
         "source": "tools/art/raw/props/thorn/edits/22-217e13a3932e515b.png",
         "hash": "030a0cda9b0da4ed",
         "created": "2026-09-14T02:33:40+00:00"
-      }
+      },
+      "approved_hash": "030a0cda9b0da4ed",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
     },
     "willow": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/willow/design.png",
         "source": "tools/art/raw/props/willow/edits/44-065f76190110e1fe.png",
         "hash": "baa79ced5a0ded5d",
         "created": "2026-09-14T02:33:40+00:00"
-      }
+      },
+      "approved_hash": "baa79ced5a0ded5d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
     },
     "coconut": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/coconut/design.png",
         "source": "tools/art/raw/props/coconut/edits/44-2a5f24c50d1ff8b8.png",
         "hash": "6b42346471b28516",
         "created": "2026-09-14T02:33:40+00:00"
-      }
+      },
+      "approved_hash": "6b42346471b28516",
+      "approval_note": "",
+      "approved_at": "2026-09-14T02:37:30+00:00"
     }
   }
 }
