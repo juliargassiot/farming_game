@@ -22,7 +22,7 @@ func _capture(scene_path: String, name: String, at: String) -> void:
 	var scene: Node = packed.instantiate()
 	root.add_child(scene)
 	await process_frame
-	var player: Node = scene.get_node_or_null("Player")
+	var player: Node = scene.find_child("Player")
 	if at != "" and player != null:
 		var parts: PackedStringArray = at.split(",")
 		player.call("place_at_cell", Vector2i(int(parts[0]), int(parts[1])))

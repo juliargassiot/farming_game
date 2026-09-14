@@ -1,0 +1,22 @@
+@out assets/tiles/ground.png
+@scale 2
+@at 22 0
+@r #8a3f3a
+@d #6e2f2c
+@l #a35049
+rrrrrrrrrrrrrrrr
+dddddddddddddddd
+rrrrrrrrrrrrrrrr
+rrrlrrrrrrrlrrrr
+dddddddddddddddd
+rrrrrrrrrrrrrrrr
+rrrrrrrlrrrrrrrl
+dddddddddddddddd
+rrrrrrrrrrrrrrrr
+rrlrrrrrrrlrrrrr
+dddddddddddddddd
+rrrrrrrrrrrrrrrr
+rrrrrrlrrrrrrlrr
+dddddddddddddddd
+rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr

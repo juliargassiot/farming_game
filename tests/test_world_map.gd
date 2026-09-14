@@ -5,7 +5,7 @@ wwwww
 ,,,,,
 .P.T.
 #=#H.
-.sB..
+.sBd.
 """
 const REGIONS: Dictionary = {
 	"coast": {"name": "Coast", "race": "mermaid", "kind": "coast", "rect": [0, 0, 5, 2], "combat_zone": true},
@@ -17,7 +17,8 @@ func test_reads_symbols_and_landmarks() -> void:
 	var map: WorldMap = WorldMap.from_text(TEXT, REGIONS)
 	check_eq(map.size, Vector2i(5, 5), "size comes from the grid")
 	check_eq(map.start, Vector2i(1, 2), "player start")
-	check_eq(map.bed, Vector2i(2, 4), "bed")
+	check_eq(map.beds.keys(), [Vector2i(2, 4)], "bed cells")
+	check(map.is_walkable(Vector2i(3, 4)), "doors are walkable")
 	check_eq(map.farmable.keys(), [Vector2i(1, 4)], "field cells")
 	check_eq(map.ground_at(Vector2i(0, 0)), WorldMap.Ground.SEA, "sea")
 	check_eq(map.ground_at(Vector2i(3, 2)), WorldMap.Ground.TREE, "tree")

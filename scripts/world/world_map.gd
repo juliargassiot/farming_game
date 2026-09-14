@@ -3,7 +3,7 @@ extends RefCounted
 ## The overworld as data: a text grid of ground symbols and the named regions laid over it.
 
 enum Ground {
-	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK,
+	GRASS, SOIL, SOIL_WET, WATER, FENCE, PATH, BED, FIELD, SAND, SEA, ROCK, CRAG, CAVE, MINE, MARSH, BOG, DEAD_TREE, TREE, TALLGRASS, COBBLE, HOUSE, DOCK, ROOF, DOOR, BED_FOOT,
 }
 
 const MAP_PATH: String = "res://data/maps/world.txt"
@@ -12,9 +12,11 @@ const SYMBOLS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BED, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
 	":": Ground.BOG, "t": Ground.DEAD_TREE, "T": Ground.TREE, "\"": Ground.TALLGRASS, "+": Ground.COBBLE, "H": Ground.HOUSE, "D": Ground.DOCK,
+	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT,
 }
 const SOLID: Array[Ground] = [
 	Ground.WATER, Ground.FENCE, Ground.BED, Ground.SEA, Ground.ROCK, Ground.CRAG, Ground.MARSH, Ground.DEAD_TREE, Ground.TREE, Ground.HOUSE,
+	Ground.ROOF, Ground.BED_FOOT,
 ]
 const STEPS: Array[Vector2i] = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.DOWN, Vector2i.UP]
 
@@ -46,7 +48,7 @@ class Region:
 var rows: PackedStringArray = PackedStringArray()
 var size: Vector2i = Vector2i.ZERO
 var start: Vector2i = Vector2i(-1, -1)
-var bed: Vector2i = Vector2i(-1, -1)
+var beds: Dictionary[Vector2i, bool] = {}
 var farmable: Dictionary[Vector2i, bool] = {}
 var regions: Array[Region] = []
 
@@ -67,8 +69,8 @@ static func from_text(text: String, region_data: Dictionary = {}) -> WorldMap:
 			var symbol: String = map.rows[y][x]
 			if symbol == "P":
 				map.start = Vector2i(x, y)
-			elif symbol == "B":
-				map.bed = Vector2i(x, y)
+			elif symbol == "B" or symbol == "b":
+				map.beds[Vector2i(x, y)] = true
 			elif symbol == "s":
 				map.farmable[Vector2i(x, y)] = true
 	for region_id: String in region_data:
