@@ -30,17 +30,20 @@ def eyes(img: Image.Image) -> list:
 
 
 def drip(img: Image.Image) -> list:
+    """The drop hangs below the leftmost tip of the left leaf; only pixels under that tip move."""
     a = _arr(img)
     ys = np.arange(a.shape[0])[:, None]
     xs = np.arange(a.shape[1])[None, :]
-    red = (a[..., 3] > 0) & (a[..., 0] > 90) & (a[..., 1] < 70) & (a[..., 2] < 80) & (xs < 14) & (ys > 6) & (ys < 22)
-    if not red.any():
+    leaf = (a[..., 3] > 0) & (a[..., 0] > 140) & (a[..., 1] >= 60) & (xs < 16) & (ys < 18)
+    if not leaf.any():
         return [(img, 1.0)]
-    bottom = np.nonzero(red)[0].max()
-    drop = red & (ys >= bottom - 2)
+    x0 = np.nonzero(leaf)[1].min()
+    y0 = np.nonzero(leaf[:, x0])[0].max()
+    drop = (a[..., 3] > 0) & (xs >= x0) & (xs <= x0 + 3) & (ys > y0)
     gone = _img(_shift(a, drop, 0, 40))
+    top = drop & (ys == y0 + 1)
     return [(img, 2.6), (_img(_shift(a, drop, 0, 2)), 0.12), (_img(_shift(a, drop, 0, 5)), 0.12), (gone, 0.8),
-            (_img(_shift(a, drop & (ys == bottom - 2), 0, 0)), 0.3), (img, 0.4)]
+            (_img(_shift(a, drop & ~top, 0, 40)), 0.3), (img, 0.4)]
 
 
 def flame(img: Image.Image) -> list:
@@ -58,9 +61,11 @@ def flame(img: Image.Image) -> list:
 def twitch(img: Image.Image) -> list:
     a = _arr(img)
     ys = np.arange(a.shape[0])[:, None]
-    wings = (a[..., 3] > 0) & (a[..., 0] > 110) & (a[..., 2] > 110) & (a[..., 1] < 130) & (ys < 20)
-    up = _img(_shift(a, wings, 0, -1))
-    return [(img, 2.2), (up, 0.12), (img, 0.14), (up, 0.12)]
+    dark = (a[..., 0] < 60) & (a[..., 1] < 60) & (a[..., 2] < 60)
+    wings = (a[..., 3] > 0) & ~dark & (ys < 18)
+    up = _img(_shift(a, wings, 0, -2))
+    mid = _img(_shift(a, wings, 0, -1))
+    return [(img, 2.2), (up, 0.14), (mid, 0.1), (img, 0.16), (up, 0.14), (mid, 0.1)]
 
 
 BUILDERS = {"eyes": eyes, "drip": drip, "flame": flame, "twitch": twitch}
