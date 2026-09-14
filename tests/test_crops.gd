@@ -57,9 +57,9 @@ func test_atlas_layout() -> void:
 	check_eq(crop.atlas_column(1, 2), 1, "variants only apply once mature")
 
 
-func test_seed_rotation() -> void:
-	var first: CropData = game.seed_for("spring")
-	game.next_seed()
-	check(game.seed_for("spring") != first, "planting moves to the next spring seed")
-	game.seed_cursor = 0
-	check_eq(game.seeds_for("spring").size(), 19, "nineteen spring seeds rotate")
+func test_seed_choice() -> void:
+	game.selected_seed = "dragon_root"
+	check_eq(game.seed_for("spring").id, "dragon_root", "the chosen seed is planted")
+	check_eq(game.seed_for("winter").id, "moonpetal", "a seed out of season falls back to the first that grows")
+	game.selected_seed = ""
+	check_eq(game.seeds_for("spring").size(), 19, "nineteen spring seeds to choose from")
