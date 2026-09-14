@@ -18,6 +18,7 @@ const GRASS_DIR: String = "res://assets/grass/"
 var map: WorldMap
 var season: String = ""
 var prop_regions: Dictionary[String, Rect2i] = {}
+var footprint_ground: Dictionary[Vector2i, WorldMap.Ground] = {}
 var grass_sprites: Dictionary[String, Sprite2D] = {}
 
 @onready var grass: Node2D = $Map/Grass
@@ -65,14 +66,16 @@ func _build_map() -> void:
 	player.bounds = Rect2(Vector2(Player.TILE / 2.0, Player.TILE / 2.0), Vector2(map.size) * Player.TILE - Vector2.ONE * Player.TILE)
 	if map.start.x >= 0:
 		player.place_at_cell(map.start)
+	for anchor: Vector2i in map.buildings:
+		if prop_regions.has(map.buildings[anchor]):
+			_place_building(anchor, prop_regions[map.buildings[anchor]])
 	for y: int in map.size.y:
 		for x: int in map.size.x:
 			var cell: Vector2i = Vector2i(x, y)
 			var kind: WorldMap.Ground = map.ground_at(cell)
 			var prop: String = _prop_for(cell, kind)
-			if map.buildings.has(cell) and prop_regions.has(map.buildings[cell]):
-				var region: Rect2i = prop_regions[map.buildings[cell]]
-				_place_prop(Vector2(cell.x * Player.TILE + region.size.x / 2.0, (cell.y + 1) * Player.TILE), region, false)
+			if kind == WorldMap.Ground.BLOCK:
+				kind = footprint_ground.get(cell, WorldMap.Ground.GRASS)
 			elif prop_regions.has(prop):
 				_place_prop(Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE), prop_regions[prop], true)
 				kind = _ground_under_prop(cell)
@@ -89,6 +92,42 @@ func _place_grass() -> void:
 		sprite.position = Vector2(region.rect.position * Player.TILE)
 		grass.add_child(sprite)
 		grass_sprites[region.id] = sprite
+
+
+func _place_building(anchor: Vector2i, region: Rect2i) -> void:
+	"""The sprite stands on its bottom-left anchor cell; one collision box covers the whole footprint."""
+	var size: Vector2i = Vector2i(ceili(region.size.x / float(Player.TILE)), ceili(region.size.y / float(Player.TILE)))
+	var sprite: Sprite2D = _place_prop(Vector2(anchor.x * Player.TILE + region.size.x / 2.0, (anchor.y + 1) * Player.TILE), region, false)
+	var body: StaticBody2D = StaticBody2D.new()
+	var shape: CollisionShape2D = CollisionShape2D.new()
+	var box: RectangleShape2D = RectangleShape2D.new()
+	box.size = Vector2(size * Player.TILE)
+	shape.shape = box
+	shape.position = Vector2(size.x * Player.TILE / 2.0 - region.size.x / 2.0, -size.y * Player.TILE / 2.0)
+	body.add_child(shape)
+	sprite.add_child(body)
+	var footprint: Rect2i = Rect2i(anchor.x, anchor.y - size.y + 1, size.x, size.y)
+	var ground_kind: WorldMap.Ground = _ground_around(footprint)
+	for y: int in range(footprint.position.y, footprint.end.y):
+		for x: int in range(footprint.position.x, footprint.end.x):
+			footprint_ground[Vector2i(x, y)] = ground_kind
+
+
+func _ground_around(footprint: Rect2i) -> WorldMap.Ground:
+	"""The walkable ground most common in the ring just outside a footprint, so a cave in the sand does not sit on grass."""
+	var counts: Dictionary[WorldMap.Ground, int] = {}
+	var ring: Rect2i = footprint.grow(1)
+	for y: int in range(ring.position.y, ring.end.y):
+		for x: int in range(ring.position.x, ring.end.x):
+			var cell: Vector2i = Vector2i(x, y)
+			var kind: WorldMap.Ground = map.ground_at(cell)
+			if not footprint.has_point(cell) and map.is_walkable(cell) and kind != WorldMap.Ground.DOOR and kind != WorldMap.Ground.PATH:
+				counts[kind] = counts.get(kind, 0) + 1
+	var best: WorldMap.Ground = WorldMap.Ground.GRASS
+	for kind: WorldMap.Ground in counts:
+		if counts[kind] > counts.get(best, 0):
+			best = kind
+	return best
 
 
 func _ground_under_prop(cell: Vector2i) -> WorldMap.Ground:
@@ -129,7 +168,7 @@ func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
 	return ""
 
 
-func _place_prop(base: Vector2, region: Rect2i, solid: bool) -> void:
+func _place_prop(base: Vector2, region: Rect2i, solid: bool) -> Sprite2D:
 	"""A sprite standing on its base point, sorted with the farmer by that y; trees also block the cell there."""
 	var texture: AtlasTexture = AtlasTexture.new()
 	texture.atlas = PROPS
@@ -141,7 +180,7 @@ func _place_prop(base: Vector2, region: Rect2i, solid: bool) -> void:
 	sprite.position = base
 	scenery.add_child(sprite)
 	if not solid:
-		return
+		return sprite
 	var body: StaticBody2D = StaticBody2D.new()
 	var shape: CollisionShape2D = CollisionShape2D.new()
 	var box: RectangleShape2D = RectangleShape2D.new()
@@ -150,6 +189,7 @@ func _place_prop(base: Vector2, region: Rect2i, solid: bool) -> void:
 	shape.position = Vector2(0, -Player.TILE / 4.0)
 	body.add_child(shape)
 	sprite.add_child(body)
+	return sprite
 
 
 func _refresh_plots() -> void:

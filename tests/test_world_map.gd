@@ -5,22 +5,24 @@ wwwww
 ,,,,,
 .P.T.
 #=#XX
-.sBFd
+.sBXd
 """
-const REGIONS: Dictionary = {
-	"coast": {"name": "Coast", "race": "mermaid", "kind": "coast", "rect": [0, 0, 5, 2], "combat_zone": true},
-	"farm": {"name": "Farm", "kind": "farm", "rect": [0, 2, 5, 5]},
+const DATA: Dictionary = {
+	"regions": {
+		"coast": {"name": "Coast", "race": "mermaid", "kind": "coast", "rect": [0, 0, 5, 2], "combat_zone": true},
+		"farm": {"name": "Farm", "kind": "farm", "rect": [0, 2, 5, 5]},
+	},
+	"buildings": {"3,4": "farmhouse"},
 }
 
 
 func test_reads_symbols_and_landmarks() -> void:
-	var map: WorldMap = WorldMap.from_text(TEXT, REGIONS)
+	var map: WorldMap = WorldMap.from_text(TEXT, DATA)
 	check_eq(map.size, Vector2i(5, 5), "size comes from the grid")
 	check_eq(map.start, Vector2i(1, 2), "player start")
 	check_eq(map.beds.keys(), [Vector2i(2, 4)], "bed cells")
 	check(map.is_walkable(Vector2i(4, 4)), "doors are walkable")
 	check(not map.is_walkable(Vector2i(3, 3)), "building footprints block")
-	check_eq(map.buildings, {Vector2i(3, 4): "farmhouse"}, "the farmhouse anchors at its bottom-left cell")
 	check_eq(map.farmable.keys(), [Vector2i(1, 4)], "field cells")
 	check_eq(map.ground_at(Vector2i(0, 0)), WorldMap.Ground.SEA, "sea")
 	check_eq(map.ground_at(Vector2i(3, 2)), WorldMap.Ground.TREE, "tree")
@@ -40,8 +42,9 @@ func test_walkable_and_bounds() -> void:
 
 
 func test_regions() -> void:
-	var map: WorldMap = WorldMap.from_text(TEXT, REGIONS)
+	var map: WorldMap = WorldMap.from_text(TEXT, DATA)
 	check_eq(map.regions.size(), 2, "two regions")
+	check_eq(map.buildings, {Vector2i(3, 4): "farmhouse"}, "buildings anchor at the cell the data names")
 	var coast: WorldMap.Region = map.region_at(Vector2i(4, 1))
 	check(coast != null and coast.id == "coast" and coast.race == "mermaid" and coast.combat_zone, "coast region fields")
 	var farm: WorldMap.Region = map.region_at(Vector2i(2, 4))

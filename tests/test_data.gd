@@ -52,7 +52,7 @@ func test_world_map() -> void:
 			check(WorldMap.SYMBOLS.has(symbol), "unknown map symbol '%s'" % symbol)
 	check_eq(counts.get("P", 0), 1, "exactly one player start")
 	check_eq(counts.get("B", 0), 1, "exactly one bed, the farmhouse door for now")
-	check_eq(counts.get("F", 0), 1, "exactly one farmhouse")
+
 	check(counts.get("s", 0) as int > 0, "some field to farm")
 
 
@@ -84,8 +84,11 @@ func test_world_regions() -> void:
 
 func test_props_json() -> void:
 	var props: Dictionary = _json("res://data/props.json")
-	for symbol: String in WorldMap.BUILDINGS:
-		check(props.has(WorldMap.BUILDINGS[symbol]), WorldMap.BUILDINGS[symbol] + " is imported")
+	var map: WorldMap = WorldMap.load_files()
+	check(map.buildings.values().has("farmhouse"), "the farmhouse is placed")
+	for cell: Vector2i in map.buildings:
+		check(props.has(map.buildings[cell]), map.buildings[cell] + " is imported")
+		check(map.ground_at(cell) == WorldMap.Ground.BLOCK, "%s anchors on a solid footprint cell" % map.buildings[cell])
 	check(props.has("oak") and props.has("dead"), "props.json has the oak and the dead tree")
 	for name: String in props:
 		var box: Array = props[name]
@@ -93,7 +96,6 @@ func test_props_json() -> void:
 		var height: int = box[3] if box.size() == 4 else 0
 		check(width > 0 and height > 0, name + " is an x, y, width, height box")
 	var declared: Dictionary = _json("res://tools/art/props.json")
-	var map: WorldMap = WorldMap.load_files()
 	for region: WorldMap.Region in map.regions:
 		for prop: String in [region.tree, region.dead_tree]:
 			check(props.has(prop) or declared.has(prop), "%s prop '%s' is neither imported nor declared" % [region.id, prop])

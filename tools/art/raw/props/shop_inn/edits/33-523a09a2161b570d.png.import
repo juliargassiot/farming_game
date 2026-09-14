@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://va8it4cnvor3"
-path="res://.godot/imported/design-a4d4fcf59961683d.png-d6c9e04494d548cd421b9fbd5c09e10e.ctex"
+uid="uid://b8fy15gdd02ah"
+path="res://.godot/imported/33-523a09a2161b570d.png-0b43ba36543bb35e71fef1658dfdf6b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/shop_fishmonger/edits/design-a4d4fcf59961683d.png"
-dest_files=["res://.godot/imported/design-a4d4fcf59961683d.png-d6c9e04494d548cd421b9fbd5c09e10e.ctex"]
+source_file="res://tools/art/raw/props/shop_inn/edits/33-523a09a2161b570d.png"
+dest_files=["res://.godot/imported/33-523a09a2161b570d.png-0b43ba36543bb35e71fef1658dfdf6b2.ctex"]
 
 [params]
 

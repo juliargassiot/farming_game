@@ -924,103 +924,136 @@
       "approved_at": "2026-09-14T04:22:46+00:00"
     },
     "shop_townhall": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_townhall/design.png",
         "source": "tools/art/raw/props/shop_townhall/edits/11-98673054635e2917.png",
         "hash": "2062f219d0c1ca38",
         "created": "2026-09-14T14:16:43+00:00"
-      }
+      },
+      "approved_hash": "2062f219d0c1ca38",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:45+00:00"
     },
     "shop_general": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_general/design.png",
         "source": "tools/art/raw/props/shop_general/candidates/11.png",
         "hash": "659775970f2dbfe0",
         "created": "2026-09-14T14:16:43+00:00"
-      }
+      },
+      "approved_hash": "659775970f2dbfe0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:45+00:00"
     },
     "shop_magic": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_magic/design.png",
         "source": "tools/art/raw/props/shop_magic/edits/11-4fc4246b866a06f2.png",
         "hash": "4a4455f03a3c2ca0",
         "created": "2026-09-14T14:16:44+00:00"
-      }
+      },
+      "approved_hash": "4a4455f03a3c2ca0",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
     },
     "shop_tavern": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_tavern/design.png",
         "source": "tools/art/raw/props/shop_tavern/edits/22-handpatched.png",
         "hash": "f4f0a2c56be24886",
         "created": "2026-09-14T14:16:44+00:00"
-      }
+      },
+      "approved_hash": "f4f0a2c56be24886",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
     },
     "shop_fishmonger": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_fishmonger/design.png",
         "source": "tools/art/raw/props/shop_fishmonger/candidates/22.png",
         "hash": "8a8a38c6aeac5e4d",
         "created": "2026-09-14T14:16:44+00:00"
-      }
+      },
+      "approved_hash": "8a8a38c6aeac5e4d",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
     },
     "shop_bakery": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_bakery/design.png",
         "source": "tools/art/raw/props/shop_bakery/edits/22-460341eca8c98a55.png",
         "hash": "aef9edce4638fbe9",
         "created": "2026-09-14T14:34:34+00:00"
-      }
+      },
+      "approved_hash": "aef9edce4638fbe9",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:46+00:00"
     },
     "shop_clinic": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_clinic/design.png",
         "source": "tools/art/raw/props/shop_clinic/edits/22-b7cd633ae1ec072c.png",
         "hash": "b0dbaa5e8bfee3cf",
         "created": "2026-09-14T14:34:34+00:00"
-      }
+      },
+      "approved_hash": "b0dbaa5e8bfee3cf",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
     },
     "shop_smithy": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_smithy/design.png",
         "source": "tools/art/raw/props/shop_smithy/edits/22-be728b82f8afe7c5.png",
         "hash": "c2f0e8cacb8c6ce7",
         "created": "2026-09-14T14:34:34+00:00"
-      }
+      },
+      "approved_hash": "c2f0e8cacb8c6ce7",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
     },
     "shop_tailor": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_tailor/design.png",
         "source": "tools/art/raw/props/shop_tailor/edits/33-8959d904207fa163-45629368912e1c22.png",
         "hash": "c88b4a48dda7a6bd",
         "created": "2026-09-14T14:34:34+00:00"
-      }
+      },
+      "approved_hash": "c88b4a48dda7a6bd",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
     },
     "shop_inn": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_inn/design.png",
-        "source": "tools/art/raw/props/shop_inn/edits/design-a4d4fcf59961683d.png",
-        "hash": "a8298bbe3d612ce4",
-        "created": "2026-09-14T14:16:46+00:00"
-      }
+        "source": "tools/art/raw/props/shop_inn/edits/inn-final.png",
+        "hash": "225c5ac0021d7475",
+        "created": "2026-09-14T16:48:45+00:00"
+      },
+      "approved_hash": "225c5ac0021d7475",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
     },
     "shop_salon": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/shop_salon/design.png",
-        "source": "tools/art/raw/props/shop_salon/edits/design-a4d4fcf59961683d.png",
-        "hash": "1a126766227e5189",
-        "created": "2026-09-14T14:16:46+00:00"
-      }
+        "source": "tools/art/raw/props/shop_salon/candidates/22.png",
+        "hash": "b2ae73b5ebde52b4",
+        "created": "2026-09-14T16:48:45+00:00"
+      },
+      "approved_hash": "b2ae73b5ebde52b4",
+      "approval_note": "",
+      "approved_at": "2026-09-14T16:48:47+00:00"
     }
   }
 }

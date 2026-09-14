@@ -12,9 +12,8 @@ const SYMBOLS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BLOCK, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
 	":": Ground.BOG, "t": Ground.DEAD_TREE, "T": Ground.TREE, "\"": Ground.TALLGRASS, "+": Ground.COBBLE, "H": Ground.HOUSE, "D": Ground.DOCK,
-	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK, "F": Ground.BLOCK, "S": Ground.BLOCK,
+	"R": Ground.ROOF, "d": Ground.DOOR, "b": Ground.BED_FOOT, "X": Ground.BLOCK,
 }
-const BUILDINGS: Dictionary[String, String] = {"F": "farmhouse", "S": "shop"}
 const SOLID: Array[Ground] = [
 	Ground.WATER, Ground.FENCE, Ground.BED, Ground.SEA, Ground.ROCK, Ground.CRAG, Ground.MARSH, Ground.DEAD_TREE, Ground.TREE, Ground.HOUSE,
 	Ground.ROOF, Ground.BED_FOOT, Ground.BLOCK,
@@ -62,11 +61,11 @@ var regions: Array[Region] = []
 static func load_files(map_path: String = MAP_PATH, regions_path: String = REGIONS_PATH) -> WorldMap:
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(regions_path))
 	var data: Dictionary = parsed if parsed is Dictionary else {}
-	var region_data: Dictionary = data.get("regions", {})
-	return from_text(FileAccess.get_file_as_string(map_path), region_data)
+	return from_text(FileAccess.get_file_as_string(map_path), data)
 
 
-static func from_text(text: String, region_data: Dictionary = {}) -> WorldMap:
+static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
+	"""data holds "regions" (id -> region fields) and "buildings" ("x,y" anchor -> prop name)."""
 	var map: WorldMap = WorldMap.new()
 	map.rows = text.strip_edges().split("\n")
 	map.size = Vector2i(map.rows[0].length(), map.rows.size())
@@ -79,11 +78,14 @@ static func from_text(text: String, region_data: Dictionary = {}) -> WorldMap:
 				map.beds[Vector2i(x, y)] = true
 			elif symbol == "s":
 				map.farmable[Vector2i(x, y)] = true
-			elif BUILDINGS.has(symbol):
-				map.buildings[Vector2i(x, y)] = BUILDINGS[symbol]
+	var region_data: Dictionary = data.get("regions", {})
 	for region_id: String in region_data:
 		var entry: Dictionary = region_data[region_id]
 		map.regions.append(Region.from_dict(region_id, entry))
+	var building_data: Dictionary = data.get("buildings", {})
+	for key: String in building_data:
+		var parts: PackedStringArray = key.split(",")
+		map.buildings[Vector2i(int(parts[0]), int(parts[1]))] = building_data[key]
 	return map
 
 
