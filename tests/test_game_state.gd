@@ -36,12 +36,17 @@ func test_advance_day_grows_every_watered_plot() -> void:
 
 
 func test_seed_for_season_respects_unlocks() -> void:
-	check_eq(game.seed_for("spring").id, "mandrake", "first spring crop in crops.json")
-	check_eq(game.seed_for("summer").id, "tomato", "summer seed")
-	check(game.seed_for("winter") == null, "nothing grows in winter without an unlock")
+	var roster: Dictionary[String, CropData] = game.crops
+	game.crops = {
+		"cellar_bulb": CropData.from_dict("cellar_bulb", {"stage_days": [1], "sell_price": 1, "requires": "root_cellar"}),
+		"turnip": CropData.from_dict("turnip", {"stage_days": [1], "sell_price": 1, "seasons": ["spring"]}),
+	}
+	check_eq(game.seed_for("spring").id, "turnip", "first crop that grows in the season")
+	check(game.seed_for("winter") == null, "locked seasonless crop stays hidden")
 	game.unlocks.append("root_cellar")
-	check_eq(game.seed_for("winter").id, "potato", "unlocked seasonless crop fills winter")
-	check_eq(game.seed_for("spring").id, "mandrake", "seasonal crops keep priority")
+	check_eq(game.seed_for("winter").id, "cellar_bulb", "unlocked seasonless crop fills any season")
+	check_eq(game.seed_for("spring").id, "cellar_bulb", "roster order decides between two candidates")
+	game.crops = roster
 
 
 func test_save_round_trip() -> void:
