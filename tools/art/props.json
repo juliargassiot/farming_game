@@ -43,9 +43,9 @@
     ]
   },
   "farmhouse": {
-    "prompt": "a farmhouse: a cosy timber-framed cottage, red-brown wooden shingle roof with a chimney, warm plank walls with dark beams, an arched wooden front door at the bottom centre, small windows with shutters, clean crisp pixel art with dark outlines, flat colours, no mud, front view slightly from above, the whole building filling the frame, no ground, no shadow, nothing else",
+    "prompt": "a spooky but cozy farmhouse at dusk: dark weathered timber walls with heavy crooked beams, a steep crooked gabled roof of mossy dark shingles with a small dormer window, a leaning stone chimney with a wisp of smoke, an arched wooden door with a glowing amber lantern hanging beside it, windows glowing warm orange from inside, window boxes with autumn flowers, ivy and moss creeping up one corner, a crooked little porch step, muted purple-brown twilight palette with warm glows, clean crisp pixel art with dark outlines, flat colours, front view slightly from above, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
-      320,
+      256,
       256
     ],
     "outline": "single color black outline",
