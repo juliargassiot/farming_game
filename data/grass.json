@@ -76,7 +76,8 @@
         "lip": "#958a7c",
         "foot": "#34302d",
         "crack": "#3e3936"
-      }
+      },
+      "snow": "#e9eef1"
     },
     "summer": {
       "dark": [
@@ -126,7 +127,8 @@
         "lip": "#958a7c",
         "foot": "#34302d",
         "crack": "#3e3936"
-      }
+      },
+      "snow": "#e9eef1"
     },
     "autumn": {
       "dark": [
@@ -176,7 +178,8 @@
         "lip": "#988b7a",
         "foot": "#35302c",
         "crack": "#403935"
-      }
+      },
+      "snow": "#e9eef1"
     },
     "winter": {
       "dark": [
@@ -226,7 +229,8 @@
         "lip": "#dde1e4",
         "foot": "#4c4f53",
         "crack": "#5d6064"
-      }
+      },
+      "snow": "#f4f7f8"
     }
   },
   "pack": {

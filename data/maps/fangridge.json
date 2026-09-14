@@ -1,0 +1,23 @@
+{
+  "regions": {
+    "fangridge_peaks": {
+      "name": "Fangridge Peaks",
+      "race": "shifter",
+      "kind": "mountain",
+      "combat_zone": true,
+      "tree": "pine",
+      "dead_tree": "dead",
+      "rect": [
+        0,
+        0,
+        80,
+        60
+      ]
+    }
+  },
+  "buildings": {
+    "12,30": "farmhouse",
+    "60,19": "farmhouse",
+    "26,15": "farmhouse"
+  }
+}

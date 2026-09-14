@@ -4,13 +4,13 @@ extends SceneTree
 func _initialize() -> void:
 	var args: PackedStringArray = OS.get_cmdline_user_args()
 	if args.is_empty():
-		printerr("usage: screenshot.sh scenes/<system>/<scene>.tscn [name] [x,y]")
+		printerr("usage: screenshot.sh scenes/<system>/<scene>.tscn [name] [x,y] [map]")
 		quit(2)
 		return
-	_capture(args[0], args[1] if args.size() > 1 else args[0].get_file().get_basename(), args[2] if args.size() > 2 else "")
+	_capture(args[0], args[1] if args.size() > 1 else args[0].get_file().get_basename(), args[2] if args.size() > 2 else "", args[3] if args.size() > 3 else "")
 
 
-func _capture(scene_path: String, name: String, at: String) -> void:
+func _capture(scene_path: String, name: String, at: String, map_name: String) -> void:
 	var packed: PackedScene = load("res://" + scene_path.trim_prefix("res://"))
 	if packed == null:
 		printerr("cannot load ", scene_path)
@@ -20,6 +20,8 @@ func _capture(scene_path: String, name: String, at: String) -> void:
 	if game != null and game.call("has_save"):
 		game.call("load_game")
 	var scene: Node = packed.instantiate()
+	if map_name != "":
+		scene.set("map_path", "res://data/maps/%s.txt" % map_name)
 	root.add_child(scene)
 	await process_frame
 	var player: Node = scene.find_child("Player")

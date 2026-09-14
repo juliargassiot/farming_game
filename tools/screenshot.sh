@@ -1,5 +1,5 @@
 #!/bin/bash
-# Renders a scene to previews/<name>.png (default: the scene name), optionally with the player moved to cell x,y.
+# Renders a scene to previews/<name>.png (default: the scene name), optionally with the player moved to cell x,y, on another map.
 set -e
 cd "$(dirname "$0")/.."
 GODOT="$(tools/godot.sh)"

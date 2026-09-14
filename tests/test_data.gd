@@ -49,22 +49,27 @@ func test_grass_json() -> void:
 
 func test_mountain_json() -> void:
 	var data: Dictionary = _json("res://data/mountain.json")
-	var world: Dictionary = _json("res://data/world.json")
-	var regions: Dictionary = world.get("regions", {})
-	check(regions.has(data.get("region", "")), "the mountain names a district")
+	var meta: Dictionary = _json("res://data/maps/%s.json" % data.get("map", ""))
+	var regions: Dictionary = meta.get("regions", {})
+	check(regions.has(data.get("region", "")), "the mountain map names its district")
 	check(data.get("wall_height", 0) as int > 0 and data.get("trail_width", 0) as int > 0, "wall height and trail width are set")
 	var trails: Array = data.get("trails", [])
 	check(trails.size() >= 1, "the mountain has a trail")
 	for trail: Variant in trails:
 		check((trail as Array).size() >= 2, "every trail has two or more waypoints")
-	var map: WorldMap = WorldMap.load_files()
+	var map: WorldMap = WorldMap.load_files("res://data/maps/%s.txt" % data.get("map", ""))
+	check(map.start.x >= 0, "the mountain map has a start")
+	var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start)
 	for home: Variant in data.get("homes", []):
-		var pair: Array = home
+		var entry: Dictionary = home
+		var pair: Array = entry.get("at", [])
 		var ax: float = pair[0]
 		var ay: float = pair[1]
 		var anchor: Vector2i = Vector2i(int(ax), int(ay))
-		check(map.buildings.has(anchor), "home at %s is placed in world.json" % anchor)
-		check(map.is_walkable(anchor + Vector2i(4, 1)), "home at %s has a walkable doorstep" % anchor)
+		check(map.buildings.has(anchor), "home at %s is placed in the map's json" % anchor)
+		check(reachable.has(anchor + Vector2i(4, 1)), "home at %s can be walked to from the start" % anchor)
+	var region: WorldMap.Region = map.region_at(map.start)
+	check(region != null and region.kind == "mountain", "the mountain map is a mountain district")
 
 
 func test_world_map() -> void:

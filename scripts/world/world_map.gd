@@ -7,7 +7,6 @@ enum Ground {
 }
 
 const MAP_PATH: String = "res://data/maps/world.txt"
-const REGIONS_PATH: String = "res://data/world.json"
 const SYMBOLS: Dictionary[String, Ground] = {
 	".": Ground.GRASS, "s": Ground.FIELD, "~": Ground.WATER, "#": Ground.FENCE, "=": Ground.PATH, "B": Ground.BLOCK, "P": Ground.GRASS,
 	",": Ground.SAND, "w": Ground.SEA, "^": Ground.ROCK, "M": Ground.CRAG, "c": Ground.CAVE, "m": Ground.MINE, "%": Ground.MARSH,
@@ -58,8 +57,9 @@ var buildings: Dictionary[Vector2i, String] = {}
 var regions: Array[Region] = []
 
 
-static func load_files(map_path: String = MAP_PATH, regions_path: String = REGIONS_PATH) -> WorldMap:
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(regions_path))
+static func load_files(map_path: String = MAP_PATH) -> WorldMap:
+	"""The map's districts and buildings sit beside it in a .json of the same name."""
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(map_path.get_basename() + ".json"))
 	var data: Dictionary = parsed if parsed is Dictionary else {}
 	return from_text(FileAccess.get_file_as_string(map_path), data)
 
