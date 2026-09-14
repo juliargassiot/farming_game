@@ -993,15 +993,6 @@
         "created": "2026-09-14T14:34:34+00:00"
       }
     },
-    "shop_apothecary": {
-      "approved": false,
-      "design": {
-        "file": "tools/art/raw/props/shop_apothecary/design.png",
-        "source": "tools/art/raw/props/shop_apothecary/edits/design-a4d4fcf59961683d.png",
-        "hash": "d323e14839da3967",
-        "created": "2026-09-14T14:16:46+00:00"
-      }
-    },
     "shop_tailor": {
       "approved": false,
       "design": {

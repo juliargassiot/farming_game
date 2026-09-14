@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxm5h82cdyv03"
-path="res://.godot/imported/design.png-2f949daa4e84221f89129dcf3bfed79e.ctex"
+uid="uid://r5wr7x686g3e"
+path="res://.godot/imported/22.png-823737c46c81241ee0428a0cb6956705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/props/shop_apothecary/design.png"
-dest_files=["res://.godot/imported/design.png-2f949daa4e84221f89129dcf3bfed79e.ctex"]
+source_file="res://tools/art/raw/props/shop_inn/candidates/22.png"
+dest_files=["res://.godot/imported/22.png-823737c46c81241ee0428a0cb6956705.ctex"]
 
 [params]
 
