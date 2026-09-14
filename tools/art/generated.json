@@ -113,10 +113,10 @@
         },
         "ready": {
           "file": "tools/art/raw/crops/mandrake/ready.png",
-          "prompt": "a mandrake root with a leafy top, root shaped like a small person: fully grown and ready to harvest, whole plant visible, hints of pale yellow-green, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "prompt": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T02:51:39+00:00",
-          "hash": "668ae61287d31b6b"
+          "created": "2026-09-14T03:15:17+00:00",
+          "hash": "1e0c4c581cdb91aa"
         }
       }
     },
@@ -501,7 +501,7 @@
           "prompt": "a scaly red root with ember-orange leaves: fully grown and ready to harvest, whole plant visible, hints of fiery red-orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:58:08+00:00",
-          "hash": "8324f6ccada01eb7"
+          "hash": "c5aad17169cb852a"
         }
       }
     },
@@ -609,7 +609,7 @@
           "prompt": "a tall foxglove with purple-pink bell flowers: fully grown and ready to harvest, whole plant visible, hints of purple-pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:59:49+00:00",
-          "hash": "781c1198d96beaf0"
+          "hash": "c63a8e55c4a357a1"
         }
       }
     },
@@ -643,10 +643,10 @@
         },
         "ready": {
           "file": "tools/art/raw/crops/grave_lily/ready.png",
-          "prompt": "a grey-white lily with drooping petals: fully grown and ready to harvest, whole plant visible, hints of ghostly grey-white, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "prompt": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T03:00:33+00:00",
-          "hash": "43f0a327c08d250e"
+          "created": "2026-09-14T03:15:47+00:00",
+          "hash": "3c1760f8b602f975"
         }
       }
     },
@@ -753,10 +753,10 @@
         },
         "ready": {
           "file": "tools/art/raw/crops/bat_orchid/ready.png",
-          "prompt": "a black bat-shaped orchid with long whiskers: fully grown and ready to harvest, whole plant visible, hints of black with a purple sheen, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "prompt": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
-          "created": "2026-09-14T03:02:00+00:00",
-          "hash": "febb8a6ff500e69e"
+          "created": "2026-09-14T03:16:10+00:00",
+          "hash": "64819aadc760b288"
         }
       }
     },

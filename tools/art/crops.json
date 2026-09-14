@@ -7,12 +7,15 @@
   "mandrake": {
     "colour": "pale yellow-green",
     "seed": "one",
-    "final": "a mandrake root with a leafy top, root shaped like a small person",
+    "final": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top",
     "stage_notes": {
       "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3"
     },
     "anim": {
       "sprout": "eyes"
+    },
+    "stage_prompts": {
+      "ready": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull"
     }
   },
   "carrot": {
@@ -82,7 +85,7 @@
     "seed": "three",
     "final": "a mysterious sprout",
     "variant_finals": [
-      "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip",
+      "a Wolf Sprout: a plant shaped like a bushy wolf's tail, grey-brown fur-like fronds curving upward with a pale tip",
       "a Bear Sprout: a stout dark brown plant with round furry leaves like bear ears",
       "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears",
       "a Raven Sprout: a glossy black plant with pointed feather-like leaves"
@@ -107,7 +110,8 @@
     "final": "a scaly red root with ember-orange leaves",
     "stage_notes": {
       "sprout": "reshape the two leaves into flame shapes with pointed flickering tips",
-      "growing": "reshape every leaf into a pointed flame shape with flickering tips"
+      "growing": "reshape every leaf into a pointed flame shape with flickering tips",
+      "ready": "reshape every leaf into a pointed flame and add several more flame leaves so the plant is lush and full"
     },
     "anim": {
       "sprout": "flame"
@@ -146,19 +150,21 @@
       "growing": "a rosette of soft fuzzy green leaves with a short stalk of small closed purple-pink buds"
     },
     "stage_notes": {
-      "growing": "keep the two green leaves at the base; above them, replace the single bud with three closed pink bulbs stacked in a pyramid, one on top of two"
+      "growing": "keep the two green leaves at the base; above them, replace the single bud with three closed pink bulbs stacked in a pyramid, one on top of two",
+      "ready": "colour the whole flower spike purple to the tip, with a gradient from dark purple at the bottom to light purple at the top"
     }
   },
   "grave_lily": {
     "colour": "ghostly grey-white",
     "seed": "three",
-    "final": "a grey-white lily with drooping petals",
+    "final": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves",
     "stage_notes": {
       "sprout": "two small black eyes and a larger black open mouth on the drooping bud",
       "growing": "raise the grey-blue closed bud up on a taller stem above the leaves, like a flower about to open, keep the faint face on the bud; remove the lower grey-blue bulb near the soil entirely; make the top bud a closed lily shape with pointed petals instead of a round ball, keep the faint face"
     },
     "stage_prompts": {
-      "growing": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud"
+      "growing": "drooping grey-green leaves with one closed pale grey bud hanging down, two faint dark eye marks on the bud",
+      "ready": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick"
     }
   },
   "sirens_bell": {
@@ -176,12 +182,15 @@
   "bat_orchid": {
     "colour": "black with a purple sheen",
     "seed": "three",
-    "final": "a black bat-shaped orchid with long whiskers",
+    "final": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem",
     "stage_notes": {
       "sprout": "give both leaves ragged scalloped edges like bat wings; deep notches along the wing edges"
     },
     "anim": {
       "sprout": "twitch"
+    },
+    "stage_prompts": {
+      "ready": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick"
     }
   },
   "moonpetal": {
