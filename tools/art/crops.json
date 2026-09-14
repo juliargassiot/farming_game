@@ -93,13 +93,16 @@
     "seed": "one",
     "final": "a squash vine with big blood-red blossoms dripping dark red",
     "stage_notes": {
-      "sprout": "add a small drip of dark red blood hanging from the tip of the left leaf"
+      "sprout": "add a small drip of dark red blood hanging from the tip of the left leaf",
+      "ready": "three big dripping blossoms; stem and leaf bases pink fading to green at the tips",
+      "growing": "stem and leaf bases pink fading to green at the tips"
     },
     "anim": {
       "sprout": "drip"
     },
     "stage_prompts": {
-      "growing": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf"
+      "growing": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf",
+      "ready": "a squash vine with three big blood-red blossoms, open and fleshy, each dripping dark red from its edge, a few large lobed green leaves, fully grown and ready to pick"
     }
   },
   "shifting_sprouts": {
