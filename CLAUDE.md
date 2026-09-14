@@ -14,7 +14,7 @@ The user does not understand or read code, documentation, commits, or comments. 
 - `scenes/<system>/` and `scripts/<system>/` mirror each other; one system per folder, scenes small and single-purpose. Check `scenes/` and `data/` before inventing anything.
 - `data/` holds crops, maps, dialogue, and schedules as JSON or text.
 - `assets/` holds PNGs and Godot resources. Save data goes to `user://`; never write to the repo at runtime.
-- Screen is 640×400, integer-scaled ×2 to the Deck's 1280×800. Tiles are 32 px and the player is a 56×96 frame: 3 tiles tall, 20×12 tiles on screen, camera follows.
+- Screen is 640×400, integer-scaled ×2 to the Deck's 1280×800. Tiles are 32 px; the player is a 56×96 frame drawn at half scale, so 28×48 on screen, one and a half tiles tall. 20×12 tiles on screen, camera follows.
 
 ## Art
 
