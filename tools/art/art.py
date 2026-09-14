@@ -293,7 +293,10 @@ def cmd_prop_import(_args) -> None:
         ground.paste(Image.open(ROOT / props.pop(name)["design"]["file"]).convert("RGBA"), (column * 32, 0))
         print(f"{name} -> ground.png column {column}")
     ground.save(ROOT / "assets" / "tiles" / "ground.png")
-    images = {name: Image.open(ROOT / record["design"]["file"]).convert("RGBA") for name, record in props.items()}
+    images = {}
+    for name, record in props.items():
+        image = Image.open(ROOT / record["design"]["file"]).convert("RGBA")
+        images[name] = image.crop(image.getbbox()) if image.getbbox() else image
     atlas = Image.new("RGBA", (sum(im.width for im in images.values()), max(im.height for im in images.values())), (0, 0, 0, 0))
     regions, x = {}, 0
     for name, im in images.items():

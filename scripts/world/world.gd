@@ -68,8 +68,11 @@ func _build_map() -> void:
 			var cell: Vector2i = Vector2i(x, y)
 			var kind: WorldMap.Ground = map.ground_at(cell)
 			var prop: String = _prop_for(cell, kind)
-			if prop_regions.has(prop):
-				_place_prop(cell, prop_regions[prop])
+			if map.buildings.has(cell) and prop_regions.has(map.buildings[cell]):
+				var region: Rect2i = prop_regions[map.buildings[cell]]
+				_place_prop(Vector2(cell.x * Player.TILE + region.size.x / 2.0, (cell.y + 1) * Player.TILE), region, false)
+			elif prop_regions.has(prop):
+				_place_prop(Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE), prop_regions[prop], true)
 				kind = _ground_under_prop(cell)
 			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
@@ -113,8 +116,8 @@ func _prop_for(cell: Vector2i, kind: WorldMap.Ground) -> String:
 	return ""
 
 
-func _place_prop(cell: Vector2i, region: Rect2i) -> void:
-	"""A sprite standing on its cell, sorted with the farmer by the y of its base."""
+func _place_prop(base: Vector2, region: Rect2i, solid: bool) -> void:
+	"""A sprite standing on its base point, sorted with the farmer by that y; trees also block the cell there."""
 	var texture: AtlasTexture = AtlasTexture.new()
 	texture.atlas = PROPS
 	texture.region = region
@@ -122,7 +125,10 @@ func _place_prop(cell: Vector2i, region: Rect2i) -> void:
 	sprite.texture = texture
 	sprite.centered = false
 	sprite.offset = Vector2(-region.size.x / 2.0, -region.size.y)
-	sprite.position = Vector2(cell.x * Player.TILE + Player.TILE / 2.0, (cell.y + 1) * Player.TILE)
+	sprite.position = base
+	scenery.add_child(sprite)
+	if not solid:
+		return
 	var body: StaticBody2D = StaticBody2D.new()
 	var shape: CollisionShape2D = CollisionShape2D.new()
 	var box: RectangleShape2D = RectangleShape2D.new()
@@ -131,7 +137,6 @@ func _place_prop(cell: Vector2i, region: Rect2i) -> void:
 	shape.position = Vector2(0, -Player.TILE / 4.0)
 	body.add_child(shape)
 	sprite.add_child(body)
-	scenery.add_child(sprite)
 
 
 func _refresh_plots() -> void:
