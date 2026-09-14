@@ -11,7 +11,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
-GRASSY = set(".PTt\"s=")
+GRASSY = set(".PTt\"s=+")
 TONES = ("dark", "mid", "light")
 PATH = 3
 
@@ -113,8 +113,8 @@ def tone_field(shape: tuple[int, int], dials: dict, rng: np.random.Generator) ->
 
 
 def path_mask(rows: list[str], dials: dict, rng: np.random.Generator) -> np.ndarray:
-    """Stone wherever the map draws a path, its corners rounded and its edge wobbled so it reads as laid by hand."""
-    cells = np.array([[c == "=" for c in row] for row in rows])
+    """Stone wherever the map draws a path or cobbled square, its corners rounded and its edge wobbled so it reads as laid by hand."""
+    cells = np.array([[c in "=+" for c in row] for row in rows])
     mask = np.kron(cells, np.ones((TILE, TILE), dtype=bool)).astype(float)
     radius = dials["path_round"]
     kernel = np.ones(2 * radius + 1) / (2 * radius + 1)
