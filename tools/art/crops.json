@@ -34,12 +34,14 @@
         "seed": 0,
         "ready": 20
       }
-    }
+    },
+    "emblem": "a tiny root figure"
   },
   "carrot": {
     "colour": "orange",
     "seed": "two",
-    "final": "carrots with feathery green tops"
+    "final": "carrots with feathery green tops",
+    "emblem": "a tiny carrot"
   },
   "garlic": {
     "colour": "off-white with a light yellow tint",
@@ -53,7 +55,8 @@
     "stage_notes": {
       "growing": "the ready plant scaled to 80% with most of the bulb buried",
       "sprout": "the ready plant scaled to 55% with the bulb hidden"
-    }
+    },
+    "emblem": "a tiny garlic bulb"
   },
   "onion": {
     "colour": "golden brown",
@@ -64,7 +67,8 @@
     },
     "stage_prompts": {
       "sprout": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small"
-    }
+    },
+    "emblem": "a tiny onion"
   },
   "strawberry": {
     "colour": "red",
@@ -75,7 +79,8 @@
     },
     "stage_prompts": {
       "growing": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries"
-    }
+    },
+    "emblem": "a tiny strawberry"
   },
   "peas": {
     "colour": "green",
@@ -87,7 +92,8 @@
     },
     "stage_prompts": {
       "ready": "a pea vine climbing a small wooden trellis with curling tendrils and several plump green pea pods hanging, ready to pick"
-    }
+    },
+    "emblem": "a tiny pea pod"
   },
   "blood_blossom": {
     "colour": "deep blood red",
@@ -104,7 +110,8 @@
     "stage_prompts": {
       "growing": "a young squash vine with large lobed leaves and one tightly closed dark red bud, a dark red drip on one leaf",
       "ready": "a squash vine with three big blood-red blossoms, open and fleshy, each dripping dark red from its edge, a few large lobed green leaves, fully grown and ready to pick"
-    }
+    },
+    "emblem": "a tiny red blossom with a drip"
   },
   "shifting_sprouts": {
     "colour": "plain brown",
@@ -115,7 +122,8 @@
       "a Wolf Sprout: a plant shaped like a bushy wolf's tail, grey-brown fur-like fronds curving upward with a pale tip",
       "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears",
       "a Raven Sprout: a glossy black plant with pointed feather-like leaves"
-    ]
+    ],
+    "emblem": "a tiny question mark"
   },
   "wolfsbane": {
     "colour": "deep purple",
@@ -123,12 +131,14 @@
     "final": "a tall wolfsbane plant with hooded purple flowers",
     "stage_prompts": {
       "growing": "a tall stalk with dark lobed leaves and a few small closed deep purple buds"
-    }
+    },
+    "emblem": "a tiny hooded purple flower"
   },
   "wisp_lettuce": {
     "colour": "pale glowing blue-white",
     "seed": "many",
-    "final": "a pale lettuce head glowing faintly"
+    "final": "a pale lettuce head glowing faintly",
+    "emblem": "a tiny glowing lettuce head"
   },
   "dragon_root": {
     "colour": "fiery red-orange",
@@ -141,7 +151,8 @@
     },
     "anim": {
       "sprout": "flame"
-    }
+    },
+    "emblem": "a tiny flame"
   },
   "brine_bulb": {
     "colour": "pale sea green with salt crystals",
@@ -150,7 +161,8 @@
     "stage_notes": {
       "sprout": "replace the water drop with a teardrop-shaped light blue bulb sitting between the two leaves at the top of the centre stalk, with a small white glisten highlight; no drip",
       "growing": "add a teardrop-shaped pale blue bulb nestled in the centre of the leaves, glossy like a pearl with a white glisten highlight"
-    }
+    },
+    "emblem": "a tiny teardrop"
   },
   "tulip": {
     "colour": "pink",
@@ -158,7 +170,8 @@
     "final": "a pink tulip",
     "stage_prompts": {
       "growing": "two long upright green leaves and one small tightly closed green bud on a short stem"
-    }
+    },
+    "emblem": "a tiny tulip"
   },
   "daffodil": {
     "colour": "yellow",
@@ -166,7 +179,8 @@
     "final": "a yellow daffodil",
     "stage_prompts": {
       "growing": "a clump of grassy strap leaves with one small closed pale bud on a stem"
-    }
+    },
+    "emblem": "a tiny daffodil"
   },
   "foxglove": {
     "colour": "purple-pink",
@@ -178,7 +192,8 @@
     "stage_notes": {
       "growing": "keep the two green leaves at the base; above them, replace the single bud with three closed pink bulbs stacked in a pyramid, one on top of two",
       "ready": "colour the whole flower spike purple to the tip, with a gradient from dark purple at the bottom to light purple at the top"
-    }
+    },
+    "emblem": "a tiny bell spike"
   },
   "grave_lily": {
     "colour": "ghostly grey-white",
@@ -192,7 +207,8 @@
       "growing": "two small black eyes and a larger black open mouth on the drooping bud",
       "ready": "a peace lily with one grey-white hooded bloom and a dark spadix, greyish ghoulish drooping leaves, one open bloom, ready to pick",
       "sprout": "a tiny grey-white seedling: one thin pale stem with a single small grey-green leaf and one small closed pale grey bud, very small"
-    }
+    },
+    "emblem": "a tiny lily bloom"
   },
   "sirens_bell": {
     "colour": "deep blue",
@@ -205,7 +221,8 @@
     },
     "stage_prompts": {
       "ready": "a flower with three royal-blue hand-bell shaped blooms hanging from the left side of one curved green stem, each bloom a classic curved bell with a flared open bottom and a tiny pale clapper dangling in the middle, a few green leaves, ready to pick"
-    }
+    },
+    "emblem": "a tiny hand bell"
   },
   "bat_orchid": {
     "colour": "black with a purple sheen",
@@ -222,12 +239,14 @@
     "stage_prompts": {
       "ready": "a black bat orchid in full bloom: two broad dark purple petals spread wide like bat wings with scalloped edges and a small black bat face at the centre, over ragged purple bat-wing leaves",
       "growing": "a young plant with four ragged scalloped purple leaves shaped like bat wings, spread out, and one small dark closed bud at the centre, no open flower"
-    }
+    },
+    "emblem": "a tiny bat"
   },
   "moonpetal": {
     "colour": "silver-white",
     "seed": "one",
-    "final": "a silver-white night flower"
+    "final": "a silver-white night flower",
+    "emblem": "a tiny crescent moon"
   },
   "foxtail": {
     "colour": "orange-red",
@@ -235,6 +254,7 @@
     "final": "a foxtail flower like an Indian paintbrush: an upright spike of bristly red-orange bracts with green stems",
     "stage_prompts": {
       "growing": "a rosette of long strap leaves with one closed orange-red spike bud rising from the centre"
-    }
+    },
+    "emblem": "a tiny paintbrush spike"
   }
 }
