@@ -42,12 +42,13 @@
     "final": "carrots with feathery green tops"
   },
   "garlic": {
-    "colour": "white",
+    "colour": "off-white with a light yellow tint",
     "seed": "three",
     "final": "a garlic bulb with tall flat green leaves",
     "stage_prompts": {
       "growing": "a garlic plant with tall flat green leaves growing straight up from a small round mound",
-      "ready": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound"
+      "ready": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound",
+      "sprout": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small"
     },
     "stage_notes": {
       "growing": "bulb shifted to off-white with a light yellow tint; leaves original green"
@@ -59,6 +60,9 @@
     "final": "an onion bulb with tubular green leaves",
     "stage_notes": {
       "growing": "bulb shifted from orange to yellow"
+    },
+    "stage_prompts": {
+      "sprout": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small"
     }
   },
   "strawberry": {

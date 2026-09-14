@@ -163,18 +163,18 @@
       "stages": {
         "seed": {
           "file": "tools/art/raw/crops/garlic/seed.png",
-          "prompt": "three medium seeds, white, resting on top of a small mound of dark tilled soil, just planted, no leaves, no sprout, nothing growing, seen from above, pixel art, nothing else",
-          "seed": 34,
-          "created": "2026-09-14T00:41:48+00:00",
-          "hash": "600117a951bb2a9c",
+          "prompt": "three medium off-white with a light yellow tint bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
+          "seed": 47,
+          "created": "2026-09-14T04:18:32+00:00",
+          "hash": "18a213406e3959b3",
           "approved": true
         },
         "sprout": {
           "file": "tools/art/raw/crops/garlic/sprout.png",
-          "prompt": "a garlic bulb with tall flat green leaves: a tiny seedling with two small leaves, just emerged, hints of white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T00:55:40+00:00",
-          "hash": "b1daaf0ab0fe6075",
+          "prompt": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 66,
+          "created": "2026-09-14T04:20:26+00:00",
+          "hash": "95dc6317cad964e9",
           "approved": true
         },
         "growing": {
@@ -190,7 +190,7 @@
           "prompt": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T03:03:32+00:00",
-          "hash": "9d276297fd203a88",
+          "hash": "7e3bb1431f63b304",
           "approved": true
         }
       }
@@ -203,15 +203,15 @@
           "prompt": "three medium golden brown bean-shaped seeds resting on top of a small mound of dark tilled soil, seeds only, no plant, no leaves, no sprout, no flower, seen from above, pixel art, nothing else",
           "seed": 47,
           "created": "2026-09-14T00:45:03+00:00",
-          "hash": "3b17a7f1c25c721e",
+          "hash": "e3dae216d2efe538",
           "approved": true
         },
         "sprout": {
           "file": "tools/art/raw/crops/onion/sprout.png",
-          "prompt": "an onion bulb with tubular green leaves: a tiny seedling with two small leaves, just emerged, hints of golden brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T00:56:11+00:00",
-          "hash": "5a5ac21f6d5fa61c",
+          "prompt": "a tiny juvenile onion seedling: a single thin green shoot bent like a hook with one small leaf just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T04:19:39+00:00",
+          "hash": "7255e865c175afba",
           "approved": true
         },
         "growing": {
@@ -227,7 +227,7 @@
           "prompt": "an onion bulb with tubular green leaves: fully grown and ready to harvest, whole plant visible, hints of golden brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:52:55+00:00",
-          "hash": "2f3d56e8dd48f062",
+          "hash": "04d88ee9d52e6860",
           "approved": true
         }
       }
@@ -240,7 +240,7 @@
           "prompt": "a scattering of many tiny seeds, red, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T00:28:29+00:00",
-          "hash": "e900539903399ff5",
+          "hash": "068155a1273467c8",
           "approved": true
         },
         "sprout": {
@@ -248,7 +248,7 @@
           "prompt": "a strawberry bush with ripe red berries: a tiny seedling with two small leaves, just emerged, hints of red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T00:56:40+00:00",
-          "hash": "4469b314230bfb66",
+          "hash": "3e035e5366b3409b",
           "edit": "make it a small bushy sprout with several tiny leaves instead of two",
           "approved": true
         },
@@ -257,7 +257,7 @@
           "prompt": "a small bushy strawberry plant with jagged leaves and two tiny white blossoms, no berries, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:08:25+00:00",
-          "hash": "b0984799b477bd5e",
+          "hash": "0ef246613fdfbcec",
           "approved": true
         },
         "ready": {
