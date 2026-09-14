@@ -56,7 +56,7 @@ def frame_size(body: dict) -> tuple[int, int]:
 
 
 def record_for(generated: dict, kind: str, name: str) -> dict:
-    return generated[kind].setdefault(name, {"approved": False})
+    return generated.setdefault(kind, {}).setdefault(name, {"approved": False})
 
 
 def require_approved(record: dict, name: str) -> None:
@@ -160,6 +160,7 @@ def cmd_edit(args) -> None:
     out = RAW / args.name / "edits" / f"{source.stem}-{sha(source)}.png"
     image = save_png(decode_image(result["last_response"]["image"]), out)
     preview = PREVIEWS / f"{args.name}-edit.png"
+    preview.parent.mkdir(parents=True, exist_ok=True)
     sheets.contact_sheet([("before", [Image.open(source).convert("RGBA")]), ("after", [image])], scale=3).save(preview)
     print(f"Edit written to {rel(out)}; compare at {rel(preview)}")
 
