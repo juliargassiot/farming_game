@@ -93,6 +93,14 @@
           "created": "2026-09-14T00:42:35+00:00",
           "hash": "551e5a8e90d960e5",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/mandrake/sprout.png",
+          "prompt": "a mandrake root with a leafy top, root shaped like a small person: a tiny seedling with two small leaves, just emerged, hints of pale yellow-green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:54:35+00:00",
+          "hash": "512213104c5f0f66",
+          "edit": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves"
         }
       }
     },
@@ -106,6 +114,13 @@
           "created": "2026-09-14T00:27:01+00:00",
           "hash": "c1bffd72e98c7b4e",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/carrot/sprout.png",
+          "prompt": "carrots with feathery green tops: a tiny seedling with two small leaves, just emerged, hints of orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:55:16+00:00",
+          "hash": "533394e2c42b9c2d"
         }
       }
     },
@@ -119,6 +134,13 @@
           "created": "2026-09-14T00:41:48+00:00",
           "hash": "600117a951bb2a9c",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/garlic/sprout.png",
+          "prompt": "a garlic bulb with tall flat green leaves: a tiny seedling with two small leaves, just emerged, hints of white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:55:40+00:00",
+          "hash": "b1daaf0ab0fe6075"
         }
       }
     },
@@ -132,6 +154,13 @@
           "created": "2026-09-14T00:45:03+00:00",
           "hash": "3b17a7f1c25c721e",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/onion/sprout.png",
+          "prompt": "an onion bulb with tubular green leaves: a tiny seedling with two small leaves, just emerged, hints of golden brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:56:11+00:00",
+          "hash": "5a5ac21f6d5fa61c"
         }
       }
     },
@@ -145,6 +174,14 @@
           "created": "2026-09-14T00:28:29+00:00",
           "hash": "e900539903399ff5",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/strawberry/sprout.png",
+          "prompt": "a strawberry bush with ripe red berries: a tiny seedling with two small leaves, just emerged, hints of red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:56:40+00:00",
+          "hash": "4469b314230bfb66",
+          "edit": "make it a small bushy sprout with several tiny leaves instead of two"
         }
       }
     },
@@ -158,6 +195,14 @@
           "created": "2026-09-14T00:38:09+00:00",
           "hash": "42057ff5c6723dbd",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/peas/sprout.png",
+          "prompt": "a pea vine with pods: a tiny seedling with two small leaves, just emerged, hints of green, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:57:06+00:00",
+          "hash": "b82894d70c07ed44",
+          "edit": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like"
         }
       }
     },
@@ -171,6 +216,14 @@
           "created": "2026-09-14T00:42:51+00:00",
           "hash": "94b3355c96b1c504",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/blood_blossom/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep blood red, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:04:26+00:00",
+          "hash": "912d9cdf8802736d",
+          "edit": "add a small drip of dark red blood hanging from the tip of the left leaf"
         }
       }
     },
@@ -184,6 +237,13 @@
           "created": "2026-09-14T00:29:54+00:00",
           "hash": "462aa20c8d325f04",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/shifting_sprouts/sprout.png",
+          "prompt": "a mysterious sprout: a tiny seedling with two small leaves, just emerged, hints of plain brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:57:54+00:00",
+          "hash": "44eb42e67ba990f4"
         }
       }
     },
@@ -197,6 +257,13 @@
           "created": "2026-09-14T00:30:20+00:00",
           "hash": "271f5489a228151d",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/wolfsbane/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged deep purple, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:04:50+00:00",
+          "hash": "b04e4f898d00b9ce"
         }
       }
     },
@@ -210,6 +277,13 @@
           "created": "2026-09-14T00:30:47+00:00",
           "hash": "81669e9591ef90b7",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/wisp_lettuce/sprout.png",
+          "prompt": "a pale lettuce head glowing faintly: a tiny seedling with two small leaves, just emerged, hints of pale glowing blue-white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:58:53+00:00",
+          "hash": "368c84a940df0726"
         }
       }
     },
@@ -223,6 +297,14 @@
           "created": "2026-09-14T00:43:16+00:00",
           "hash": "212591f3637232a2",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/dragon_root/sprout.png",
+          "prompt": "a scaly red root with ember-orange leaves: a tiny seedling with two small leaves, just emerged, hints of fiery red-orange, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T00:59:23+00:00",
+          "hash": "424f8c79dee59e40",
+          "edit": "reshape the two leaves into flame shapes with pointed flickering tips"
         }
       }
     },
@@ -236,6 +318,13 @@
           "created": "2026-09-14T00:43:40+00:00",
           "hash": "2b4f527b739dff2b",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/tulip/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:05:29+00:00",
+          "hash": "c49365b1f2bdc1e3"
         }
       }
     },
@@ -249,6 +338,13 @@
           "created": "2026-09-14T00:44:04+00:00",
           "hash": "0b7146749f54a697",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/daffodil/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged yellow, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:06:12+00:00",
+          "hash": "a61c1db3cf6749e0"
         }
       }
     },
@@ -262,6 +358,13 @@
           "created": "2026-09-14T00:32:54+00:00",
           "hash": "010791317118760f",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/foxglove/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged purple-pink, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:06:40+00:00",
+          "hash": "8751184751a60961"
         }
       }
     },
@@ -275,6 +378,14 @@
           "created": "2026-09-14T00:33:09+00:00",
           "hash": "92c0be96a6e1274d",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/grave_lily/sprout.png",
+          "prompt": "a grey-white lily with drooping petals: a tiny seedling with two small leaves, just emerged, hints of ghostly grey-white, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:01:09+00:00",
+          "hash": "1a9a94e6a24af438",
+          "edit": "two faint eye shadows painted on the bud"
         }
       }
     },
@@ -288,6 +399,13 @@
           "created": "2026-09-14T00:33:46+00:00",
           "hash": "d8ff9b928632994a",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/sirens_bell/sprout.png",
+          "prompt": "a blue bell-shaped flower: a tiny seedling with two small leaves, just emerged, hints of deep blue, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:01:41+00:00",
+          "hash": "63fbf532ab3b75a3"
         }
       }
     },
@@ -301,6 +419,14 @@
           "created": "2026-09-14T00:44:34+00:00",
           "hash": "2f4d49c343c3ad5e",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/brine_bulb/sprout.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: a tiny seedling with two small leaves, just emerged, hints of pale sea green with salt crystals, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:02:13+00:00",
+          "hash": "57d4bc691ba10937",
+          "edit": "add a clearly visible light blue water droplet falling from the tip of the left leaf"
         }
       }
     },
@@ -314,6 +440,14 @@
           "created": "2026-09-14T00:35:04+00:00",
           "hash": "7a9655482dabc2d6",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/bat_orchid/sprout.png",
+          "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 52,
+          "created": "2026-09-14T01:07:08+00:00",
+          "hash": "054e95f4c29e45cf",
+          "edit": "give both leaves ragged scalloped edges like bat wings"
         }
       }
     },
@@ -327,6 +461,13 @@
           "created": "2026-09-14T00:35:48+00:00",
           "hash": "9198d2e47084152c",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/foxtail_lily/sprout.png",
+          "prompt": "a tall foxtail lily spike: a tiny seedling with two small leaves, just emerged, hints of orange-red, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:03:07+00:00",
+          "hash": "740e3af652b084e6"
         }
       }
     },
@@ -340,6 +481,13 @@
           "created": "2026-09-14T00:40:51+00:00",
           "hash": "4df94c926b4dd3f7",
           "approved": true
+        },
+        "sprout": {
+          "file": "tools/art/raw/crops/potato/sprout.png",
+          "prompt": "a leafy potato plant: a tiny seedling with two small leaves, just emerged, hints of brown, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T01:03:40+00:00",
+          "hash": "1d3535f770fa69e3"
         }
       }
     }

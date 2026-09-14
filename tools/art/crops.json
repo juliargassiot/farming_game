@@ -7,7 +7,10 @@
   "mandrake": {
     "colour": "pale yellow-green",
     "seed": "one",
-    "final": "a mandrake root with a leafy top, root shaped like a small person"
+    "final": "a mandrake root with a leafy top, root shaped like a small person",
+    "stage_notes": {
+      "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves"
+    }
   },
   "carrot": {
     "colour": "orange",
@@ -27,17 +30,26 @@
   "strawberry": {
     "colour": "red",
     "seed": "many",
-    "final": "a strawberry bush with ripe red berries"
+    "final": "a strawberry bush with ripe red berries",
+    "stage_notes": {
+      "sprout": "make it a small bushy sprout with several tiny leaves instead of two"
+    }
   },
   "peas": {
     "colour": "green",
     "seed": "three",
-    "final": "a pea vine with pods"
+    "final": "a pea vine with pods",
+    "stage_notes": {
+      "sprout": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like"
+    }
   },
   "blood_blossom": {
     "colour": "deep blood red",
     "seed": "one",
-    "final": "a squash vine with big blood-red blossoms dripping dark red"
+    "final": "a squash vine with big blood-red blossoms dripping dark red",
+    "stage_notes": {
+      "sprout": "add a small drip of dark red blood hanging from the tip of the left leaf"
+    }
   },
   "shifting_sprouts": {
     "colour": "plain brown",
@@ -57,12 +69,18 @@
   "dragon_root": {
     "colour": "fiery red-orange",
     "seed": "one",
-    "final": "a scaly red root with ember-orange leaves"
+    "final": "a scaly red root with ember-orange leaves",
+    "stage_notes": {
+      "sprout": "reshape the two leaves into flame shapes with pointed flickering tips"
+    }
   },
   "brine_bulb": {
     "colour": "pale sea green with salt crystals",
     "seed": "one",
-    "final": "a pale salt-crusted bulb with seaweed-like leaves"
+    "final": "a pale salt-crusted bulb with seaweed-like leaves",
+    "stage_notes": {
+      "sprout": "add a clearly visible light blue water droplet falling from the tip of the left leaf"
+    }
   },
   "tulip": {
     "colour": "pink",
@@ -82,7 +100,10 @@
   "grave_lily": {
     "colour": "ghostly grey-white",
     "seed": "three",
-    "final": "a grey-white lily with drooping petals"
+    "final": "a grey-white lily with drooping petals",
+    "stage_notes": {
+      "sprout": "two faint darker eye shadows on the drooping bud, a hint of a ghostly face"
+    }
   },
   "sirens_bell": {
     "colour": "deep blue",
@@ -92,7 +113,10 @@
   "bat_orchid": {
     "colour": "black with a purple sheen",
     "seed": "three",
-    "final": "a black bat-shaped orchid with long whiskers"
+    "final": "a black bat-shaped orchid with long whiskers",
+    "stage_notes": {
+      "sprout": "give both leaves ragged scalloped edges like bat wings"
+    }
   },
   "foxtail_lily": {
     "colour": "orange-red",

@@ -182,7 +182,8 @@ def cmd_crop_design(args) -> None:
         else:
             stage_text = {"sprout": "a tiny seedling with two small leaves, just emerged", "growing": "a young plant, half grown, leafy, no fruit or flower yet",
                           "ready": "fully grown and ready to harvest"}.get(args.stage, args.stage)
-            prompt = f"{spec['final']}: {stage_text}, hints of {spec['colour']}, on a small mound of dark tilled soil, seen from above, pixel art, nothing else"
+            subject = f"{stage_text}, leaves tinged {spec['colour']}" if args.stage == "sprout" else f"{spec['final']}: {stage_text}, hints of {spec['colour']}"
+            prompt = f"{subject}, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else"
         if not (out.exists() and not args.redo):
             response = client.create_image_pixen(prompt, (32, 32), view="high top-down", outline="lineless", detail="medium detail", seed=args.seed)
             save_png(decode_image(response["image"]), out)
