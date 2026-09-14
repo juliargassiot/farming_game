@@ -118,6 +118,13 @@
           "created": "2026-09-14T03:15:17+00:00",
           "hash": "c76b950939e94fa2",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/mandrake/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale yellow-green cloth, with a tiny root figure drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:50:29+00:00",
+          "hash": "e6bc5a0ef22f5acb"
         }
       }
     },
@@ -155,6 +162,13 @@
           "created": "2026-09-14T02:52:05+00:00",
           "hash": "85044a8f0024b4b4",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/carrot/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, orange cloth, with a tiny carrot drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:50:52+00:00",
+          "hash": "b0363e33ec13c0cc"
         }
       }
     },
@@ -194,6 +208,13 @@
           "created": "2026-09-14T03:03:32+00:00",
           "hash": "7e3bb1431f63b304",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/garlic/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, off-white with a light yellow tint cloth, with a tiny garlic bulb drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 34,
+          "created": "2026-09-14T14:59:23+00:00",
+          "hash": "693f5019206d741d"
         }
       }
     },
@@ -231,6 +252,13 @@
           "created": "2026-09-14T02:52:55+00:00",
           "hash": "04d88ee9d52e6860",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/onion/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, golden brown cloth, with a tiny onion drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:51:56+00:00",
+          "hash": "681e04ead9ec4e3f"
         }
       }
     },
@@ -269,6 +297,13 @@
           "created": "2026-09-14T02:53:24+00:00",
           "hash": "7a030fb79bf75ef5",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/strawberry/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, red cloth, with a tiny strawberry drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:52:19+00:00",
+          "hash": "0e208a7f61789f31"
         }
       }
     },
@@ -307,6 +342,13 @@
           "created": "2026-09-14T03:03:06+00:00",
           "hash": "73a3d92dce0bec52",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/peas/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, green cloth, with a tiny pea pod drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:52:57+00:00",
+          "hash": "404af86c1f2303df"
         }
       }
     },
@@ -345,6 +387,13 @@
           "created": "2026-09-14T02:54:46+00:00",
           "hash": "4ae07d9aa589aab7",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/blood_blossom/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep blood red cloth, with a tiny red blossom with a drip drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:53:20+00:00",
+          "hash": "ea6aba1e71894a95"
         }
       }
     },
@@ -406,6 +455,13 @@
           "created": "2026-09-14T03:21:50+00:00",
           "hash": "214f75bc81fcb5fe",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/shifting_sprouts/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, plain brown cloth, with a tiny question mark drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:53:54+00:00",
+          "hash": "56cff8724f25c603"
         }
       }
     },
@@ -443,6 +499,13 @@
           "created": "2026-09-14T02:57:24+00:00",
           "hash": "dbf3bb84d403a760",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wolfsbane/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep purple cloth, with a tiny hooded purple flower drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:54:20+00:00",
+          "hash": "6631e9aa0850a518"
         }
       }
     },
@@ -480,6 +543,13 @@
           "created": "2026-09-14T02:57:52+00:00",
           "hash": "38c79d5f0a29f8f1",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/wisp_lettuce/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale glowing blue-white cloth, with a tiny glowing lettuce head drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:54:46+00:00",
+          "hash": "98bdf4646f99fb1d"
         }
       }
     },
@@ -518,6 +588,13 @@
           "created": "2026-09-14T02:58:08+00:00",
           "hash": "c5aad17169cb852a",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/dragon_root/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, fiery red-orange cloth, with a tiny flame drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:55:22+00:00",
+          "hash": "2caededb1fac5476"
         }
       }
     },
@@ -555,6 +632,13 @@
           "created": "2026-09-14T02:58:58+00:00",
           "hash": "d70d3ecdade30597",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/tulip/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pink cloth, with a tiny tulip drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:55:44+00:00",
+          "hash": "e7e719563cddf210"
         }
       }
     },
@@ -592,6 +676,13 @@
           "created": "2026-09-14T02:59:25+00:00",
           "hash": "5bc6558b5a4e2c68",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/daffodil/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, yellow cloth, with a tiny daffodil drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:56:16+00:00",
+          "hash": "1f80dca79dd708fb"
         }
       }
     },
@@ -629,6 +720,13 @@
           "created": "2026-09-14T02:59:49+00:00",
           "hash": "c63a8e55c4a357a1",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxglove/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, purple-pink cloth, with a tiny bell spike drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:56:40+00:00",
+          "hash": "889dd0a5590538d8"
         }
       }
     },
@@ -667,6 +765,13 @@
           "created": "2026-09-14T03:15:47+00:00",
           "hash": "3c1760f8b602f975",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/grave_lily/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, ghostly grey-white cloth, with a tiny lily bloom drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:57:33+00:00",
+          "hash": "f4f5e4a497fd647a"
         }
       }
     },
@@ -707,6 +812,13 @@
           "hash": "fecdd69dbc999c8e",
           "approved": true,
           "edit": "royal-blue tint, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/sirens_bell/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep blue cloth, with a tiny hand bell drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:57:59+00:00",
+          "hash": "56cfa0ba8ebb1920"
         }
       }
     },
@@ -745,6 +857,13 @@
           "created": "2026-09-14T03:01:34+00:00",
           "hash": "63103f172992530e",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/brine_bulb/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale sea green with salt crystals cloth, with a tiny teardrop drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:58:22+00:00",
+          "hash": "60db9e13de2da665"
         }
       }
     },
@@ -785,6 +904,13 @@
           "hash": "044d5d6a5934bdb2",
           "approved": true,
           "edit": "purples tinted to the sprout's, soil matched"
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/bat_orchid/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, black with a purple sheen cloth, with a tiny bat drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:58:45+00:00",
+          "hash": "d5b11f292c89f489"
         }
       }
     },
@@ -822,6 +948,13 @@
           "created": "2026-09-14T03:00:10+00:00",
           "hash": "03fe9fbb77b44372",
           "approved": true
+        },
+        "bag": {
+          "file": "tools/art/raw/crops/foxtail/bag.png",
+          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, orange-red cloth, with a tiny paintbrush spike drawn simply on the front, seen from the front, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T14:57:05+00:00",
+          "hash": "efbc9bb7060604f0"
         }
       }
     }
