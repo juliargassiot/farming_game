@@ -1,4 +1,4 @@
-"""Every crop's seed bag: the hand-drawn tan sack from grids/items/seed_bag.grid with one seed on the front in that crop's seed colour."""
+"""Every crop's seed bag: the generated sack in raw/items/seed_bag.png with one seed on the front in that crop's seed colour."""
 import json
 import sys
 from pathlib import Path
@@ -6,13 +6,12 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from grid_to_png import parse, render
 from sheets import labelled_grid
 
 ART = Path(__file__).resolve().parent
 ROOT = ART.parents[1]
 SEED = [".dddd.", "dmmlld", "dmmmmd", "ddmmdd", ".dddd."]
-SEED_AT = (13, 16)
+SEED_AT = (13, 17)
 
 
 def seed_colour(seed: Image.Image) -> tuple[int, int, int]:
@@ -29,7 +28,7 @@ def _scale(colour: tuple[int, int, int], k: float) -> tuple[int, int, int, int]:
 
 
 def build(seed: Image.Image) -> Image.Image:
-    bag = render(parse(ART / "grids" / "items" / "seed_bag.grid"))
+    bag = Image.open(ART / "raw" / "items" / "seed_bag.png").convert("RGBA")
     colour = seed_colour(seed)
     inks = {"d": _scale(colour, 0.5), "m": _scale(colour, 1.0), "l": _scale(colour, 1.4)}
     px = bag.load()
@@ -52,7 +51,7 @@ def main() -> None:
             continue
         out = folder / "bag.png"
         build(Image.open(folder / "seed.png")).save(out)
-        record["stages"]["bag"] = {"file": rel(out), "created": now(), "hash": sha(out), "edit": "tan sack grid with one seed in the seed-stage colour"}
+        record["stages"]["bag"] = {"file": rel(out), "created": now(), "hash": sha(out), "edit": "shared sack with one seed in the seed-stage colour"}
         items.append((name, Image.open(out).convert("RGBA")))
     save_generated(generated)
     preview = ROOT / "previews" / "art" / "crops-bag.png"
