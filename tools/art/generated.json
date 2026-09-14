@@ -110,6 +110,13 @@
           "created": "2026-09-14T01:53:12+00:00",
           "hash": "5aeae89dfd774aa7",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/mandrake/ready.png",
+          "prompt": "a mandrake root with a leafy top, root shaped like a small person: fully grown and ready to harvest, whole plant visible, hints of pale yellow-green, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:51:39+00:00",
+          "hash": "668ae61287d31b6b"
         }
       }
     },
@@ -139,6 +146,13 @@
           "created": "2026-09-14T01:53:47+00:00",
           "hash": "a095e8a41bf6de95",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/carrot/ready.png",
+          "prompt": "carrots with feathery green tops: fully grown and ready to harvest, whole plant visible, hints of orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:52:05+00:00",
+          "hash": "85044a8f0024b4b4"
         }
       }
     },
@@ -168,6 +182,13 @@
           "created": "2026-09-14T02:11:34+00:00",
           "hash": "593fc2e77844653d",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/garlic/ready.png",
+          "prompt": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:03:32+00:00",
+          "hash": "9d276297fd203a88"
         }
       }
     },
@@ -197,6 +218,13 @@
           "created": "2026-09-14T01:54:49+00:00",
           "hash": "d0fe390bb6f50826",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/onion/ready.png",
+          "prompt": "an onion bulb with tubular green leaves: fully grown and ready to harvest, whole plant visible, hints of golden brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:52:55+00:00",
+          "hash": "2f3d56e8dd48f062"
         }
       }
     },
@@ -227,6 +255,13 @@
           "created": "2026-09-14T02:08:25+00:00",
           "hash": "b0984799b477bd5e",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/strawberry/ready.png",
+          "prompt": "a strawberry bush with ripe red berries: fully grown and ready to harvest, whole plant visible, hints of red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:53:24+00:00",
+          "hash": "7a030fb79bf75ef5"
         }
       }
     },
@@ -257,6 +292,13 @@
           "created": "2026-09-14T01:55:38+00:00",
           "hash": "37492210945b00c9",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/peas/ready.png",
+          "prompt": "a pea vine climbing a small wooden trellis with curling tendrils and several plump green pea pods hanging, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:03:06+00:00",
+          "hash": "73a3d92dce0bec52"
         }
       }
     },
@@ -287,6 +329,13 @@
           "created": "2026-09-14T02:09:09+00:00",
           "hash": "7454a0b27ae08e97",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/blood_blossom/ready.png",
+          "prompt": "a squash vine with big blood-red blossoms dripping dark red: fully grown and ready to harvest, whole plant visible, hints of deep blood red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:54:46+00:00",
+          "hash": "ed6d3fb52f8179f9"
         }
       }
     },
@@ -316,6 +365,34 @@
           "created": "2026-09-14T01:56:45+00:00",
           "hash": "8455044c7c08db21",
           "approved": true
+        },
+        "ready0": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready0.png",
+          "prompt": "a Fox Sprout: a small orange plant whose leaves fan out like fox ears with a white tip: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:55:12+00:00",
+          "hash": "5a165ee2499e930b"
+        },
+        "ready1": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready1.png",
+          "prompt": "a Bear Sprout: a stout dark brown plant with round furry leaves like bear ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:55:31+00:00",
+          "hash": "d39458dbbb931573"
+        },
+        "ready2": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready2.png",
+          "prompt": "a Hare Sprout: a pale grey plant with two tall thin leaves like hare ears: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:56:03+00:00",
+          "hash": "a1a130585a97c79d"
+        },
+        "ready3": {
+          "file": "tools/art/raw/crops/shifting_sprouts/ready3.png",
+          "prompt": "a Raven Sprout: a glossy black plant with pointed feather-like leaves: fully grown and ready to harvest, whole plant visible, hints of plain brown, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:56:39+00:00",
+          "hash": "214f75bc81fcb5fe"
         }
       }
     },
@@ -345,6 +422,13 @@
           "created": "2026-09-14T02:12:02+00:00",
           "hash": "39b05a8ec740f08f",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/wolfsbane/ready.png",
+          "prompt": "a tall wolfsbane plant with hooded purple flowers: fully grown and ready to harvest, whole plant visible, hints of deep purple, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:57:24+00:00",
+          "hash": "dbf3bb84d403a760"
         }
       }
     },
@@ -374,6 +458,13 @@
           "created": "2026-09-14T01:57:43+00:00",
           "hash": "bdd17ea62f6c24de",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/wisp_lettuce/ready.png",
+          "prompt": "a pale lettuce head glowing faintly: fully grown and ready to harvest, whole plant visible, hints of pale glowing blue-white, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:57:52+00:00",
+          "hash": "38c79d5f0a29f8f1"
         }
       }
     },
@@ -404,6 +495,13 @@
           "created": "2026-09-14T01:58:07+00:00",
           "hash": "31035fe45b6066cd",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/dragon_root/ready.png",
+          "prompt": "a scaly red root with ember-orange leaves: fully grown and ready to harvest, whole plant visible, hints of fiery red-orange, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:58:08+00:00",
+          "hash": "8324f6ccada01eb7"
         }
       }
     },
@@ -433,6 +531,13 @@
           "created": "2026-09-14T02:09:31+00:00",
           "hash": "e6d6802deca78e48",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/tulip/ready.png",
+          "prompt": "a pink tulip: fully grown and ready to harvest, whole plant visible, hints of pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:58:58+00:00",
+          "hash": "d70d3ecdade30597"
         }
       }
     },
@@ -462,6 +567,13 @@
           "created": "2026-09-14T02:10:09+00:00",
           "hash": "e91b6b2f351cd7d8",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/daffodil/ready.png",
+          "prompt": "a yellow daffodil: fully grown and ready to harvest, whole plant visible, hints of yellow, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:59:25+00:00",
+          "hash": "5bc6558b5a4e2c68"
         }
       }
     },
@@ -491,6 +603,13 @@
           "created": "2026-09-14T02:10:43+00:00",
           "hash": "4458bb0b0cf94e3f",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/foxglove/ready.png",
+          "prompt": "a tall foxglove with purple-pink bell flowers: fully grown and ready to harvest, whole plant visible, hints of purple-pink, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T02:59:49+00:00",
+          "hash": "781c1198d96beaf0"
         }
       }
     },
@@ -521,6 +640,13 @@
           "created": "2026-09-14T02:11:04+00:00",
           "hash": "ed0d3d98b789def0",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/grave_lily/ready.png",
+          "prompt": "a grey-white lily with drooping petals: fully grown and ready to harvest, whole plant visible, hints of ghostly grey-white, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:00:33+00:00",
+          "hash": "43f0a327c08d250e"
         }
       }
     },
@@ -550,6 +676,13 @@
           "created": "2026-09-14T02:00:05+00:00",
           "hash": "4465895115c83d3d",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/sirens_bell/ready.png",
+          "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:03:57+00:00",
+          "hash": "d56b9e4aa811e9f4"
         }
       }
     },
@@ -580,6 +713,13 @@
           "created": "2026-09-14T02:00:37+00:00",
           "hash": "68c759a7478c8b36",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/brine_bulb/ready.png",
+          "prompt": "a pale salt-crusted bulb with seaweed-like leaves: fully grown and ready to harvest, whole plant visible, hints of pale sea green with salt crystals, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:01:34+00:00",
+          "hash": "63103f172992530e"
         }
       }
     },
@@ -610,6 +750,13 @@
           "created": "2026-09-14T02:01:13+00:00",
           "hash": "2b068395ef14dc4c",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/bat_orchid/ready.png",
+          "prompt": "a black bat-shaped orchid with long whiskers: fully grown and ready to harvest, whole plant visible, hints of black with a purple sheen, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:02:00+00:00",
+          "hash": "febb8a6ff500e69e"
         }
       }
     },
@@ -639,6 +786,13 @@
           "created": "2026-09-14T02:12:38+00:00",
           "hash": "7347bd513941bc11",
           "approved": true
+        },
+        "ready": {
+          "file": "tools/art/raw/crops/foxtail/ready.png",
+          "prompt": "a foxtail flower like an Indian paintbrush: an upright spike of bristly red-orange bracts with green stems: fully grown and ready to harvest, whole plant visible, hints of orange-red, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
+          "seed": 21,
+          "created": "2026-09-14T03:00:10+00:00",
+          "hash": "03fe9fbb77b44372"
         }
       }
     }

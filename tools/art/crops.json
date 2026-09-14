@@ -25,7 +25,8 @@
     "seed": "three",
     "final": "a garlic bulb with tall flat green leaves",
     "stage_prompts": {
-      "growing": "a garlic plant with tall flat green leaves growing straight up from a small round mound"
+      "growing": "a garlic plant with tall flat green leaves growing straight up from a small round mound",
+      "ready": "a mature garlic plant with tall flat green leaves and a fat off-white bulb showing at the base, on a small round mound"
     },
     "stage_notes": {
       "growing": "bulb shifted to off-white with a light yellow tint; leaves original green"
@@ -57,6 +58,9 @@
     "stage_notes": {
       "sprout": "make the leaves thin curling tendrils and add a tiny wooden trellis behind the sprout, keep it small and sprout-like",
       "growing": "add a small wooden trellis behind the plant and make the vine climb up it with curling tendrils, no pea pods"
+    },
+    "stage_prompts": {
+      "ready": "a pea vine climbing a small wooden trellis with curling tendrils and several plump green pea pods hanging, ready to pick"
     }
   },
   "blood_blossom": {
@@ -164,6 +168,9 @@
     "stage_notes": {
       "sprout": "reshape the two blue leaves into round sleigh-bell shapes with a small cross-hatch slit line on each, same blue colour",
       "growing": "replace the bud with two larger round blue bell-shaped buds hanging down from short stems, side by side, clearly bells"
+    },
+    "stage_prompts": {
+      "ready": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick"
     }
   },
   "bat_orchid": {
