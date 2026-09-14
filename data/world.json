@@ -5,12 +5,12 @@
     "thornwood": {"name": "Thornwood", "race": "ghost", "kind": "forest", "rect": [46, 0, 74, 26], "combat_zone": false, "tree": "dead", "dead_tree": "dead"},
     "duskspire": {"name": "Duskspire Crags", "race": "vampire", "kind": "cave", "rect": [74, 0, 120, 26], "combat_zone": true, "tree": "thorn", "dead_tree": "dead"},
     "hexmeadow": {"name": "Hexmeadow", "race": "witch", "kind": "prairie", "rect": [0, 26, 38, 54], "combat_zone": true, "tree": "willow", "dead_tree": "dead"},
-    "square": {"name": "Wistmoor Square", "race": "", "kind": "town", "rect": [38, 26, 82, 56], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
+    "square": {"name": "Wistmoor Square", "race": "", "kind": "town", "rect": [38, 26, 82, 57], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
     "deepgloom": {"name": "Deepgloom Mine", "race": "", "kind": "mine", "rect": [82, 26, 120, 56], "combat_zone": true, "tree": "oak", "dead_tree": "dead"},
     "sallowfen": {"name": "Sallow Fen", "race": "ghost", "kind": "swamp", "rect": [0, 54, 38, 78], "combat_zone": false, "tree": "dead", "dead_tree": "dead"},
-    "farm": {"name": "Hollowbrook Farm", "race": "", "kind": "farm", "rect": [38, 56, 66, 74], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
+    "farm": {"name": "Hollowbrook Farm", "race": "", "kind": "farm", "rect": [38, 57, 66, 74], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
     "shore": {"name": "Saltwhisper Shore", "race": "", "kind": "beach", "rect": [38, 74, 66, 78], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
-    "pearlwater": {"name": "Pearlwater Cove", "race": "mermaid", "kind": "coast", "rect": [66, 56, 120, 78], "combat_zone": true, "tree": "coconut", "dead_tree": "dead"},
+    "pearlwater": {"name": "Pearlwater Cove", "race": "mermaid", "kind": "coast", "rect": [66, 57, 120, 78], "combat_zone": true, "tree": "coconut", "dead_tree": "dead"},
     "sea": {"name": "The Gloaming Sea", "race": "", "kind": "sea", "rect": [0, 78, 120, 84], "combat_zone": false, "tree": "oak", "dead_tree": "dead"}
   },
   "buildings": {
