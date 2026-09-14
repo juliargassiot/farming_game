@@ -21,9 +21,9 @@
     "71,40": "shop_smithy",
     "41,47": "shop_clinic",
     "72,49": "shop_tailor",
+    "50,54": "shop_inn",
     "62,54": "shop_salon",
     "41,55": "shop_magic",
-    "50,55": "shop_inn",
     "40,64": "farmhouse",
     "96,67": "shop_fishmonger"
   }
