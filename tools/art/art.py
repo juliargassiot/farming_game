@@ -233,6 +233,57 @@ def cmd_crop_import(args) -> None:
     print(f"Wrote {rel(out_png)} with {len(rows)} crops; stage columns in data/crop_atlas.json")
 
 
+def cmd_prop_candidates(args) -> None:
+    """One image per seed for a prop in tools/art/props.json, on a numbered sheet the user picks from."""
+    specs = load_json(ART / "props.json")
+    spec = specs[args.name]
+    client = PixelLab()
+    folder = RAW / "props" / args.name / "candidates"
+    frames = []
+    for seed in [int(x) for x in args.seeds.split(",")]:
+        path = folder / f"{seed}.png"
+        if not path.exists() or args.redo:
+            response = client.create_image_pixen(f"{spec['prompt']}, {specs['_style']}", tuple(spec["size"]), view="low top-down", outline="lineless",
+                                                 detail="highly detailed", seed=seed)
+            save_png(decode_image(response["image"]), path)
+        frames.append(Image.open(path).convert("RGBA"))
+        print(f"{len(frames)}: {rel(path)}")
+    preview = PREVIEWS / f"props-{args.name}-candidates.png"
+    sheets.contact_sheet([("", frames)], scale=2).save(preview)
+    print(f"Sheet at {rel(preview)}; numbers match the list above")
+
+
+def cmd_prop_design(args) -> None:
+    """Adopt a candidate as the prop's design; approval still comes from the user."""
+    generated = load_json(ART / "generated.json")
+    record = record_for(generated, "props", args.name)
+    out = RAW / "props" / args.name / "design.png"
+    image = save_png(Path(args.source).read_bytes(), out)
+    record.update(design={"file": rel(out), "source": rel(Path(args.source).resolve()), "hash": sha(out), "created": now()}, approved=False)
+    save_generated(generated)
+    preview = PREVIEWS / f"props-{args.name}-design.png"
+    sheets.upscaled(image, 4).save(preview)
+    print(f"{args.name}: design at {rel(out)}, preview {rel(preview)}. Stop here and ask for approval.")
+
+
+def cmd_prop_import(_args) -> None:
+    """Packs every approved prop into assets/tiles/props.png and records each region in data/props.json."""
+    generated = load_json(ART / "generated.json")
+    props = {name: record for name, record in generated.get("props", {}).items() if record.get("approved")}
+    if not props:
+        raise SystemExit("no approved props")
+    images = {name: Image.open(ROOT / record["design"]["file"]).convert("RGBA") for name, record in props.items()}
+    atlas = Image.new("RGBA", (sum(im.width for im in images.values()), max(im.height for im in images.values())), (0, 0, 0, 0))
+    regions, x = {}, 0
+    for name, im in images.items():
+        atlas.alpha_composite(im, (x, atlas.height - im.height))
+        regions[name] = [x, atlas.height - im.height, im.width, im.height]
+        x += im.width
+    atlas.save(ROOT / "assets" / "tiles" / "props.png")
+    (ROOT / "data" / "props.json").write_text(json.dumps(regions, indent=1) + "\n")
+    print(f"Wrote assets/tiles/props.png with {', '.join(regions)}; regions in data/props.json")
+
+
 STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked"]
 
 
@@ -245,8 +296,8 @@ def cmd_approve(args) -> None:
         save_generated(generated)
         print(f"crops/{args.stage}: {'rejected' if args.reject else 'approved'}")
         return
-    kind = "tilesets" if args.name in generated["tilesets"] and args.name not in generated["characters"] else "characters"
-    record = generated[kind].get(args.name)
+    kinds = [k for k in ("characters", "tilesets", "props") if args.name in generated.get(k, {})]
+    record = generated[kinds[0]].get(args.name) if kinds else None
     if not record or "design" not in record:
         raise SystemExit(f"{args.name}: nothing to approve")
     record.update(approved=not args.reject, approved_hash=None if args.reject else record["design"]["hash"],
@@ -597,6 +648,16 @@ def main() -> None:
     p.add_argument("--prompts", help="text file, one prompt per line, overriding the body description")
     p.add_argument("--face", help="x0,y0,x1,y1 box to show at 8x in <name>-face.png")
     p.set_defaults(func=cmd_candidates)
+    p = sub.add_parser("prop-candidates", help="generate seeds of a prop from props.json onto a numbered sheet")
+    p.add_argument("name")
+    p.add_argument("--seeds", default="1,2,3,4")
+    p.add_argument("--redo", action="store_true")
+    p.set_defaults(func=cmd_prop_candidates)
+    p = sub.add_parser("prop-design", help="adopt a candidate PNG as a prop's design")
+    p.add_argument("name")
+    p.add_argument("--source", required=True)
+    p.set_defaults(func=cmd_prop_design)
+    sub.add_parser("prop-import", help="pack approved props into assets/tiles/props.png").set_defaults(func=cmd_prop_import)
     p = sub.add_parser("crop-design", help="generate one growth stage for every crop of a season")
     p.add_argument("stage", help="seed, sprout, growing, ready, ...")
     p.add_argument("--season")

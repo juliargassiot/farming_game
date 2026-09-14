@@ -28,6 +28,8 @@ class Region:
 	var kind: String = ""
 	var rect: Rect2i = Rect2i()
 	var combat_zone: bool = false
+	var tree: String = "tree"
+	var dead_tree: String = "dead_tree"
 
 	static func from_dict(region_id: String, data: Dictionary) -> Region:
 		var region: Region = Region.new()
@@ -36,6 +38,8 @@ class Region:
 		region.race = data.get("race", "")
 		region.kind = data.get("kind", "")
 		region.combat_zone = data.get("combat_zone", false)
+		region.tree = data.get("tree", region.tree)
+		region.dead_tree = data.get("dead_tree", region.dead_tree)
 		var bounds: Array = data.get("rect", [0, 0, 0, 0])
 		var left: int = bounds[0]
 		var top: int = bounds[1]
