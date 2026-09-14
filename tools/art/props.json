@@ -124,7 +124,7 @@
     "detail": "medium detail"
   },
   "shop_inn": {
-    "prompt": "a very large grand village inn at dusk, bigger than a town hall: the building is shaped like an upside-down U seen from the front, a long tall main block across the back with two wings coming forward on the left and right, leaving an open cobbled courtyard between the wings at the front centre, three storeys of glowing windows, a big arched entrance at the back of the courtyard, lanterns, a hanging bed sign, chimneys with smoke, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
+    "prompt": "a very large grand village inn at dusk, one single continuous building shaped like an upside-down U: a long straight range across the back and a wing coming forward at each end, the roof runs unbroken from the left wing across the back range to the right wing with the same ridge height everywhere and no separate blocks, like two mirrored L shapes joined in the middle, an open cobbled courtyard between the wings at the front centre with the big arched entrance at its back wall, three storeys of glowing windows, lanterns, a hanging bed sign, muted purple-brown twilight palette with warm amber glows, dark weathered timber and mossy dark slate, ivy vines, clean crisp pixel art with dark outlines, flat colours, dead-on straight front view, flat orthographic front, the whole building filling the frame, no ground, no shadow, nothing else",
     "size": [
       256,
       256
