@@ -114,9 +114,9 @@
         "ready": {
           "file": "tools/art/raw/crops/mandrake/ready.png",
           "prompt": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 33,
           "created": "2026-09-14T03:15:17+00:00",
-          "hash": "1e0c4c581cdb91aa"
+          "hash": "91bfba8e7a4c6ebf"
         }
       }
     },

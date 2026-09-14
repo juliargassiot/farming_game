@@ -7,7 +7,7 @@
   "mandrake": {
     "colour": "pale yellow-green",
     "seed": "one",
-    "final": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top",
+    "final": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, standing on two thick twisted root legs of different lengths with one thin stray root strand, a leafy green top",
     "stage_notes": {
       "sprout": "add two small clearly visible dark eyes with tiny white glints on the root just below the leaves; red pupils in the black eyes; orbs 3x3"
     },
@@ -15,7 +15,7 @@
       "sprout": "eyes"
     },
     "stage_prompts": {
-      "ready": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, twisted root legs, a leafy green top, fully grown, ready to pull"
+      "ready": "a mandrake root shaped like a stout little person half pulled from the soil, golden-brown wrinkled body with a grimacing wailing face, standing on two thick twisted root legs of different lengths with one thin stray root strand, a leafy green top, fully grown, ready to pull, on a small round mound of dark tilled soil"
     }
   },
   "carrot": {
