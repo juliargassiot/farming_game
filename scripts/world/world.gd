@@ -11,14 +11,16 @@ const TERRAIN_SETS: Dictionary[String, String] = {
 
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
 const PROPS_PATH: String = "res://data/props.json"
+const GRASS_DIR: String = "res://assets/grass/"
 
 @export_file("*.txt") var map_path: String = WorldMap.MAP_PATH
-@export var grass_preset: String = ""
 
 var map: WorldMap
 var season: String = ""
 var prop_regions: Dictionary[String, Rect2i] = {}
+var grass_sprites: Dictionary[String, Sprite2D] = {}
 
+@onready var grass: Node2D = $Map/Grass
 @onready var terrain: TileMapLayer = $Map/Terrain
 @onready var tilled_layer: TileMapLayer = $Map/Tilled
 @onready var ground: TileMapLayer = $Map/Ground
@@ -76,6 +78,17 @@ func _build_map() -> void:
 				kind = _ground_under_prop(cell)
 			if kind != WorldMap.Ground.GRASS and kind != WorldMap.Ground.FIELD:
 				ground.set_cell(cell, 0, Vector2i(kind, 0))
+	_place_grass()
+
+
+func _place_grass() -> void:
+	"""One painted ground image per region, under everything else; the season picks which file it shows."""
+	for region: WorldMap.Region in map.regions:
+		var sprite: Sprite2D = Sprite2D.new()
+		sprite.centered = false
+		sprite.position = Vector2(region.rect.position * Player.TILE)
+		grass.add_child(sprite)
+		grass_sprites[region.id] = sprite
 
 
 func _ground_under_prop(cell: Vector2i) -> WorldMap.Ground:
@@ -146,7 +159,7 @@ func _refresh_plots() -> void:
 		terrain.tile_set = load(TERRAIN_SETS[season])
 		tilled_layer.tile_set = terrain.tile_set
 		wet.tile_set = terrain.tile_set
-		_paint_grass()
+		_swap_grass()
 	var tilled: Dictionary[Vector2i, bool] = {}
 	var watered: Dictionary[Vector2i, bool] = {}
 	for cell: Vector2i in map.farmable:
@@ -160,37 +173,19 @@ func _refresh_plots() -> void:
 		else:
 			crop_layer.erase_cell(cell)
 	var bounds: Rect2i = map.farm_bounds()
-	TerrainPainter.paint(tilled_layer, tilled, TerrainPainter.TILLED_ROW, bounds, false)
-	TerrainPainter.paint(wet, watered, TerrainPainter.WET_ROW, bounds, false)
+	TerrainPainter.paint(terrain, map.farmable, 0, bounds)
+	TerrainPainter.paint(tilled_layer, tilled, TerrainPainter.TILLED_ROW, bounds)
+	TerrainPainter.paint(wet, watered, TerrainPainter.WET_ROW, bounds)
 
 
-func _paint_grass() -> void:
-	var open: Array[Vector2i] = []
-	for cell: Vector2i in TerrainPainter.paint(terrain, map.farmable, 0, Rect2i(Vector2i.ZERO, map.size + Vector2i.ONE), true):
-		if _open_around(cell):
-			open.append(cell)
-	var assigned: Dictionary[Vector2i, int] = Grass.load_dials(season, grass_preset).assign(open)
-	for cell: Vector2i in open:
-		if assigned[cell] != Grass.PLAIN:
-			terrain.set_cell(cell, 0, TerrainPainter.variant_coords(cell, assigned[cell]))
+func _swap_grass() -> void:
+	for id: String in grass_sprites:
+		var path: String = GRASS_DIR + "%s_%s.png" % [id, season]
+		grass_sprites[id].texture = load(path) as Texture2D if ResourceLoader.exists(path) else null
 
 
-func _open_around(cell: Vector2i) -> bool:
-	for corner: Vector2i in [Vector2i(cell.x - 1, cell.y - 1), Vector2i(cell.x, cell.y - 1), Vector2i(cell.x - 1, cell.y), cell]:
-		if ground.get_cell_source_id(corner) != -1:
-			return false
-	return true
-
-
-func _on_entered_cell(cell: Vector2i, direction: Vector2i) -> void:
+func _on_entered_cell(cell: Vector2i, _direction: Vector2i) -> void:
 	_show_region(cell)
-	var feet: Vector2 = player.position + Vector2(0, 6)
-	var under: Vector2i = terrain.local_to_map(terrain.to_local(feet))
-	if not TerrainPainter.is_textured(terrain.get_cell_atlas_coords(under)):
-		return
-	var sway_direction: float = signf(direction.x) if direction.x != 0 else (1.0 if (cell.x + cell.y) % 2 == 0 else -1.0)
-	var sway: GrassSway = GrassSway.spawn($Map, terrain.tile_set, Vector2i.ZERO, terrain.get_cell_atlas_coords(under), terrain.to_global(terrain.map_to_local(under)), sway_direction)
-	$Map.move_child(sway, terrain.get_index() + 1)
 
 
 func _show_region(cell: Vector2i) -> void:
