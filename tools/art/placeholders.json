@@ -20,12 +20,6 @@
         22,
         24
       ]
-    },
-    "assets/tiles/crops.tres": {
-      "atlas": "assets/tiles/crops.png",
-      "tile": 32,
-      "columns": 5,
-      "rows": 3
     }
   }
 }

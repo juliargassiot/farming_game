@@ -36,16 +36,22 @@ def write_spriteframes(out: Path, animations: dict) -> None:
     out.write_text("\n".join(lines))
 
 
-def write_tileset(out: Path, atlas: Path, tile: int, columns: int, rows: int, solid=(), terrains=None, tile_terrain=None) -> None:
-    """terrains: [names]; tile_terrain: {(col,row): {"NW": idx, ...}} for Match Corners autotiling."""
+def write_tileset(out: Path, atlas: Path, tile: int, columns: int, rows: int, solid=(), terrains=None, tile_terrain=None, animations=None) -> None:
+    """terrains: [names]; tile_terrain: {(col,row): {"NW": idx, ...}} for Match Corners autotiling; animations: {(col,row): [seconds per frame]},
+    frames laid out to the right of the tile, which then owns those columns."""
+    owned = {(c + i, r) for (c, r), durations in (animations or {}).items() for i in range(1, len(durations))}
     lines = [f'[gd_resource type="TileSet" load_steps=3 format=3]\n', f'[ext_resource type="Texture2D" path="{res_path(atlas)}" id="1"]\n']
     lines.append('[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1"]\ntexture = ExtResource("1")\ntexture_region_size = Vector2i(%d, %d)' % (tile, tile))
     half = tile / 2
     for r in range(rows):
         for c in range(columns):
-            if tile_terrain is not None and (c, r) not in tile_terrain:
+            if (tile_terrain is not None and (c, r) not in tile_terrain) or (c, r) in owned:
                 continue
             key = f"{c}:{r}/0"
+            if animations and (c, r) in animations and len(animations[(c, r)]) > 1:
+                lines.append(f"{c}:{r}/animation_columns = 0\n{c}:{r}/animation_frames_count = {len(animations[(c, r)])}")
+                for i, seconds in enumerate(animations[(c, r)]):
+                    lines.append(f"{c}:{r}/animation_frame_{i}/duration = {seconds:.2f}")
             lines.append(f"{key} = 0")
             if (c + r * columns) in solid or (c, r) in solid:
                 lines.append(f"{key}/physics_layer_0/polygon_0/points = PackedVector2Array({-half}, {-half}, {half}, {-half}, {half}, {half}, {-half}, {half})")

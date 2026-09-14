@@ -7,6 +7,7 @@ var seasons: Array[String] = []
 var stage_days: Array[int] = []
 var sell_price: int = 0
 var atlas_row: int = 0
+var stage_columns: Array[int] = []
 var regrow_days: int = 0
 var trellis: bool = false
 var variants: Array[String] = []
@@ -37,15 +38,38 @@ static func from_dict(crop_id: String, d: Dictionary) -> CropData:
 	return crop
 
 
-static func load_all(path: String = "res://data/crops.json") -> Dictionary[String, CropData]:
+static func load_all(path: String = "res://data/crops.json", atlas_path: String = "res://data/crop_atlas.json") -> Dictionary[String, CropData]:
 	var result: Dictionary[String, CropData] = {}
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var atlas: Variant = JSON.parse_string(FileAccess.get_file_as_string(atlas_path)) if FileAccess.file_exists(atlas_path) else {}
 	if parsed is Dictionary:
 		var table: Dictionary = parsed
+		var layout: Dictionary = atlas if atlas is Dictionary else {}
 		for crop_id: String in table:
 			var entry: Dictionary = table[crop_id]
 			result[crop_id] = from_dict(crop_id, entry)
+			if layout.has(crop_id):
+				var crop_layout: Dictionary = layout[crop_id]
+				result[crop_id].apply_layout(crop_layout)
 	return result
+
+
+func apply_layout(layout: Dictionary) -> void:
+	var row: float = layout.get("row", 0)
+	atlas_row = int(row)
+	var starts: Dictionary = layout.get("stages", {})
+	stage_columns.clear()
+	for stage_name: String in ["seed", "sprout", "growing", "ready"]:
+		if starts.has(stage_name):
+			var column: float = starts[stage_name]
+			stage_columns.append(int(column))
+
+
+func atlas_column(stage_index: int) -> int:
+	if stage_columns.is_empty():
+		return stage_index
+	var art_stage: int = mini(stage_index, 3) if stage_index < stage_days.size() else 3
+	return stage_columns[mini(art_stage, stage_columns.size() - 1)]
 
 
 func total_days() -> int:

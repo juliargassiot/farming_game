@@ -54,3 +54,16 @@ func test_regrow_yield_and_variant() -> void:
 	check_eq(plot.days_grown, 3, "regrowth resumes one regrow period before maturity")
 	var copy: Plot = Plot.from_dict(plot.to_dict(), {"berry": berry})
 	check_eq(copy.variant, plot.variant, "variant survives save")
+
+
+func test_grow_one_stage() -> void:
+	var plot: Plot = Plot.new()
+	plot.apply(Plot.Action.TILL, potato)
+	plot.apply(Plot.Action.PLANT, potato)
+	plot.grow_one_stage()
+	check_eq(plot.days_grown, 2, "first press reaches the second stage")
+	plot.grow_one_stage()
+	plot.grow_one_stage()
+	check(plot.crop.is_mature(plot.days_grown), "three presses ripen a three-stage crop")
+	plot.grow_one_stage()
+	check_eq(plot.days_grown, 6, "mature crops stop")

@@ -45,6 +45,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	status.text = "%s    $%d" % [Calendar.label(Game.day), Game.money]
 	hint.text = _hint_for(player.target_cell())
+	if Input.is_action_just_pressed("debug_grow") and map.farmable.has(player.target_cell()):
+		Game.plot_at(player.target_cell()).grow_one_stage()
+		_refresh_plots()
 	if Input.is_action_just_pressed("cancel"):
 		Game.save()
 		get_tree().change_scene_to_file("res://scenes/title/title.tscn")
@@ -95,7 +98,7 @@ func _refresh_plots() -> void:
 			if plot.watered:
 				watered[cell] = true
 		if plot != null and plot.tilled and plot.crop != null:
-			crop_layer.set_cell(cell, 0, Vector2i(plot.stage(), plot.crop.atlas_row))
+			crop_layer.set_cell(cell, 0, Vector2i(plot.crop.atlas_column(plot.stage()), plot.crop.atlas_row))
 		else:
 			crop_layer.erase_cell(cell)
 	var bounds: Rect2i = map.farm_bounds()

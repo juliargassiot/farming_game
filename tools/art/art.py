@@ -197,6 +197,44 @@ def cmd_crop_design(args) -> None:
     print(f"Sheet at {rel(preview)}. Stop here and ask for approval.")
 
 
+def cmd_crop_import(args) -> None:
+    """Atlas row per crop, one animated tile per stage laid out left to right; data/crop_atlas.json says where each stage starts."""
+    import crop_anim
+    specs = load_json(ART / "crops.json")
+    generated = load_json(ART / "generated.json")
+    rows, layout, animations = [], {}, {}
+    for name, record in generated.get("crops", {}).items():
+        stages = [st for st in STAGE_ORDER if st in record.get("stages", {})]
+        if any(not record["stages"][st].get("approved") for st in stages):
+            raise SystemExit(f"{name}: stage {[st for st in stages if not record['stages'][st].get('approved')][0]} is not approved")
+        frames_by_stage = []
+        for st in stages:
+            image = Image.open(ROOT / record["stages"][st]["file"]).convert("RGBA")
+            kind = specs.get(name, {}).get("anim", {}).get(st)
+            frames_by_stage.append(crop_anim.BUILDERS[kind](image) if kind else [(image, 1.0)])
+        rows.append((name, stages, frames_by_stage))
+    size = 32
+    width = max(sum(len(f) for f in frames) for _, _, frames in rows)
+    atlas = Image.new("RGBA", (width * size, len(rows) * size), (0, 0, 0, 0))
+    for r, (name, stages, frames_by_stage) in enumerate(rows):
+        col, starts = 0, []
+        for frames in frames_by_stage:
+            starts.append(col)
+            animations[(col, r)] = [seconds for _, seconds in frames]
+            for image, _ in frames:
+                atlas.alpha_composite(image, (col * size, r * size))
+                col += 1
+        layout[name] = {"row": r, "stages": dict(zip(stages, starts))}
+    out_png = ROOT / "assets" / "tiles" / "crops.png"
+    atlas.save(out_png)
+    godot_res.write_tileset(out_png.with_suffix(".tres"), out_png, size, width, len(rows), animations=animations)
+    (ROOT / "data" / "crop_atlas.json").write_text(json.dumps(layout, indent=1) + "\n")
+    print(f"Wrote {rel(out_png)} with {len(rows)} crops; stage columns in data/crop_atlas.json")
+
+
+STAGE_ORDER = ["seed", "sprout", "growing", "ready", "picked"]
+
+
 def cmd_approve(args) -> None:
     generated = load_json(ART / "generated.json")
     if args.name == "crops":
@@ -565,6 +603,7 @@ def main() -> None:
     p.add_argument("--seed", type=int)
     p.add_argument("--redo", action="store_true", help="regenerate even when the stage exists")
     p.set_defaults(func=cmd_crop_design)
+    sub.add_parser("crop-import", help="write the crop atlas, animated tiles, and stage layout").set_defaults(func=cmd_crop_import)
     p = sub.add_parser("edit", help="text edit of one PNG, keeping everything else")
     p.add_argument("name")
     p.add_argument("source")
