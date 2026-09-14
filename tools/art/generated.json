@@ -769,18 +769,20 @@
         "growing": {
           "file": "tools/art/raw/crops/bat_orchid/growing.png",
           "prompt": "a black bat-shaped orchid with long whiskers: a young plant, half grown, leafy, no fruit or flower yet, hints of black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 213,
           "created": "2026-09-14T02:01:13+00:00",
-          "hash": "2b068395ef14dc4c",
-          "approved": true
+          "hash": "b4be03375db2f983",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
         },
         "ready": {
           "file": "tools/art/raw/crops/bat_orchid/ready.png",
           "prompt": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 211,
           "created": "2026-09-14T03:16:10+00:00",
-          "hash": "64819aadc760b288",
-          "approved": true
+          "hash": "805e7fd16bf133f0",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
         }
       }
     },
