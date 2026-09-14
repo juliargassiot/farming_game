@@ -36,3 +36,9 @@ func test_fantasy_fields() -> void:
 	check_eq(sprouts.harvest_name(-1), "Shifting Sprouts", "no variant falls back to the crop name")
 	check_eq(game.crops["potato"].yield_count, 6, "potato bags yield six")
 	check(game.crops["peas"].trellis, "peas climb a trellis")
+
+
+func test_flowers_and_favourites() -> void:
+	check_eq(game.crops["moonpetal"].kind, "flower", "moonpetal is a flower")
+	check_eq(game.crops["blood_blossom"].kind, "crop", "blood blossom is a crop")
+	check_eq(game.crops["sirens_bell"].favoured_by, "mermaid", "siren's bell is the mermaid flower")

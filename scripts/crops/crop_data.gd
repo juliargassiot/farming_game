@@ -12,6 +12,8 @@ var trellis: bool = false
 var variants: Array[String] = []
 var yield_count: int = 1
 var requires: String = ""
+var kind: String = "crop"
+var favoured_by: String = ""
 
 
 static func from_dict(crop_id: String, d: Dictionary) -> CropData:
@@ -30,6 +32,8 @@ static func from_dict(crop_id: String, d: Dictionary) -> CropData:
 	crop.trellis = d.get("trellis", false)
 	crop.yield_count = d.get("yield", 1)
 	crop.requires = d.get("requires", "")
+	crop.kind = d.get("kind", "crop")
+	crop.favoured_by = d.get("favoured_by", "")
 	return crop
 
 
