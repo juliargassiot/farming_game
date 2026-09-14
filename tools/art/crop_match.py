@@ -10,7 +10,8 @@ def _classes(a: np.ndarray, soil_from_row: int = 20) -> dict:
     luma = 0.299 * r + 0.587 * g + 0.114 * b
     low = np.arange(a.shape[0])[:, None] >= soil_from_row
     leaf = alpha & (g > r + 12) & (g > b + 12)
-    soil = alpha & ~leaf & low & (luma < 110) & (r >= g) & (r < 170) & (r - b < 80) & (r - g < 55)
+    purple = (r > g + 15) & (b > g + 15)
+    soil = alpha & ~leaf & ~purple & low & (luma < 110) & (r >= g) & (r >= b - 8) & (r < 170) & (r - b < 80) & (r - g < 55)
     marks = alpha & ((luma < 40) | ((r > 150) & (g < 80) & (b < 80)))
     body = alpha & ~leaf & ~soil & ~marks
     return {"soil": soil, "leaf": leaf, "body": body}

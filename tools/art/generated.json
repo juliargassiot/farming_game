@@ -693,18 +693,18 @@
           "prompt": "a blue bell-shaped flower: a young plant, half grown, leafy, no fruit or flower yet, hints of deep blue, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 170,
           "created": "2026-09-14T02:00:05+00:00",
-          "hash": "d05b39e6ac2300ee",
+          "hash": "f8f8d71198663c92",
           "approved": true,
-          "edit": "the ready plant scaled to 78% on the same mound"
+          "edit": "ready plant at 78%"
         },
         "ready": {
           "file": "tools/art/raw/crops/sirens_bell/ready.png",
           "prompt": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 162,
+          "seed": 201,
           "created": "2026-09-14T03:03:57+00:00",
-          "hash": "f75689f6dd58d4cc",
+          "hash": "fecdd69dbc999c8e",
           "approved": true,
-          "edit": "bigger sleigh-bell blooms"
+          "edit": "royal-blue tint, soil matched"
         }
       }
     },
@@ -754,7 +754,7 @@
           "prompt": "three medium seeds, black with a purple sheen, freshly planted in a small mound of dark tilled soil, seen from above, tiny, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T00:35:04+00:00",
-          "hash": "7a9655482dabc2d6",
+          "hash": "5b9b2a5a47459268",
           "approved": true
         },
         "sprout": {
@@ -762,25 +762,27 @@
           "prompt": "a tiny seedling with two small leaves, just emerged, leaves tinged black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 52,
           "created": "2026-09-14T01:07:08+00:00",
-          "hash": "0be5826817313156",
+          "hash": "0b40e59700dac5f2",
           "edit": "give both leaves ragged scalloped edges like bat wings",
           "approved": true
         },
         "growing": {
           "file": "tools/art/raw/crops/bat_orchid/growing.png",
           "prompt": "a black bat-shaped orchid with long whiskers: a young plant, half grown, leafy, no fruit or flower yet, hints of black with a purple sheen, no flower, no fruit, on a small mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 213,
           "created": "2026-09-14T02:01:13+00:00",
-          "hash": "2b068395ef14dc4c",
-          "approved": true
+          "hash": "b4be03375db2f983",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
         },
         "ready": {
           "file": "tools/art/raw/crops/bat_orchid/ready.png",
           "prompt": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
-          "seed": 21,
+          "seed": 211,
           "created": "2026-09-14T03:16:10+00:00",
-          "hash": "64819aadc760b288",
-          "approved": true
+          "hash": "044d5d6a5934bdb2",
+          "approved": true,
+          "edit": "purples tinted to the sprout's, soil matched"
         }
       }
     },

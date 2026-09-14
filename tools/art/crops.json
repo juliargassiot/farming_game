@@ -199,11 +199,11 @@
     "final": "a blue bell-shaped flower",
     "stage_notes": {
       "sprout": "derived from ready: short curved stem with two small closed green bells on the left, all green",
-      "growing": "derived from ready, smaller; same royal blue and X marks",
-      "ready": "three big royal-blue sleigh bells on the left of the curved stem, each with a hand-drawn angled X and bottom hole"
+      "growing": "the ready plant scaled to 78% on the same mound",
+      "ready": "three royal-blue hand bells with clappers hanging on the left of the curved stem"
     },
     "stage_prompts": {
-      "ready": "a flower with three deep blue bell-shaped blooms hanging open from a curved green stem, each bell with a small slit line, ready to pick"
+      "ready": "a flower with three royal-blue hand-bell shaped blooms hanging from the left side of one curved green stem, each bloom a classic curved bell with a flared open bottom and a tiny pale clapper dangling in the middle, a few green leaves, ready to pick"
     }
   },
   "bat_orchid": {
@@ -211,13 +211,16 @@
     "seed": "three",
     "final": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem",
     "stage_notes": {
-      "sprout": "give both leaves ragged scalloped edges like bat wings; deep notches along the wing edges"
+      "sprout": "give both leaves ragged scalloped edges like bat wings; deep notches along the wing edges",
+      "growing": "purple bat-wing leaves like the sprout, centre bud",
+      "ready": "dark purple bat-wing petals with a bat face, purples matched to the sprout"
     },
     "anim": {
       "sprout": "twitch"
     },
     "stage_prompts": {
-      "ready": "a black bat orchid flower with two broad wing-shaped petals spread wide like bat wings and a small bat face at the centre, short stem, fully open, no long thin legs, ready to pick"
+      "ready": "a black bat orchid in full bloom: two broad dark purple petals spread wide like bat wings with scalloped edges and a small black bat face at the centre, over ragged purple bat-wing leaves",
+      "growing": "a young plant with four ragged scalloped purple leaves shaped like bat wings, spread out, and one small dark closed bud at the centre, no open flower"
     }
   },
   "moonpetal": {
