@@ -174,16 +174,18 @@
           "prompt": "a tiny juvenile garlic seedling: a single thin pale green shoot with two small narrow leaves just emerging from the soil, very small, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 66,
           "created": "2026-09-14T04:20:26+00:00",
-          "hash": "95dc6317cad964e9",
-          "approved": true
+          "hash": "9ac77147dac1a623",
+          "approved": true,
+          "edit": "ready plant at 55%, bulb hidden"
         },
         "growing": {
           "file": "tools/art/raw/crops/garlic/growing.png",
           "prompt": "a garlic plant with tall flat green leaves growing straight up from a small round mound, no open flower, no fruit, on a small round mound of dark tilled soil, seen from above, pixel art, nothing else",
           "seed": 21,
           "created": "2026-09-14T02:11:34+00:00",
-          "hash": "593fc2e77844653d",
-          "approved": true
+          "hash": "5ca90fc1f5f6b1cd",
+          "approved": true,
+          "edit": "ready plant at 80%, bulb mostly buried"
         },
         "ready": {
           "file": "tools/art/raw/crops/garlic/ready.png",
