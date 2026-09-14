@@ -121,11 +121,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/mandrake/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale yellow-green cloth, with a tiny root figure drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:50:29+00:00",
-          "hash": "1bae22b81aafd433",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "f7157ae606f75754",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -166,11 +164,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/carrot/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, orange cloth, with a tiny carrot drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:50:52+00:00",
-          "hash": "131ffb68b943a22f",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "da7ba6c7fea76c7c",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -213,11 +209,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/garlic/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, off-white with a light yellow tint cloth, with a tiny garlic bulb drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 34,
-          "created": "2026-09-14T14:59:23+00:00",
-          "hash": "fd0a5e7579c6e66c",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "5fff5378e624a7d0",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -258,11 +252,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/onion/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, golden brown cloth, with a tiny onion drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:51:56+00:00",
-          "hash": "d1dc484a823c50e4",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "9f7d190704704b08",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -304,11 +296,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/strawberry/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, red cloth, with a tiny strawberry drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:52:19+00:00",
-          "hash": "fea8eb447eb4954a",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "4c3ccbb2fcfd639d",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -350,11 +340,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/peas/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, green cloth, with a tiny pea pod drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:52:57+00:00",
-          "hash": "755c366501436520",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "297a9b64a5f6651f",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -396,11 +384,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/blood_blossom/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep blood red cloth, with a tiny red blossom with a drip drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:53:20+00:00",
-          "hash": "2c243be9726b48d8",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "a42b8f7e8a31739a",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -465,11 +451,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/shifting_sprouts/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, plain brown cloth, with a tiny question mark drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:53:54+00:00",
-          "hash": "46e8f7a04dbec8ba",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "1fca63fbbeec7992",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -510,11 +494,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/wolfsbane/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep purple cloth, with a tiny hooded purple flower drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:54:20+00:00",
-          "hash": "7c6d8054d6c27b12",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "2520ff14546686cd",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -555,11 +537,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/wisp_lettuce/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale glowing blue-white cloth, with a tiny glowing lettuce head drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:54:46+00:00",
-          "hash": "6a9f80dce5f21b9a",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "6e3623d97b254ed2",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -601,11 +581,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/dragon_root/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, fiery red-orange cloth, with a tiny flame drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:55:22+00:00",
-          "hash": "1c7fea52b1bb1278",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "4f357dc1fff8ac67",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -646,11 +624,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/tulip/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pink cloth, with a tiny tulip drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:55:44+00:00",
-          "hash": "2ec910980292b0ba",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "955f0c375eff9cd4",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -691,11 +667,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/daffodil/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, yellow cloth, with a tiny daffodil drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:56:16+00:00",
-          "hash": "cefe20d82a3fe2fa",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "51edd1821ceac79f",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -736,11 +710,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/foxglove/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, purple-pink cloth, with a tiny bell spike drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:56:40+00:00",
-          "hash": "2d8479724cc29b7c",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "e639b756e28282e5",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -782,11 +754,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/grave_lily/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, ghostly grey-white cloth, with a tiny lily bloom drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:57:33+00:00",
-          "hash": "936cdd92590b84e7",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "b15db02f38c93d5b",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -830,11 +800,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/sirens_bell/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, deep blue cloth, with a tiny hand bell drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:57:59+00:00",
-          "hash": "de1e82de4a378dc2",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "b9c8de5315b7d62f",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -876,11 +844,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/brine_bulb/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, pale sea green with salt crystals cloth, with a tiny teardrop drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:58:22+00:00",
-          "hash": "b5dd61d0c5544f38",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "f51861e0f9c5f7f4",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -924,11 +890,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/bat_orchid/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, black with a purple sheen cloth, with a tiny bat drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:58:45+00:00",
-          "hash": "52882bc5b8c418c2",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "bd86a9f7ccdd3e5e",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     },
@@ -969,11 +933,9 @@
         },
         "bag": {
           "file": "tools/art/raw/crops/foxtail/bag.png",
-          "prompt": "a small seed bag item icon: a round evenly rounded cloth sack cinched tightly at the top with a tied cord, orange-red cloth, with a tiny paintbrush spike drawn simply on the front, seen from the front, pixel art, nothing else",
-          "seed": 21,
-          "created": "2026-09-14T14:57:05+00:00",
-          "hash": "13799dc65fb92813",
-          "edit": "shared onion bag shape recoloured from the ready plant, sprout emblem"
+          "created": "2026-09-14T15:30:33+00:00",
+          "hash": "2b8d0e85093c7002",
+          "edit": "tan sack grid with one seed in the seed-stage colour"
         }
       }
     }

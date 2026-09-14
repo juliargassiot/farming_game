@@ -37,7 +37,7 @@ Soil is a Wang tileset drawn over the painted grass. Declare the terrain pair in
 
 ## Crops
 
-`crops.json` gives each crop its seed style, final-form colour and description, per-stage `stage_notes` (edits the user asked for, applied with `edit`), and `anim` (a `crop_anim.py` builder per stage: `eyes`, `drip`, `flame`, `twitch`). `art.py crop-design <stage> --season s` generates one 32×32 image per crop (`--name` for one, `--redo` to replace) and a labelled sheet; `approve crops --stage <stage>` records the yes. `crop-import` writes `assets/tiles/crops.png` with a row per crop and an animated tile per stage, plus `data/crop_atlas.json`, which `CropData` reads to find each stage's column.
+`crops.json` gives each crop its seed style, final-form colour and description, per-stage `stage_notes` (edits the user asked for, applied with `edit`), and `anim` (a `crop_anim.py` builder per stage: `eyes`, `drip`, `flame`, `twitch`). `art.py crop-design <stage> --season s` generates one 32×32 image per crop (`--name` for one, `--redo` to replace) and a labelled sheet; `approve crops --stage <stage>` records the yes. `crop-import` writes `assets/tiles/crops.png` with a row per crop and an animated tile per stage, plus `data/crop_atlas.json`, which `CropData` reads to find each stage's column. Seed bags are not generated: `bags.py` stamps one seed in each crop's seed-stage colour onto the hand-drawn sack in `grids/items/seed_bag.grid` and rebuilds `previews/art/crops-bag.png`.
 
 ## Placeholders
 
