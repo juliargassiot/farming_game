@@ -1287,13 +1287,16 @@
       "approved_at": "2026-09-14T21:13:26+00:00"
     },
     "fountain": {
-      "approved": false,
+      "approved": true,
       "design": {
         "file": "tools/art/raw/props/fountain/design.png",
-        "source": "tools/art/raw/props/fountain/edits/moss-33-2a0f5f72fbe1a2a3-c444ccc362710b2d.png",
-        "hash": "1561b8afd2fa5cc5",
-        "created": "2026-09-15T00:31:47+00:00"
-      }
+        "source": "tools/art/raw/props/fountain/edits/tail-a-1561b8afd2fa5cc5.png",
+        "hash": "1877385586ed49fe",
+        "created": "2026-09-15T00:37:47+00:00"
+      },
+      "approved_hash": "1877385586ed49fe",
+      "approval_note": "",
+      "approved_at": "2026-09-15T00:54:26+00:00"
     }
   }
 }
