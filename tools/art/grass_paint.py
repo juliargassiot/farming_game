@@ -236,7 +236,23 @@ def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tu
     return img
 
 
+def settle_footprints(rows: list[str]) -> list[str]:
+    """Building footprints and doors take the ground most common around them, so a fountain on the plaza sits on flagstones."""
+    grid = [list(r) for r in rows]
+    h, w = len(grid), len(grid[0])
+    for _ in range(4):
+        for y in range(h):
+            for x in range(w):
+                if grid[y][x] not in "XBd":
+                    continue
+                around = [grid[ny][nx] for ny in range(max(0, y - 1), min(h, y + 2)) for nx in range(max(0, x - 1), min(w, x + 2)) if grid[ny][nx] not in "XBd"]
+                if around:
+                    grid[y][x] = max(set(around), key=around.count)
+    return ["".join(r) for r in grid]
+
+
 def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
+    rows = settle_footprints(rows)
     dials = data["dials"]
     shape = (len(rows) * TILE, len(rows[0]) * TILE)
     rng = np.random.default_rng(dials["seed"])

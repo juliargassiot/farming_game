@@ -22,5 +22,20 @@
     "36,31": "farmhouse",
     "9,42": "farmhouse",
     "28,47": "farmhouse"
-  }
+  },
+  "exits": [
+    {
+      "rect": [
+        0,
+        50,
+        1,
+        52
+      ],
+      "map": "world",
+      "arrive": [
+        118,
+        36
+      ]
+    }
+  ]
 }

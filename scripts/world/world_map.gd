@@ -48,6 +48,27 @@ class Region:
 		return region
 
 
+class Exit:
+	var rect: Rect2i = Rect2i()
+	var map: String = ""
+	var arrive: Vector2i = Vector2i.ZERO
+
+	static func from_dict(data: Dictionary) -> Exit:
+		var exit: Exit = Exit.new()
+		var bounds: Array = data.get("rect", [0, 0, 0, 0])
+		var left: int = bounds[0]
+		var top: int = bounds[1]
+		var right: int = bounds[2]
+		var bottom: int = bounds[3]
+		exit.rect = Rect2i(left, top, right - left, bottom - top)
+		exit.map = data.get("map", "")
+		var cell: Array = data.get("arrive", [0, 0])
+		var x: int = cell[0]
+		var y: int = cell[1]
+		exit.arrive = Vector2i(x, y)
+		return exit
+
+
 var rows: PackedStringArray = PackedStringArray()
 var size: Vector2i = Vector2i.ZERO
 var start: Vector2i = Vector2i(-1, -1)
@@ -55,6 +76,7 @@ var beds: Dictionary[Vector2i, bool] = {}
 var farmable: Dictionary[Vector2i, bool] = {}
 var buildings: Dictionary[Vector2i, String] = {}
 var regions: Array[Region] = []
+var exits: Array[Exit] = []
 
 
 static func load_files(map_path: String = MAP_PATH) -> WorldMap:
@@ -65,7 +87,7 @@ static func load_files(map_path: String = MAP_PATH) -> WorldMap:
 
 
 static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
-	"""data holds "regions" (id -> region fields) and "buildings" ("x,y" anchor -> prop name)."""
+	"""data holds "regions" (id -> region fields), "buildings" ("x,y" anchor -> prop name) and "exits" (edge cells that lead to another map)."""
 	var map: WorldMap = WorldMap.new()
 	map.rows = text.strip_edges().split("\n")
 	map.size = Vector2i(map.rows[0].length(), map.rows.size())
@@ -86,6 +108,9 @@ static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
 	for key: String in building_data:
 		var parts: PackedStringArray = key.split(",")
 		map.buildings[Vector2i(int(parts[0]), int(parts[1]))] = building_data[key]
+	var exit_data: Array = data.get("exits", [])
+	for entry: Dictionary in exit_data:
+		map.exits.append(Exit.from_dict(entry))
 	return map
 
 
@@ -110,6 +135,13 @@ func region_at(cell: Vector2i) -> Region:
 	for region: Region in regions:
 		if region.rect.has_point(cell):
 			return region
+	return null
+
+
+func exit_at(cell: Vector2i) -> Exit:
+	for exit: Exit in exits:
+		if exit.rect.has_point(cell):
+			return exit
 	return null
 
 

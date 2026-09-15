@@ -1,0 +1,14 @@
+{
+  "regions": {
+    "hexmeadow": {"name": "Hexmeadow", "race": "witch", "kind": "prairie", "rect": [0, 0, 120, 90], "combat_zone": true, "tree": "willow", "dead_tree": "dead"}
+  },
+  "exits": [
+    {"rect": [58, 89, 64, 90], "map": "world", "arrive": [60, 1]}
+  ],
+  "buildings": {
+    "86,20": "farmhouse",
+    "20,24": "farmhouse",
+    "92,54": "farmhouse",
+    "14,68": "farmhouse"
+  }
+}

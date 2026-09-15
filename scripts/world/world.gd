@@ -16,6 +16,9 @@ const STONES: Dictionary[WorldMap.Ground, String] = {
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
 const PROPS_PATH: String = "res://data/props.json"
 const GRASS_DIR: String = "res://assets/grass/"
+const MAPS_DIR: String = "res://data/maps/"
+const FADE_TIME: float = 0.35
+const TITLE_TIME: float = 0.9
 
 @export_file("*.txt") var map_path: String = WorldMap.MAP_PATH
 
@@ -24,6 +27,7 @@ var season: String = ""
 var prop_regions: Dictionary[String, Rect2i] = {}
 var footprint_ground: Dictionary[Vector2i, WorldMap.Ground] = {}
 var grass_sprites: Dictionary[String, Sprite2D] = {}
+var travelling: bool = false
 
 @onready var grass: Node2D = $Map/Grass
 @onready var terrain: TileMapLayer = $Map/Terrain
@@ -38,6 +42,8 @@ var grass_sprites: Dictionary[String, Sprite2D] = {}
 @onready var region_label: Label = $HUD/Region
 @onready var hint: Label = $HUD/Hint
 @onready var seed_menu: SeedMenu = $HUD/SeedMenu
+@onready var fade: ColorRect = $HUD/Fade
+@onready var fade_title: Label = $HUD/Fade/Title
 
 
 func _ready() -> void:
@@ -247,6 +253,49 @@ func _swap_grass() -> void:
 
 func _on_entered_cell(cell: Vector2i, _direction: Vector2i) -> void:
 	_show_region(cell)
+	var exit: WorldMap.Exit = map.exit_at(cell)
+	if exit != null and not travelling:
+		_travel(exit)
+
+
+func _travel(exit: WorldMap.Exit) -> void:
+	"""Fade to black, swap the map underfoot, name the district, and fade back in with the farmer on the arrival cell."""
+	travelling = true
+	player.set_physics_process(false)
+	var out: Tween = create_tween()
+	out.tween_property(fade, "modulate:a", 1.0, FADE_TIME)
+	await out.finished
+	_clear_map()
+	map_path = MAPS_DIR + exit.map + ".txt"
+	map = WorldMap.load_files(map_path)
+	_build_map()
+	player.place_at_cell(exit.arrive)
+	player.cell = exit.arrive
+	camera.reset_smoothing()
+	_refresh_plots()
+	_show_region(exit.arrive)
+	fade_title.text = region_label.text
+	fade_title.visible = true
+	await get_tree().create_timer(TITLE_TIME).timeout
+	fade_title.visible = false
+	var back: Tween = create_tween()
+	back.tween_property(fade, "modulate:a", 0.0, FADE_TIME)
+	await back.finished
+	player.set_physics_process(true)
+	travelling = false
+
+
+func _clear_map() -> void:
+	for child: Node in scenery.get_children():
+		if child != player:
+			child.queue_free()
+	for child: Node in grass.get_children():
+		child.queue_free()
+	for layer: TileMapLayer in [terrain, tilled_layer, wet, ground, crop_layer]:
+		layer.clear()
+	footprint_ground.clear()
+	grass_sprites.clear()
+	season = ""
 
 
 func _show_region(cell: Vector2i) -> void:

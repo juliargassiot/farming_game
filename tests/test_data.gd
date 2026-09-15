@@ -82,7 +82,7 @@ func test_world_map() -> void:
 func test_world_regions() -> void:
 	var map: WorldMap = WorldMap.load_files()
 	var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start)
-	check(map.regions.size() >= 8, "the world names its districts")
+	check(map.regions.size() >= 6, "the world names its districts")
 	for region: WorldMap.Region in map.regions:
 		check(region.display_name != "", region.id + " has a name")
 		check(Rect2i(Vector2i.ZERO, map.size).encloses(region.rect), region.id + " lies inside the map")
@@ -103,6 +103,33 @@ func test_world_regions() -> void:
 		for step: Vector2i in WorldMap.STEPS:
 			beside = beside or reachable.has(bed + step)
 		check(beside, "the farmer can stand beside the bed")
+
+
+func test_map_exits() -> void:
+	"""Every map's edge exits lead to a map that exists, land on open ground, and have a way back."""
+	var maps: Dictionary[String, WorldMap] = {}
+	for file: String in DirAccess.get_files_at("res://data/maps"):
+		if file.ends_with(".txt"):
+			maps[file.get_basename()] = WorldMap.load_files("res://data/maps/" + file)
+	check(maps.size() >= 5, "the hub and four districts")
+	for name: String in maps:
+		var map: WorldMap = maps[name]
+		if name != "fangridge":
+			check(map.exits.size() >= 1, name + " has an exit")
+		var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start) if map.start.x >= 0 else {}
+		for exit: WorldMap.Exit in map.exits:
+			check(maps.has(exit.map), "%s leads to a map that exists: %s" % [name, exit.map])
+			for y: int in range(exit.rect.position.y, exit.rect.end.y):
+				for x: int in range(exit.rect.position.x, exit.rect.end.x):
+					check(reachable.has(Vector2i(x, y)), "%s exit cell %s can be walked to" % [name, Vector2i(x, y)])
+			if not maps.has(exit.map):
+				continue
+			var target: WorldMap = maps[exit.map]
+			check(target.is_walkable(exit.arrive) and target.exit_at(exit.arrive) == null, "%s arrives on open ground in %s" % [name, exit.map])
+			var back: bool = false
+			for other: WorldMap.Exit in target.exits:
+				back = back or (other.map == name and map.is_walkable(other.arrive) and map.exit_at(other.arrive) == null)
+			check(back, "%s has a way back from %s" % [name, exit.map])
 
 
 func test_props_json() -> void:

@@ -13,6 +13,7 @@ const DATA: Dictionary = {
 		"farm": {"name": "Farm", "kind": "farm", "rect": [0, 2, 5, 5]},
 	},
 	"buildings": {"3,4": "farmhouse"},
+	"exits": [{"rect": [0, 1, 1, 2], "map": "cove", "arrive": [3, 3]}],
 }
 
 
@@ -53,6 +54,14 @@ func test_regions() -> void:
 	var farm: WorldMap.Region = map.region_at(Vector2i(2, 4))
 	check(farm != null and farm.display_name == "Farm" and not farm.combat_zone, "farm region defaults")
 	check(WorldMap.from_text(TEXT).region_at(Vector2i(2, 4)) == null, "no regions without data")
+
+
+func test_exits() -> void:
+	var map: WorldMap = WorldMap.from_text(TEXT, DATA)
+	var exit: WorldMap.Exit = map.exit_at(Vector2i(0, 1))
+	check(exit != null and exit.map == "cove" and exit.arrive == Vector2i(3, 3), "the edge cell leads to the cove")
+	check(map.exit_at(Vector2i(1, 1)) == null, "the sand beside it is just sand")
+	check(WorldMap.from_text(TEXT).exits.is_empty(), "no exits without data")
 
 
 func test_reachable_stops_at_solid_cells() -> void:

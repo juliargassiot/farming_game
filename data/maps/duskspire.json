@@ -1,0 +1,14 @@
+{
+  "regions": {
+    "duskspire": {"name": "Duskspire Crags", "race": "vampire", "kind": "cave", "rect": [0, 0, 120, 90], "combat_zone": true, "tree": "thorn", "dead_tree": "dead"}
+  },
+  "exits": [
+    {"rect": [119, 43, 120, 48], "map": "world", "arrive": [1, 36]}
+  ],
+  "buildings": {
+    "84,28": "farmhouse",
+    "38,32": "farmhouse",
+    "74,66": "farmhouse",
+    "30,68": "farmhouse"
+  }
+}
