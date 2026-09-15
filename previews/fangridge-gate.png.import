@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca1s3e5nppsmo"
-path="res://.godot/imported/880_176.png-56167af591ee8115bfe672e1fdbcd1dc.ctex"
+uid="uid://cm4g760un7e6x"
+path="res://.godot/imported/fangridge-gate.png-d65d4068abe326877113240445e0a6d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/panels/detail-full/880_176.png"
-dest_files=["res://.godot/imported/880_176.png-56167af591ee8115bfe672e1fdbcd1dc.ctex"]
+source_file="res://previews/fangridge-gate.png"
+dest_files=["res://.godot/imported/fangridge-gate.png-d65d4068abe326877113240445e0a6d3.ctex"]
 
 [params]
 

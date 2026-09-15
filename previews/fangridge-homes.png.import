@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgnvyfxwejgkk"
-path="res://.godot/imported/352_176.png-851a6c280c12820c784249b61ffe024a.ctex"
+uid="uid://cy17ekbpfmywi"
+path="res://.godot/imported/fangridge-homes.png-e229991fa8ae7aef11f318168cf5e0f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tools/art/raw/panels/detail-full/352_176.png"
-dest_files=["res://.godot/imported/352_176.png-851a6c280c12820c784249b61ffe024a.ctex"]
+source_file="res://previews/fangridge-homes.png"
+dest_files=["res://.godot/imported/fangridge-homes.png-e229991fa8ae7aef11f318168cf5e0f7.ctex"]
 
 [params]
 

@@ -10,26 +10,26 @@
       "rect": [
         0,
         0,
-        75,
-        56
+        120,
+        90
       ]
     }
   },
   "palette": "fangridge",
   "art": "tools/art/raw/panels/fangridge.png",
   "buildings": {
-    "19,30": "farmhouse",
-    "36,31": "farmhouse",
-    "9,42": "farmhouse",
-    "28,47": "farmhouse"
+    "30,49": "farmhouse",
+    "58,49": "farmhouse",
+    "14,67": "farmhouse",
+    "46,77": "farmhouse"
   },
   "exits": {
-    "6,55": {
+    "0,82": {
       "map": "world",
       "at": "118,36",
       "facing": "west"
     },
-    "7,55": {
+    "0,83": {
       "map": "world",
       "at": "118,36",
       "facing": "west"

@@ -255,7 +255,7 @@ def hub() -> None:
         },
         "exits": [
             {"rect": [59, 0, 63, 1], "map": "hexmeadow", "arrive": [60, 88], "facing": "north"},
-            {"rect": [119, 35, 120, 39], "map": "fangridge", "arrive": [6, 54], "facing": "north"},
+            {"rect": [119, 35, 120, 39], "map": "fangridge", "arrive": [1, 82], "facing": "east"},
             {"rect": [0, 35, 1, 39], "map": "duskspire", "arrive": [118, 45], "facing": "west"},
             {"rect": [83, 83, 87, 84], "map": "pearlwater", "arrive": [60, 1], "facing": "south"},
         ],

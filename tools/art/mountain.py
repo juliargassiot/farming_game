@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """The mountain map's cells, read straight from the hand-drawn mockup that its panels are painted from: ridges and
 everything beyond the mountain's outline block, green is grass, the black line is the trail, the unpainted inside is bare
-rock, purple outlines become home footprints with a door, and the cave and lookout are marked. The trail runs on from
-its lowest cell to the bottom edge, where the farmer starts and where stepping off leads back to the overworld trailhead.
+rock, purple outlines become home footprints with a door, and the cave and lookout are marked. The trail's bottom-left
+end runs to the west edge, where the farmer arrives and where stepping off leads back to the overworld's east gate.
 Run `mountain.py` to rewrite data/maps/fangridge.txt and the homes and exits in its .json."""
 import json
 from pathlib import Path
@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
 MAP = "fangridge"
 SYMBOLS = {"void": "^", "ridge": "^", "grass": ".", "path": "-", "home": "X", "dig": "r", "cave": "^", "lookout": "r"}
-TRAILHEAD = {"map": "world", "at": "24,19", "facing": "south"}
+TRAILHEAD = {"map": "world", "at": "118,36", "facing": "west"}
 
 
 def kinds_per_cell() -> np.ndarray:
@@ -53,11 +53,12 @@ def layout() -> tuple[list, dict]:
         rows[cy1][(cx0 + cx1) // 2] = "d"
         buildings[f"{cx0},{cy1}"] = "farmhouse"
     trail = [(x, y) for y in range(h) for x in range(w) if rows[y][x] == "-"]
-    sx, sy = max(trail, key=lambda c: c[1])
-    for y in range(sy, h):
-        rows[y][sx] = rows[y][sx + 1] = "-"
-    rows[h - 2][sx] = "P"
-    exits = {f"{sx},{h - 1}": TRAILHEAD, f"{sx + 1},{h - 1}": TRAILHEAD}
+    ex, ey = min(trail, key=lambda c: c[0] + (h - 1 - c[1]))
+    for y in (ey, ey + 1):
+        for x in range(ex + 1):
+            rows[y][x] = "-"
+    rows[ey][1] = "P"
+    exits = {f"0,{ey}": TRAILHEAD, f"0,{ey + 1}": TRAILHEAD}
     return ["".join(r) for r in rows], buildings, exits
 
 
@@ -92,6 +93,8 @@ def main() -> None:
     meta = json.loads(meta_path.read_text())
     meta["buildings"] = buildings
     meta["exits"] = exits
+    for region in meta["regions"].values():
+        region["rect"] = [0, 0, len(rows[0]), len(rows)]
     meta_path.write_text(json.dumps(meta, indent=2) + "\n")
     print("wrote", path.relative_to(ROOT), "with", len(buildings), "homes")
 

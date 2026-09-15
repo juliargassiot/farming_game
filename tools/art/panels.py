@@ -21,7 +21,7 @@ MOCKUP = ROOT / "mountain mockup.png"
 STYLE = ROOT / "river-landscape-illustration-pixel-art-style.jpg"
 PANEL = (600, 448)
 ART_SCALE = 2
-ART_WIDTH, ART_HEIGHT = 1200, 896
+ART_WIDTH, ART_HEIGHT = 1920, 1440
 DETAIL, DETAIL_OVERLAP, DETAIL_STRENGTH = 200, 24, 450
 MAP_WIDTH, MAP_HEIGHT = ART_WIDTH * ART_SCALE, ART_HEIGHT * ART_SCALE
 OVERLAP = (48, 32)
@@ -159,11 +159,12 @@ def stitch() -> Path:
 
 def detail_pass(seed: int) -> Path:
     """The chosen overview doubled with EPX and repainted tile by tile from itself by the older endpoint, which keeps
-    every shape and adds texture; doubled again and repainted once more, so the map is drawn at its own resolution."""
+    every shape and adds texture; enlarged to map size and repainted once more, so the map is drawn at its own resolution."""
     raw = ROOT / "tools" / "art" / "raw" / "panels"
     base = epx(np.asarray(Image.open(OVERVIEW).convert("RGB")))
     first = _detail(base, raw / "detail", seed)
-    final = _detail(epx(first), raw / "detail-full", seed)
+    full = np.asarray(Image.fromarray(first).resize((MAP_WIDTH, MAP_HEIGHT), Image.LANCZOS))
+    final = _detail(full, raw / "detail-full", seed)
     out = raw / "fangridge.png"
     Image.fromarray(final, "RGB").save(out)
     return out
