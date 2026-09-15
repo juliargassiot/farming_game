@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """The mountain map's cells, read straight from the hand-drawn mockup that its panels are painted from: ridges and
 everything beyond the mountain's outline block, green is grass, the black line is the trail, the unpainted inside is bare
-rock, purple outlines become home footprints with a door, the cave and lookout are marked, and the trail's lowest cell
-is the start. Run `mountain.py` to rewrite data/maps/fangridge.txt and the homes in its .json."""
+rock, purple outlines become home footprints with a door, and the cave and lookout are marked. The trail runs on from
+its lowest cell to the bottom edge, where the farmer starts and where stepping off leads back to the overworld trailhead.
+Run `mountain.py` to rewrite data/maps/fangridge.txt and the homes and exits in its .json."""
 import json
 from pathlib import Path
 
@@ -15,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TILE = 32
 MAP = "fangridge"
 SYMBOLS = {"void": "^", "ridge": "^", "grass": ".", "path": "-", "home": "X", "dig": "r", "cave": "^", "lookout": "r"}
+TRAILHEAD = {"map": "world", "at": "24,19", "facing": "south"}
 
 
 def kinds_per_cell() -> np.ndarray:
@@ -52,8 +54,11 @@ def layout() -> tuple[list, dict]:
         buildings[f"{cx0},{cy1}"] = "farmhouse"
     trail = [(x, y) for y in range(h) for x in range(w) if rows[y][x] == "-"]
     sx, sy = max(trail, key=lambda c: c[1])
-    rows[sy][sx] = "P"
-    return ["".join(r) for r in rows], buildings
+    for y in range(sy, h):
+        rows[y][sx] = rows[y][sx + 1] = "-"
+    rows[h - 2][sx] = "P"
+    exits = {f"{sx},{h - 1}": TRAILHEAD, f"{sx + 1},{h - 1}": TRAILHEAD}
+    return ["".join(r) for r in rows], buildings, exits
 
 
 def _components(mask: np.ndarray) -> list:
@@ -80,12 +85,13 @@ def _components(mask: np.ndarray) -> list:
 
 
 def main() -> None:
-    rows, buildings = layout()
+    rows, buildings, exits = layout()
     path = ROOT / "data" / "maps" / f"{MAP}.txt"
     path.write_text("\n".join(rows) + "\n")
     meta_path = path.with_suffix(".json")
     meta = json.loads(meta_path.read_text())
     meta["buildings"] = buildings
+    meta["exits"] = exits
     meta_path.write_text(json.dumps(meta, indent=2) + "\n")
     print("wrote", path.relative_to(ROOT), "with", len(buildings), "homes")
 

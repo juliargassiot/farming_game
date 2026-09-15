@@ -23,19 +23,16 @@
     "9,42": "farmhouse",
     "28,47": "farmhouse"
   },
-  "exits": [
-    {
-      "rect": [
-        0,
-        50,
-        1,
-        52
-      ],
+  "exits": {
+    "6,55": {
       "map": "world",
-      "arrive": [
-        118,
-        36
-      ]
+      "at": "118,36",
+      "facing": "west"
+    },
+    "7,55": {
+      "map": "world",
+      "at": "118,36",
+      "facing": "west"
     }
-  ]
+  }
 }

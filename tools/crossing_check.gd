@@ -6,10 +6,12 @@ func _initialize() -> void:
 	var packed: PackedScene = load("res://scenes/world/world.tscn")
 	var scene: Node = packed.instantiate()
 	root.add_child(scene)
+	current_scene = scene
 	await process_frame
 	var player: Node = scene.find_child("Player")
 	player.call("place_at_cell", Vector2i(60, 0))
 	await create_timer(2.5).timeout
+	var landed: Node = current_scene
 	var err: Error = root.get_texture().get_image().save_png("res://previews/crossing-check.png")
-	print("landed on ", scene.get("map_path"), " region ", scene.get_node("HUD/Region").get("text"), " err ", err)
+	print("landed on ", landed.get("map_path"), " region ", landed.get_node("HUD/Region").get("text"), " err ", err)
 	quit(0)

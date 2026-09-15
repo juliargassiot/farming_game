@@ -20,6 +20,21 @@ const SOLID: Array[Ground] = [
 const STEPS: Array[Vector2i] = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.DOWN, Vector2i.UP]
 
 
+class Exit:
+	var map_name: String = ""
+	var at: Vector2i = Vector2i.ZERO
+	var facing: Vector2i = Vector2i(0, 1)
+
+	static func from_dict(data: Dictionary) -> Exit:
+		var exit: Exit = Exit.new()
+		exit.map_name = data.get("map", "")
+		var at_key: String = data.get("at", "0,0")
+		var facing_name: String = data.get("facing", "south")
+		exit.at = WorldMap.parse_cell(at_key)
+		exit.facing = Player.DIRECTIONS.get(facing_name, Vector2i(0, 1))
+		return exit
+
+
 class Region:
 	var id: String = ""
 	var display_name: String = ""
@@ -48,27 +63,6 @@ class Region:
 		return region
 
 
-class Exit:
-	var rect: Rect2i = Rect2i()
-	var map: String = ""
-	var arrive: Vector2i = Vector2i.ZERO
-
-	static func from_dict(data: Dictionary) -> Exit:
-		var exit: Exit = Exit.new()
-		var bounds: Array = data.get("rect", [0, 0, 0, 0])
-		var left: int = bounds[0]
-		var top: int = bounds[1]
-		var right: int = bounds[2]
-		var bottom: int = bounds[3]
-		exit.rect = Rect2i(left, top, right - left, bottom - top)
-		exit.map = data.get("map", "")
-		var cell: Array = data.get("arrive", [0, 0])
-		var x: int = cell[0]
-		var y: int = cell[1]
-		exit.arrive = Vector2i(x, y)
-		return exit
-
-
 var rows: PackedStringArray = PackedStringArray()
 var size: Vector2i = Vector2i.ZERO
 var start: Vector2i = Vector2i(-1, -1)
@@ -76,7 +70,16 @@ var beds: Dictionary[Vector2i, bool] = {}
 var farmable: Dictionary[Vector2i, bool] = {}
 var buildings: Dictionary[Vector2i, String] = {}
 var regions: Array[Region] = []
-var exits: Array[Exit] = []
+var exits: Dictionary[Vector2i, Exit] = {}
+
+
+static func map_file(map_name: String) -> String:
+	return "res://data/maps/%s.txt" % map_name
+
+
+static func parse_cell(key: String) -> Vector2i:
+	var parts: PackedStringArray = key.split(",")
+	return Vector2i(int(parts[0]), int(parts[1]))
 
 
 static func load_files(map_path: String = MAP_PATH) -> WorldMap:
@@ -87,7 +90,7 @@ static func load_files(map_path: String = MAP_PATH) -> WorldMap:
 
 
 static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
-	"""data holds "regions" (id -> region fields), "buildings" ("x,y" anchor -> prop name) and "exits" (edge cells that lead to another map)."""
+	"""data holds "regions" (id -> region fields), "buildings" ("x,y" anchor -> prop name), and "exits" ("x,y" -> map, at, facing)."""
 	var map: WorldMap = WorldMap.new()
 	map.rows = text.strip_edges().split("\n")
 	map.size = Vector2i(map.rows[0].length(), map.rows.size())
@@ -106,11 +109,11 @@ static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
 		map.regions.append(Region.from_dict(region_id, entry))
 	var building_data: Dictionary = data.get("buildings", {})
 	for key: String in building_data:
-		var parts: PackedStringArray = key.split(",")
-		map.buildings[Vector2i(int(parts[0]), int(parts[1]))] = building_data[key]
-	var exit_data: Array = data.get("exits", [])
-	for entry: Dictionary in exit_data:
-		map.exits.append(Exit.from_dict(entry))
+		map.buildings[parse_cell(key)] = building_data[key]
+	var exit_data: Dictionary = data.get("exits", {})
+	for key: String in exit_data:
+		var entry: Dictionary = exit_data[key]
+		map.exits[parse_cell(key)] = Exit.from_dict(entry)
 	return map
 
 
@@ -135,13 +138,6 @@ func region_at(cell: Vector2i) -> Region:
 	for region: Region in regions:
 		if region.rect.has_point(cell):
 			return region
-	return null
-
-
-func exit_at(cell: Vector2i) -> Exit:
-	for exit: Exit in exits:
-		if exit.rect.has_point(cell):
-			return exit
 	return null
 
 

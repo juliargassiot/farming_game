@@ -9,12 +9,24 @@
     "farm": {"name": "Hollowbrook Farm", "race": "", "kind": "farm", "rect": [32, 60, 68, 84], "combat_zone": false, "tree": "oak", "dead_tree": "dead"},
     "shore": {"name": "Saltwhisper Shore", "race": "", "kind": "beach", "rect": [68, 60, 120, 84], "combat_zone": false, "tree": "oak", "dead_tree": "dead"}
   },
-  "exits": [
-    {"rect": [59, 0, 63, 1], "map": "hexmeadow", "arrive": [60, 88]},
-    {"rect": [119, 35, 120, 39], "map": "fangridge", "arrive": [1, 51]},
-    {"rect": [0, 35, 1, 39], "map": "duskspire", "arrive": [118, 45]},
-    {"rect": [83, 83, 87, 84], "map": "pearlwater", "arrive": [60, 1]}
-  ],
+  "exits": {
+    "59,0": {"map": "hexmeadow", "at": "60,88", "facing": "north"},
+    "60,0": {"map": "hexmeadow", "at": "60,88", "facing": "north"},
+    "61,0": {"map": "hexmeadow", "at": "60,88", "facing": "north"},
+    "62,0": {"map": "hexmeadow", "at": "60,88", "facing": "north"},
+    "119,35": {"map": "fangridge", "at": "6,54", "facing": "north"},
+    "119,36": {"map": "fangridge", "at": "6,54", "facing": "north"},
+    "119,37": {"map": "fangridge", "at": "6,54", "facing": "north"},
+    "119,38": {"map": "fangridge", "at": "6,54", "facing": "north"},
+    "0,35": {"map": "duskspire", "at": "118,45", "facing": "west"},
+    "0,36": {"map": "duskspire", "at": "118,45", "facing": "west"},
+    "0,37": {"map": "duskspire", "at": "118,45", "facing": "west"},
+    "0,38": {"map": "duskspire", "at": "118,45", "facing": "west"},
+    "83,83": {"map": "pearlwater", "at": "60,1", "facing": "south"},
+    "84,83": {"map": "pearlwater", "at": "60,1", "facing": "south"},
+    "85,83": {"map": "pearlwater", "at": "60,1", "facing": "south"},
+    "86,83": {"map": "pearlwater", "at": "60,1", "facing": "south"}
+  },
   "buildings": {
     "16,21": "farmhouse",
     "44,25": "shop_townhall",

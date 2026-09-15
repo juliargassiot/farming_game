@@ -24,9 +24,9 @@ def main() -> None:
     for y, row in enumerate(rows):
         for x, ch in enumerate(row):
             draw.rectangle((x * PX, y * PX, x * PX + PX - 1, y * PX + PX - 1), fill=COLOURS.get(ch, "#ff00ff"))
-    for exit in world.get("exits", []):
-        x0, y0, x1, y1 = [v * PX for v in exit["rect"]]
-        draw.rectangle((x0, y0, x1 - 1, y1 - 1), fill="#ff40ff")
+    for key in world.get("exits", {}):
+        x, y = [int(v) * PX for v in key.split(",")]
+        draw.rectangle((x, y, x + PX - 1, y + PX - 1), fill="#ff40ff")
     for region in world["regions"].values():
         x0, y0, x1, y1 = [v * PX for v in region["rect"]]
         draw.rectangle((x0, y0, x1 - 1, y1 - 1), outline="#ffffff")

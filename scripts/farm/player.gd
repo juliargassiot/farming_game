@@ -9,6 +9,9 @@ const TILE: int = 32
 const DIRECTION_NAMES: Dictionary[Vector2i, String] = {
 	Vector2i(0, 1): "south", Vector2i(0, -1): "north", Vector2i(1, 0): "east", Vector2i(-1, 0): "west",
 }
+const DIRECTIONS: Dictionary[String, Vector2i] = {
+	"south": Vector2i(0, 1), "north": Vector2i(0, -1), "east": Vector2i(1, 0), "west": Vector2i(-1, 0),
+}
 
 var facing: Vector2i = Vector2i(0, 1)
 var cell: Vector2i = Vector2i(-1, -1)
@@ -42,5 +45,6 @@ func target_cell() -> Vector2i:
 	return Vector2i(floori(probe.x / TILE), floori(probe.y / TILE))
 
 
-func place_at_cell(cell: Vector2i) -> void:
-	position = Vector2(cell) * TILE + Vector2(TILE / 2.0, TILE / 2.0)
+func place_at_cell(at: Vector2i, face: Vector2i = facing) -> void:
+	position = Vector2(at) * TILE + Vector2(TILE / 2.0, TILE / 2.0)
+	facing = face

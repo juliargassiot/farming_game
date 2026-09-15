@@ -158,18 +158,28 @@ def stitch() -> Path:
 
 
 def detail_pass(seed: int) -> Path:
-    """The chosen overview doubled with EPX, then repainted tile by tile from itself by the older endpoint, which keeps
-    every shape and adds texture; the tiles are feathered together and the result doubled again to map size."""
-    folder = ROOT / "tools" / "art" / "raw" / "panels" / "detail"
-    folder.mkdir(parents=True, exist_ok=True)
+    """The chosen overview doubled with EPX and repainted tile by tile from itself by the older endpoint, which keeps
+    every shape and adds texture; doubled again and repainted once more, so the map is drawn at its own resolution."""
+    raw = ROOT / "tools" / "art" / "raw" / "panels"
     base = epx(np.asarray(Image.open(OVERVIEW).convert("RGB")))
-    art = Image.fromarray(base)
+    first = _detail(base, raw / "detail", seed)
+    final = _detail(epx(first), raw / "detail-full", seed)
+    out = raw / "fangridge.png"
+    Image.fromarray(final, "RGB").save(out)
+    return out
+
+
+def _detail(source: np.ndarray, folder: Path, seed: int) -> np.ndarray:
+    """Repaints an image tile by tile from itself, feathering the overlaps together; finished tiles are kept."""
+    folder.mkdir(parents=True, exist_ok=True)
+    art = Image.fromarray(source)
+    height, width = source.shape[:2]
     style = style_image().crop((100, 100, 700, 700)).resize((DETAIL, DETAIL), Image.LANCZOS)
     client = PixelLab()
     step = DETAIL - DETAIL_OVERLAP
-    origins = [(min(x, ART_WIDTH - DETAIL), min(y, ART_HEIGHT - DETAIL)) for y in range(0, ART_HEIGHT - DETAIL_OVERLAP, step) for x in range(0, ART_WIDTH - DETAIL_OVERLAP, step)]
-    canvas = np.zeros((ART_HEIGHT, ART_WIDTH, 3))
-    weight = np.zeros((ART_HEIGHT, ART_WIDTH))
+    origins = [(min(x, width - DETAIL), min(y, height - DETAIL)) for y in range(0, height - DETAIL_OVERLAP, step) for x in range(0, width - DETAIL_OVERLAP, step)]
+    canvas = np.zeros((height, width, 3))
+    weight = np.zeros((height, width))
     ramp = np.minimum(np.minimum(np.arange(DETAIL) + 1, DETAIL - np.arange(DETAIL)), DETAIL_OVERLAP) / DETAIL_OVERLAP
     feather = ramp[:, None] * ramp[None, :]
     for x, y in dict.fromkeys(origins):
@@ -182,14 +192,11 @@ def detail_pass(seed: int) -> Path:
                     "detail": "highly detailed", "view": "high top-down"}
             response = client.call("POST", "/create-image-bitforge", json=body)
             path.write_bytes(decode_image(response.get("image") or _find_image(response)))
-            print("detailed", x, y, flush=True)
+            print("detailed", folder.name, x, y, flush=True)
         tile = np.asarray(Image.open(path).convert("RGB")).astype(float)
         canvas[y:y + DETAIL, x:x + DETAIL] += tile * feather[..., None]
         weight[y:y + DETAIL, x:x + DETAIL] += feather
-    detailed = (canvas / np.maximum(weight, 1e-6)[..., None]).round().astype(np.uint8)
-    out = ROOT / "tools" / "art" / "raw" / "panels" / "fangridge.png"
-    Image.fromarray(epx(detailed), "RGB").save(out)
-    return out
+    return (canvas / np.maximum(weight, 1e-6)[..., None]).round().astype(np.uint8)
 
 
 def epx(img: np.ndarray) -> np.ndarray:

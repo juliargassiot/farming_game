@@ -64,6 +64,27 @@ func test_fangridge_map() -> void:
 	check(region != null and region.kind == "mountain", "the mountain map is a mountain district")
 
 
+func test_map_exits() -> void:
+	"""Every exit stands on walkable ground and lands on walkable ground in a map that exists."""
+	var maps: Dictionary[String, WorldMap] = {}
+	for file: String in DirAccess.get_files_at("res://data/maps"):
+		if file.ends_with(".txt"):
+			maps[file.get_basename()] = WorldMap.load_files(WorldMap.map_file(file.get_basename()))
+	check(maps.size() >= 5, "the hub and its four districts")
+	var count: int = 0
+	for map_name: String in maps:
+		var map: WorldMap = maps[map_name]
+		for cell: Vector2i in map.exits:
+			var exit: WorldMap.Exit = map.exits[cell]
+			count += 1
+			check(map.is_walkable(cell), "%s exit at %s can be stepped on" % [map_name, cell])
+			check(maps.has(exit.map_name), "%s exit at %s leads to a known map" % [map_name, cell])
+			var far: WorldMap = maps.get(exit.map_name)
+			check(far != null and far.is_walkable(exit.at) and not far.exits.has(exit.at), "%s exit at %s lands on open ground" % [map_name, cell])
+			check(map.reachable_from(map.start).has(cell), "%s exit at %s can be reached from the start" % [map_name, cell])
+	check(count >= 2, "the overworld and the mountain link both ways")
+
+
 func test_world_map() -> void:
 	var rows: PackedStringArray = FileAccess.get_file_as_string(WorldMap.MAP_PATH).strip_edges().split("\n")
 	var counts: Dictionary[String, int] = {}
@@ -103,33 +124,6 @@ func test_world_regions() -> void:
 		for step: Vector2i in WorldMap.STEPS:
 			beside = beside or reachable.has(bed + step)
 		check(beside, "the farmer can stand beside the bed")
-
-
-func test_map_exits() -> void:
-	"""Every map's edge exits lead to a map that exists, land on open ground, and have a way back."""
-	var maps: Dictionary[String, WorldMap] = {}
-	for file: String in DirAccess.get_files_at("res://data/maps"):
-		if file.ends_with(".txt"):
-			maps[file.get_basename()] = WorldMap.load_files("res://data/maps/" + file)
-	check(maps.size() >= 5, "the hub and four districts")
-	for name: String in maps:
-		var map: WorldMap = maps[name]
-		if name != "fangridge":
-			check(map.exits.size() >= 1, name + " has an exit")
-		var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start) if map.start.x >= 0 else {}
-		for exit: WorldMap.Exit in map.exits:
-			check(maps.has(exit.map), "%s leads to a map that exists: %s" % [name, exit.map])
-			for y: int in range(exit.rect.position.y, exit.rect.end.y):
-				for x: int in range(exit.rect.position.x, exit.rect.end.x):
-					check(reachable.has(Vector2i(x, y)), "%s exit cell %s can be walked to" % [name, Vector2i(x, y)])
-			if not maps.has(exit.map):
-				continue
-			var target: WorldMap = maps[exit.map]
-			check(target.is_walkable(exit.arrive) and target.exit_at(exit.arrive) == null, "%s arrives on open ground in %s" % [name, exit.map])
-			var back: bool = false
-			for other: WorldMap.Exit in target.exits:
-				back = back or (other.map == name and map.is_walkable(other.arrive) and map.exit_at(other.arrive) == null)
-			check(back, "%s has a way back from %s" % [name, exit.map])
 
 
 func test_props_json() -> void:

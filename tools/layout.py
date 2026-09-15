@@ -122,7 +122,8 @@ class Grid:
         regions = list(meta["regions"].items())
         lines = ["{"] + [f'  "{k}": {json.dumps(v)},' for k, v in meta.items() if k not in ("regions", "buildings", "exits")]
         lines += ['  "regions": {'] + [f'    "{k}": {json.dumps(v)}' + ("," if i < len(regions) - 1 else "") for i, (k, v) in enumerate(regions)] + ["  },"]
-        lines += ['  "exits": ['] + [f"    {json.dumps(e)}" + ("," if i < len(meta["exits"]) - 1 else "") for i, e in enumerate(meta["exits"])] + ["  ],"]
+        exits = {f"{x},{y}": {"map": e["map"], "at": "%d,%d" % tuple(e["arrive"]), "facing": e["facing"]} for e in meta["exits"] for y in range(e["rect"][1], e["rect"][3]) for x in range(e["rect"][0], e["rect"][2])}
+        lines += ['  "exits": {'] + [f'    "{k}": {json.dumps(v)}' + ("," if i < len(exits) - 1 else "") for i, (k, v) in enumerate(exits.items())] + ["  },"]
         items = list(meta["buildings"].items())
         lines += ['  "buildings": {'] + [f'    "{k}": "{v}"' + ("," if i < len(items) - 1 else "") for i, (k, v) in enumerate(items)] + ["  }", "}"]
         (ROOT / "data/maps" / f"{name}.json").write_text("\n".join(lines) + "\n")
@@ -253,10 +254,10 @@ def hub() -> None:
             "shore": region("Saltwhisper Shore", "", "beach", [68, 60, 120, 84], "oak"),
         },
         "exits": [
-            {"rect": [59, 0, 63, 1], "map": "hexmeadow", "arrive": [60, 88]},
-            {"rect": [119, 35, 120, 39], "map": "fangridge", "arrive": [1, 51]},
-            {"rect": [0, 35, 1, 39], "map": "duskspire", "arrive": [118, 45]},
-            {"rect": [83, 83, 87, 84], "map": "pearlwater", "arrive": [60, 1]},
+            {"rect": [59, 0, 63, 1], "map": "hexmeadow", "arrive": [60, 88], "facing": "north"},
+            {"rect": [119, 35, 120, 39], "map": "fangridge", "arrive": [6, 54], "facing": "north"},
+            {"rect": [0, 35, 1, 39], "map": "duskspire", "arrive": [118, 45], "facing": "west"},
+            {"rect": [83, 83, 87, 84], "map": "pearlwater", "arrive": [60, 1], "facing": "south"},
         ],
     }
     g.write("world", meta)
@@ -282,7 +283,7 @@ def hexmeadow() -> None:
     g.put(60, 88, "P")
     meta = {
         "regions": {"hexmeadow": region("Hexmeadow", "witch", "prairie", [0, 0, 120, 90], "willow", True)},
-        "exits": [{"rect": [58, 89, 64, 90], "map": "world", "arrive": [60, 1]}],
+        "exits": [{"rect": [58, 89, 64, 90], "map": "world", "arrive": [60, 1], "facing": "south"}],
     }
     g.write("hexmeadow", meta)
 
@@ -309,7 +310,7 @@ def duskspire() -> None:
     g.put(118, 45, "P")
     meta = {
         "regions": {"duskspire": region("Duskspire Crags", "vampire", "cave", [0, 0, 120, 90], "thorn", True)},
-        "exits": [{"rect": [119, 43, 120, 48], "map": "world", "arrive": [1, 36]}],
+        "exits": [{"rect": [119, 43, 120, 48], "map": "world", "arrive": [1, 36], "facing": "east"}],
     }
     g.write("duskspire", meta)
 
@@ -347,7 +348,7 @@ def pearlwater() -> None:
     g.put(60, 1, "P")
     meta = {
         "regions": {"pearlwater": region("Pearlwater Cove", "mermaid", "coast", [0, 0, 120, 90], "coconut", True)},
-        "exits": [{"rect": [58, 0, 64, 1], "map": "world", "arrive": [84, 82]}],
+        "exits": [{"rect": [58, 0, 64, 1], "map": "world", "arrive": [84, 82], "facing": "north"}],
     }
     g.write("pearlwater", meta)
 

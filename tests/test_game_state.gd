@@ -58,8 +58,11 @@ func test_save_round_trip() -> void:
 	plot.apply(Plot.Action.TILL, game.crops["peas"])
 	plot.apply(Plot.Action.PLANT, game.crops["peas"])
 	plot.days_grown = 3
+	var exit: WorldMap.Exit = WorldMap.Exit.from_dict({"map": "fangridge", "at": "6,54", "facing": "north"})
+	game.travel(exit)
 	game.save(path)
 	game.new_game()
+	check_eq(game.map_name, "world", "a new game starts on the overworld")
 	check(game.has_save(path), "save file exists")
 	check(game.load_game(path), "load succeeds")
 	check_eq(game.day, 33, "day")
@@ -69,6 +72,8 @@ func test_save_round_trip() -> void:
 	var loaded: Plot = game.plot_at(Vector2i(5, 7))
 	check_eq(loaded.crop.id, "peas", "crop")
 	check_eq(loaded.days_grown, 3, "growth")
+	check(game.map_name == "fangridge" and game.cell == Vector2i(6, 54) and game.facing == Vector2i(0, -1), "where the farmer stood")
+	check(not game.arriving, "loading a save is not a journey")
 
 
 func test_load_rejects_missing_or_broken_save() -> void:
