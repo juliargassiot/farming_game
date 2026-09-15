@@ -20,6 +20,21 @@ const SOLID: Array[Ground] = [
 const STEPS: Array[Vector2i] = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.DOWN, Vector2i.UP]
 
 
+class Exit:
+	var map_name: String = ""
+	var at: Vector2i = Vector2i.ZERO
+	var facing: Vector2i = Vector2i(0, 1)
+
+	static func from_dict(data: Dictionary) -> Exit:
+		var exit: Exit = Exit.new()
+		exit.map_name = data.get("map", "")
+		var at_key: String = data.get("at", "0,0")
+		var facing_name: String = data.get("facing", "south")
+		exit.at = WorldMap.parse_cell(at_key)
+		exit.facing = Player.DIRECTIONS.get(facing_name, Vector2i(0, 1))
+		return exit
+
+
 class Region:
 	var id: String = ""
 	var display_name: String = ""
@@ -55,6 +70,16 @@ var beds: Dictionary[Vector2i, bool] = {}
 var farmable: Dictionary[Vector2i, bool] = {}
 var buildings: Dictionary[Vector2i, String] = {}
 var regions: Array[Region] = []
+var exits: Dictionary[Vector2i, Exit] = {}
+
+
+static func map_file(map_name: String) -> String:
+	return "res://data/maps/%s.txt" % map_name
+
+
+static func parse_cell(key: String) -> Vector2i:
+	var parts: PackedStringArray = key.split(",")
+	return Vector2i(int(parts[0]), int(parts[1]))
 
 
 static func load_files(map_path: String = MAP_PATH) -> WorldMap:
@@ -65,7 +90,7 @@ static func load_files(map_path: String = MAP_PATH) -> WorldMap:
 
 
 static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
-	"""data holds "regions" (id -> region fields) and "buildings" ("x,y" anchor -> prop name)."""
+	"""data holds "regions" (id -> region fields), "buildings" ("x,y" anchor -> prop name), and "exits" ("x,y" -> map, at, facing)."""
 	var map: WorldMap = WorldMap.new()
 	map.rows = text.strip_edges().split("\n")
 	map.size = Vector2i(map.rows[0].length(), map.rows.size())
@@ -84,8 +109,11 @@ static func from_text(text: String, data: Dictionary = {}) -> WorldMap:
 		map.regions.append(Region.from_dict(region_id, entry))
 	var building_data: Dictionary = data.get("buildings", {})
 	for key: String in building_data:
-		var parts: PackedStringArray = key.split(",")
-		map.buildings[Vector2i(int(parts[0]), int(parts[1]))] = building_data[key]
+		map.buildings[parse_cell(key)] = building_data[key]
+	var exit_data: Dictionary = data.get("exits", {})
+	for key: String in exit_data:
+		var entry: Dictionary = exit_data[key]
+		map.exits[parse_cell(key)] = Exit.from_dict(entry)
 	return map
 
 

@@ -22,5 +22,17 @@
     "36,31": "farmhouse",
     "9,42": "farmhouse",
     "28,47": "farmhouse"
+  },
+  "exits": {
+    "6,55": {
+      "map": "world",
+      "at": "24,19",
+      "facing": "south"
+    },
+    "7,55": {
+      "map": "world",
+      "at": "24,19",
+      "facing": "south"
+    }
   }
 }

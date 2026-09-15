@@ -26,5 +26,8 @@
     "41,55": "shop_magic",
     "40,64": "farmhouse",
     "96,67": "shop_fishmonger"
+  },
+  "exits": {
+    "24,18": {"map": "fangridge", "at": "6,54", "facing": "north"}
   }
 }

@@ -16,6 +16,8 @@ const STONES: Dictionary[WorldMap.Ground, String] = {
 const PROPS: Texture2D = preload("res://assets/tiles/props.png")
 const PROPS_PATH: String = "res://data/props.json"
 const GRASS_DIR: String = "res://assets/grass/"
+const FADE: float = 0.5
+const HOLD: float = 0.6
 
 @export_file("*.txt") var map_path: String = WorldMap.MAP_PATH
 
@@ -38,9 +40,13 @@ var grass_sprites: Dictionary[String, Sprite2D] = {}
 @onready var region_label: Label = $HUD/Region
 @onready var hint: Label = $HUD/Hint
 @onready var seed_menu: SeedMenu = $HUD/SeedMenu
+@onready var curtain: ColorRect = $HUD/Curtain
+@onready var curtain_label: Label = $HUD/Curtain/Name
 
 
 func _ready() -> void:
+	if map_path == WorldMap.MAP_PATH and Game.map_name != "world":
+		map_path = WorldMap.map_file(Game.map_name)
 	map = WorldMap.load_files(map_path)
 	prop_regions = _load_props()
 	_build_map()
@@ -49,6 +55,41 @@ func _ready() -> void:
 	player.entered_cell.connect(_on_entered_cell)
 	seed_menu.closed.connect(func() -> void: player.set_physics_process(true))
 	_show_region(player.cell)
+	_arrive()
+
+
+func _arrive() -> void:
+	"""A saved or travelling farmer stands where they left off; after travel the map's name lifts off a black curtain."""
+	var here: String = map_path.get_file().get_basename()
+	var at: Vector2i = map.start
+	if Game.map_name == here and Game.cell.x >= 0 and map.is_walkable(Game.cell):
+		at = Game.cell
+		player.place_at_cell(at, Game.facing)
+	Game.map_name = here
+	curtain.visible = Game.arriving
+	if not Game.arriving:
+		return
+	Game.arriving = false
+	curtain_label.text = _region_name(at)
+	curtain.modulate.a = 1.0
+	player.set_physics_process(false)
+	var tween: Tween = create_tween()
+	tween.tween_interval(HOLD)
+	tween.tween_property(curtain, "modulate:a", 0.0, FADE)
+	tween.tween_callback(func() -> void: curtain.visible = false)
+	tween.tween_callback(player.set_physics_process.bind(true))
+
+
+func _depart(exit: WorldMap.Exit) -> void:
+	player.set_physics_process(false)
+	curtain_label.text = ""
+	curtain.modulate.a = 0.0
+	curtain.visible = true
+	var tween: Tween = create_tween()
+	tween.tween_property(curtain, "modulate:a", 1.0, FADE)
+	tween.tween_callback(func() -> void:
+		Game.travel(exit)
+		get_tree().reload_current_scene())
 
 
 func _process(_delta: float) -> void:
@@ -67,6 +108,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("cancel"):
 		get_viewport().set_input_as_handled()
+		Game.cell = player.cell
+		Game.facing = player.facing
 		Game.save()
 		get_tree().change_scene_to_file("res://scenes/title/title.tscn")
 
@@ -247,11 +290,17 @@ func _swap_grass() -> void:
 
 func _on_entered_cell(cell: Vector2i, _direction: Vector2i) -> void:
 	_show_region(cell)
+	if map.exits.has(cell) and player.is_physics_processing():
+		_depart(map.exits[cell])
 
 
 func _show_region(cell: Vector2i) -> void:
+	region_label.text = _region_name(cell)
+
+
+func _region_name(cell: Vector2i) -> String:
 	var region: WorldMap.Region = map.region_at(cell)
-	region_label.text = region.display_name if region != null else ""
+	return region.display_name if region != null else ""
 
 
 func _hint_for(cell: Vector2i) -> String:

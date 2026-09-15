@@ -8,6 +8,10 @@ var money: int = 0
 var plots: Dictionary[Vector2i, Plot] = {}
 var unlocks: Array[String] = []
 var selected_seed: String = ""
+var map_name: String = "world"
+var cell: Vector2i = Vector2i(-1, -1)
+var facing: Vector2i = Vector2i(0, 1)
+var arriving: bool = false
 var crops: Dictionary[String, CropData] = {}
 
 
@@ -25,6 +29,18 @@ func new_game() -> void:
 	plots.clear()
 	unlocks.clear()
 	selected_seed = ""
+	map_name = "world"
+	cell = Vector2i(-1, -1)
+	facing = Vector2i(0, 1)
+	arriving = false
+
+
+func travel(exit: WorldMap.Exit) -> void:
+	"""The world scene reads these when it next loads and puts the farmer down at the far side of the exit."""
+	map_name = exit.map_name
+	cell = exit.at
+	facing = exit.facing
+	arriving = true
 
 
 func plot_at(cell: Vector2i) -> Plot:
@@ -66,7 +82,10 @@ func save(path: String = SAVE_PATH) -> void:
 		saved_plots["%d,%d" % [cell.x, cell.y]] = plots[cell].to_dict()
 	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if file != null:
-		file.store_string(JSON.stringify({"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks, "seed": selected_seed}))
+		file.store_string(JSON.stringify({
+			"day": day, "money": money, "plots": saved_plots, "unlocks": unlocks, "seed": selected_seed,
+			"map": map_name, "cell": "%d,%d" % [cell.x, cell.y], "facing": Player.DIRECTION_NAMES[facing],
+		}))
 
 
 func load_game(path: String = SAVE_PATH) -> bool:
@@ -79,6 +98,12 @@ func load_game(path: String = SAVE_PATH) -> bool:
 	day = data.get("day", 1)
 	money = data.get("money", 0)
 	selected_seed = data.get("seed", "")
+	map_name = data.get("map", "world")
+	var cell_key: String = data.get("cell", "-1,-1")
+	var facing_name: String = data.get("facing", "south")
+	cell = WorldMap.parse_cell(cell_key)
+	facing = Player.DIRECTIONS.get(facing_name, Vector2i(0, 1))
+	arriving = false
 	plots.clear()
 	unlocks.clear()
 	for unlock: String in data.get("unlocks", []):

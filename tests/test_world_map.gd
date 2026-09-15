@@ -13,6 +13,7 @@ const DATA: Dictionary = {
 		"farm": {"name": "Farm", "kind": "farm", "rect": [0, 2, 5, 5]},
 	},
 	"buildings": {"3,4": "farmhouse"},
+	"exits": {"0,2": {"map": "peaks", "at": "6,54", "facing": "north"}},
 }
 
 
@@ -28,6 +29,8 @@ func test_reads_symbols_and_landmarks() -> void:
 	check(not map.is_walkable(Vector2i(3, 3)), "building footprints block")
 	check_eq(map.farmable.keys(), [Vector2i(1, 4)], "field cells")
 	check_eq(map.ground_at(Vector2i(0, 0)), WorldMap.Ground.SEA, "sea")
+	var exit: WorldMap.Exit = map.exits[Vector2i(0, 2)]
+	check(exit.map_name == "peaks" and exit.at == Vector2i(6, 54) and exit.facing == Vector2i(0, -1), "exit leads to the far map")
 	check_eq(map.ground_at(Vector2i(3, 2)), WorldMap.Ground.TREE, "tree")
 	check_eq(map.ground_at(Vector2i(1, 2)), WorldMap.Ground.GRASS, "the start stands on grass")
 	check_eq(map.ground_at(Vector2i(9, 9)), WorldMap.Ground.GRASS, "outside the map reads as grass")

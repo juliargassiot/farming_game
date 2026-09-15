@@ -64,6 +64,25 @@ func test_fangridge_map() -> void:
 	check(region != null and region.kind == "mountain", "the mountain map is a mountain district")
 
 
+func test_map_exits() -> void:
+	"""Every exit stands on walkable ground and lands on walkable ground in a map that exists."""
+	var maps: Dictionary[String, WorldMap] = {}
+	for map_name: String in ["world", "fangridge"]:
+		maps[map_name] = WorldMap.load_files(WorldMap.map_file(map_name))
+	var count: int = 0
+	for map_name: String in maps:
+		var map: WorldMap = maps[map_name]
+		for cell: Vector2i in map.exits:
+			var exit: WorldMap.Exit = map.exits[cell]
+			count += 1
+			check(map.is_walkable(cell), "%s exit at %s can be stepped on" % [map_name, cell])
+			check(maps.has(exit.map_name), "%s exit at %s leads to a known map" % [map_name, cell])
+			var far: WorldMap = maps.get(exit.map_name)
+			check(far != null and far.is_walkable(exit.at) and not far.exits.has(exit.at), "%s exit at %s lands on open ground" % [map_name, cell])
+			check(map.reachable_from(map.start).has(cell), "%s exit at %s can be reached from the start" % [map_name, cell])
+	check(count >= 2, "the overworld and the mountain link both ways")
+
+
 func test_world_map() -> void:
 	var rows: PackedStringArray = FileAccess.get_file_as_string(WorldMap.MAP_PATH).strip_edges().split("\n")
 	var counts: Dictionary[String, int] = {}
