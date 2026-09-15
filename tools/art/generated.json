@@ -1285,6 +1285,15 @@
       "approved_hash": "b44eafec385c045d",
       "approval_note": "",
       "approved_at": "2026-09-14T21:13:26+00:00"
+    },
+    "fountain": {
+      "approved": false,
+      "design": {
+        "file": "tools/art/raw/props/fountain/design.png",
+        "source": "tools/art/raw/props/fountain/edits/moss-33-handarcs.png",
+        "hash": "e5c8096dfa4653b0",
+        "created": "2026-09-15T00:21:08+00:00"
+      }
     }
   }
 }
