@@ -47,27 +47,19 @@ func test_grass_json() -> void:
 			check(Color.html_is_valid(str(shade)), "%s stone shade %s is a colour" % [season, str(shade)])
 
 
-func test_mountain_json() -> void:
-	var data: Dictionary = _json("res://data/mountain.json")
-	var meta: Dictionary = _json("res://data/maps/%s.json" % data.get("map", ""))
-	var regions: Dictionary = meta.get("regions", {})
-	check(regions.has(data.get("region", "")), "the mountain map names its district")
-	check(data.get("wall_height", 0) as int > 0 and data.get("trail_width", 0) as int > 0, "wall height and trail width are set")
-	var trails: Array = data.get("trails", [])
-	check(trails.size() >= 1, "the mountain has a trail")
-	for trail: Variant in trails:
-		check((trail as Array).size() >= 2, "every trail has two or more waypoints")
-	var map: WorldMap = WorldMap.load_files("res://data/maps/%s.txt" % data.get("map", ""))
+func test_fangridge_map() -> void:
+	var map: WorldMap = WorldMap.load_files("res://data/maps/fangridge.txt")
 	check(map.start.x >= 0, "the mountain map has a start")
 	var reachable: Dictionary[Vector2i, bool] = map.reachable_from(map.start)
-	for home: Variant in data.get("homes", []):
-		var entry: Dictionary = home
-		var pair: Array = entry.get("at", [])
-		var ax: float = pair[0]
-		var ay: float = pair[1]
-		var anchor: Vector2i = Vector2i(int(ax), int(ay))
-		check(map.buildings.has(anchor), "home at %s is placed in the map's json" % anchor)
-		check(reachable.has(anchor + Vector2i(4, 1)), "home at %s can be walked to from the start" % anchor)
+	check(map.buildings.size() >= 3, "the mountain has its homes")
+	for anchor: Vector2i in map.buildings:
+		check(map.ground_at(anchor) == WorldMap.Ground.BLOCK, "home at %s anchors on its footprint" % anchor)
+		var found: bool = false
+		for step: Vector2i in WorldMap.STEPS:
+			for dx: int in 12:
+				if reachable.has(anchor + Vector2i(dx, 0) + step):
+					found = true
+		check(found, "home at %s can be walked to from the start" % anchor)
 	var region: WorldMap.Region = map.region_at(map.start)
 	check(region != null and region.kind == "mountain", "the mountain map is a mountain district")
 

@@ -10,29 +10,17 @@
       "rect": [
         0,
         0,
-        80,
-        60
+        75,
+        56
       ]
     }
   },
+  "palette": "fangridge",
+  "art": "tools/art/raw/panels/fangridge.png",
   "buildings": {
-    "12,30": "farmhouse",
-    "60,19": "farmhouse",
-    "26,15": "farmhouse",
-    "75,1": "boulder_large",
-    "27,4": "boulder_large",
-    "75,4": "boulder_large",
-    "74,7": "boulder_large",
-    "47,8": "boulder_large",
-    "15,9": "boulder_large",
-    "58,9": "boulder_large",
-    "74,12": "boulder_large",
-    "64,23": "boulder_large",
-    "75,25": "boulder_large",
-    "63,33": "boulder_large",
-    "57,40": "boulder_large",
-    "20,43": "boulder_large",
-    "33,43": "boulder_large"
-  },
-  "palette": "fangridge"
+    "19,30": "farmhouse",
+    "36,31": "farmhouse",
+    "9,42": "farmhouse",
+    "28,47": "farmhouse"
+  }
 }
