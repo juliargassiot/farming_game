@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Paints the ground as one continuous image per region and season: patches of three grass tones whose edges bleed into
-each other through sprigs cut from the grass pack sheets, flagstone paths where the map draws them, and the mountain
-district from mountain.py, all from data/grass.json.
+each other through sprigs cut from the grass pack sheets, and flagstone paths and dirt trails where the map draws them,
+from data/grass.json; a map whose .json names painted `art` is cut from that image instead.
 Run `grass_paint.py [--map name] [season ...]` to write assets/grass/<region>_<season>.png."""
 import json
 import sys
@@ -10,7 +10,6 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import mountain
 import palette
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -205,19 +204,14 @@ def _draw(img: np.ndarray, tuft: Tuft, cy: int, cx: int, colours: np.ndarray, sh
     region[tuft.flower[sl]] = tuft.rgb[sl][tuft.flower[sl]]
 
 
-def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator, map_name: str) -> np.ndarray:
-    """Base fill per surface (grass in patches of three shades, paths as flagstones, trails as dirt, the mountain map
-    from its own geometry), pack sprigs scattered in loose clumps inside each grass patch, and along every edge sprigs of the
+def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tufts: list, rng: np.random.Generator) -> np.ndarray:
+    """Base fill per surface (grass in patches of three shades, paths as flagstones, trails as dirt), pack sprigs scattered in loose clumps inside each grass patch, and along every edge sprigs of the
     neighbouring grass reaching across, onto the next patch, the rock, or the path, so they bleed."""
     h, w = patch.shape
     colours = np.array([[hex_rgb(c) for c in palette[name]] for name in TONES], dtype=np.uint8)
     img = colours[patch, 1].copy()
     flagstones(img, surface == PATH, palette["stone"], dials, rng)
     dirt(img, surface == TRAIL, np.array([hex_rgb(c) for c in palette["dirt"]], dtype=np.uint8), dials, rng)
-    if mountain.load()["map"] == map_name:
-        peaks = mountain.paint(img, patch, mountain.load(), palette, dials, rng)
-        surface = np.where(peaks > 0, peaks, surface)
-    speckle(img, surface == LEDGE, np.array([hex_rgb(c) for c in palette["rock"]], dtype=np.uint8), dials["speckle_density"], rng)
     tone = surface
     clump_noise = fbm(tone.shape, dials["clump_size"], rng, 2)
     step, reach = dials["stamp_step"], dials["bleed"]
@@ -242,17 +236,16 @@ def paint(patch: np.ndarray, surface: np.ndarray, palette: dict, dials: dict, tu
     return img
 
 
-def paint_world(rows: list[str], data: dict, season: str, map_name: str) -> np.ndarray:
+def paint_world(rows: list[str], data: dict, season: str) -> np.ndarray:
     dials = data["dials"]
     shape = (len(rows) * TILE, len(rows[0]) * TILE)
     rng = np.random.default_rng(dials["seed"])
     patch = tone_field(shape, dials, rng)
     surface = np.full(shape, GRASS, dtype=np.int8)
     surface[path_mask(rows, "=+", dials, rng)] = PATH
-    if mountain.load()["map"] != map_name:
-        surface[path_mask(rows, "-", dials, rng)] = TRAIL
+    surface[path_mask(rows, "-", dials, rng)] = TRAIL
     tufts = [tuft for sheet in data["seasons"][season]["sheets"] for tuft in load_tufts(sheet, data["pack"])]
-    return paint(patch, surface, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1), map_name)
+    return paint(patch, surface, data["seasons"][season], dials, tufts, np.random.default_rng(dials["seed"] + 1))
 
 
 def grassy_regions(rows: list[str], regions: dict) -> dict:
@@ -277,7 +270,7 @@ def main() -> None:
     seasons = args or list(data["seasons"])
     meta = json.loads((ROOT / "data" / "maps" / f"{map_name}.json").read_text())
     for season in seasons:
-        world = paint_world(rows, data, season, map_name)
+        world = np.asarray(Image.open(ROOT / meta["art"]).convert("RGB")) if "art" in meta else paint_world(rows, data, season)
         for name, (x0, y0, x1, y1) in regions.items():
             image = Image.fromarray(world[y0 * TILE:y1 * TILE, x0 * TILE:x1 * TILE], "RGB")
             if "palette" in meta:
